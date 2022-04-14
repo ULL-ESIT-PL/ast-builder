@@ -1209,7 +1209,8 @@ e.call(t,n,i,this)}return this},getEach:S,setEach(e,r){return this.forEach((i=>(
 return this.forEach(((i,n,s)=>r[n]=e.call(t,i,n,s))),r},mapBy:S,filter(e,t=null){var r=A()
 return this.forEach(((i,n,s)=>{e.call(t,i,n,s)&&r.push(i)})),r},reject(e,t=null){return this.filter((function(){return!e.apply(t,arguments)}))},filterBy(){return this.filter(d(...arguments))},rejectBy(){return this.reject(d(...arguments))},find(e,t=null){return m(this,e,t)},findBy(){return m(this,d(...arguments))},every(e,t=null){return y(this,e,t)},isEvery(){return y(this,d(...arguments))},any(e,t=null){return g(this,e,t)},isAny(){return g(this,d(...arguments))},reduce(e,t){var r=t
 return this.forEach((function(t,i){r=e(r,t,i,this)}),this),r},invoke(e,...t){var r=A()
-return this.forEach((i=>r.push(i[e]?.(...t)))),r},toArray(){return this.map((e=>e))},compact(){return this.filter((e=>null!=e))},includes(e,t){return-1!==v(this,e,t,!0)},sortBy(){var e=arguments
+return this.forEach((i=>{var n
+return r.push(null==(n=i[e])?void 0:n.call(i,...t))})),r},toArray(){return this.map((e=>e))},compact(){return this.filter((e=>null!=e))},includes(e,t){return-1!==v(this,e,t,!0)},sortBy(){var e=arguments
 return this.toArray().sort(((r,i)=>{for(var n=0;n<e.length;n++){var a=e[n],o=(0,t.get)(r,a),l=(0,t.get)(i,a),u=(0,s.default)(o,l)
 if(u)return u}return 0}))},uniq(){return p(this)},uniqBy(e){return p(this,e)},without(e){if(!this.includes(e))return this
 var t=e==e?t=>t!==e:e=>e==e
@@ -9533,214 +9534,254 @@ Object.defineProperty(t,"__esModule",{value:!0})
 var i=r(4)
 t.default=function(e){return{sourceType:i.getOption(e,"sourceType","module"),strictMode:i.getOption(e,"strictMode",!1),allowImportExportEverywhere:!0,allowReturnOutsideFunction:!0,startLine:1,tokens:!0,plugins:["asyncGenerators","bigInt","classPrivateMethods","classPrivateProperties","classProperties","decorators-legacy","doExpressions","dynamicImport","exportDefaultFrom","exportExtensions","exportNamespaceFrom","functionBind","functionSent","importMeta","nullishCoalescingOperator","numericSeparator","objectRestSpread","optionalCatchBinding","optionalChaining",["pipelineOperator",{proposal:"minimal"}],"throwExpressions"]}}},function(e,t,r){"use strict"
 Object.defineProperty(t,"__esModule",{value:!0})
-class i{constructor(e,t={}){this.label=void 0,this.keyword=void 0,this.beforeExpr=void 0,this.startsExpr=void 0,this.rightAssociative=void 0,this.isLoop=void 0,this.isAssign=void 0,this.prefix=void 0,this.postfix=void 0,this.binop=void 0,this.updateContext=void 0,this.label=e,this.keyword=t.keyword,this.beforeExpr=!!t.beforeExpr,this.startsExpr=!!t.startsExpr,this.rightAssociative=!!t.rightAssociative,this.isLoop=!!t.isLoop,this.isAssign=!!t.isAssign,this.prefix=!!t.prefix,this.postfix=!!t.postfix,this.binop=null!=t.binop?t.binop:null,this.updateContext=null}}const n=new Map
-function s(e,t={}){t.keyword=e
-const r=new i(e,t)
-return n.set(e,r),r}function a(e,t){return new i(e,{beforeExpr:!0,binop:t})}const o={num:new i("num",{startsExpr:!0}),bigint:new i("bigint",{startsExpr:!0}),decimal:new i("decimal",{startsExpr:!0}),regexp:new i("regexp",{startsExpr:!0}),string:new i("string",{startsExpr:!0}),name:new i("name",{startsExpr:!0}),eof:new i("eof"),bracketL:new i("[",{beforeExpr:!0,startsExpr:!0}),bracketHashL:new i("#[",{beforeExpr:!0,startsExpr:!0}),bracketBarL:new i("[|",{beforeExpr:!0,startsExpr:!0}),bracketR:new i("]"),bracketBarR:new i("|]"),braceL:new i("{",{beforeExpr:!0,startsExpr:!0}),braceBarL:new i("{|",{beforeExpr:!0,startsExpr:!0}),braceHashL:new i("#{",{beforeExpr:!0,startsExpr:!0}),braceR:new i("}"),braceBarR:new i("|}"),parenL:new i("(",{beforeExpr:!0,startsExpr:!0}),parenR:new i(")"),comma:new i(",",{beforeExpr:!0}),semi:new i(";",{beforeExpr:!0}),colon:new i(":",{beforeExpr:!0}),doubleColon:new i("::",{beforeExpr:!0}),dot:new i("."),question:new i("?",{beforeExpr:!0}),questionDot:new i("?."),arrow:new i("=>",{beforeExpr:!0}),template:new i("template"),ellipsis:new i("...",{beforeExpr:!0}),backQuote:new i("`",{startsExpr:!0}),dollarBraceL:new i("${",{beforeExpr:!0,startsExpr:!0}),at:new i("@"),hash:new i("#",{startsExpr:!0}),interpreterDirective:new i("#!..."),eq:new i("=",{beforeExpr:!0,isAssign:!0}),assign:new i("_=",{beforeExpr:!0,isAssign:!0}),incDec:new i("++/--",{prefix:!0,postfix:!0,startsExpr:!0}),bang:new i("!",{beforeExpr:!0,prefix:!0,startsExpr:!0}),tilde:new i("~",{beforeExpr:!0,prefix:!0,startsExpr:!0}),pipeline:a("|>",0),nullishCoalescing:a("??",1),logicalOR:a("||",1),logicalAND:a("&&",2),bitwiseOR:a("|",3),bitwiseXOR:a("^",4),bitwiseAND:a("&",5),equality:a("==/!=/===/!==",6),relational:a("</>/<=/>=",7),bitShift:a("<</>>/>>>",8),plusMin:new i("+/-",{beforeExpr:!0,binop:9,prefix:!0,startsExpr:!0}),modulo:new i("%",{beforeExpr:!0,binop:10,startsExpr:!0}),star:new i("*",{binop:10}),slash:a("/",10),exponent:new i("**",{beforeExpr:!0,binop:11,rightAssociative:!0}),_break:s("break"),_case:s("case",{beforeExpr:!0}),_catch:s("catch"),_continue:s("continue"),_debugger:s("debugger"),_default:s("default",{beforeExpr:!0}),_do:s("do",{isLoop:!0,beforeExpr:!0}),_else:s("else",{beforeExpr:!0}),_finally:s("finally"),_for:s("for",{isLoop:!0}),_function:s("function",{startsExpr:!0}),_if:s("if"),_return:s("return",{beforeExpr:!0}),_switch:s("switch"),_throw:s("throw",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_try:s("try"),_var:s("var"),_const:s("const"),_while:s("while",{isLoop:!0}),_with:s("with"),_new:s("new",{beforeExpr:!0,startsExpr:!0}),_this:s("this",{startsExpr:!0}),_super:s("super",{startsExpr:!0}),_class:s("class",{startsExpr:!0}),_extends:s("extends",{beforeExpr:!0}),_export:s("export"),_import:s("import",{startsExpr:!0}),_null:s("null",{startsExpr:!0}),_true:s("true",{startsExpr:!0}),_false:s("false",{startsExpr:!0}),_in:s("in",{beforeExpr:!0,binop:7}),_instanceof:s("instanceof",{beforeExpr:!0,binop:7}),_typeof:s("typeof",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_void:s("void",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_delete:s("delete",{beforeExpr:!0,prefix:!0,startsExpr:!0})},l=/\r\n?|[\n\u2028\u2029]/,u=new RegExp(l.source,"g")
-function c(e){switch(e){case 10:case 13:case 8232:case 8233:return!0
-default:return!1}}const h=/(?:\s|\/\/.*|\/\*[^]*?\*\/)*/g
-function p(e){switch(e){case 9:case 11:case 12:case 32:case 160:case 5760:case 8192:case 8193:case 8194:case 8195:case 8196:case 8197:case 8198:case 8199:case 8200:case 8201:case 8202:case 8239:case 8287:case 12288:case 65279:return!0
-default:return!1}}class d{constructor(e,t){this.line=void 0,this.column=void 0,this.line=e,this.column=t}}class f{constructor(e,t){this.start=void 0,this.end=void 0,this.filename=void 0,this.identifierName=void 0,this.start=e,this.end=t}}function m(e){return e[e.length-1]}const g=Object.freeze({AccessorIsGenerator:"A %0ter cannot be a generator",ArgumentsInClass:"'arguments' is only allowed in functions and class methods",AsyncFunctionInSingleStatementContext:"Async functions can only be declared at the top level or inside a block",AwaitBindingIdentifier:"Can not use 'await' as identifier inside an async function",AwaitExpressionFormalParameter:"await is not allowed in async function parameters",AwaitNotInAsyncContext:"'await' is only allowed within async functions and at the top levels of modules",AwaitNotInAsyncFunction:"'await' is only allowed within async functions",BadGetterArity:"getter must not have any formal parameters",BadSetterArity:"setter must have exactly one formal parameter",BadSetterRestParameter:"setter function argument must not be a rest parameter",ConstructorClassField:"Classes may not have a field named 'constructor'",ConstructorClassPrivateField:"Classes may not have a private field named '#constructor'",ConstructorIsAccessor:"Class constructor may not be an accessor",ConstructorIsAsync:"Constructor can't be an async function",ConstructorIsGenerator:"Constructor can't be a generator",DeclarationMissingInitializer:"%0 require an initialization value",DecoratorBeforeExport:"Decorators must be placed *before* the 'export' keyword. You can set the 'decoratorsBeforeExport' option to false to use the 'export @decorator class {}' syntax",DecoratorConstructor:"Decorators can't be used with a constructor. Did you mean '@dec class { ... }'?",DecoratorExportClass:"Using the export keyword between a decorator and a class is not allowed. Please use `export @dec class` instead.",DecoratorSemicolon:"Decorators must not be followed by a semicolon",DecoratorStaticBlock:"Decorators can't be used with a static block",DeletePrivateField:"Deleting a private field is not allowed",DestructureNamedImport:"ES2015 named imports do not destructure. Use another statement for destructuring after the import.",DuplicateConstructor:"Duplicate constructor in the same class",DuplicateDefaultExport:"Only one default export allowed per module.",DuplicateExport:"`%0` has already been exported. Exported identifiers must be unique.",DuplicateProto:"Redefinition of __proto__ property",DuplicateRegExpFlags:"Duplicate regular expression flag",DuplicateStaticBlock:"Duplicate static block in the same class",ElementAfterRest:"Rest element must be last element",EscapedCharNotAnIdentifier:"Invalid Unicode escape",ExportBindingIsString:"A string literal cannot be used as an exported binding without `from`.\n- Did you mean `export { %0 as '%1' } from 'some-module'`?",ExportDefaultFromAsIdentifier:"'from' is not allowed as an identifier after 'export default'",ForInOfLoopInitializer:"%0 loop variable declaration may not have an initializer",GeneratorInSingleStatementContext:"Generators can only be declared at the top level or inside a block",IllegalBreakContinue:"Unsyntactic %0",IllegalLanguageModeDirective:"Illegal 'use strict' directive in function with non-simple parameter list",IllegalReturn:"'return' outside of function",ImportBindingIsString:'A string literal cannot be used as an imported binding.\n- Did you mean `import { "%0" as foo }`?',ImportCallArgumentTrailingComma:"Trailing comma is disallowed inside import(...) arguments",ImportCallArity:"import() requires exactly %0",ImportCallNotNewExpression:"Cannot use new with import(...)",ImportCallSpreadArgument:"... is not allowed in import()",ImportMetaOutsideModule:"import.meta may appear only with 'sourceType: \"module\"'",ImportOutsideModule:"'import' and 'export' may appear only with 'sourceType: \"module\"'",InvalidBigIntLiteral:"Invalid BigIntLiteral",InvalidCodePoint:"Code point out of bounds",InvalidDecimal:"Invalid decimal",InvalidDigit:"Expected number in radix %0",InvalidEscapeSequence:"Bad character escape sequence",InvalidEscapeSequenceTemplate:"Invalid escape sequence in template",InvalidEscapedReservedWord:"Escape sequence in keyword %0",InvalidIdentifier:"Invalid identifier %0",InvalidLhs:"Invalid left-hand side in %0",InvalidLhsBinding:"Binding invalid left-hand side in %0",InvalidNumber:"Invalid number",InvalidOrMissingExponent:"Floating-point numbers require a valid exponent after the 'e'",InvalidOrUnexpectedToken:"Unexpected character '%0'",InvalidParenthesizedAssignment:"Invalid parenthesized assignment pattern",InvalidPrivateFieldResolution:"Private name #%0 is not defined",InvalidPropertyBindingPattern:"Binding member expression",InvalidRecordProperty:"Only properties and spread elements are allowed in record definitions",InvalidRestAssignmentPattern:"Invalid rest operator's argument",LabelRedeclaration:"Label '%0' is already declared",LetInLexicalBinding:"'let' is not allowed to be used as a name in 'let' or 'const' declarations.",LineTerminatorBeforeArrow:"No line break is allowed before '=>'",MalformedRegExpFlags:"Invalid regular expression flag",MissingClassName:"A class name is required",MissingEqInAssignment:"Only '=' operator can be used for specifying default value.",MissingUnicodeEscape:"Expecting Unicode escape sequence \\uXXXX",MixingCoalesceWithLogical:"Nullish coalescing operator(??) requires parens when mixing with logical operators",ModuleAttributeDifferentFromType:"The only accepted module attribute is `type`",ModuleAttributeInvalidValue:"Only string literals are allowed as module attribute values",ModuleAttributesWithDuplicateKeys:'Duplicate key "%0" is not allowed in module attributes',ModuleExportNameHasLoneSurrogate:"An export name cannot include a lone surrogate, found '\\u%0'",ModuleExportUndefined:"Export '%0' is not defined",MultipleDefaultsInSwitch:"Multiple default clauses",NewlineAfterThrow:"Illegal newline after throw",NoCatchOrFinally:"Missing catch or finally clause",NumberIdentifier:"Identifier directly after number",NumericSeparatorInEscapeSequence:"Numeric separators are not allowed inside unicode escape sequences or hex escape sequences",ObsoleteAwaitStar:"await* has been removed from the async functions proposal. Use Promise.all() instead.",OptionalChainingNoNew:"constructors in/after an Optional Chain are not allowed",OptionalChainingNoTemplate:"Tagged Template Literals are not allowed in optionalChain",ParamDupe:"Argument name clash",PatternHasAccessor:"Object pattern can't contain getter or setter",PatternHasMethod:"Object pattern can't contain methods",PipelineBodyNoArrow:'Unexpected arrow "=>" after pipeline body; arrow function in pipeline body must be parenthesized',PipelineBodySequenceExpression:"Pipeline body may not be a comma-separated sequence expression",PipelineHeadSequenceExpression:"Pipeline head should not be a comma-separated sequence expression",PipelineTopicUnused:"Pipeline is in topic style but does not use topic reference",PrimaryTopicNotAllowed:"Topic reference was used in a lexical context without topic binding",PrimaryTopicRequiresSmartPipeline:"Primary Topic Reference found but pipelineOperator not passed 'smart' for 'proposal' option.",PrivateInExpectedIn:"Private names are only allowed in property accesses (`obj.#%0`) or in `in` expressions (`#%0 in obj`)",PrivateNameRedeclaration:"Duplicate private name #%0",RecordExpressionBarIncorrectEndSyntaxType:"Record expressions ending with '|}' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",RecordExpressionBarIncorrectStartSyntaxType:"Record expressions starting with '{|' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",RecordExpressionHashIncorrectStartSyntaxType:"Record expressions starting with '#{' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'hash'",RecordNoProto:"'__proto__' is not allowed in Record expressions",RestTrailingComma:"Unexpected trailing comma after rest element",SloppyFunction:"In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement",StaticPrototype:"Classes may not have static property named prototype",StrictDelete:"Deleting local variable in strict mode",StrictEvalArguments:"Assigning to '%0' in strict mode",StrictEvalArgumentsBinding:"Binding '%0' in strict mode",StrictFunction:"In strict mode code, functions can only be declared at top level or inside a block",StrictNumericEscape:"The only valid numeric escape in strict mode is '\\0'",StrictOctalLiteral:"Legacy octal literals are not allowed in strict mode",StrictWith:"'with' in strict mode",SuperNotAllowed:"super() is only valid inside a class constructor of a subclass. Maybe a typo in the method name ('constructor') or not extending another class?",SuperPrivateField:"Private fields can't be accessed on super",TrailingDecorator:"Decorators must be attached to a class element",TupleExpressionBarIncorrectEndSyntaxType:"Tuple expressions ending with '|]' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",TupleExpressionBarIncorrectStartSyntaxType:"Tuple expressions starting with '[|' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'",TupleExpressionHashIncorrectStartSyntaxType:"Tuple expressions starting with '#[' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'hash'",UnexpectedArgumentPlaceholder:"Unexpected argument placeholder",UnexpectedAwaitAfterPipelineBody:'Unexpected "await" after pipeline body; await must have parentheses in minimal proposal',UnexpectedDigitAfterHash:"Unexpected digit after hash token",UnexpectedImportExport:"'import' and 'export' may only appear at the top level",UnexpectedKeyword:"Unexpected keyword '%0'",UnexpectedLeadingDecorator:"Leading decorators must be attached to a class declaration",UnexpectedLexicalDeclaration:"Lexical declaration cannot appear in a single-statement context",UnexpectedNewTarget:"new.target can only be used in functions",UnexpectedNumericSeparator:"A numeric separator is only allowed between two digits",UnexpectedPrivateField:"Private names can only be used as the name of a class element (i.e. class C { #p = 42; #m() {} } )\n or a property of member expression (i.e. this.#p).",UnexpectedReservedWord:"Unexpected reserved word '%0'",UnexpectedSuper:"super is only allowed in object methods and classes",UnexpectedToken:"Unexpected token '%0'",UnexpectedTokenUnaryExponentiation:"Illegal expression. Wrap left hand side or entire exponentiation in parentheses.",UnsupportedBind:"Binding should be performed on object property.",UnsupportedDecoratorExport:"A decorated export must export a class declaration",UnsupportedDefaultExport:"Only expressions, functions or classes are allowed as the `default` export.",UnsupportedImport:"import can only be used in import() or import.meta",UnsupportedMetaProperty:"The only valid meta property for %0 is %0.%1",UnsupportedParameterDecorator:"Decorators cannot be used to decorate parameters",UnsupportedPropertyDecorator:"Decorators cannot be used to decorate object literal properties",UnsupportedSuper:"super can only be used with function calls (i.e. super()) or in property accesses (i.e. super.prop or super[prop])",UnterminatedComment:"Unterminated comment",UnterminatedRegExp:"Unterminated regular expression",UnterminatedString:"Unterminated string constant",UnterminatedTemplate:"Unterminated template",VarRedeclaration:"Identifier '%0' has already been declared",YieldBindingIdentifier:"Can not use 'yield' as identifier inside a generator",YieldInParameter:"Yield expression is not allowed in formal parameters",ZeroDigitNumericSeparator:"Numeric separator can not be used after leading 0"})
-function y(e){return null!=e&&"Property"===e.type&&"init"===e.kind&&!1===e.method}class v{constructor(e,t,r,i){this.token=void 0,this.isExpr=void 0,this.preserveSpace=void 0,this.override=void 0,this.token=e,this.isExpr=!!t,this.preserveSpace=!!r,this.override=i}}const b={braceStatement:new v("{",!1),braceExpression:new v("{",!0),recordExpression:new v("#{",!0),templateQuasi:new v("${",!1),parenStatement:new v("(",!1),parenExpression:new v("(",!0),template:new v("`",!0,!0,(e=>e.readTmplToken())),functionExpression:new v("function",!0),functionStatement:new v("function",!1)}
-o.parenR.updateContext=o.braceR.updateContext=function(){if(1===this.state.context.length)return void(this.state.exprAllowed=!0)
-let e=this.state.context.pop()
-e===b.braceStatement&&"function"===this.curContext().token&&(e=this.state.context.pop()),this.state.exprAllowed=!e.isExpr},o.name.updateContext=function(e){let t=!1
-e!==o.dot&&("of"!==this.state.value||this.state.exprAllowed||e===o._function||e===o._class||(t=!0)),this.state.exprAllowed=t,this.state.isIterator&&(this.state.isIterator=!1)},o.braceL.updateContext=function(e){this.state.context.push(this.braceIsBlock(e)?b.braceStatement:b.braceExpression),this.state.exprAllowed=!0},o.dollarBraceL.updateContext=function(){this.state.context.push(b.templateQuasi),this.state.exprAllowed=!0},o.parenL.updateContext=function(e){const t=e===o._if||e===o._for||e===o._with||e===o._while
-this.state.context.push(t?b.parenStatement:b.parenExpression),this.state.exprAllowed=!0},o.incDec.updateContext=function(){},o._function.updateContext=o._class.updateContext=function(e){!e.beforeExpr||e===o.semi||e===o._else||e===o._return&&this.hasPrecedingLineBreak()||(e===o.colon||e===o.braceL)&&this.curContext()===b.b_stat?this.state.context.push(b.functionStatement):this.state.context.push(b.functionExpression),this.state.exprAllowed=!1},o.backQuote.updateContext=function(){this.curContext()===b.template?this.state.context.pop():this.state.context.push(b.template),this.state.exprAllowed=!1},o.braceHashL.updateContext=function(){this.state.context.push(b.recordExpression),this.state.exprAllowed=!0}
-let x="ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙՠ-ֈא-תׯ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࡠ-ࡪࢠ-ࢴࢶ-ࣇऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱৼਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഄ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄຆ-ຊຌ-ຣລວ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛮ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡸᢀ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᲐ-ᲺᲽ-Ჿᳩ-ᳬᳮ-ᳳᳵᳶᳺᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕ℘-ℝℤΩℨK-ℹℼ-ℿⅅ-ⅉⅎⅠ-ↈⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞ々-〇〡-〩〱-〵〸-〼ぁ-ゖ゛-ゟァ-ヺー-ヿㄅ-ㄯㄱ-ㆎㆠ-ㆿㇰ-ㇿ㐀-䶿一-鿼ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛯꜗ-ꜟꜢ-ꞈꞋ-ꞿꟂ-ꟊꟵ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꣾꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭩꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ",E="‌‍·̀-ͯ·҃-֑҇-ׇֽֿׁׂׅׄؐ-ًؚ-٩ٰۖ-ۜ۟-۪ۤۧۨ-ۭ۰-۹ܑܰ-݊ަ-ް߀-߉߫-߽߳ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࡙࠭-࡛࣓-ࣣ࣡-ःऺ-़ा-ॏ॑-ॗॢॣ०-९ঁ-ঃ়া-ৄেৈো-্ৗৢৣ০-৯৾ਁ-ਃ਼ਾ-ੂੇੈੋ-੍ੑ੦-ੱੵઁ-ઃ઼ા-ૅે-ૉો-્ૢૣ૦-૯ૺ-૿ଁ-ଃ଼ା-ୄେୈୋ-୍୕-ୗୢୣ୦-୯ஂா-ூெ-ைொ-்ௗ௦-௯ఀ-ఄా-ౄె-ైొ-్ౕౖౢౣ౦-౯ಁ-ಃ಼ಾ-ೄೆ-ೈೊ-್ೕೖೢೣ೦-೯ഀ-ഃ഻഼ാ-ൄെ-ൈൊ-്ൗൢൣ൦-൯ඁ-ඃ්ා-ුූෘ-ෟ෦-෯ෲෳัิ-ฺ็-๎๐-๙ັິ-ຼ່-ໍ໐-໙༘༙༠-༩༹༵༷༾༿ཱ-྄྆྇ྍ-ྗྙ-ྼ࿆ါ-ှ၀-၉ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-ႝ፝-፟፩-፱ᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ឴-៓៝០-៩᠋-᠍᠐-᠙ᢩᤠ-ᤫᤰ-᤻᥆-᥏᧐-᧚ᨗ-ᨛᩕ-ᩞ᩠-᩿᩼-᪉᪐-᪙᪰-᪽ᪿᫀᬀ-ᬄ᬴-᭄᭐-᭙᭫-᭳ᮀ-ᮂᮡ-ᮭ᮰-᮹᯦-᯳ᰤ-᰷᱀-᱉᱐-᱙᳐-᳔᳒-᳨᳭᳴᳷-᳹᷀-᷹᷻-᷿‿⁀⁔⃐-⃥⃜⃡-⃰⳯-⵿⳱ⷠ-〪ⷿ-゙゚〯꘠-꘩꙯ꙴ-꙽ꚞꚟ꛰꛱ꠂ꠆ꠋꠣ-ꠧ꠬ꢀꢁꢴ-ꣅ꣐-꣙꣠-꣱ꣿ-꤉ꤦ-꤭ꥇ-꥓ꦀ-ꦃ꦳-꧀꧐-꧙ꧥ꧰-꧹ꨩ-ꨶꩃꩌꩍ꩐-꩙ꩻ-ꩽꪰꪲ-ꪴꪷꪸꪾ꪿꫁ꫫ-ꫯꫵ꫶ꯣ-ꯪ꯬꯭꯰-꯹ﬞ︀-️︠-︯︳︴﹍-﹏０-９＿"
-const w=new RegExp("["+x+"]"),S=new RegExp("["+x+E+"]")
-x=E=null
-const T=[0,11,2,25,2,18,2,1,2,14,3,13,35,122,70,52,268,28,4,48,48,31,14,29,6,37,11,29,3,35,5,7,2,4,43,157,19,35,5,35,5,39,9,51,157,310,10,21,11,7,153,5,3,0,2,43,2,1,4,0,3,22,11,22,10,30,66,18,2,1,11,21,11,25,71,55,7,1,65,0,16,3,2,2,2,28,43,28,4,28,36,7,2,27,28,53,11,21,11,18,14,17,111,72,56,50,14,50,14,35,349,41,7,1,79,28,11,0,9,21,107,20,28,22,13,52,76,44,33,24,27,35,30,0,3,0,9,34,4,0,13,47,15,3,22,0,2,0,36,17,2,24,85,6,2,0,2,3,2,14,2,9,8,46,39,7,3,1,3,21,2,6,2,1,2,4,4,0,19,0,13,4,159,52,19,3,21,2,31,47,21,1,2,0,185,46,42,3,37,47,21,0,60,42,14,0,72,26,230,43,117,63,32,7,3,0,3,7,2,1,2,23,16,0,2,0,95,7,3,38,17,0,2,0,29,0,11,39,8,0,22,0,12,45,20,0,35,56,264,8,2,36,18,0,50,29,113,6,2,1,2,37,22,0,26,5,2,1,2,31,15,0,328,18,190,0,80,921,103,110,18,195,2749,1070,4050,582,8634,568,8,30,114,29,19,47,17,3,32,20,6,18,689,63,129,74,6,0,67,12,65,1,2,0,29,6135,9,1237,43,8,8952,286,50,2,18,3,9,395,2309,106,6,12,4,8,8,9,5991,84,2,70,2,1,3,0,3,1,3,3,2,11,2,0,2,6,2,64,2,3,3,7,2,6,2,27,2,3,2,4,2,0,4,6,2,339,3,24,2,24,2,30,2,24,2,30,2,24,2,30,2,24,2,30,2,24,2,7,2357,44,11,6,17,0,370,43,1301,196,60,67,8,0,1205,3,2,26,2,1,2,0,3,0,2,9,2,3,2,0,2,0,7,0,5,0,2,0,2,0,2,2,2,1,2,0,3,0,2,0,2,0,2,0,2,0,2,1,2,0,3,3,2,6,2,3,2,3,2,0,2,9,2,16,6,2,2,4,2,16,4421,42717,35,4148,12,221,3,5761,15,7472,3104,541,1507,4938],k=[509,0,227,0,150,4,294,9,1368,2,2,1,6,3,41,2,5,0,166,1,574,3,9,9,370,1,154,10,176,2,54,14,32,9,16,3,46,10,54,9,7,2,37,13,2,9,6,1,45,0,13,2,49,13,9,3,2,11,83,11,7,0,161,11,6,9,7,3,56,1,2,6,3,1,3,2,10,0,11,1,3,6,4,4,193,17,10,9,5,0,82,19,13,9,214,6,3,8,28,1,83,16,16,9,82,12,9,9,84,14,5,9,243,14,166,9,71,5,2,1,3,3,2,0,2,1,13,9,120,6,3,6,4,0,29,9,41,6,2,3,9,0,10,10,47,15,406,7,2,7,17,9,57,21,2,13,123,5,4,0,2,1,2,6,2,0,9,9,49,4,2,1,2,4,9,9,330,3,19306,9,135,4,60,6,26,9,1014,0,2,54,8,3,82,0,12,1,19628,1,5319,4,4,5,9,7,3,6,31,3,149,2,1418,49,513,54,5,49,9,0,15,0,23,4,2,14,1361,6,2,16,3,6,2,1,2,4,262,6,10,9,419,13,1495,6,110,6,6,9,4759,9,787719,239]
-function C(e,t){let r=65536
+const i=/\r\n?|[\n\u2028\u2029]/,n=new RegExp(i.source,"g")
+function s(e){switch(e){case 10:case 13:case 8232:case 8233:return!0
+default:return!1}}const a=/(?:\s|\/\/.*|\/\*[^]*?\*\/)*/g,o=new RegExp("(?=("+/(?:[^\S\n\r\u2028\u2029]|\/\/.*|\/\*.*?\*\/)*/y.source+"))\\1"+/(?=[\n\r\u2028\u2029]|\/\*(?!.*?\*\/)|$)/.source,"y")
+function l(e){switch(e){case 9:case 11:case 12:case 32:case 160:case 5760:case 8192:case 8193:case 8194:case 8195:case 8196:case 8197:case 8198:case 8199:case 8200:case 8201:case 8202:case 8239:case 8287:case 12288:case 65279:return!0
+default:return!1}}class u{constructor(e,t){this.line=void 0,this.column=void 0,this.line=e,this.column=t}}class c{constructor(e,t){this.start=void 0,this.end=void 0,this.filename=void 0,this.identifierName=void 0,this.start=e,this.end=t}}function h(e,t){void 0===e.trailingComments?e.trailingComments=t:e.trailingComments.unshift(...t)}function p(e,t){void 0===e.innerComments?e.innerComments=t:void 0!==t&&e.innerComments.unshift(...t)}function d(e,t,r){let i=null,n=t.length
+for(;null===i&&n>0;)i=t[--n]
+null===i||i.start>r.start?p(e,r.comments):h(i,r.comments)}const f=Object.freeze({SyntaxError:"BABEL_PARSER_SYNTAX_ERROR",SourceTypeModuleError:"BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED"}),m=v({AccessorIsGenerator:"A %0ter cannot be a generator.",ArgumentsInClass:"'arguments' is only allowed in functions and class methods.",AsyncFunctionInSingleStatementContext:"Async functions can only be declared at the top level or inside a block.",AwaitBindingIdentifier:"Can not use 'await' as identifier inside an async function.",AwaitBindingIdentifierInStaticBlock:"Can not use 'await' as identifier inside a static block.",AwaitExpressionFormalParameter:"'await' is not allowed in async function parameters.",AwaitNotInAsyncContext:"'await' is only allowed within async functions and at the top levels of modules.",AwaitNotInAsyncFunction:"'await' is only allowed within async functions.",BadGetterArity:"A 'get' accesor must not have any formal parameters.",BadSetterArity:"A 'set' accesor must have exactly one formal parameter.",BadSetterRestParameter:"A 'set' accesor function argument must not be a rest parameter.",ConstructorClassField:"Classes may not have a field named 'constructor'.",ConstructorClassPrivateField:"Classes may not have a private field named '#constructor'.",ConstructorIsAccessor:"Class constructor may not be an accessor.",ConstructorIsAsync:"Constructor can't be an async function.",ConstructorIsGenerator:"Constructor can't be a generator.",DeclarationMissingInitializer:"'%0' require an initialization value.",DecoratorBeforeExport:"Decorators must be placed *before* the 'export' keyword. You can set the 'decoratorsBeforeExport' option to false to use the 'export @decorator class {}' syntax.",DecoratorConstructor:"Decorators can't be used with a constructor. Did you mean '@dec class { ... }'?",DecoratorExportClass:"Using the export keyword between a decorator and a class is not allowed. Please use `export @dec class` instead.",DecoratorSemicolon:"Decorators must not be followed by a semicolon.",DecoratorStaticBlock:"Decorators can't be used with a static block.",DeletePrivateField:"Deleting a private field is not allowed.",DestructureNamedImport:"ES2015 named imports do not destructure. Use another statement for destructuring after the import.",DuplicateConstructor:"Duplicate constructor in the same class.",DuplicateDefaultExport:"Only one default export allowed per module.",DuplicateExport:"`%0` has already been exported. Exported identifiers must be unique.",DuplicateProto:"Redefinition of __proto__ property.",DuplicateRegExpFlags:"Duplicate regular expression flag.",ElementAfterRest:"Rest element must be last element.",EscapedCharNotAnIdentifier:"Invalid Unicode escape.",ExportBindingIsString:"A string literal cannot be used as an exported binding without `from`.\n- Did you mean `export { '%0' as '%1' } from 'some-module'`?",ExportDefaultFromAsIdentifier:"'from' is not allowed as an identifier after 'export default'.",ForInOfLoopInitializer:"'%0' loop variable declaration may not have an initializer.",ForOfAsync:"The left-hand side of a for-of loop may not be 'async'.",ForOfLet:"The left-hand side of a for-of loop may not start with 'let'.",GeneratorInSingleStatementContext:"Generators can only be declared at the top level or inside a block.",IllegalBreakContinue:"Unsyntactic %0.",IllegalLanguageModeDirective:"Illegal 'use strict' directive in function with non-simple parameter list.",IllegalReturn:"'return' outside of function.",ImportBindingIsString:'A string literal cannot be used as an imported binding.\n- Did you mean `import { "%0" as foo }`?',ImportCallArgumentTrailingComma:"Trailing comma is disallowed inside import(...) arguments.",ImportCallArity:"`import()` requires exactly %0.",ImportCallNotNewExpression:"Cannot use new with import(...).",ImportCallSpreadArgument:"`...` is not allowed in `import()`.",InvalidBigIntLiteral:"Invalid BigIntLiteral.",InvalidCodePoint:"Code point out of bounds.",InvalidDecimal:"Invalid decimal.",InvalidDigit:"Expected number in radix %0.",InvalidEscapeSequence:"Bad character escape sequence.",InvalidEscapeSequenceTemplate:"Invalid escape sequence in template.",InvalidEscapedReservedWord:"Escape sequence in keyword %0.",InvalidIdentifier:"Invalid identifier %0.",InvalidLhs:"Invalid left-hand side in %0.",InvalidLhsBinding:"Binding invalid left-hand side in %0.",InvalidNumber:"Invalid number.",InvalidOrMissingExponent:"Floating-point numbers require a valid exponent after the 'e'.",InvalidOrUnexpectedToken:"Unexpected character '%0'.",InvalidParenthesizedAssignment:"Invalid parenthesized assignment pattern.",InvalidPrivateFieldResolution:"Private name #%0 is not defined.",InvalidPropertyBindingPattern:"Binding member expression.",InvalidRecordProperty:"Only properties and spread elements are allowed in record definitions.",InvalidRestAssignmentPattern:"Invalid rest operator's argument.",LabelRedeclaration:"Label '%0' is already declared.",LetInLexicalBinding:"'let' is not allowed to be used as a name in 'let' or 'const' declarations.",LineTerminatorBeforeArrow:"No line break is allowed before '=>'.",MalformedRegExpFlags:"Invalid regular expression flag.",MissingClassName:"A class name is required.",MissingEqInAssignment:"Only '=' operator can be used for specifying default value.",MissingSemicolon:"Missing semicolon.",MissingUnicodeEscape:"Expecting Unicode escape sequence \\uXXXX.",MixingCoalesceWithLogical:"Nullish coalescing operator(??) requires parens when mixing with logical operators.",ModuleAttributeDifferentFromType:"The only accepted module attribute is `type`.",ModuleAttributeInvalidValue:"Only string literals are allowed as module attribute values.",ModuleAttributesWithDuplicateKeys:'Duplicate key "%0" is not allowed in module attributes.',ModuleExportNameHasLoneSurrogate:"An export name cannot include a lone surrogate, found '\\u%0'.",ModuleExportUndefined:"Export '%0' is not defined.",MultipleDefaultsInSwitch:"Multiple default clauses.",NewlineAfterThrow:"Illegal newline after throw.",NoCatchOrFinally:"Missing catch or finally clause.",NumberIdentifier:"Identifier directly after number.",NumericSeparatorInEscapeSequence:"Numeric separators are not allowed inside unicode escape sequences or hex escape sequences.",ObsoleteAwaitStar:"'await*' has been removed from the async functions proposal. Use Promise.all() instead.",OptionalChainingNoNew:"Constructors in/after an Optional Chain are not allowed.",OptionalChainingNoTemplate:"Tagged Template Literals are not allowed in optionalChain.",OverrideOnConstructor:"'override' modifier cannot appear on a constructor declaration.",ParamDupe:"Argument name clash.",PatternHasAccessor:"Object pattern can't contain getter or setter.",PatternHasMethod:"Object pattern can't contain methods.",PipeBodyIsTighter:"Unexpected %0 after pipeline body; any %0 expression acting as Hack-style pipe body must be parenthesized due to its loose operator precedence.",PipeTopicRequiresHackPipes:'Topic reference is used, but the pipelineOperator plugin was not passed a "proposal": "hack" or "smart" option.',PipeTopicUnbound:"Topic reference is unbound; it must be inside a pipe body.",PipeTopicUnconfiguredToken:'Invalid topic token %0. In order to use %0 as a topic reference, the pipelineOperator plugin must be configured with { "proposal": "hack", "topicToken": "%0" }.',PipeTopicUnused:"Hack-style pipe body does not contain a topic reference; Hack-style pipes must use topic at least once.",PipeUnparenthesizedBody:"Hack-style pipe body cannot be an unparenthesized %0 expression; please wrap it in parentheses.",PipelineBodyNoArrow:'Unexpected arrow "=>" after pipeline body; arrow function in pipeline body must be parenthesized.',PipelineBodySequenceExpression:"Pipeline body may not be a comma-separated sequence expression.",PipelineHeadSequenceExpression:"Pipeline head should not be a comma-separated sequence expression.",PipelineTopicUnused:"Pipeline is in topic style but does not use topic reference.",PrimaryTopicNotAllowed:"Topic reference was used in a lexical context without topic binding.",PrimaryTopicRequiresSmartPipeline:'Topic reference is used, but the pipelineOperator plugin was not passed a "proposal": "hack" or "smart" option.',PrivateInExpectedIn:"Private names are only allowed in property accesses (`obj.#%0`) or in `in` expressions (`#%0 in obj`).",PrivateNameRedeclaration:"Duplicate private name #%0.",RecordExpressionBarIncorrectEndSyntaxType:"Record expressions ending with '|}' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'.",RecordExpressionBarIncorrectStartSyntaxType:"Record expressions starting with '{|' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'.",RecordExpressionHashIncorrectStartSyntaxType:"Record expressions starting with '#{' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'hash'.",RecordNoProto:"'__proto__' is not allowed in Record expressions.",RestTrailingComma:"Unexpected trailing comma after rest element.",SloppyFunction:"In non-strict mode code, functions can only be declared at top level, inside a block, or as the body of an if statement.",StaticPrototype:"Classes may not have static property named prototype.",StrictDelete:"Deleting local variable in strict mode.",StrictEvalArguments:"Assigning to '%0' in strict mode.",StrictEvalArgumentsBinding:"Binding '%0' in strict mode.",StrictFunction:"In strict mode code, functions can only be declared at top level or inside a block.",StrictNumericEscape:"The only valid numeric escape in strict mode is '\\0'.",StrictOctalLiteral:"Legacy octal literals are not allowed in strict mode.",StrictWith:"'with' in strict mode.",SuperNotAllowed:"`super()` is only valid inside a class constructor of a subclass. Maybe a typo in the method name ('constructor') or not extending another class?",SuperPrivateField:"Private fields can't be accessed on super.",TrailingDecorator:"Decorators must be attached to a class element.",TupleExpressionBarIncorrectEndSyntaxType:"Tuple expressions ending with '|]' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'.",TupleExpressionBarIncorrectStartSyntaxType:"Tuple expressions starting with '[|' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'bar'.",TupleExpressionHashIncorrectStartSyntaxType:"Tuple expressions starting with '#[' are only allowed when the 'syntaxType' option of the 'recordAndTuple' plugin is set to 'hash'.",UnexpectedArgumentPlaceholder:"Unexpected argument placeholder.",UnexpectedAwaitAfterPipelineBody:'Unexpected "await" after pipeline body; await must have parentheses in minimal proposal.',UnexpectedDigitAfterHash:"Unexpected digit after hash token.",UnexpectedImportExport:"'import' and 'export' may only appear at the top level.",UnexpectedKeyword:"Unexpected keyword '%0'.",UnexpectedLeadingDecorator:"Leading decorators must be attached to a class declaration.",UnexpectedLexicalDeclaration:"Lexical declaration cannot appear in a single-statement context.",UnexpectedNewTarget:"`new.target` can only be used in functions or class properties.",UnexpectedNumericSeparator:"A numeric separator is only allowed between two digits.",UnexpectedPrivateField:"Private names can only be used as the name of a class element (i.e. class C { #p = 42; #m() {} } )\n or a property of member expression (i.e. this.#p).",UnexpectedReservedWord:"Unexpected reserved word '%0'.",UnexpectedSuper:"'super' is only allowed in object methods and classes.",UnexpectedToken:"Unexpected token '%0'.",UnexpectedTokenUnaryExponentiation:"Illegal expression. Wrap left hand side or entire exponentiation in parentheses.",UnsupportedBind:"Binding should be performed on object property.",UnsupportedDecoratorExport:"A decorated export must export a class declaration.",UnsupportedDefaultExport:"Only expressions, functions or classes are allowed as the `default` export.",UnsupportedImport:"`import` can only be used in `import()` or `import.meta`.",UnsupportedMetaProperty:"The only valid meta property for %0 is %0.%1.",UnsupportedParameterDecorator:"Decorators cannot be used to decorate parameters.",UnsupportedPropertyDecorator:"Decorators cannot be used to decorate object literal properties.",UnsupportedSuper:"'super' can only be used with function calls (i.e. super()) or in property accesses (i.e. super.prop or super[prop]).",UnterminatedComment:"Unterminated comment.",UnterminatedRegExp:"Unterminated regular expression.",UnterminatedString:"Unterminated string constant.",UnterminatedTemplate:"Unterminated template.",VarRedeclaration:"Identifier '%0' has already been declared.",YieldBindingIdentifier:"Can not use 'yield' as identifier inside a generator.",YieldInParameter:"Yield expression is not allowed in formal parameters.",ZeroDigitNumericSeparator:"Numeric separator can not be used after leading 0."},f.SyntaxError),g=v({ImportMetaOutsideModule:"import.meta may appear only with 'sourceType: \"module\"'",ImportOutsideModule:"'import' and 'export' may appear only with 'sourceType: \"module\"'"},f.SourceTypeModuleError)
+function y(e,t){return"flow"===t&&"PatternIsOptional"===e?"OptionalBindingPattern":e}function v(e,t,r){const i={}
+return Object.keys(e).forEach((n=>{i[n]=Object.freeze({code:t,reasonCode:y(n,r),template:e[n]})})),Object.freeze(i)}class b{constructor(e,t){this.token=void 0,this.preserveSpace=void 0,this.token=e,this.preserveSpace=!!t}}const x={brace:new b("{"),template:new b("`",!0)}
+class E{constructor(e,t={}){this.label=void 0,this.keyword=void 0,this.beforeExpr=void 0,this.startsExpr=void 0,this.rightAssociative=void 0,this.isLoop=void 0,this.isAssign=void 0,this.prefix=void 0,this.postfix=void 0,this.binop=void 0,this.label=e,this.keyword=t.keyword,this.beforeExpr=!!t.beforeExpr,this.startsExpr=!!t.startsExpr,this.rightAssociative=!!t.rightAssociative,this.isLoop=!!t.isLoop,this.isAssign=!!t.isAssign,this.prefix=!!t.prefix,this.postfix=!!t.postfix,this.binop=null!=t.binop?t.binop:null,this.updateContext=null}}const w=new Map
+function S(e,t={}){t.keyword=e
+const r=O(e,t)
+return w.set(e,r),r}function T(e,t){return O(e,{beforeExpr:!0,binop:t})}let k=-1
+const C=[],A=[],P=[],_=[],D=[],N=[]
+function O(e,t={}){var r,i,n,s
+return++k,A.push(e),P.push(null!=(r=t.binop)?r:-1),_.push(null!=(i=t.beforeExpr)&&i),D.push(null!=(n=t.startsExpr)&&n),N.push(null!=(s=t.prefix)&&s),C.push(new E(e,t)),k}const I={num:O("num",{startsExpr:!0}),bigint:O("bigint",{startsExpr:!0}),decimal:O("decimal",{startsExpr:!0}),regexp:O("regexp",{startsExpr:!0}),string:O("string",{startsExpr:!0}),name:O("name",{startsExpr:!0}),privateName:O("#name",{startsExpr:!0}),eof:O("eof"),bracketL:O("[",{beforeExpr:!0,startsExpr:!0}),bracketHashL:O("#[",{beforeExpr:!0,startsExpr:!0}),bracketBarL:O("[|",{beforeExpr:!0,startsExpr:!0}),bracketR:O("]"),bracketBarR:O("|]"),braceL:O("{",{beforeExpr:!0,startsExpr:!0}),braceBarL:O("{|",{beforeExpr:!0,startsExpr:!0}),braceHashL:O("#{",{beforeExpr:!0,startsExpr:!0}),braceR:O("}",{beforeExpr:!0}),braceBarR:O("|}"),parenL:O("(",{beforeExpr:!0,startsExpr:!0}),parenR:O(")"),comma:O(",",{beforeExpr:!0}),semi:O(";",{beforeExpr:!0}),colon:O(":",{beforeExpr:!0}),doubleColon:O("::",{beforeExpr:!0}),dot:O("."),question:O("?",{beforeExpr:!0}),questionDot:O("?."),arrow:O("=>",{beforeExpr:!0}),template:O("template"),ellipsis:O("...",{beforeExpr:!0}),backQuote:O("`",{startsExpr:!0}),dollarBraceL:O("${",{beforeExpr:!0,startsExpr:!0}),at:O("@"),hash:O("#",{startsExpr:!0}),interpreterDirective:O("#!..."),eq:O("=",{beforeExpr:!0,isAssign:!0}),assign:O("_=",{beforeExpr:!0,isAssign:!0}),slashAssign:O("_=",{beforeExpr:!0,isAssign:!0}),moduloAssign:O("_=",{beforeExpr:!0,isAssign:!0}),incDec:O("++/--",{prefix:!0,postfix:!0,startsExpr:!0}),bang:O("!",{beforeExpr:!0,prefix:!0,startsExpr:!0}),tilde:O("~",{beforeExpr:!0,prefix:!0,startsExpr:!0}),pipeline:T("|>",0),nullishCoalescing:T("??",1),logicalOR:T("||",1),logicalAND:T("&&",2),bitwiseOR:T("|",3),bitwiseXOR:T("^",4),bitwiseAND:T("&",5),equality:T("==/!=/===/!==",6),relational:T("</>/<=/>=",7),bitShift:T("<</>>/>>>",8),plusMin:O("+/-",{beforeExpr:!0,binop:9,prefix:!0,startsExpr:!0}),modulo:O("%",{binop:10,startsExpr:!0}),star:O("*",{binop:10}),slash:T("/",10),exponent:O("**",{beforeExpr:!0,binop:11,rightAssociative:!0}),_in:S("in",{beforeExpr:!0,binop:7}),_instanceof:S("instanceof",{beforeExpr:!0,binop:7}),_break:S("break"),_case:S("case",{beforeExpr:!0}),_catch:S("catch"),_continue:S("continue"),_debugger:S("debugger"),_default:S("default",{beforeExpr:!0}),_else:S("else",{beforeExpr:!0}),_finally:S("finally"),_function:S("function",{startsExpr:!0}),_if:S("if"),_return:S("return",{beforeExpr:!0}),_switch:S("switch"),_throw:S("throw",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_try:S("try"),_var:S("var"),_const:S("const"),_with:S("with"),_new:S("new",{beforeExpr:!0,startsExpr:!0}),_this:S("this",{startsExpr:!0}),_super:S("super",{startsExpr:!0}),_class:S("class",{startsExpr:!0}),_extends:S("extends",{beforeExpr:!0}),_export:S("export"),_import:S("import",{startsExpr:!0}),_null:S("null",{startsExpr:!0}),_true:S("true",{startsExpr:!0}),_false:S("false",{startsExpr:!0}),_typeof:S("typeof",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_void:S("void",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_delete:S("delete",{beforeExpr:!0,prefix:!0,startsExpr:!0}),_do:S("do",{isLoop:!0,beforeExpr:!0}),_for:S("for",{isLoop:!0}),_while:S("while",{isLoop:!0}),jsxName:O("jsxName"),jsxText:O("jsxText",{beforeExpr:!0}),jsxTagStart:O("jsxTagStart",{startsExpr:!0}),jsxTagEnd:O("jsxTagEnd"),placeholder:O("%%",{startsExpr:!0})}
+function M(e){return D[e]}function L(e){return e>=57&&e<=91}function R(e){return A[e]}function F(e){return P[e]}function j(e){return C[e]}C[16].updateContext=e=>{e.pop()},C[13].updateContext=C[15].updateContext=C[31].updateContext=e=>{e.push(x.brace)},C[30].updateContext=e=>{e[e.length-1]===x.template?e.pop():e.push(x.template)},C[94].updateContext=e=>{e.push(x.j_expr,x.j_oTag)}
+let B="ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙՠ-ֈא-תׯ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࡠ-ࡪࡰ-ࢇࢉ-ࢎࢠ-ࣉऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱৼਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౝౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೝೞೠೡೱೲഄ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄຆ-ຊຌ-ຣລວ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛮ-ᛸᜀ-ᜑᜟ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡸᢀ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭌᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᲐ-ᲺᲽ-Ჿᳩ-ᳬᳮ-ᳳᳵᳶᳺᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕ℘-ℝℤΩℨK-ℹℼ-ℿⅅ-ⅉⅎⅠ-ↈⰀ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞ々-〇〡-〩〱-〵〸-〼ぁ-ゖ゛-ゟァ-ヺー-ヿㄅ-ㄯㄱ-ㆎㆠ-ㆿㇰ-ㇿ㐀-䶿一-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛯꜗ-ꜟꜢ-ꞈꞋ-ꟊꟐꟑꟓꟕ-ꟙꟲ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꣾꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭩꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ",U="‌‍·̀-ͯ·҃-֑҇-ׇֽֿׁׂׅׄؐ-ًؚ-٩ٰۖ-ۜ۟-۪ۤۧۨ-ۭ۰-۹ܑܰ-݊ަ-ް߀-߉߫-߽߳ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࡙࠭-࡛࢘-࢟࣊-ࣣ࣡-ःऺ-़ा-ॏ॑-ॗॢॣ०-९ঁ-ঃ়া-ৄেৈো-্ৗৢৣ০-৯৾ਁ-ਃ਼ਾ-ੂੇੈੋ-੍ੑ੦-ੱੵઁ-ઃ઼ા-ૅે-ૉો-્ૢૣ૦-૯ૺ-૿ଁ-ଃ଼ା-ୄେୈୋ-୍୕-ୗୢୣ୦-୯ஂா-ூெ-ைொ-்ௗ௦-௯ఀ-ఄ఼ా-ౄె-ైొ-్ౕౖౢౣ౦-౯ಁ-ಃ಼ಾ-ೄೆ-ೈೊ-್ೕೖೢೣ೦-೯ഀ-ഃ഻഼ാ-ൄെ-ൈൊ-്ൗൢൣ൦-൯ඁ-ඃ්ා-ුූෘ-ෟ෦-෯ෲෳัิ-ฺ็-๎๐-๙ັິ-ຼ່-ໍ໐-໙༘༙༠-༩༹༵༷༾༿ཱ-྄྆྇ྍ-ྗྙ-ྼ࿆ါ-ှ၀-၉ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-ႝ፝-፟፩-፱ᜒ-᜕ᜲ-᜴ᝒᝓᝲᝳ឴-៓៝០-៩᠋-᠍᠏-᠙ᢩᤠ-ᤫᤰ-᤻᥆-᥏᧐-᧚ᨗ-ᨛᩕ-ᩞ᩠-᩿᩼-᪉᪐-᪙᪰-᪽ᪿ-ᫎᬀ-ᬄ᬴-᭄᭐-᭙᭫-᭳ᮀ-ᮂᮡ-ᮭ᮰-᮹᯦-᯳ᰤ-᰷᱀-᱉᱐-᱙᳐-᳔᳒-᳨᳭᳴᳷-᳹᷀-᷿‿⁀⁔⃐-⃥⃜⃡-⃰⳯-⵿⳱ⷠ-〪ⷿ-゙゚〯꘠-꘩꙯ꙴ-꙽ꚞꚟ꛰꛱ꠂ꠆ꠋꠣ-ꠧ꠬ꢀꢁꢴ-ꣅ꣐-꣙꣠-꣱ꣿ-꤉ꤦ-꤭ꥇ-꥓ꦀ-ꦃ꦳-꧀꧐-꧙ꧥ꧰-꧹ꨩ-ꨶꩃꩌꩍ꩐-꩙ꩻ-ꩽꪰꪲ-ꪴꪷꪸꪾ꪿꫁ꫫ-ꫯꫵ꫶ꯣ-ꯪ꯬꯭꯰-꯹ﬞ︀-️︠-︯︳︴﹍-﹏０-９＿"
+const z=new RegExp("["+B+"]"),q=new RegExp("["+B+U+"]")
+B=U=null
+const $=[0,11,2,25,2,18,2,1,2,14,3,13,35,122,70,52,268,28,4,48,48,31,14,29,6,37,11,29,3,35,5,7,2,4,43,157,19,35,5,35,5,39,9,51,13,10,2,14,2,6,2,1,2,10,2,14,2,6,2,1,68,310,10,21,11,7,25,5,2,41,2,8,70,5,3,0,2,43,2,1,4,0,3,22,11,22,10,30,66,18,2,1,11,21,11,25,71,55,7,1,65,0,16,3,2,2,2,28,43,28,4,28,36,7,2,27,28,53,11,21,11,18,14,17,111,72,56,50,14,50,14,35,349,41,7,1,79,28,11,0,9,21,43,17,47,20,28,22,13,52,58,1,3,0,14,44,33,24,27,35,30,0,3,0,9,34,4,0,13,47,15,3,22,0,2,0,36,17,2,24,85,6,2,0,2,3,2,14,2,9,8,46,39,7,3,1,3,21,2,6,2,1,2,4,4,0,19,0,13,4,159,52,19,3,21,2,31,47,21,1,2,0,185,46,42,3,37,47,21,0,60,42,14,0,72,26,38,6,186,43,117,63,32,7,3,0,3,7,2,1,2,23,16,0,2,0,95,7,3,38,17,0,2,0,29,0,11,39,8,0,22,0,12,45,20,0,19,72,264,8,2,36,18,0,50,29,113,6,2,1,2,37,22,0,26,5,2,1,2,31,15,0,328,18,190,0,80,921,103,110,18,195,2637,96,16,1070,4050,582,8634,568,8,30,18,78,18,29,19,47,17,3,32,20,6,18,689,63,129,74,6,0,67,12,65,1,2,0,29,6135,9,1237,43,8,8936,3,2,6,2,1,2,290,46,2,18,3,9,395,2309,106,6,12,4,8,8,9,5991,84,2,70,2,1,3,0,3,1,3,3,2,11,2,0,2,6,2,64,2,3,3,7,2,6,2,27,2,3,2,4,2,0,4,6,2,339,3,24,2,24,2,30,2,24,2,30,2,24,2,30,2,24,2,30,2,24,2,7,1845,30,482,44,11,6,17,0,322,29,19,43,1269,6,2,3,2,1,2,14,2,196,60,67,8,0,1205,3,2,26,2,1,2,0,3,0,2,9,2,3,2,0,2,0,7,0,5,0,2,0,2,0,2,2,2,1,2,0,3,0,2,0,2,0,2,0,2,0,2,1,2,0,3,3,2,6,2,3,2,3,2,0,2,9,2,16,6,2,2,4,2,16,4421,42719,33,4152,8,221,3,5761,15,7472,3104,541,1507,4938],V=[509,0,227,0,150,4,294,9,1368,2,2,1,6,3,41,2,5,0,166,1,574,3,9,9,370,1,154,10,50,3,123,2,54,14,32,10,3,1,11,3,46,10,8,0,46,9,7,2,37,13,2,9,6,1,45,0,13,2,49,13,9,3,2,11,83,11,7,0,161,11,6,9,7,3,56,1,2,6,3,1,3,2,10,0,11,1,3,6,4,4,193,17,10,9,5,0,82,19,13,9,214,6,3,8,28,1,83,16,16,9,82,12,9,9,84,14,5,9,243,14,166,9,71,5,2,1,3,3,2,0,2,1,13,9,120,6,3,6,4,0,29,9,41,6,2,3,9,0,10,10,47,15,406,7,2,7,17,9,57,21,2,13,123,5,4,0,2,1,2,6,2,0,9,9,49,4,2,1,2,4,9,9,330,3,19306,9,87,9,39,4,60,6,26,9,1014,0,2,54,8,3,82,0,12,1,19628,1,4706,45,3,22,543,4,4,5,9,7,3,6,31,3,149,2,1418,49,513,54,5,49,9,0,15,0,23,4,2,14,1361,6,2,16,3,6,2,1,2,4,262,6,10,9,357,0,62,13,1495,6,110,6,6,9,4759,9,787719,239]
+function H(e,t){let r=65536
 for(let i=0,n=t.length;i<n;i+=2){if(r+=t[i],r>e)return!1
-if(r+=t[i+1],r>=e)return!0}return!1}function A(e){return e<65?36===e:e<=90||(e<97?95===e:e<=122||(e<=65535?e>=170&&w.test(String.fromCharCode(e)):C(e,T)))}function P(e){return e<48?36===e:e<58||!(e<65)&&(e<=90||(e<97?95===e:e<=122||(e<=65535?e>=170&&S.test(String.fromCharCode(e)):C(e,T)||C(e,k))))}const _=new Set(["break","case","catch","continue","debugger","default","do","else","finally","for","function","if","return","switch","throw","try","var","const","while","with","new","this","super","class","extends","export","import","null","true","false","in","instanceof","typeof","void","delete"]),D=new Set(["implements","interface","let","package","private","protected","public","static","yield"]),N=new Set(["eval","arguments"])
-function O(e,t){return t&&"await"===e||"enum"===e}function I(e,t){return O(e,t)||D.has(e)}function M(e){return N.has(e)}function L(e,t){return I(e,t)||M(e)}function R(e){return _.has(e)}const F=/^in(stanceof)?$/,j=new Set(["_","any","bool","boolean","empty","extends","false","interface","mixed","null","number","static","string","true","typeof","void"]),B=Object.freeze({AmbiguousConditionalArrow:"Ambiguous expression: wrap the arrow functions in parentheses to disambiguate.",AmbiguousDeclareModuleKind:"Found both `declare module.exports` and `declare export` in the same module. Modules can only have 1 since they are either an ES module or they are a CommonJS module",AssignReservedType:"Cannot overwrite reserved type %0",DeclareClassElement:"The `declare` modifier can only appear on class fields.",DeclareClassFieldInitializer:"Initializers are not allowed in fields with the `declare` modifier.",DuplicateDeclareModuleExports:"Duplicate `declare module.exports` statement",EnumBooleanMemberNotInitialized:"Boolean enum members need to be initialized. Use either `%0 = true,` or `%0 = false,` in enum `%1`.",EnumDuplicateMemberName:"Enum member names need to be unique, but the name `%0` has already been used before in enum `%1`.",EnumInconsistentMemberValues:"Enum `%0` has inconsistent member initializers. Either use no initializers, or consistently use literals (either booleans, numbers, or strings) for all member initializers.",EnumInvalidExplicitType:"Enum type `%1` is not valid. Use one of `boolean`, `number`, `string`, or `symbol` in enum `%0`.",EnumInvalidExplicitTypeUnknownSupplied:"Supplied enum type is not valid. Use one of `boolean`, `number`, `string`, or `symbol` in enum `%0`.",EnumInvalidMemberInitializerPrimaryType:"Enum `%0` has type `%2`, so the initializer of `%1` needs to be a %2 literal.",EnumInvalidMemberInitializerSymbolType:"Symbol enum members cannot be initialized. Use `%1,` in enum `%0`.",EnumInvalidMemberInitializerUnknownType:"The enum member initializer for `%1` needs to be a literal (either a boolean, number, or string) in enum `%0`.",EnumInvalidMemberName:"Enum member names cannot start with lowercase 'a' through 'z'. Instead of using `%0`, consider using `%1`, in enum `%2`.",EnumNumberMemberNotInitialized:"Number enum members need to be initialized, e.g. `%1 = 1` in enum `%0`.",EnumStringMemberInconsistentlyInitailized:"String enum members need to consistently either all use initializers, or use no initializers, in enum `%0`.",ImportTypeShorthandOnlyInPureImport:"The `type` and `typeof` keywords on named imports can only be used on regular `import` statements. It cannot be used with `import type` or `import typeof` statements",InexactInsideExact:"Explicit inexact syntax cannot appear inside an explicit exact object type",InexactInsideNonObject:"Explicit inexact syntax cannot appear in class or interface definitions",InexactVariance:"Explicit inexact syntax cannot have variance",InvalidNonTypeImportInDeclareModule:"Imports within a `declare module` body must always be `import type` or `import typeof`",MissingTypeParamDefault:"Type parameter declaration needs a default, since a preceding type parameter declaration has a default.",NestedDeclareModule:"`declare module` cannot be used inside another `declare module`",NestedFlowComment:"Cannot have a flow comment inside another flow comment",OptionalBindingPattern:"A binding pattern parameter cannot be optional in an implementation signature.",SpreadVariance:"Spread properties cannot have variance",TypeBeforeInitializer:"Type annotations must come before default assignments, e.g. instead of `age = 25: number` use `age: number = 25`",TypeCastInPattern:"The type cast expression is expected to be wrapped with parenthesis",UnexpectedExplicitInexactInObject:"Explicit inexact syntax must appear at the end of an inexact object",UnexpectedReservedType:"Unexpected reserved type %0",UnexpectedReservedUnderscore:"`_` is only allowed as a type argument to call or new",UnexpectedSpaceBetweenModuloChecks:"Spaces between `%` and `checks` are not allowed here.",UnexpectedSpreadType:"Spread operator cannot appear in class or interface definitions",UnexpectedSubtractionOperand:'Unexpected token, expected "number" or "bigint"',UnexpectedTokenAfterTypeParameter:"Expected an arrow function after this type parameter declaration",UnexpectedTypeParameterBeforeAsyncArrowFunction:"Type parameters must come after the async keyword, e.g. instead of `<T> async () => {}`, use `async <T>() => {}`",UnsupportedDeclareExportKind:"`declare export %0` is not supported. Use `%1` instead",UnsupportedStatementInDeclareModule:"Only declares and type imports are allowed inside declare module",UnterminatedFlowComment:"Unterminated flow-comment"})
-function U(e){return"type"===e.importKind||"typeof"===e.importKind}function z(e){return(e.type===o.name||!!e.type.keyword)&&"from"!==e.value}const q={const:"declare export var",let:"declare export var",type:"export type",interface:"export interface"},$=/\*?\s*@((?:no)?flow)\b/,V={quot:'"',amp:"&",apos:"'",lt:"<",gt:">",nbsp:" ",iexcl:"¡",cent:"¢",pound:"£",curren:"¤",yen:"¥",brvbar:"¦",sect:"§",uml:"¨",copy:"©",ordf:"ª",laquo:"«",not:"¬",shy:"­",reg:"®",macr:"¯",deg:"°",plusmn:"±",sup2:"²",sup3:"³",acute:"´",micro:"µ",para:"¶",middot:"·",cedil:"¸",sup1:"¹",ordm:"º",raquo:"»",frac14:"¼",frac12:"½",frac34:"¾",iquest:"¿",Agrave:"À",Aacute:"Á",Acirc:"Â",Atilde:"Ã",Auml:"Ä",Aring:"Å",AElig:"Æ",Ccedil:"Ç",Egrave:"È",Eacute:"É",Ecirc:"Ê",Euml:"Ë",Igrave:"Ì",Iacute:"Í",Icirc:"Î",Iuml:"Ï",ETH:"Ð",Ntilde:"Ñ",Ograve:"Ò",Oacute:"Ó",Ocirc:"Ô",Otilde:"Õ",Ouml:"Ö",times:"×",Oslash:"Ø",Ugrave:"Ù",Uacute:"Ú",Ucirc:"Û",Uuml:"Ü",Yacute:"Ý",THORN:"Þ",szlig:"ß",agrave:"à",aacute:"á",acirc:"â",atilde:"ã",auml:"ä",aring:"å",aelig:"æ",ccedil:"ç",egrave:"è",eacute:"é",ecirc:"ê",euml:"ë",igrave:"ì",iacute:"í",icirc:"î",iuml:"ï",eth:"ð",ntilde:"ñ",ograve:"ò",oacute:"ó",ocirc:"ô",otilde:"õ",ouml:"ö",divide:"÷",oslash:"ø",ugrave:"ù",uacute:"ú",ucirc:"û",uuml:"ü",yacute:"ý",thorn:"þ",yuml:"ÿ",OElig:"Œ",oelig:"œ",Scaron:"Š",scaron:"š",Yuml:"Ÿ",fnof:"ƒ",circ:"ˆ",tilde:"˜",Alpha:"Α",Beta:"Β",Gamma:"Γ",Delta:"Δ",Epsilon:"Ε",Zeta:"Ζ",Eta:"Η",Theta:"Θ",Iota:"Ι",Kappa:"Κ",Lambda:"Λ",Mu:"Μ",Nu:"Ν",Xi:"Ξ",Omicron:"Ο",Pi:"Π",Rho:"Ρ",Sigma:"Σ",Tau:"Τ",Upsilon:"Υ",Phi:"Φ",Chi:"Χ",Psi:"Ψ",Omega:"Ω",alpha:"α",beta:"β",gamma:"γ",delta:"δ",epsilon:"ε",zeta:"ζ",eta:"η",theta:"θ",iota:"ι",kappa:"κ",lambda:"λ",mu:"μ",nu:"ν",xi:"ξ",omicron:"ο",pi:"π",rho:"ρ",sigmaf:"ς",sigma:"σ",tau:"τ",upsilon:"υ",phi:"φ",chi:"χ",psi:"ψ",omega:"ω",thetasym:"ϑ",upsih:"ϒ",piv:"ϖ",ensp:" ",emsp:" ",thinsp:" ",zwnj:"‌",zwj:"‍",lrm:"‎",rlm:"‏",ndash:"–",mdash:"—",lsquo:"‘",rsquo:"’",sbquo:"‚",ldquo:"“",rdquo:"”",bdquo:"„",dagger:"†",Dagger:"‡",bull:"•",hellip:"…",permil:"‰",prime:"′",Prime:"″",lsaquo:"‹",rsaquo:"›",oline:"‾",frasl:"⁄",euro:"€",image:"ℑ",weierp:"℘",real:"ℜ",trade:"™",alefsym:"ℵ",larr:"←",uarr:"↑",rarr:"→",darr:"↓",harr:"↔",crarr:"↵",lArr:"⇐",uArr:"⇑",rArr:"⇒",dArr:"⇓",hArr:"⇔",forall:"∀",part:"∂",exist:"∃",empty:"∅",nabla:"∇",isin:"∈",notin:"∉",ni:"∋",prod:"∏",sum:"∑",minus:"−",lowast:"∗",radic:"√",prop:"∝",infin:"∞",ang:"∠",and:"∧",or:"∨",cap:"∩",cup:"∪",int:"∫",there4:"∴",sim:"∼",cong:"≅",asymp:"≈",ne:"≠",equiv:"≡",le:"≤",ge:"≥",sub:"⊂",sup:"⊃",nsub:"⊄",sube:"⊆",supe:"⊇",oplus:"⊕",otimes:"⊗",perp:"⊥",sdot:"⋅",lceil:"⌈",rceil:"⌉",lfloor:"⌊",rfloor:"⌋",lang:"〈",rang:"〉",loz:"◊",spades:"♠",clubs:"♣",hearts:"♥",diams:"♦"},H=/^[\da-fA-F]+$/,W=/^\d+$/,J=Object.freeze({AttributeIsEmpty:"JSX attributes must only be assigned a non-empty expression",MissingClosingTagFragment:"Expected corresponding JSX closing tag for <>",MissingClosingTagElement:"Expected corresponding JSX closing tag for <%0>",UnsupportedJsxValue:"JSX value should be either an expression or a quoted JSX text",UnterminatedJsxContent:"Unterminated JSX contents",UnwrappedAdjacentJSXElements:"Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?"})
-function G(e){return!!e&&("JSXOpeningFragment"===e.type||"JSXClosingFragment"===e.type)}function X(e){if("JSXIdentifier"===e.type)return e.name
+if(r+=t[i+1],r>=e)return!0}return!1}function W(e){return e<65?36===e:e<=90||(e<97?95===e:e<=122||(e<=65535?e>=170&&z.test(String.fromCharCode(e)):H(e,$)))}function J(e){return e<48?36===e:e<58||!(e<65)&&(e<=90||(e<97?95===e:e<=122||(e<=65535?e>=170&&q.test(String.fromCharCode(e)):H(e,$)||H(e,V))))}const G=new Set(["break","case","catch","continue","debugger","default","do","else","finally","for","function","if","return","switch","throw","try","var","const","while","with","new","this","super","class","extends","export","import","null","true","false","in","instanceof","typeof","void","delete"]),X=new Set(["implements","interface","let","package","private","protected","public","static","yield"]),K=new Set(["eval","arguments"])
+function Y(e,t){return t&&"await"===e||"enum"===e}function Q(e,t){return Y(e,t)||X.has(e)}function Z(e){return K.has(e)}function ee(e,t){return Q(e,t)||Z(e)}function te(e){return G.has(e)}const re=new Set(["break","case","catch","continue","debugger","default","do","else","finally","for","function","if","return","switch","throw","try","var","const","while","with","new","this","super","class","extends","export","import","null","true","false","in","instanceof","typeof","void","delete","implements","interface","let","package","private","protected","public","static","yield","eval","arguments","enum","await"])
+class ie{constructor(e){this.var=new Set,this.lexical=new Set,this.functions=new Set,this.flags=e}}class ne{constructor(e,t){this.scopeStack=[],this.undefinedExports=new Map,this.undefinedPrivateNames=new Map,this.raise=e,this.inModule=t}get inFunction(){return(2&this.currentVarScopeFlags())>0}get allowSuper(){return(16&this.currentThisScopeFlags())>0}get allowDirectSuper(){return(32&this.currentThisScopeFlags())>0}get inClass(){return(64&this.currentThisScopeFlags())>0}get inClassAndNotInNonArrowFunction(){const e=this.currentThisScopeFlags()
+return(64&e)>0&&0==(2&e)}get inStaticBlock(){for(let e=this.scopeStack.length-1;;e--){const{flags:t}=this.scopeStack[e]
+if(128&t)return!0
+if(323&t)return!1}}get inNonArrowFunction(){return(2&this.currentThisScopeFlags())>0}get treatFunctionsAsVar(){return this.treatFunctionsAsVarInScope(this.currentScope())}createScope(e){return new ie(e)}enter(e){this.scopeStack.push(this.createScope(e))}exit(){this.scopeStack.pop()}treatFunctionsAsVarInScope(e){return!!(2&e.flags||!this.inModule&&1&e.flags)}declareName(e,t,r){let i=this.currentScope()
+if(8&t||16&t)this.checkRedeclarationInScope(i,e,t,r),16&t?i.functions.add(e):i.lexical.add(e),8&t&&this.maybeExportDefined(i,e)
+else if(4&t)for(let n=this.scopeStack.length-1;n>=0&&(i=this.scopeStack[n],this.checkRedeclarationInScope(i,e,t,r),i.var.add(e),this.maybeExportDefined(i,e),!(259&i.flags));--n);this.inModule&&1&i.flags&&this.undefinedExports.delete(e)}maybeExportDefined(e,t){this.inModule&&1&e.flags&&this.undefinedExports.delete(t)}checkRedeclarationInScope(e,t,r,i){this.isRedeclaredInScope(e,t,r)&&this.raise(i,m.VarRedeclaration,t)}isRedeclaredInScope(e,t,r){return!!(1&r)&&(8&r?e.lexical.has(t)||e.functions.has(t)||e.var.has(t):16&r?e.lexical.has(t)||!this.treatFunctionsAsVarInScope(e)&&e.var.has(t):e.lexical.has(t)&&!(8&e.flags&&e.lexical.values().next().value===t)||!this.treatFunctionsAsVarInScope(e)&&e.functions.has(t))}checkLocalExport(e){const{name:t}=e,r=this.scopeStack[0]
+r.lexical.has(t)||r.var.has(t)||r.functions.has(t)||this.undefinedExports.set(t,e.start)}currentScope(){return this.scopeStack[this.scopeStack.length-1]}currentVarScopeFlags(){for(let e=this.scopeStack.length-1;;e--){const{flags:t}=this.scopeStack[e]
+if(259&t)return t}}currentThisScopeFlags(){for(let e=this.scopeStack.length-1;;e--){const{flags:t}=this.scopeStack[e]
+if(323&t&&!(4&t))return t}}}class se extends ie{constructor(...e){super(...e),this.declareFunctions=new Set}}class ae extends ne{createScope(e){return new se(e)}declareName(e,t,r){const i=this.currentScope()
+if(2048&t)return this.checkRedeclarationInScope(i,e,t,r),this.maybeExportDefined(i,e),void i.declareFunctions.add(e)
+super.declareName(...arguments)}isRedeclaredInScope(e,t,r){return!!super.isRedeclaredInScope(...arguments)||!!(2048&r)&&!e.declareFunctions.has(t)&&(e.lexical.has(t)||e.functions.has(t))}checkLocalExport(e){this.scopeStack[0].declareFunctions.has(e.name)||super.checkLocalExport(e)}}class oe{constructor(){this.strict=void 0,this.curLine=void 0,this.startLoc=void 0,this.endLoc=void 0,this.errors=[],this.potentialArrowAt=-1,this.noArrowAt=[],this.noArrowParamsConversionAt=[],this.maybeInArrowParameters=!1,this.inType=!1,this.noAnonFunctionType=!1,this.inPropertyName=!1,this.hasFlowComment=!1,this.isAmbientContext=!1,this.inAbstractClass=!1,this.topicContext={maxNumOfResolvableTopics:0,maxTopicIndex:null},this.soloAwait=!1,this.inFSharpPipelineDirectBody=!1,this.labels=[],this.decoratorStack=[[]],this.comments=[],this.commentStack=[],this.pos=0,this.lineStart=0,this.type=7,this.value=null,this.start=0,this.end=0,this.lastTokEndLoc=null,this.lastTokStartLoc=null,this.lastTokStart=0,this.lastTokEnd=0,this.context=[x.brace],this.exprAllowed=!0,this.containsEsc=!1,this.strictErrors=new Map,this.tokensLength=0}init(e){this.strict=!1!==e.strictMode&&(!0===e.strictMode||"module"===e.sourceType),this.curLine=e.startLine,this.startLoc=this.endLoc=this.curPosition()}curPosition(){return new u(this.curLine,this.pos-this.lineStart)}clone(e){const t=new oe,r=Object.keys(this)
+for(let i=0,n=r.length;i<n;i++){const n=r[i]
+let s=this[n]
+!e&&Array.isArray(s)&&(s=s.slice()),t[n]=s}return t}}var le=function(e){return e>=48&&e<=57}
+const ue=new Set([103,109,115,105,121,117,100]),ce={decBinOct:[46,66,69,79,95,98,101,111],hex:[46,88,95,120]},he={bin:[48,49]}
+he.oct=[...he.bin,50,51,52,53,54,55],he.dec=[...he.oct,56,57],he.hex=[...he.dec,65,66,67,68,69,70,97,98,99,100,101,102]
+class pe{constructor(e){this.type=e.type,this.value=e.value,this.start=e.start,this.end=e.end,this.loc=new c(e.startLoc,e.endLoc)}}class de{constructor(){this.privateNames=new Set,this.loneAccessors=new Map,this.undefinedPrivateNames=new Map}}class fe{constructor(e){this.stack=[],this.undefinedPrivateNames=new Map,this.raise=e}current(){return this.stack[this.stack.length-1]}enter(){this.stack.push(new de)}exit(){const e=this.stack.pop(),t=this.current()
+for(const[r,i]of Array.from(e.undefinedPrivateNames))t?t.undefinedPrivateNames.has(r)||t.undefinedPrivateNames.set(r,i):this.raise(i,m.InvalidPrivateFieldResolution,r)}declarePrivateName(e,t,r){const i=this.current()
+let n=i.privateNames.has(e)
+if(3&t){const r=n&&i.loneAccessors.get(e)
+if(r){const s=4&r,a=4&t
+n=(3&r)==(3&t)||s!==a,n||i.loneAccessors.delete(e)}else n||i.loneAccessors.set(e,t)}n&&this.raise(r,m.PrivateNameRedeclaration,e),i.privateNames.add(e),i.undefinedPrivateNames.delete(e)}usePrivateName(e,t){let r
+for(r of this.stack)if(r.privateNames.has(e))return
+r?r.undefinedPrivateNames.set(e,t):this.raise(t,m.InvalidPrivateFieldResolution,e)}}class me{constructor(e=0){this.type=void 0,this.type=e}canBeArrowParameterDeclaration(){return 2===this.type||1===this.type}isCertainlyParameterDeclaration(){return 3===this.type}}class ge extends me{constructor(e){super(e),this.errors=new Map}recordDeclarationError(e,t){this.errors.set(e,t)}clearDeclarationError(e){this.errors.delete(e)}iterateErrors(e){this.errors.forEach(e)}}class ye{constructor(e){this.stack=[new me],this.raise=e}enter(e){this.stack.push(e)}exit(){this.stack.pop()}recordParameterInitializerError(e,t){const{stack:r}=this
+let i=r.length-1,n=r[i]
+for(;!n.isCertainlyParameterDeclaration();){if(!n.canBeArrowParameterDeclaration())return
+n.recordDeclarationError(e,t),n=r[--i]}this.raise(e,t)}recordParenthesizedIdentifierError(e,t){const{stack:r}=this,i=r[r.length-1]
+if(i.isCertainlyParameterDeclaration())this.raise(e,t)
+else{if(!i.canBeArrowParameterDeclaration())return
+i.recordDeclarationError(e,t)}}recordAsyncArrowParametersError(e,t){const{stack:r}=this
+let i=r.length-1,n=r[i]
+for(;n.canBeArrowParameterDeclaration();)2===n.type&&n.recordDeclarationError(e,t),n=r[--i]}validateAsPattern(){const{stack:e}=this,t=e[e.length-1]
+t.canBeArrowParameterDeclaration()&&t.iterateErrors(((t,r)=>{this.raise(r,t)
+let i=e.length-2,n=e[i]
+for(;n.canBeArrowParameterDeclaration();)n.clearDeclarationError(r),n=e[--i]}))}}function ve(){return new me}class be{constructor(){this.stacks=[]}enter(e){this.stacks.push(e)}exit(){this.stacks.pop()}currentFlags(){return this.stacks[this.stacks.length-1]}get hasAwait(){return(2&this.currentFlags())>0}get hasYield(){return(1&this.currentFlags())>0}get hasReturn(){return(4&this.currentFlags())>0}get hasIn(){return(8&this.currentFlags())>0}}function xe(e,t){return(e?2:0)|(t?1:0)}class Ee{constructor(){this.shorthandAssign=-1,this.doubleProto=-1,this.optionalParameters=-1}}class we{constructor(e,t,r){this.type="",this.start=t,this.end=0,this.loc=new c(r),null!=e&&e.options.ranges&&(this.range=[t,0]),null!=e&&e.filename&&(this.loc.filename=e.filename)}}const Se=we.prototype
+function Te(e){const{type:t,start:r,end:i,loc:n,range:s,extra:a,name:o}=e,l=Object.create(Se)
+return l.type=t,l.start=r,l.end=i,l.loc=n,l.range=s,l.extra=a,l.name=o,"Placeholder"===t&&(l.expectedNode=e.expectedNode),l}function ke(e){const{type:t,start:r,end:i,loc:n,range:s,extra:a}=e
+if("Placeholder"===t)return function(e){return Te(e)}(e)
+const o=Object.create(Se)
+return o.type="StringLiteral",o.start=r,o.end=i,o.loc=n,o.range=s,o.extra=a,o.value=e.value,o}Se.__clone=function(){const e=new we,t=Object.keys(this)
+for(let r=0,i=t.length;r<i;r++){const i=t[r]
+"leadingComments"!==i&&"trailingComments"!==i&&"innerComments"!==i&&(e[i]=this[i])}return e}
+const Ce=new Set(["_","any","bool","boolean","empty","extends","false","interface","mixed","null","number","static","string","true","typeof","void"]),Ae=v({AmbiguousConditionalArrow:"Ambiguous expression: wrap the arrow functions in parentheses to disambiguate.",AmbiguousDeclareModuleKind:"Found both `declare module.exports` and `declare export` in the same module. Modules can only have 1 since they are either an ES module or they are a CommonJS module.",AssignReservedType:"Cannot overwrite reserved type %0.",DeclareClassElement:"The `declare` modifier can only appear on class fields.",DeclareClassFieldInitializer:"Initializers are not allowed in fields with the `declare` modifier.",DuplicateDeclareModuleExports:"Duplicate `declare module.exports` statement.",EnumBooleanMemberNotInitialized:"Boolean enum members need to be initialized. Use either `%0 = true,` or `%0 = false,` in enum `%1`.",EnumDuplicateMemberName:"Enum member names need to be unique, but the name `%0` has already been used before in enum `%1`.",EnumInconsistentMemberValues:"Enum `%0` has inconsistent member initializers. Either use no initializers, or consistently use literals (either booleans, numbers, or strings) for all member initializers.",EnumInvalidExplicitType:"Enum type `%1` is not valid. Use one of `boolean`, `number`, `string`, or `symbol` in enum `%0`.",EnumInvalidExplicitTypeUnknownSupplied:"Supplied enum type is not valid. Use one of `boolean`, `number`, `string`, or `symbol` in enum `%0`.",EnumInvalidMemberInitializerPrimaryType:"Enum `%0` has type `%2`, so the initializer of `%1` needs to be a %2 literal.",EnumInvalidMemberInitializerSymbolType:"Symbol enum members cannot be initialized. Use `%1,` in enum `%0`.",EnumInvalidMemberInitializerUnknownType:"The enum member initializer for `%1` needs to be a literal (either a boolean, number, or string) in enum `%0`.",EnumInvalidMemberName:"Enum member names cannot start with lowercase 'a' through 'z'. Instead of using `%0`, consider using `%1`, in enum `%2`.",EnumNumberMemberNotInitialized:"Number enum members need to be initialized, e.g. `%1 = 1` in enum `%0`.",EnumStringMemberInconsistentlyInitailized:"String enum members need to consistently either all use initializers, or use no initializers, in enum `%0`.",GetterMayNotHaveThisParam:"A getter cannot have a `this` parameter.",ImportTypeShorthandOnlyInPureImport:"The `type` and `typeof` keywords on named imports can only be used on regular `import` statements. It cannot be used with `import type` or `import typeof` statements.",InexactInsideExact:"Explicit inexact syntax cannot appear inside an explicit exact object type.",InexactInsideNonObject:"Explicit inexact syntax cannot appear in class or interface definitions.",InexactVariance:"Explicit inexact syntax cannot have variance.",InvalidNonTypeImportInDeclareModule:"Imports within a `declare module` body must always be `import type` or `import typeof`.",MissingTypeParamDefault:"Type parameter declaration needs a default, since a preceding type parameter declaration has a default.",NestedDeclareModule:"`declare module` cannot be used inside another `declare module`.",NestedFlowComment:"Cannot have a flow comment inside another flow comment.",PatternIsOptional:"A binding pattern parameter cannot be optional in an implementation signature.",SetterMayNotHaveThisParam:"A setter cannot have a `this` parameter.",SpreadVariance:"Spread properties cannot have variance.",ThisParamAnnotationRequired:"A type annotation is required for the `this` parameter.",ThisParamBannedInConstructor:"Constructors cannot have a `this` parameter; constructors don't bind `this` like other functions.",ThisParamMayNotBeOptional:"The `this` parameter cannot be optional.",ThisParamMustBeFirst:"The `this` parameter must be the first function parameter.",ThisParamNoDefault:"The `this` parameter may not have a default value.",TypeBeforeInitializer:"Type annotations must come before default assignments, e.g. instead of `age = 25: number` use `age: number = 25`.",TypeCastInPattern:"The type cast expression is expected to be wrapped with parenthesis.",UnexpectedExplicitInexactInObject:"Explicit inexact syntax must appear at the end of an inexact object.",UnexpectedReservedType:"Unexpected reserved type %0.",UnexpectedReservedUnderscore:"`_` is only allowed as a type argument to call or new.",UnexpectedSpaceBetweenModuloChecks:"Spaces between `%` and `checks` are not allowed here.",UnexpectedSpreadType:"Spread operator cannot appear in class or interface definitions.",UnexpectedSubtractionOperand:'Unexpected token, expected "number" or "bigint".',UnexpectedTokenAfterTypeParameter:"Expected an arrow function after this type parameter declaration.",UnexpectedTypeParameterBeforeAsyncArrowFunction:"Type parameters must come after the async keyword, e.g. instead of `<T> async () => {}`, use `async <T>() => {}`.",UnsupportedDeclareExportKind:"`declare export %0` is not supported. Use `%1` instead.",UnsupportedStatementInDeclareModule:"Only declares and type imports are allowed inside declare module.",UnterminatedFlowComment:"Unterminated flow-comment."},f.SyntaxError,"flow")
+function Pe(e){return"type"===e.importKind||"typeof"===e.importKind}function _e(e){return(5===e.type||L(e.type))&&"from"!==e.value}const De={const:"declare export var",let:"declare export var",type:"export type",interface:"export interface"},Ne=/\*?\s*@((?:no)?flow)\b/,Oe={quot:'"',amp:"&",apos:"'",lt:"<",gt:">",nbsp:" ",iexcl:"¡",cent:"¢",pound:"£",curren:"¤",yen:"¥",brvbar:"¦",sect:"§",uml:"¨",copy:"©",ordf:"ª",laquo:"«",not:"¬",shy:"­",reg:"®",macr:"¯",deg:"°",plusmn:"±",sup2:"²",sup3:"³",acute:"´",micro:"µ",para:"¶",middot:"·",cedil:"¸",sup1:"¹",ordm:"º",raquo:"»",frac14:"¼",frac12:"½",frac34:"¾",iquest:"¿",Agrave:"À",Aacute:"Á",Acirc:"Â",Atilde:"Ã",Auml:"Ä",Aring:"Å",AElig:"Æ",Ccedil:"Ç",Egrave:"È",Eacute:"É",Ecirc:"Ê",Euml:"Ë",Igrave:"Ì",Iacute:"Í",Icirc:"Î",Iuml:"Ï",ETH:"Ð",Ntilde:"Ñ",Ograve:"Ò",Oacute:"Ó",Ocirc:"Ô",Otilde:"Õ",Ouml:"Ö",times:"×",Oslash:"Ø",Ugrave:"Ù",Uacute:"Ú",Ucirc:"Û",Uuml:"Ü",Yacute:"Ý",THORN:"Þ",szlig:"ß",agrave:"à",aacute:"á",acirc:"â",atilde:"ã",auml:"ä",aring:"å",aelig:"æ",ccedil:"ç",egrave:"è",eacute:"é",ecirc:"ê",euml:"ë",igrave:"ì",iacute:"í",icirc:"î",iuml:"ï",eth:"ð",ntilde:"ñ",ograve:"ò",oacute:"ó",ocirc:"ô",otilde:"õ",ouml:"ö",divide:"÷",oslash:"ø",ugrave:"ù",uacute:"ú",ucirc:"û",uuml:"ü",yacute:"ý",thorn:"þ",yuml:"ÿ",OElig:"Œ",oelig:"œ",Scaron:"Š",scaron:"š",Yuml:"Ÿ",fnof:"ƒ",circ:"ˆ",tilde:"˜",Alpha:"Α",Beta:"Β",Gamma:"Γ",Delta:"Δ",Epsilon:"Ε",Zeta:"Ζ",Eta:"Η",Theta:"Θ",Iota:"Ι",Kappa:"Κ",Lambda:"Λ",Mu:"Μ",Nu:"Ν",Xi:"Ξ",Omicron:"Ο",Pi:"Π",Rho:"Ρ",Sigma:"Σ",Tau:"Τ",Upsilon:"Υ",Phi:"Φ",Chi:"Χ",Psi:"Ψ",Omega:"Ω",alpha:"α",beta:"β",gamma:"γ",delta:"δ",epsilon:"ε",zeta:"ζ",eta:"η",theta:"θ",iota:"ι",kappa:"κ",lambda:"λ",mu:"μ",nu:"ν",xi:"ξ",omicron:"ο",pi:"π",rho:"ρ",sigmaf:"ς",sigma:"σ",tau:"τ",upsilon:"υ",phi:"φ",chi:"χ",psi:"ψ",omega:"ω",thetasym:"ϑ",upsih:"ϒ",piv:"ϖ",ensp:" ",emsp:" ",thinsp:" ",zwnj:"‌",zwj:"‍",lrm:"‎",rlm:"‏",ndash:"–",mdash:"—",lsquo:"‘",rsquo:"’",sbquo:"‚",ldquo:"“",rdquo:"”",bdquo:"„",dagger:"†",Dagger:"‡",bull:"•",hellip:"…",permil:"‰",prime:"′",Prime:"″",lsaquo:"‹",rsaquo:"›",oline:"‾",frasl:"⁄",euro:"€",image:"ℑ",weierp:"℘",real:"ℜ",trade:"™",alefsym:"ℵ",larr:"←",uarr:"↑",rarr:"→",darr:"↓",harr:"↔",crarr:"↵",lArr:"⇐",uArr:"⇑",rArr:"⇒",dArr:"⇓",hArr:"⇔",forall:"∀",part:"∂",exist:"∃",empty:"∅",nabla:"∇",isin:"∈",notin:"∉",ni:"∋",prod:"∏",sum:"∑",minus:"−",lowast:"∗",radic:"√",prop:"∝",infin:"∞",ang:"∠",and:"∧",or:"∨",cap:"∩",cup:"∪",int:"∫",there4:"∴",sim:"∼",cong:"≅",asymp:"≈",ne:"≠",equiv:"≡",le:"≤",ge:"≥",sub:"⊂",sup:"⊃",nsub:"⊄",sube:"⊆",supe:"⊇",oplus:"⊕",otimes:"⊗",perp:"⊥",sdot:"⋅",lceil:"⌈",rceil:"⌉",lfloor:"⌊",rfloor:"⌋",lang:"〈",rang:"〉",loz:"◊",spades:"♠",clubs:"♣",hearts:"♥",diams:"♦"},Ie=/^[\da-fA-F]+$/,Me=/^\d+$/,Le=v({AttributeIsEmpty:"JSX attributes must only be assigned a non-empty expression.",MissingClosingTagElement:"Expected corresponding JSX closing tag for <%0>.",MissingClosingTagFragment:"Expected corresponding JSX closing tag for <>.",UnexpectedSequenceExpression:"Sequence expressions cannot be directly nested inside JSX. Did you mean to wrap it in parentheses (...)?",UnsupportedJsxValue:"JSX value should be either an expression or a quoted JSX text.",UnterminatedJsxContent:"Unterminated JSX contents.",UnwrappedAdjacentJSXElements:"Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?"},f.SyntaxError,"jsx")
+function Re(e){return!!e&&("JSXOpeningFragment"===e.type||"JSXClosingFragment"===e.type)}function Fe(e){if("JSXIdentifier"===e.type)return e.name
 if("JSXNamespacedName"===e.type)return e.namespace.name+":"+e.name.name
-if("JSXMemberExpression"===e.type)return X(e.object)+"."+X(e.property)
-throw new Error("Node had unexpected type: "+e.type)}b.j_oTag=new v("<tag",!1),b.j_cTag=new v("</tag",!1),b.j_expr=new v("<tag>...</tag>",!0,!0),o.jsxName=new i("jsxName"),o.jsxText=new i("jsxText",{beforeExpr:!0}),o.jsxTagStart=new i("jsxTagStart",{startsExpr:!0}),o.jsxTagEnd=new i("jsxTagEnd"),o.jsxTagStart.updateContext=function(){this.state.context.push(b.j_expr),this.state.context.push(b.j_oTag),this.state.exprAllowed=!1},o.jsxTagEnd.updateContext=function(e){const t=this.state.context.pop()
-t===b.j_oTag&&e===o.slash||t===b.j_cTag?(this.state.context.pop(),this.state.exprAllowed=this.curContext()===b.j_expr):this.state.exprAllowed=!0}
-class K{constructor(e){this.flags=void 0,this.var=[],this.lexical=[],this.functions=[],this.flags=e}}class Y{constructor(e,t){this.scopeStack=[],this.undefinedExports=new Map,this.undefinedPrivateNames=new Map,this.raise=e,this.inModule=t}get inFunction(){return(2&this.currentVarScope().flags)>0}get allowSuper(){return(16&this.currentThisScope().flags)>0}get allowDirectSuper(){return(32&this.currentThisScope().flags)>0}get inClass(){return(64&this.currentThisScope().flags)>0}get inNonArrowFunction(){return(2&this.currentThisScope().flags)>0}get treatFunctionsAsVar(){return this.treatFunctionsAsVarInScope(this.currentScope())}createScope(e){return new K(e)}enter(e){this.scopeStack.push(this.createScope(e))}exit(){this.scopeStack.pop()}treatFunctionsAsVarInScope(e){return!!(2&e.flags||!this.inModule&&1&e.flags)}declareName(e,t,r){let i=this.currentScope()
-if(8&t||16&t)this.checkRedeclarationInScope(i,e,t,r),16&t?i.functions.push(e):i.lexical.push(e),8&t&&this.maybeExportDefined(i,e)
-else if(4&t)for(let n=this.scopeStack.length-1;n>=0&&(i=this.scopeStack[n],this.checkRedeclarationInScope(i,e,t,r),i.var.push(e),this.maybeExportDefined(i,e),!(131&i.flags));--n);this.inModule&&1&i.flags&&this.undefinedExports.delete(e)}maybeExportDefined(e,t){this.inModule&&1&e.flags&&this.undefinedExports.delete(t)}checkRedeclarationInScope(e,t,r,i){this.isRedeclaredInScope(e,t,r)&&this.raise(i,g.VarRedeclaration,t)}isRedeclaredInScope(e,t,r){return!!(1&r)&&(8&r?e.lexical.indexOf(t)>-1||e.functions.indexOf(t)>-1||e.var.indexOf(t)>-1:16&r?e.lexical.indexOf(t)>-1||!this.treatFunctionsAsVarInScope(e)&&e.var.indexOf(t)>-1:e.lexical.indexOf(t)>-1&&!(8&e.flags&&e.lexical[0]===t)||!this.treatFunctionsAsVarInScope(e)&&e.functions.indexOf(t)>-1)}checkLocalExport(e){-1===this.scopeStack[0].lexical.indexOf(e.name)&&-1===this.scopeStack[0].var.indexOf(e.name)&&-1===this.scopeStack[0].functions.indexOf(e.name)&&this.undefinedExports.set(e.name,e.start)}currentScope(){return this.scopeStack[this.scopeStack.length-1]}currentVarScope(){for(let e=this.scopeStack.length-1;;e--){const t=this.scopeStack[e]
-if(131&t.flags)return t}}currentThisScope(){for(let e=this.scopeStack.length-1;;e--){const t=this.scopeStack[e]
-if((131&t.flags||64&t.flags)&&!(4&t.flags))return t}}}class Q extends K{constructor(...e){super(...e),this.types=[],this.enums=[],this.constEnums=[],this.classes=[],this.exportOnlyBindings=[]}}class Z extends Y{createScope(e){return new Q(e)}declareName(e,t,r){const i=this.currentScope()
-if(1024&t)return this.maybeExportDefined(i,e),void i.exportOnlyBindings.push(e)
-super.declareName(...arguments),2&t&&(1&t||(this.checkRedeclarationInScope(i,e,t,r),this.maybeExportDefined(i,e)),i.types.push(e)),256&t&&i.enums.push(e),512&t&&i.constEnums.push(e),128&t&&i.classes.push(e)}isRedeclaredInScope(e,t,r){return e.enums.indexOf(t)>-1?!(256&r)||!!(512&r)!=e.constEnums.indexOf(t)>-1:128&r&&e.classes.indexOf(t)>-1?e.lexical.indexOf(t)>-1&&!!(1&r):!!(2&r&&e.types.indexOf(t)>-1)||super.isRedeclaredInScope(...arguments)}checkLocalExport(e){-1===this.scopeStack[0].types.indexOf(e.name)&&-1===this.scopeStack[0].exportOnlyBindings.indexOf(e.name)&&super.checkLocalExport(e)}}class ee{constructor(){this.stacks=[]}enter(e){this.stacks.push(e)}exit(){this.stacks.pop()}currentFlags(){return this.stacks[this.stacks.length-1]}get hasAwait(){return(2&this.currentFlags())>0}get hasYield(){return(1&this.currentFlags())>0}get hasReturn(){return(4&this.currentFlags())>0}get hasIn(){return(8&this.currentFlags())>0}}function te(e,t){return(e?2:0)|(t?1:0)}function re(e){if(null==e)throw new Error(`Unexpected ${e} value.`)
-return e}function ie(e){if(!e)throw new Error("Assert fail")}const ne=Object.freeze({ClassMethodHasDeclare:"Class methods cannot have the 'declare' modifier",ClassMethodHasReadonly:"Class methods cannot have the 'readonly' modifier",ConstructorHasTypeParameters:"Type parameters cannot appear on a constructor declaration.",DeclareClassFieldHasInitializer:"Initializers are not allowed in ambient contexts.",DeclareFunctionHasImplementation:"An implementation cannot be declared in ambient contexts.",DuplicateModifier:"Duplicate modifier: '%0'",EmptyHeritageClauseType:"'%0' list cannot be empty.",EmptyTypeArguments:"Type argument list cannot be empty.",EmptyTypeParameters:"Type parameter list cannot be empty.",IndexSignatureHasAbstract:"Index signatures cannot have the 'abstract' modifier",IndexSignatureHasAccessibility:"Index signatures cannot have an accessibility modifier ('%0')",IndexSignatureHasStatic:"Index signatures cannot have the 'static' modifier",IndexSignatureHasDeclare:"Index signatures cannot have the 'declare' modifier",InvalidTupleMemberLabel:"Tuple members must be labeled with a simple identifier.",MixedLabeledAndUnlabeledElements:"Tuple members must all have names or all not have names.",OptionalTypeBeforeRequired:"A required element cannot follow an optional element.",PatternIsOptional:"A binding pattern parameter cannot be optional in an implementation signature.",PrivateElementHasAbstract:"Private elements cannot have the 'abstract' modifier.",PrivateElementHasAccessibility:"Private elements cannot have an accessibility modifier ('%0')",TypeAnnotationAfterAssign:"Type annotations must come before default assignments, e.g. instead of `age = 25: number` use `age: number = 25`",UnexpectedParameterModifier:"A parameter property is only allowed in a constructor implementation.",UnexpectedReadonly:"'readonly' type modifier is only permitted on array and tuple literal types.",UnexpectedTypeAnnotation:"Did not expect a type annotation here.",UnexpectedTypeCastInParameter:"Unexpected type cast in parameter position.",UnsupportedImportTypeArgument:"Argument in a type import must be a string literal",UnsupportedParameterPropertyKind:"A parameter property may not be declared using a binding pattern.",UnsupportedSignatureParameterKind:"Name in a signature must be an Identifier, ObjectPattern or ArrayPattern, instead got %0"})
-function se(e,t){return e.some((e=>Array.isArray(e)?e[0]===t:e===t))}function ae(e,t,r){const i=e.find((e=>Array.isArray(e)?e[0]===t:e===t))
-return i&&Array.isArray(i)?i[1][r]:null}o.placeholder=new i("%%",{startsExpr:!0})
-const oe=["minimal","smart","fsharp"],le=["hash","bar"],ue={estree:e=>class extends e{estreeParseRegExpLiteral({pattern:e,flags:t}){let r=null
+if("JSXMemberExpression"===e.type)return Fe(e.object)+"."+Fe(e.property)
+throw new Error("Node had unexpected type: "+e.type)}x.j_oTag=new b("<tag"),x.j_cTag=new b("</tag"),x.j_expr=new b("<tag>...</tag>",!0)
+class je extends ie{constructor(...e){super(...e),this.types=new Set,this.enums=new Set,this.constEnums=new Set,this.classes=new Set,this.exportOnlyBindings=new Set}}class Be extends ne{createScope(e){return new je(e)}declareName(e,t,r){const i=this.currentScope()
+if(1024&t)return this.maybeExportDefined(i,e),void i.exportOnlyBindings.add(e)
+super.declareName(...arguments),2&t&&(1&t||(this.checkRedeclarationInScope(i,e,t,r),this.maybeExportDefined(i,e)),i.types.add(e)),256&t&&i.enums.add(e),512&t&&i.constEnums.add(e),128&t&&i.classes.add(e)}isRedeclaredInScope(e,t,r){return e.enums.has(t)?!(256&r)||!!(512&r)!==e.constEnums.has(t):128&r&&e.classes.has(t)?!!e.lexical.has(t)&&!!(1&r):!!(2&r&&e.types.has(t))||super.isRedeclaredInScope(...arguments)}checkLocalExport(e){const t=this.scopeStack[0],{name:r}=e
+t.types.has(r)||t.exportOnlyBindings.has(r)||super.checkLocalExport(e)}}function Ue(e){if(!e)throw new Error("Assert fail")}const ze=v({AbstractMethodHasImplementation:"Method '%0' cannot have an implementation because it is marked abstract.",AbstractPropertyHasInitializer:"Property '%0' cannot have an initializer because it is marked abstract.",AccesorCannotDeclareThisParameter:"'get' and 'set' accessors cannot declare 'this' parameters.",AccesorCannotHaveTypeParameters:"An accessor cannot have type parameters.",ClassMethodHasDeclare:"Class methods cannot have the 'declare' modifier.",ClassMethodHasReadonly:"Class methods cannot have the 'readonly' modifier.",ConstructorHasTypeParameters:"Type parameters cannot appear on a constructor declaration.",DeclareAccessor:"'declare' is not allowed in %0ters.",DeclareClassFieldHasInitializer:"Initializers are not allowed in ambient contexts.",DeclareFunctionHasImplementation:"An implementation cannot be declared in ambient contexts.",DuplicateAccessibilityModifier:"Accessibility modifier already seen.",DuplicateModifier:"Duplicate modifier: '%0'.",EmptyHeritageClauseType:"'%0' list cannot be empty.",EmptyTypeArguments:"Type argument list cannot be empty.",EmptyTypeParameters:"Type parameter list cannot be empty.",ExpectedAmbientAfterExportDeclare:"'export declare' must be followed by an ambient declaration.",ImportAliasHasImportType:"An import alias can not use 'import type'.",IncompatibleModifiers:"'%0' modifier cannot be used with '%1' modifier.",IndexSignatureHasAbstract:"Index signatures cannot have the 'abstract' modifier.",IndexSignatureHasAccessibility:"Index signatures cannot have an accessibility modifier ('%0').",IndexSignatureHasDeclare:"Index signatures cannot have the 'declare' modifier.",IndexSignatureHasOverride:"'override' modifier cannot appear on an index signature.",IndexSignatureHasStatic:"Index signatures cannot have the 'static' modifier.",InvalidModifierOnTypeMember:"'%0' modifier cannot appear on a type member.",InvalidModifiersOrder:"'%0' modifier must precede '%1' modifier.",InvalidTupleMemberLabel:"Tuple members must be labeled with a simple identifier.",MissingInterfaceName:"'interface' declarations must be followed by an identifier.",MixedLabeledAndUnlabeledElements:"Tuple members must all have names or all not have names.",NonAbstractClassHasAbstractMethod:"Abstract methods can only appear within an abstract class.",NonClassMethodPropertyHasAbstractModifer:"'abstract' modifier can only appear on a class, method, or property declaration.",OptionalTypeBeforeRequired:"A required element cannot follow an optional element.",OverrideNotInSubClass:"This member cannot have an 'override' modifier because its containing class does not extend another class.",PatternIsOptional:"A binding pattern parameter cannot be optional in an implementation signature.",PrivateElementHasAbstract:"Private elements cannot have the 'abstract' modifier.",PrivateElementHasAccessibility:"Private elements cannot have an accessibility modifier ('%0').",ReadonlyForMethodSignature:"'readonly' modifier can only appear on a property declaration or index signature.",SetAccesorCannotHaveOptionalParameter:"A 'set' accessor cannot have an optional parameter.",SetAccesorCannotHaveRestParameter:"A 'set' accessor cannot have rest parameter.",SetAccesorCannotHaveReturnType:"A 'set' accessor cannot have a return type annotation.",StaticBlockCannotHaveModifier:"Static class blocks cannot have any modifier.",TypeAnnotationAfterAssign:"Type annotations must come before default assignments, e.g. instead of `age = 25: number` use `age: number = 25`.",TypeImportCannotSpecifyDefaultAndNamed:"A type-only import can specify a default import or named bindings, but not both.",UnexpectedParameterModifier:"A parameter property is only allowed in a constructor implementation.",UnexpectedReadonly:"'readonly' type modifier is only permitted on array and tuple literal types.",UnexpectedTypeAnnotation:"Did not expect a type annotation here.",UnexpectedTypeCastInParameter:"Unexpected type cast in parameter position.",UnsupportedImportTypeArgument:"Argument in a type import must be a string literal.",UnsupportedParameterPropertyKind:"A parameter property may not be declared using a binding pattern.",UnsupportedSignatureParameterKind:"Name in a signature must be an Identifier, ObjectPattern or ArrayPattern, instead got %0."},f.SyntaxError,"typescript")
+function qe(e){return"private"===e||"public"===e||"protected"===e}const $e=v({ClassNameIsRequired:"A class name is required."},f.SyntaxError)
+function Ve(e,t){return e.some((e=>Array.isArray(e)?e[0]===t:e===t))}function He(e,t,r){const i=e.find((e=>Array.isArray(e)?e[0]===t:e===t))
+return i&&Array.isArray(i)?i[1][r]:null}const We=["minimal","fsharp","hack","smart"],Je=["%","#"],Ge=["hash","bar"],Xe={estree:e=>class extends e{parseRegExpLiteral({pattern:e,flags:t}){let r=null
 try{r=new RegExp(e,t)}catch(e){}const i=this.estreeParseLiteral(r)
-return i.regex={pattern:e,flags:t},i}estreeParseBigIntLiteral(e){const t="undefined"!=typeof BigInt?BigInt(e):null,r=this.estreeParseLiteral(t)
-return r.bigint=String(r.value||e),r}estreeParseDecimalLiteral(e){const t=this.estreeParseLiteral(null)
-return t.decimal=String(t.value||e),t}estreeParseLiteral(e){return this.parseLiteral(e,"Literal")}directiveToStmt(e){const t=e.value,r=this.startNodeAt(e.start,e.loc.start),i=this.startNodeAt(t.start,t.loc.start)
-return i.value=t.value,i.raw=t.extra.raw,r.expression=this.finishNodeAt(i,"Literal",t.end,t.loc.end),r.directive=t.extra.raw.slice(1,-1),this.finishNodeAt(r,"ExpressionStatement",e.end,e.loc.end)}initFunction(e,t){super.initFunction(e,t),e.expression=!1}checkDeclaration(e){y(e)?this.checkDeclaration(e.value):super.checkDeclaration(e)}getObjectOrClassMethodParams(e){return e.value.params}checkLVal(e,t,...r){switch(e.type){case"ObjectPattern":e.properties.forEach((e=>{this.checkLVal("Property"===e.type?e.value:e,"object destructuring pattern",...r)}))
-break
-default:super.checkLVal(e,t,...r)}}checkProto(e,t,r,i){e.method||super.checkProto(e,t,r,i)}isValidDirective(e){var t
-return"ExpressionStatement"===e.type&&"Literal"===e.expression.type&&"string"==typeof e.expression.value&&!(null==(t=e.expression.extra)?void 0:t.parenthesized)}stmtToDirective(e){const t=super.stmtToDirective(e),r=e.expression.value
-return t.value.value=r,t}parseBlockBody(e,t,r,i){super.parseBlockBody(e,t,r,i)
-const n=e.directives.map((e=>this.directiveToStmt(e)))
-e.body=n.concat(e.body),delete e.directives}pushClassMethod(e,t,r,i,n,s){this.parseMethod(t,r,i,n,s,"ClassMethod",!0),t.typeParameters&&(t.value.typeParameters=t.typeParameters,delete t.typeParameters),e.body.push(t)}parseExprAtom(e){switch(this.state.type){case o.num:case o.string:return this.estreeParseLiteral(this.state.value)
-case o.regexp:return this.estreeParseRegExpLiteral(this.state.value)
-case o.bigint:return this.estreeParseBigIntLiteral(this.state.value)
-case o.decimal:return this.estreeParseDecimalLiteral(this.state.value)
-case o._null:return this.estreeParseLiteral(null)
-case o._true:return this.estreeParseLiteral(!0)
-case o._false:return this.estreeParseLiteral(!1)
-default:return super.parseExprAtom(e)}}parseLiteral(e,t,r,i){const n=super.parseLiteral(e,t,r,i)
-return n.raw=n.extra.raw,delete n.extra,n}parseFunctionBody(e,t,r=!1){super.parseFunctionBody(e,t,r),e.expression="BlockStatement"!==e.body.type}parseMethod(e,t,r,i,n,s,a=!1){let o=this.startNode()
-return o.kind=e.kind,o=super.parseMethod(o,t,r,i,n,s,a),o.type="FunctionExpression",delete o.kind,e.value=o,s="ClassMethod"===s?"MethodDefinition":s,this.finishNode(e,s)}parseObjectMethod(e,t,r,i,n){const s=super.parseObjectMethod(e,t,r,i,n)
+return i.regex={pattern:e,flags:t},i}parseBigIntLiteral(e){let t
+try{t=BigInt(e)}catch(e){t=null}const r=this.estreeParseLiteral(t)
+return r.bigint=String(r.value||e),r}parseDecimalLiteral(e){const t=this.estreeParseLiteral(null)
+return t.decimal=String(t.value||e),t}estreeParseLiteral(e){return this.parseLiteral(e,"Literal")}parseStringLiteral(e){return this.estreeParseLiteral(e)}parseNumericLiteral(e){return this.estreeParseLiteral(e)}parseNullLiteral(){return this.estreeParseLiteral(null)}parseBooleanLiteral(e){return this.estreeParseLiteral(e)}directiveToStmt(e){const t=e.value,r=this.startNodeAt(e.start,e.loc.start),i=this.startNodeAt(t.start,t.loc.start)
+return i.value=t.extra.expressionValue,i.raw=t.extra.raw,r.expression=this.finishNodeAt(i,"Literal",t.end,t.loc.end),r.directive=t.extra.raw.slice(1,-1),this.finishNodeAt(r,"ExpressionStatement",e.end,e.loc.end)}initFunction(e,t){super.initFunction(e,t),e.expression=!1}checkDeclaration(e){null!=e&&this.isObjectProperty(e)?this.checkDeclaration(e.value):super.checkDeclaration(e)}getObjectOrClassMethodParams(e){return e.value.params}isValidDirective(e){var t
+return"ExpressionStatement"===e.type&&"Literal"===e.expression.type&&"string"==typeof e.expression.value&&!(null!=(t=e.expression.extra)&&t.parenthesized)}stmtToDirective(e){const t=e.expression.value,r=super.stmtToDirective(e)
+return this.addExtra(r.value,"expressionValue",t),r}parseBlockBody(e,...t){super.parseBlockBody(e,...t)
+const r=e.directives.map((e=>this.directiveToStmt(e)))
+e.body=r.concat(e.body),delete e.directives}pushClassMethod(e,t,r,i,n,s){this.parseMethod(t,r,i,n,s,"ClassMethod",!0),t.typeParameters&&(t.value.typeParameters=t.typeParameters,delete t.typeParameters),e.body.push(t)}parsePrivateName(){const e=super.parsePrivateName()
+return this.getPluginOption("estree","classFeatures")?this.convertPrivateNameToPrivateIdentifier(e):e}convertPrivateNameToPrivateIdentifier(e){const t=super.getPrivateNameSV(e)
+return delete(e=e).id,e.name=t,e.type="PrivateIdentifier",e}isPrivateName(e){return this.getPluginOption("estree","classFeatures")?"PrivateIdentifier"===e.type:super.isPrivateName(e)}getPrivateNameSV(e){return this.getPluginOption("estree","classFeatures")?e.name:super.getPrivateNameSV(e)}parseLiteral(e,t){const r=super.parseLiteral(e,t)
+return r.raw=r.extra.raw,delete r.extra,r}parseFunctionBody(e,t,r=!1){super.parseFunctionBody(e,t,r),e.expression="BlockStatement"!==e.body.type}parseMethod(e,t,r,i,n,s,a=!1){let o=this.startNode()
+return o.kind=e.kind,o=super.parseMethod(o,t,r,i,n,s,a),o.type="FunctionExpression",delete o.kind,e.value=o,"ClassPrivateMethod"===s&&(e.computed=!1),s="MethodDefinition",this.finishNode(e,s)}parseClassProperty(...e){const t=super.parseClassProperty(...e)
+return this.getPluginOption("estree","classFeatures")&&(t.type="PropertyDefinition"),t}parseClassPrivateProperty(...e){const t=super.parseClassPrivateProperty(...e)
+return this.getPluginOption("estree","classFeatures")&&(t.type="PropertyDefinition",t.computed=!1),t}parseObjectMethod(e,t,r,i,n){const s=super.parseObjectMethod(e,t,r,i,n)
 return s&&(s.type="Property","method"===s.kind&&(s.kind="init"),s.shorthand=!1),s}parseObjectProperty(e,t,r,i,n){const s=super.parseObjectProperty(e,t,r,i,n)
-return s&&(s.kind="init",s.type="Property"),s}toAssignable(e,t=!1){return y(e)?(this.toAssignable(e.value),e):super.toAssignable(e,t)}toAssignableObjectExpressionProp(e,...t){if("get"===e.kind||"set"===e.kind)throw this.raise(e.key.start,g.PatternHasAccessor)
-if(e.method)throw this.raise(e.key.start,g.PatternHasMethod)
-super.toAssignableObjectExpressionProp(e,...t)}finishCallExpression(e,t){return super.finishCallExpression(e,t),"Import"===e.callee.type&&(e.type="ImportExpression",e.source=e.arguments[0],delete e.arguments,delete e.callee),e}toReferencedArguments(e){"ImportExpression"!==e.type&&super.toReferencedArguments(e)}parseExport(e){switch(super.parseExport(e),e.type){case"ExportAllDeclaration":e.exported=null
+return s&&(s.kind="init",s.type="Property"),s}isAssignable(e,t){return null!=e&&this.isObjectProperty(e)?this.isAssignable(e.value,t):super.isAssignable(e,t)}toAssignable(e,t=!1){return null!=e&&this.isObjectProperty(e)?(this.toAssignable(e.value,t),e):super.toAssignable(e,t)}toAssignableObjectExpressionProp(e,...t){"get"===e.kind||"set"===e.kind?this.raise(e.key.start,m.PatternHasAccessor):e.method?this.raise(e.key.start,m.PatternHasMethod):super.toAssignableObjectExpressionProp(e,...t)}finishCallExpression(e,t){var r;(super.finishCallExpression(e,t),"Import"===e.callee.type)&&(e.type="ImportExpression",e.source=e.arguments[0],this.hasPlugin("importAssertions")&&(e.attributes=null!=(r=e.arguments[1])?r:null),delete e.arguments,delete e.callee)
+return e}toReferencedArguments(e){"ImportExpression"!==e.type&&super.toReferencedArguments(e)}parseExport(e){switch(super.parseExport(e),e.type){case"ExportAllDeclaration":e.exported=null
 break
 case"ExportNamedDeclaration":1===e.specifiers.length&&"ExportNamespaceSpecifier"===e.specifiers[0].type&&(e.type="ExportAllDeclaration",e.exported=e.specifiers[0].exported,delete e.specifiers)}return e}parseSubscript(e,t,r,i,n){const s=super.parseSubscript(e,t,r,i,n)
 if(n.optionalChainMember){if("OptionalMemberExpression"!==s.type&&"OptionalCallExpression"!==s.type||(s.type=s.type.substring(8)),n.stop){const e=this.startNodeAtNode(s)
 return e.expression=s,this.finishNode(e,"ChainExpression")}}else"MemberExpression"!==s.type&&"CallExpression"!==s.type||(s.optional=!1)
-return s}},jsx:e=>class extends e{jsxReadToken(){let e="",t=this.state.pos
-for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,J.UnterminatedJsxContent)
+return s}hasPropertyAsPrivateName(e){return"ChainExpression"===e.type&&(e=e.expression),super.hasPropertyAsPrivateName(e)}isOptionalChain(e){return"ChainExpression"===e.type}isObjectProperty(e){return"Property"===e.type&&"init"===e.kind&&!e.method}isObjectMethod(e){return e.method||"get"===e.kind||"set"===e.kind}},jsx:e=>class extends e{jsxReadToken(){let e="",t=this.state.pos
+for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,Le.UnterminatedJsxContent)
 const r=this.input.charCodeAt(this.state.pos)
-switch(r){case 60:case 123:return this.state.pos===this.state.start?60===r&&this.state.exprAllowed?(++this.state.pos,this.finishToken(o.jsxTagStart)):super.getTokenFromCode(r):(e+=this.input.slice(t,this.state.pos),this.finishToken(o.jsxText,e))
+switch(r){case 60:case 123:return this.state.pos===this.state.start?60===r&&this.state.exprAllowed?(++this.state.pos,this.finishToken(94)):super.getTokenFromCode(r):(e+=this.input.slice(t,this.state.pos),this.finishToken(93,e))
 case 38:e+=this.input.slice(t,this.state.pos),e+=this.jsxReadEntity(),t=this.state.pos
 break
-default:c(r)?(e+=this.input.slice(t,this.state.pos),e+=this.jsxReadNewLine(!0),t=this.state.pos):++this.state.pos}}}jsxReadNewLine(e){const t=this.input.charCodeAt(this.state.pos)
+case 62:case 125:default:s(r)?(e+=this.input.slice(t,this.state.pos),e+=this.jsxReadNewLine(!0),t=this.state.pos):++this.state.pos}}}jsxReadNewLine(e){const t=this.input.charCodeAt(this.state.pos)
 let r
 return++this.state.pos,13===t&&10===this.input.charCodeAt(this.state.pos)?(++this.state.pos,r=e?"\n":"\r\n"):r=String.fromCharCode(t),++this.state.curLine,this.state.lineStart=this.state.pos,r}jsxReadString(e){let t="",r=++this.state.pos
-for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,g.UnterminatedString)
+for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,m.UnterminatedString)
 const i=this.input.charCodeAt(this.state.pos)
 if(i===e)break
-38===i?(t+=this.input.slice(r,this.state.pos),t+=this.jsxReadEntity(),r=this.state.pos):c(i)?(t+=this.input.slice(r,this.state.pos),t+=this.jsxReadNewLine(!1),r=this.state.pos):++this.state.pos}return t+=this.input.slice(r,this.state.pos++),this.finishToken(o.string,t)}jsxReadEntity(){let e,t="",r=0,i=this.input[this.state.pos]
+38===i?(t+=this.input.slice(r,this.state.pos),t+=this.jsxReadEntity(),r=this.state.pos):s(i)?(t+=this.input.slice(r,this.state.pos),t+=this.jsxReadNewLine(!1),r=this.state.pos):++this.state.pos}return t+=this.input.slice(r,this.state.pos++),this.finishToken(4,t)}jsxReadEntity(){let e,t="",r=0,i=this.input[this.state.pos]
 const n=++this.state.pos
-for(;this.state.pos<this.length&&r++<10;){if(i=this.input[this.state.pos++],";"===i){"#"===t[0]?"x"===t[1]?(t=t.substr(2),H.test(t)&&(e=String.fromCodePoint(parseInt(t,16)))):(t=t.substr(1),W.test(t)&&(e=String.fromCodePoint(parseInt(t,10)))):e=V[t]
+for(;this.state.pos<this.length&&r++<10;){if(i=this.input[this.state.pos++],";"===i){"#"===t[0]?"x"===t[1]?(t=t.substr(2),Ie.test(t)&&(e=String.fromCodePoint(parseInt(t,16)))):(t=t.substr(1),Me.test(t)&&(e=String.fromCodePoint(parseInt(t,10)))):e=Oe[t]
 break}t+=i}return e||(this.state.pos=n,"&")}jsxReadWord(){let e
 const t=this.state.pos
-do{e=this.input.charCodeAt(++this.state.pos)}while(P(e)||45===e)
-return this.finishToken(o.jsxName,this.input.slice(t,this.state.pos))}jsxParseIdentifier(){const e=this.startNode()
-return this.match(o.jsxName)?e.name=this.state.value:this.state.type.keyword?e.name=this.state.type.keyword:this.unexpected(),this.next(),this.finishNode(e,"JSXIdentifier")}jsxParseNamespacedName(){const e=this.state.start,t=this.state.startLoc,r=this.jsxParseIdentifier()
-if(!this.eat(o.colon))return r
+do{e=this.input.charCodeAt(++this.state.pos)}while(J(e)||45===e)
+return this.finishToken(92,this.input.slice(t,this.state.pos))}jsxParseIdentifier(){const e=this.startNode()
+return this.match(92)?e.name=this.state.value:L(this.state.type)?e.name=R(this.state.type):this.unexpected(),this.next(),this.finishNode(e,"JSXIdentifier")}jsxParseNamespacedName(){const e=this.state.start,t=this.state.startLoc,r=this.jsxParseIdentifier()
+if(!this.eat(22))return r
 const i=this.startNodeAt(e,t)
 return i.namespace=r,i.name=this.jsxParseIdentifier(),this.finishNode(i,"JSXNamespacedName")}jsxParseElementName(){const e=this.state.start,t=this.state.startLoc
 let r=this.jsxParseNamespacedName()
 if("JSXNamespacedName"===r.type)return r
-for(;this.eat(o.dot);){const i=this.startNodeAt(e,t)
+for(;this.eat(24);){const i=this.startNodeAt(e,t)
 i.object=r,i.property=this.jsxParseIdentifier(),r=this.finishNode(i,"JSXMemberExpression")}return r}jsxParseAttributeValue(){let e
-switch(this.state.type){case o.braceL:return e=this.startNode(),this.next(),e=this.jsxParseExpressionContainer(e),"JSXEmptyExpression"===e.expression.type&&this.raise(e.start,J.AttributeIsEmpty),e
-case o.jsxTagStart:case o.string:return this.parseExprAtom()
-default:throw this.raise(this.state.start,J.UnsupportedJsxValue)}}jsxParseEmptyExpression(){const e=this.startNodeAt(this.state.lastTokEnd,this.state.lastTokEndLoc)
-return this.finishNodeAt(e,"JSXEmptyExpression",this.state.start,this.state.startLoc)}jsxParseSpreadChild(e){return this.next(),e.expression=this.parseExpression(),this.expect(o.braceR),this.finishNode(e,"JSXSpreadChild")}jsxParseExpressionContainer(e){return this.match(o.braceR)?e.expression=this.jsxParseEmptyExpression():e.expression=this.parseExpression(),this.expect(o.braceR),this.finishNode(e,"JSXExpressionContainer")}jsxParseAttribute(){const e=this.startNode()
-return this.eat(o.braceL)?(this.expect(o.ellipsis),e.argument=this.parseMaybeAssignAllowIn(),this.expect(o.braceR),this.finishNode(e,"JSXSpreadAttribute")):(e.name=this.jsxParseNamespacedName(),e.value=this.eat(o.eq)?this.jsxParseAttributeValue():null,this.finishNode(e,"JSXAttribute"))}jsxParseOpeningElementAt(e,t){const r=this.startNodeAt(e,t)
-return this.match(o.jsxTagEnd)?(this.expect(o.jsxTagEnd),this.finishNode(r,"JSXOpeningFragment")):(r.name=this.jsxParseElementName(),this.jsxParseOpeningElementAfterName(r))}jsxParseOpeningElementAfterName(e){const t=[]
-for(;!this.match(o.slash)&&!this.match(o.jsxTagEnd);)t.push(this.jsxParseAttribute())
-return e.attributes=t,e.selfClosing=this.eat(o.slash),this.expect(o.jsxTagEnd),this.finishNode(e,"JSXOpeningElement")}jsxParseClosingElementAt(e,t){const r=this.startNodeAt(e,t)
-return this.match(o.jsxTagEnd)?(this.expect(o.jsxTagEnd),this.finishNode(r,"JSXClosingFragment")):(r.name=this.jsxParseElementName(),this.expect(o.jsxTagEnd),this.finishNode(r,"JSXClosingElement"))}jsxParseElementAt(e,t){const r=this.startNodeAt(e,t),i=[],n=this.jsxParseOpeningElementAt(e,t)
+switch(this.state.type){case 13:return e=this.startNode(),this.next(),e=this.jsxParseExpressionContainer(e),"JSXEmptyExpression"===e.expression.type&&this.raise(e.start,Le.AttributeIsEmpty),e
+case 94:case 4:return this.parseExprAtom()
+default:throw this.raise(this.state.start,Le.UnsupportedJsxValue)}}jsxParseEmptyExpression(){const e=this.startNodeAt(this.state.lastTokEnd,this.state.lastTokEndLoc)
+return this.finishNodeAt(e,"JSXEmptyExpression",this.state.start,this.state.startLoc)}jsxParseSpreadChild(e){return this.next(),e.expression=this.parseExpression(),this.expect(16),this.finishNode(e,"JSXSpreadChild")}jsxParseExpressionContainer(e){if(this.match(16))e.expression=this.jsxParseEmptyExpression()
+else{const t=this.parseExpression()
+e.expression=t}return this.expect(16),this.finishNode(e,"JSXExpressionContainer")}jsxParseAttribute(){const e=this.startNode()
+return this.eat(13)?(this.expect(29),e.argument=this.parseMaybeAssignAllowIn(),this.expect(16),this.finishNode(e,"JSXSpreadAttribute")):(e.name=this.jsxParseNamespacedName(),e.value=this.eat(35)?this.jsxParseAttributeValue():null,this.finishNode(e,"JSXAttribute"))}jsxParseOpeningElementAt(e,t){const r=this.startNodeAt(e,t)
+return this.match(95)?(this.expect(95),this.finishNode(r,"JSXOpeningFragment")):(r.name=this.jsxParseElementName(),this.jsxParseOpeningElementAfterName(r))}jsxParseOpeningElementAfterName(e){const t=[]
+for(;!this.match(55)&&!this.match(95);)t.push(this.jsxParseAttribute())
+return e.attributes=t,e.selfClosing=this.eat(55),this.expect(95),this.finishNode(e,"JSXOpeningElement")}jsxParseClosingElementAt(e,t){const r=this.startNodeAt(e,t)
+return this.match(95)?(this.expect(95),this.finishNode(r,"JSXClosingFragment")):(r.name=this.jsxParseElementName(),this.expect(95),this.finishNode(r,"JSXClosingElement"))}jsxParseElementAt(e,t){const r=this.startNodeAt(e,t),i=[],n=this.jsxParseOpeningElementAt(e,t)
 let s=null
-if(!n.selfClosing){e:for(;;)switch(this.state.type){case o.jsxTagStart:if(e=this.state.start,t=this.state.startLoc,this.next(),this.eat(o.slash)){s=this.jsxParseClosingElementAt(e,t)
+if(!n.selfClosing){e:for(;;)switch(this.state.type){case 94:if(e=this.state.start,t=this.state.startLoc,this.next(),this.eat(55)){s=this.jsxParseClosingElementAt(e,t)
 break e}i.push(this.jsxParseElementAt(e,t))
 break
-case o.jsxText:i.push(this.parseExprAtom())
+case 93:i.push(this.parseExprAtom())
 break
-case o.braceL:{const e=this.startNode()
-this.next(),this.match(o.ellipsis)?i.push(this.jsxParseSpreadChild(e)):i.push(this.jsxParseExpressionContainer(e))
-break}default:throw this.unexpected()}G(n)&&!G(s)?this.raise(s.start,J.MissingClosingTagFragment):!G(n)&&G(s)?this.raise(s.start,J.MissingClosingTagElement,X(n.name)):G(n)||G(s)||X(s.name)!==X(n.name)&&this.raise(s.start,J.MissingClosingTagElement,X(n.name))}if(G(n)?(r.openingFragment=n,r.closingFragment=s):(r.openingElement=n,r.closingElement=s),r.children=i,this.isRelational("<"))throw this.raise(this.state.start,J.UnwrappedAdjacentJSXElements)
-return G(n)?this.finishNode(r,"JSXFragment"):this.finishNode(r,"JSXElement")}jsxParseElement(){const e=this.state.start,t=this.state.startLoc
-return this.next(),this.jsxParseElementAt(e,t)}parseExprAtom(e){return this.match(o.jsxText)?this.parseLiteral(this.state.value,"JSXText"):this.match(o.jsxTagStart)?this.jsxParseElement():this.isRelational("<")&&33!==this.input.charCodeAt(this.state.pos)?(this.finishToken(o.jsxTagStart),this.jsxParseElement()):super.parseExprAtom(e)}getTokenFromCode(e){if(this.state.inPropertyName)return super.getTokenFromCode(e)
+case 13:{const e=this.startNode()
+this.next(),this.match(29)?i.push(this.jsxParseSpreadChild(e)):i.push(this.jsxParseExpressionContainer(e))
+break}default:throw this.unexpected()}Re(n)&&!Re(s)?this.raise(s.start,Le.MissingClosingTagFragment):!Re(n)&&Re(s)?this.raise(s.start,Le.MissingClosingTagElement,Fe(n.name)):Re(n)||Re(s)||Fe(s.name)!==Fe(n.name)&&this.raise(s.start,Le.MissingClosingTagElement,Fe(n.name))}if(Re(n)?(r.openingFragment=n,r.closingFragment=s):(r.openingElement=n,r.closingElement=s),r.children=i,this.isRelational("<"))throw this.raise(this.state.start,Le.UnwrappedAdjacentJSXElements)
+return Re(n)?this.finishNode(r,"JSXFragment"):this.finishNode(r,"JSXElement")}jsxParseElement(){const e=this.state.start,t=this.state.startLoc
+return this.next(),this.jsxParseElementAt(e,t)}parseExprAtom(e){return this.match(93)?this.parseLiteral(this.state.value,"JSXText"):this.match(94)?this.jsxParseElement():this.isRelational("<")&&33!==this.input.charCodeAt(this.state.pos)?(this.finishToken(94),this.jsxParseElement()):super.parseExprAtom(e)}createLookaheadState(e){const t=super.createLookaheadState(e)
+return t.inPropertyName=e.inPropertyName,t}getTokenFromCode(e){if(this.state.inPropertyName)return super.getTokenFromCode(e)
 const t=this.curContext()
-if(t===b.j_expr)return this.jsxReadToken()
-if(t===b.j_oTag||t===b.j_cTag){if(A(e))return this.jsxReadWord()
-if(62===e)return++this.state.pos,this.finishToken(o.jsxTagEnd)
-if((34===e||39===e)&&t===b.j_oTag)return this.jsxReadString(e)}return 60===e&&this.state.exprAllowed&&33!==this.input.charCodeAt(this.state.pos+1)?(++this.state.pos,this.finishToken(o.jsxTagStart)):super.getTokenFromCode(e)}updateContext(e){if(this.match(o.braceL)){const t=this.curContext()
-t===b.j_oTag?this.state.context.push(b.braceExpression):t===b.j_expr?this.state.context.push(b.templateQuasi):super.updateContext(e),this.state.exprAllowed=!0}else{if(!this.match(o.slash)||e!==o.jsxTagStart)return super.updateContext(e)
-this.state.context.length-=2,this.state.context.push(b.j_cTag),this.state.exprAllowed=!1}}},flow:e=>class extends e{constructor(e,t){super(e,t),this.flowPragma=void 0,this.flowPragma=void 0}shouldParseTypes(){return this.getPluginOption("flow","all")||"flow"===this.flowPragma}shouldParseEnums(){return!!this.getPluginOption("flow","enums")}finishToken(e,t){return e!==o.string&&e!==o.semi&&e!==o.interpreterDirective&&void 0===this.flowPragma&&(this.flowPragma=null),super.finishToken(e,t)}addComment(e){if(void 0===this.flowPragma){const t=$.exec(e.value)
+if(t===x.j_expr)return this.jsxReadToken()
+if(t===x.j_oTag||t===x.j_cTag){if(W(e))return this.jsxReadWord()
+if(62===e)return++this.state.pos,this.finishToken(95)
+if((34===e||39===e)&&t===x.j_oTag)return this.jsxReadString(e)}return 60===e&&this.state.exprAllowed&&33!==this.input.charCodeAt(this.state.pos+1)?(++this.state.pos,this.finishToken(94)):super.getTokenFromCode(e)}updateContext(e){super.updateContext(e)
+const{context:t,type:r}=this.state
+if(55===r&&94===e)t.splice(-2,2,x.j_cTag),this.state.exprAllowed=!1
+else if(94===r)t.push(x.j_expr,x.j_oTag)
+else if(95===r){const r=t.pop()
+r===x.j_oTag&&55===e||r===x.j_cTag?(t.pop(),this.state.exprAllowed=t[t.length-1]===x.j_expr):this.state.exprAllowed=!0}else!L(r)||24!==e&&26!==e?this.state.exprAllowed=_[r]:this.state.exprAllowed=!1}},flow:e=>class extends e{constructor(...e){super(...e),this.flowPragma=void 0}getScopeHandler(){return ae}shouldParseTypes(){return this.getPluginOption("flow","all")||"flow"===this.flowPragma}shouldParseEnums(){return!!this.getPluginOption("flow","enums")}finishToken(e,t){return 4!==e&&21!==e&&34!==e&&void 0===this.flowPragma&&(this.flowPragma=null),super.finishToken(e,t)}addComment(e){if(void 0===this.flowPragma){const t=Ne.exec(e.value)
 if(t)if("flow"===t[1])this.flowPragma="flow"
 else{if("noflow"!==t[1])throw new Error("Unexpected flow pragma")
 this.flowPragma="noflow"}}return super.addComment(e)}flowParseTypeInitialiser(e){const t=this.state.inType
-this.state.inType=!0,this.expect(e||o.colon)
+this.state.inType=!0,this.expect(e||22)
 const r=this.flowParseType()
-return this.state.inType=t,r}flowParsePredicate(){const e=this.startNode(),t=this.state.startLoc,r=this.state.start
-this.expect(o.modulo)
-const i=this.state.startLoc
-return this.expectContextual("checks"),t.line===i.line&&t.column===i.column-1||this.raise(r,B.UnexpectedSpaceBetweenModuloChecks),this.eat(o.parenL)?(e.value=this.parseExpression(),this.expect(o.parenR),this.finishNode(e,"DeclaredPredicate")):this.finishNode(e,"InferredPredicate")}flowParseTypeAndPredicateInitialiser(){const e=this.state.inType
-this.state.inType=!0,this.expect(o.colon)
+return this.state.inType=t,r}flowParsePredicate(){const e=this.startNode(),t=this.state.start
+return this.next(),this.expectContextual("checks"),this.state.lastTokStart>t+1&&this.raise(t,Ae.UnexpectedSpaceBetweenModuloChecks),this.eat(18)?(e.value=this.parseExpression(),this.expect(19),this.finishNode(e,"DeclaredPredicate")):this.finishNode(e,"InferredPredicate")}flowParseTypeAndPredicateInitialiser(){const e=this.state.inType
+this.state.inType=!0,this.expect(22)
 let t=null,r=null
-return this.match(o.modulo)?(this.state.inType=e,r=this.flowParsePredicate()):(t=this.flowParseType(),this.state.inType=e,this.match(o.modulo)&&(r=this.flowParsePredicate())),[t,r]}flowParseDeclareClass(e){return this.next(),this.flowParseInterfaceish(e,!0),this.finishNode(e,"DeclareClass")}flowParseDeclareFunction(e){this.next()
+return this.match(53)?(this.state.inType=e,r=this.flowParsePredicate()):(t=this.flowParseType(),this.state.inType=e,this.match(53)&&(r=this.flowParsePredicate())),[t,r]}flowParseDeclareClass(e){return this.next(),this.flowParseInterfaceish(e,!0),this.finishNode(e,"DeclareClass")}flowParseDeclareFunction(e){this.next()
 const t=e.id=this.parseIdentifier(),r=this.startNode(),i=this.startNode()
-this.isRelational("<")?r.typeParameters=this.flowParseTypeParameterDeclaration():r.typeParameters=null,this.expect(o.parenL)
+this.isRelational("<")?r.typeParameters=this.flowParseTypeParameterDeclaration():r.typeParameters=null,this.expect(18)
 const n=this.flowParseFunctionTypeParams()
-return r.params=n.params,r.rest=n.rest,this.expect(o.parenR),[r.returnType,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),i.typeAnnotation=this.finishNode(r,"FunctionTypeAnnotation"),t.typeAnnotation=this.finishNode(i,"TypeAnnotation"),this.resetEndLocation(t),this.semicolon(),this.finishNode(e,"DeclareFunction")}flowParseDeclare(e,t){if(this.match(o._class))return this.flowParseDeclareClass(e)
-if(this.match(o._function))return this.flowParseDeclareFunction(e)
-if(this.match(o._var))return this.flowParseDeclareVariable(e)
-if(this.eatContextual("module"))return this.match(o.dot)?this.flowParseDeclareModuleExports(e):(t&&this.raise(this.state.lastTokStart,B.NestedDeclareModule),this.flowParseDeclareModule(e))
+return r.params=n.params,r.rest=n.rest,r.this=n._this,this.expect(19),[r.returnType,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),i.typeAnnotation=this.finishNode(r,"FunctionTypeAnnotation"),t.typeAnnotation=this.finishNode(i,"TypeAnnotation"),this.resetEndLocation(t),this.semicolon(),this.scope.declareName(e.id.name,2048,e.id.start),this.finishNode(e,"DeclareFunction")}flowParseDeclare(e,t){if(this.match(79))return this.flowParseDeclareClass(e)
+if(this.match(67))return this.flowParseDeclareFunction(e)
+if(this.match(73))return this.flowParseDeclareVariable(e)
+if(this.eatContextual("module"))return this.match(24)?this.flowParseDeclareModuleExports(e):(t&&this.raise(this.state.lastTokStart,Ae.NestedDeclareModule),this.flowParseDeclareModule(e))
 if(this.isContextual("type"))return this.flowParseDeclareTypeAlias(e)
 if(this.isContextual("opaque"))return this.flowParseDeclareOpaqueType(e)
 if(this.isContextual("interface"))return this.flowParseDeclareInterface(e)
-if(this.match(o._export))return this.flowParseDeclareExportDeclaration(e,t)
-throw this.unexpected()}flowParseDeclareVariable(e){return this.next(),e.id=this.flowParseTypeAnnotatableIdentifier(!0),this.scope.declareName(e.id.name,5,e.id.start),this.semicolon(),this.finishNode(e,"DeclareVariable")}flowParseDeclareModule(e){this.scope.enter(0),this.match(o.string)?e.id=this.parseExprAtom():e.id=this.parseIdentifier()
+if(this.match(81))return this.flowParseDeclareExportDeclaration(e,t)
+throw this.unexpected()}flowParseDeclareVariable(e){return this.next(),e.id=this.flowParseTypeAnnotatableIdentifier(!0),this.scope.declareName(e.id.name,5,e.id.start),this.semicolon(),this.finishNode(e,"DeclareVariable")}flowParseDeclareModule(e){this.scope.enter(0),this.match(4)?e.id=this.parseExprAtom():e.id=this.parseIdentifier()
 const t=e.body=this.startNode(),r=t.body=[]
-for(this.expect(o.braceL);!this.match(o.braceR);){let e=this.startNode()
-this.match(o._import)?(this.next(),this.isContextual("type")||this.match(o._typeof)||this.raise(this.state.lastTokStart,B.InvalidNonTypeImportInDeclareModule),this.parseImport(e)):(this.expectContextual("declare",B.UnsupportedStatementInDeclareModule),e=this.flowParseDeclare(e,!0)),r.push(e)}this.scope.exit(),this.expect(o.braceR),this.finishNode(t,"BlockStatement")
+for(this.expect(13);!this.match(16);){let e=this.startNode()
+this.match(82)?(this.next(),this.isContextual("type")||this.match(86)||this.raise(this.state.lastTokStart,Ae.InvalidNonTypeImportInDeclareModule),this.parseImport(e)):(this.expectContextual("declare",Ae.UnsupportedStatementInDeclareModule),e=this.flowParseDeclare(e,!0)),r.push(e)}this.scope.exit(),this.expect(16),this.finishNode(t,"BlockStatement")
 let i=null,n=!1
-return r.forEach((e=>{!function(e){return"DeclareExportAllDeclaration"===e.type||"DeclareExportDeclaration"===e.type&&(!e.declaration||"TypeAlias"!==e.declaration.type&&"InterfaceDeclaration"!==e.declaration.type)}(e)?"DeclareModuleExports"===e.type&&(n&&this.raise(e.start,B.DuplicateDeclareModuleExports),"ES"===i&&this.raise(e.start,B.AmbiguousDeclareModuleKind),i="CommonJS",n=!0):("CommonJS"===i&&this.raise(e.start,B.AmbiguousDeclareModuleKind),i="ES")})),e.kind=i||"CommonJS",this.finishNode(e,"DeclareModule")}flowParseDeclareExportDeclaration(e,t){if(this.expect(o._export),this.eat(o._default))return this.match(o._function)||this.match(o._class)?e.declaration=this.flowParseDeclare(this.startNode()):(e.declaration=this.flowParseType(),this.semicolon()),e.default=!0,this.finishNode(e,"DeclareExportDeclaration")
-if(this.match(o._const)||this.isLet()||(this.isContextual("type")||this.isContextual("interface"))&&!t){const e=this.state.value,t=q[e]
-throw this.raise(this.state.start,B.UnsupportedDeclareExportKind,e,t)}if(this.match(o._var)||this.match(o._function)||this.match(o._class)||this.isContextual("opaque"))return e.declaration=this.flowParseDeclare(this.startNode()),e.default=!1,this.finishNode(e,"DeclareExportDeclaration")
-if(this.match(o.star)||this.match(o.braceL)||this.isContextual("interface")||this.isContextual("type")||this.isContextual("opaque"))return"ExportNamedDeclaration"===(e=this.parseExport(e)).type&&(e.type="ExportDeclaration",e.default=!1,delete e.exportKind),e.type="Declare"+e.type,e
-throw this.unexpected()}flowParseDeclareModuleExports(e){return this.next(),this.expectContextual("exports"),e.typeAnnotation=this.flowParseTypeAnnotation(),this.semicolon(),this.finishNode(e,"DeclareModuleExports")}flowParseDeclareTypeAlias(e){return this.next(),this.flowParseTypeAlias(e),e.type="DeclareTypeAlias",e}flowParseDeclareOpaqueType(e){return this.next(),this.flowParseOpaqueType(e,!0),e.type="DeclareOpaqueType",e}flowParseDeclareInterface(e){return this.next(),this.flowParseInterfaceish(e),this.finishNode(e,"DeclareInterface")}flowParseInterfaceish(e,t=!1){if(e.id=this.flowParseRestrictedIdentifier(!t,!0),this.scope.declareName(e.id.name,t?17:9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.extends=[],e.implements=[],e.mixins=[],this.eat(o._extends))do{e.extends.push(this.flowParseInterfaceExtends())}while(!t&&this.eat(o.comma))
+return r.forEach((e=>{!function(e){return"DeclareExportAllDeclaration"===e.type||"DeclareExportDeclaration"===e.type&&(!e.declaration||"TypeAlias"!==e.declaration.type&&"InterfaceDeclaration"!==e.declaration.type)}(e)?"DeclareModuleExports"===e.type&&(n&&this.raise(e.start,Ae.DuplicateDeclareModuleExports),"ES"===i&&this.raise(e.start,Ae.AmbiguousDeclareModuleKind),i="CommonJS",n=!0):("CommonJS"===i&&this.raise(e.start,Ae.AmbiguousDeclareModuleKind),i="ES")})),e.kind=i||"CommonJS",this.finishNode(e,"DeclareModule")}flowParseDeclareExportDeclaration(e,t){if(this.expect(81),this.eat(64))return this.match(67)||this.match(79)?e.declaration=this.flowParseDeclare(this.startNode()):(e.declaration=this.flowParseType(),this.semicolon()),e.default=!0,this.finishNode(e,"DeclareExportDeclaration")
+if(this.match(74)||this.isLet()||(this.isContextual("type")||this.isContextual("interface"))&&!t){const e=this.state.value,t=De[e]
+throw this.raise(this.state.start,Ae.UnsupportedDeclareExportKind,e,t)}if(this.match(73)||this.match(67)||this.match(79)||this.isContextual("opaque"))return e.declaration=this.flowParseDeclare(this.startNode()),e.default=!1,this.finishNode(e,"DeclareExportDeclaration")
+if(this.match(54)||this.match(13)||this.isContextual("interface")||this.isContextual("type")||this.isContextual("opaque"))return"ExportNamedDeclaration"===(e=this.parseExport(e)).type&&(e.type="ExportDeclaration",e.default=!1,delete e.exportKind),e.type="Declare"+e.type,e
+throw this.unexpected()}flowParseDeclareModuleExports(e){return this.next(),this.expectContextual("exports"),e.typeAnnotation=this.flowParseTypeAnnotation(),this.semicolon(),this.finishNode(e,"DeclareModuleExports")}flowParseDeclareTypeAlias(e){return this.next(),this.flowParseTypeAlias(e),e.type="DeclareTypeAlias",e}flowParseDeclareOpaqueType(e){return this.next(),this.flowParseOpaqueType(e,!0),e.type="DeclareOpaqueType",e}flowParseDeclareInterface(e){return this.next(),this.flowParseInterfaceish(e),this.finishNode(e,"DeclareInterface")}flowParseInterfaceish(e,t=!1){if(e.id=this.flowParseRestrictedIdentifier(!t,!0),this.scope.declareName(e.id.name,t?17:9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.extends=[],e.implements=[],e.mixins=[],this.eat(80))do{e.extends.push(this.flowParseInterfaceExtends())}while(!t&&this.eat(20))
 if(this.isContextual("mixins")){this.next()
-do{e.mixins.push(this.flowParseInterfaceExtends())}while(this.eat(o.comma))}if(this.isContextual("implements")){this.next()
-do{e.implements.push(this.flowParseInterfaceExtends())}while(this.eat(o.comma))}e.body=this.flowParseObjectType({allowStatic:t,allowExact:!1,allowSpread:!1,allowProto:t,allowInexact:!1})}flowParseInterfaceExtends(){const e=this.startNode()
-return e.id=this.flowParseQualifiedTypeIdentifier(),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterInstantiation():e.typeParameters=null,this.finishNode(e,"InterfaceExtends")}flowParseInterface(e){return this.flowParseInterfaceish(e),this.finishNode(e,"InterfaceDeclaration")}checkNotUnderscore(e){"_"===e&&this.raise(this.state.start,B.UnexpectedReservedUnderscore)}checkReservedType(e,t,r){j.has(e)&&this.raise(t,r?B.AssignReservedType:B.UnexpectedReservedType,e)}flowParseRestrictedIdentifier(e,t){return this.checkReservedType(this.state.value,this.state.start,t),this.parseIdentifier(e)}flowParseTypeAlias(e){return e.id=this.flowParseRestrictedIdentifier(!1,!0),this.scope.declareName(e.id.name,9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.right=this.flowParseTypeInitialiser(o.eq),this.semicolon(),this.finishNode(e,"TypeAlias")}flowParseOpaqueType(e,t){return this.expectContextual("type"),e.id=this.flowParseRestrictedIdentifier(!0,!0),this.scope.declareName(e.id.name,9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.supertype=null,this.match(o.colon)&&(e.supertype=this.flowParseTypeInitialiser(o.colon)),e.impltype=null,t||(e.impltype=this.flowParseTypeInitialiser(o.eq)),this.semicolon(),this.finishNode(e,"OpaqueType")}flowParseTypeParameter(e=!1){const t=this.state.start,r=this.startNode(),i=this.flowParseVariance(),n=this.flowParseTypeAnnotatableIdentifier()
-return r.name=n.name,r.variance=i,r.bound=n.typeAnnotation,this.match(o.eq)?(this.eat(o.eq),r.default=this.flowParseType()):e&&this.raise(t,B.MissingTypeParamDefault),this.finishNode(r,"TypeParameter")}flowParseTypeParameterDeclaration(){const e=this.state.inType,t=this.startNode()
-t.params=[],this.state.inType=!0,this.isRelational("<")||this.match(o.jsxTagStart)?this.next():this.unexpected()
+do{e.mixins.push(this.flowParseInterfaceExtends())}while(this.eat(20))}if(this.isContextual("implements")){this.next()
+do{e.implements.push(this.flowParseInterfaceExtends())}while(this.eat(20))}e.body=this.flowParseObjectType({allowStatic:t,allowExact:!1,allowSpread:!1,allowProto:t,allowInexact:!1})}flowParseInterfaceExtends(){const e=this.startNode()
+return e.id=this.flowParseQualifiedTypeIdentifier(),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterInstantiation():e.typeParameters=null,this.finishNode(e,"InterfaceExtends")}flowParseInterface(e){return this.flowParseInterfaceish(e),this.finishNode(e,"InterfaceDeclaration")}checkNotUnderscore(e){"_"===e&&this.raise(this.state.start,Ae.UnexpectedReservedUnderscore)}checkReservedType(e,t,r){Ce.has(e)&&this.raise(t,r?Ae.AssignReservedType:Ae.UnexpectedReservedType,e)}flowParseRestrictedIdentifier(e,t){return this.checkReservedType(this.state.value,this.state.start,t),this.parseIdentifier(e)}flowParseTypeAlias(e){return e.id=this.flowParseRestrictedIdentifier(!1,!0),this.scope.declareName(e.id.name,9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.right=this.flowParseTypeInitialiser(35),this.semicolon(),this.finishNode(e,"TypeAlias")}flowParseOpaqueType(e,t){return this.expectContextual("type"),e.id=this.flowParseRestrictedIdentifier(!0,!0),this.scope.declareName(e.id.name,9,e.id.start),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterDeclaration():e.typeParameters=null,e.supertype=null,this.match(22)&&(e.supertype=this.flowParseTypeInitialiser(22)),e.impltype=null,t||(e.impltype=this.flowParseTypeInitialiser(35)),this.semicolon(),this.finishNode(e,"OpaqueType")}flowParseTypeParameter(e=!1){const t=this.state.start,r=this.startNode(),i=this.flowParseVariance(),n=this.flowParseTypeAnnotatableIdentifier()
+return r.name=n.name,r.variance=i,r.bound=n.typeAnnotation,this.match(35)?(this.eat(35),r.default=this.flowParseType()):e&&this.raise(t,Ae.MissingTypeParamDefault),this.finishNode(r,"TypeParameter")}flowParseTypeParameterDeclaration(){const e=this.state.inType,t=this.startNode()
+t.params=[],this.state.inType=!0,this.isRelational("<")||this.match(94)?this.next():this.unexpected()
 let r=!1
 do{const e=this.flowParseTypeParameter(r)
-t.params.push(e),e.default&&(r=!0),this.isRelational(">")||this.expect(o.comma)}while(!this.isRelational(">"))
+t.params.push(e),e.default&&(r=!0),this.isRelational(">")||this.expect(20)}while(!this.isRelational(">"))
 return this.expectRelational(">"),this.state.inType=e,this.finishNode(t,"TypeParameterDeclaration")}flowParseTypeParameterInstantiation(){const e=this.startNode(),t=this.state.inType
 e.params=[],this.state.inType=!0,this.expectRelational("<")
 const r=this.state.noAnonFunctionType
-for(this.state.noAnonFunctionType=!1;!this.isRelational(">");)e.params.push(this.flowParseType()),this.isRelational(">")||this.expect(o.comma)
+for(this.state.noAnonFunctionType=!1;!this.isRelational(">");)e.params.push(this.flowParseType()),this.isRelational(">")||this.expect(20)
 return this.state.noAnonFunctionType=r,this.expectRelational(">"),this.state.inType=t,this.finishNode(e,"TypeParameterInstantiation")}flowParseTypeParameterInstantiationCallOrNew(){const e=this.startNode(),t=this.state.inType
-for(e.params=[],this.state.inType=!0,this.expectRelational("<");!this.isRelational(">");)e.params.push(this.flowParseTypeOrImplicitInstantiation()),this.isRelational(">")||this.expect(o.comma)
+for(e.params=[],this.state.inType=!0,this.expectRelational("<");!this.isRelational(">");)e.params.push(this.flowParseTypeOrImplicitInstantiation()),this.isRelational(">")||this.expect(20)
 return this.expectRelational(">"),this.state.inType=t,this.finishNode(e,"TypeParameterInstantiation")}flowParseInterfaceType(){const e=this.startNode()
-if(this.expectContextual("interface"),e.extends=[],this.eat(o._extends))do{e.extends.push(this.flowParseInterfaceExtends())}while(this.eat(o.comma))
-return e.body=this.flowParseObjectType({allowStatic:!1,allowExact:!1,allowSpread:!1,allowProto:!1,allowInexact:!1}),this.finishNode(e,"InterfaceTypeAnnotation")}flowParseObjectPropertyKey(){return this.match(o.num)||this.match(o.string)?this.parseExprAtom():this.parseIdentifier(!0)}flowParseObjectTypeIndexer(e,t,r){return e.static=t,this.lookahead().type===o.colon?(e.id=this.flowParseObjectPropertyKey(),e.key=this.flowParseTypeInitialiser()):(e.id=null,e.key=this.flowParseType()),this.expect(o.bracketR),e.value=this.flowParseTypeInitialiser(),e.variance=r,this.finishNode(e,"ObjectTypeIndexer")}flowParseObjectTypeInternalSlot(e,t){return e.static=t,e.id=this.flowParseObjectPropertyKey(),this.expect(o.bracketR),this.expect(o.bracketR),this.isRelational("<")||this.match(o.parenL)?(e.method=!0,e.optional=!1,e.value=this.flowParseObjectTypeMethodish(this.startNodeAt(e.start,e.loc.start))):(e.method=!1,this.eat(o.question)&&(e.optional=!0),e.value=this.flowParseTypeInitialiser()),this.finishNode(e,"ObjectTypeInternalSlot")}flowParseObjectTypeMethodish(e){for(e.params=[],e.rest=null,e.typeParameters=null,this.isRelational("<")&&(e.typeParameters=this.flowParseTypeParameterDeclaration()),this.expect(o.parenL);!this.match(o.parenR)&&!this.match(o.ellipsis);)e.params.push(this.flowParseFunctionTypeParam()),this.match(o.parenR)||this.expect(o.comma)
-return this.eat(o.ellipsis)&&(e.rest=this.flowParseFunctionTypeParam()),this.expect(o.parenR),e.returnType=this.flowParseTypeInitialiser(),this.finishNode(e,"FunctionTypeAnnotation")}flowParseObjectTypeCallProperty(e,t){const r=this.startNode()
+if(this.expectContextual("interface"),e.extends=[],this.eat(80))do{e.extends.push(this.flowParseInterfaceExtends())}while(this.eat(20))
+return e.body=this.flowParseObjectType({allowStatic:!1,allowExact:!1,allowSpread:!1,allowProto:!1,allowInexact:!1}),this.finishNode(e,"InterfaceTypeAnnotation")}flowParseObjectPropertyKey(){return this.match(0)||this.match(4)?this.parseExprAtom():this.parseIdentifier(!0)}flowParseObjectTypeIndexer(e,t,r){return e.static=t,22===this.lookahead().type?(e.id=this.flowParseObjectPropertyKey(),e.key=this.flowParseTypeInitialiser()):(e.id=null,e.key=this.flowParseType()),this.expect(11),e.value=this.flowParseTypeInitialiser(),e.variance=r,this.finishNode(e,"ObjectTypeIndexer")}flowParseObjectTypeInternalSlot(e,t){return e.static=t,e.id=this.flowParseObjectPropertyKey(),this.expect(11),this.expect(11),this.isRelational("<")||this.match(18)?(e.method=!0,e.optional=!1,e.value=this.flowParseObjectTypeMethodish(this.startNodeAt(e.start,e.loc.start))):(e.method=!1,this.eat(25)&&(e.optional=!0),e.value=this.flowParseTypeInitialiser()),this.finishNode(e,"ObjectTypeInternalSlot")}flowParseObjectTypeMethodish(e){for(e.params=[],e.rest=null,e.typeParameters=null,e.this=null,this.isRelational("<")&&(e.typeParameters=this.flowParseTypeParameterDeclaration()),this.expect(18),this.match(77)&&(e.this=this.flowParseFunctionTypeParam(!0),e.this.name=null,this.match(19)||this.expect(20));!this.match(19)&&!this.match(29);)e.params.push(this.flowParseFunctionTypeParam(!1)),this.match(19)||this.expect(20)
+return this.eat(29)&&(e.rest=this.flowParseFunctionTypeParam(!1)),this.expect(19),e.returnType=this.flowParseTypeInitialiser(),this.finishNode(e,"FunctionTypeAnnotation")}flowParseObjectTypeCallProperty(e,t){const r=this.startNode()
 return e.static=t,e.value=this.flowParseObjectTypeMethodish(r),this.finishNode(e,"ObjectTypeCallProperty")}flowParseObjectType({allowStatic:e,allowExact:t,allowSpread:r,allowProto:i,allowInexact:n}){const s=this.state.inType
 this.state.inType=!0
 const a=this.startNode()
-let l,u
+let o,l
 a.callProperties=[],a.properties=[],a.indexers=[],a.internalSlots=[]
-let c=!1
-for(t&&this.match(o.braceBarL)?(this.expect(o.braceBarL),l=o.braceBarR,u=!0):(this.expect(o.braceL),l=o.braceR,u=!1),a.exact=u;!this.match(l);){let t=!1,s=null,l=null
-const h=this.startNode()
+let u=!1
+for(t&&this.match(14)?(this.expect(14),o=17,l=!0):(this.expect(13),o=16,l=!1),a.exact=l;!this.match(o);){let t=!1,s=null,o=null
+const c=this.startNode()
 if(i&&this.isContextual("proto")){const t=this.lookahead()
-t.type!==o.colon&&t.type!==o.question&&(this.next(),s=this.state.start,e=!1)}if(e&&this.isContextual("static")){const e=this.lookahead()
-e.type!==o.colon&&e.type!==o.question&&(this.next(),t=!0)}const p=this.flowParseVariance()
-if(this.eat(o.bracketL))null!=s&&this.unexpected(s),this.eat(o.bracketL)?(p&&this.unexpected(p.start),a.internalSlots.push(this.flowParseObjectTypeInternalSlot(h,t))):a.indexers.push(this.flowParseObjectTypeIndexer(h,t,p))
-else if(this.match(o.parenL)||this.isRelational("<"))null!=s&&this.unexpected(s),p&&this.unexpected(p.start),a.callProperties.push(this.flowParseObjectTypeCallProperty(h,t))
+22!==t.type&&25!==t.type&&(this.next(),s=this.state.start,e=!1)}if(e&&this.isContextual("static")){const e=this.lookahead()
+22!==e.type&&25!==e.type&&(this.next(),t=!0)}const h=this.flowParseVariance()
+if(this.eat(8))null!=s&&this.unexpected(s),this.eat(8)?(h&&this.unexpected(h.start),a.internalSlots.push(this.flowParseObjectTypeInternalSlot(c,t))):a.indexers.push(this.flowParseObjectTypeIndexer(c,t,h))
+else if(this.match(18)||this.isRelational("<"))null!=s&&this.unexpected(s),h&&this.unexpected(h.start),a.callProperties.push(this.flowParseObjectTypeCallProperty(c,t))
 else{let e="init"
 if(this.isContextual("get")||this.isContextual("set")){const t=this.lookahead()
-t.type!==o.name&&t.type!==o.string&&t.type!==o.num||(e=this.state.value,this.next())}const i=this.flowParseObjectTypeProperty(h,t,s,p,e,r,null!=n?n:!u)
-null===i?(c=!0,l=this.state.lastTokStart):a.properties.push(i)}this.flowObjectTypeSemicolon(),!l||this.match(o.braceR)||this.match(o.braceBarR)||this.raise(l,B.UnexpectedExplicitInexactInObject)}this.expect(l),r&&(a.inexact=c)
-const h=this.finishNode(a,"ObjectTypeAnnotation")
-return this.state.inType=s,h}flowParseObjectTypeProperty(e,t,r,i,n,s,a){if(this.eat(o.ellipsis))return this.match(o.comma)||this.match(o.semi)||this.match(o.braceR)||this.match(o.braceBarR)?(s?a||this.raise(this.state.lastTokStart,B.InexactInsideExact):this.raise(this.state.lastTokStart,B.InexactInsideNonObject),i&&this.raise(i.start,B.InexactVariance),null):(s||this.raise(this.state.lastTokStart,B.UnexpectedSpreadType),null!=r&&this.unexpected(r),i&&this.raise(i.start,B.SpreadVariance),e.argument=this.flowParseType(),this.finishNode(e,"ObjectTypeSpreadProperty"))
+5!==t.type&&4!==t.type&&0!==t.type||(e=this.state.value,this.next())}const i=this.flowParseObjectTypeProperty(c,t,s,h,e,r,null!=n?n:!l)
+null===i?(u=!0,o=this.state.lastTokStart):a.properties.push(i)}this.flowObjectTypeSemicolon(),!o||this.match(16)||this.match(17)||this.raise(o,Ae.UnexpectedExplicitInexactInObject)}this.expect(o),r&&(a.inexact=u)
+const c=this.finishNode(a,"ObjectTypeAnnotation")
+return this.state.inType=s,c}flowParseObjectTypeProperty(e,t,r,i,n,s,a){if(this.eat(29))return this.match(20)||this.match(21)||this.match(16)||this.match(17)?(s?a||this.raise(this.state.lastTokStart,Ae.InexactInsideExact):this.raise(this.state.lastTokStart,Ae.InexactInsideNonObject),i&&this.raise(i.start,Ae.InexactVariance),null):(s||this.raise(this.state.lastTokStart,Ae.UnexpectedSpreadType),null!=r&&this.unexpected(r),i&&this.raise(i.start,Ae.SpreadVariance),e.argument=this.flowParseType(),this.finishNode(e,"ObjectTypeSpreadProperty"))
 {e.key=this.flowParseObjectPropertyKey(),e.static=t,e.proto=null!=r,e.kind=n
-let s=!1
-return this.isRelational("<")||this.match(o.parenL)?(e.method=!0,null!=r&&this.unexpected(r),i&&this.unexpected(i.start),e.value=this.flowParseObjectTypeMethodish(this.startNodeAt(e.start,e.loc.start)),"get"!==n&&"set"!==n||this.flowCheckGetterSetterParams(e)):("init"!==n&&this.unexpected(),e.method=!1,this.eat(o.question)&&(s=!0),e.value=this.flowParseTypeInitialiser(),e.variance=i),e.optional=s,this.finishNode(e,"ObjectTypeProperty")}}flowCheckGetterSetterParams(e){const t="get"===e.kind?0:1,r=e.start
-e.value.params.length+(e.value.rest?1:0)!==t&&("get"===e.kind?this.raise(r,g.BadGetterArity):this.raise(r,g.BadSetterArity)),"set"===e.kind&&e.value.rest&&this.raise(r,g.BadSetterRestParameter)}flowObjectTypeSemicolon(){this.eat(o.semi)||this.eat(o.comma)||this.match(o.braceR)||this.match(o.braceBarR)||this.unexpected()}flowParseQualifiedTypeIdentifier(e,t,r){e=e||this.state.start,t=t||this.state.startLoc
+let a=!1
+return this.isRelational("<")||this.match(18)?(e.method=!0,null!=r&&this.unexpected(r),i&&this.unexpected(i.start),e.value=this.flowParseObjectTypeMethodish(this.startNodeAt(e.start,e.loc.start)),"get"!==n&&"set"!==n||this.flowCheckGetterSetterParams(e),!s&&"constructor"===e.key.name&&e.value.this&&this.raise(e.value.this.start,Ae.ThisParamBannedInConstructor)):("init"!==n&&this.unexpected(),e.method=!1,this.eat(25)&&(a=!0),e.value=this.flowParseTypeInitialiser(),e.variance=i),e.optional=a,this.finishNode(e,"ObjectTypeProperty")}}flowCheckGetterSetterParams(e){const t="get"===e.kind?0:1,r=e.start,i=e.value.params.length+(e.value.rest?1:0)
+e.value.this&&this.raise(e.value.this.start,"get"===e.kind?Ae.GetterMayNotHaveThisParam:Ae.SetterMayNotHaveThisParam),i!==t&&("get"===e.kind?this.raise(r,m.BadGetterArity):this.raise(r,m.BadSetterArity)),"set"===e.kind&&e.value.rest&&this.raise(r,m.BadSetterRestParameter)}flowObjectTypeSemicolon(){this.eat(21)||this.eat(20)||this.match(16)||this.match(17)||this.unexpected()}flowParseQualifiedTypeIdentifier(e,t,r){e=e||this.state.start,t=t||this.state.startLoc
 let i=r||this.flowParseRestrictedIdentifier(!0)
-for(;this.eat(o.dot);){const r=this.startNodeAt(e,t)
+for(;this.eat(24);){const r=this.startNodeAt(e,t)
 r.qualification=i,r.id=this.flowParseRestrictedIdentifier(!0),i=this.finishNode(r,"QualifiedTypeIdentifier")}return i}flowParseGenericType(e,t,r){const i=this.startNodeAt(e,t)
 return i.typeParameters=null,i.id=this.flowParseQualifiedTypeIdentifier(e,t,r),this.isRelational("<")&&(i.typeParameters=this.flowParseTypeParameterInstantiation()),this.finishNode(i,"GenericTypeAnnotation")}flowParseTypeofType(){const e=this.startNode()
-return this.expect(o._typeof),e.argument=this.flowParsePrimaryType(),this.finishNode(e,"TypeofTypeAnnotation")}flowParseTupleType(){const e=this.startNode()
-for(e.types=[],this.expect(o.bracketL);this.state.pos<this.length&&!this.match(o.bracketR)&&(e.types.push(this.flowParseType()),!this.match(o.bracketR));)this.expect(o.comma)
-return this.expect(o.bracketR),this.finishNode(e,"TupleTypeAnnotation")}flowParseFunctionTypeParam(){let e=null,t=!1,r=null
-const i=this.startNode(),n=this.lookahead()
-return n.type===o.colon||n.type===o.question?(e=this.parseIdentifier(),this.eat(o.question)&&(t=!0),r=this.flowParseTypeInitialiser()):r=this.flowParseType(),i.name=e,i.optional=t,i.typeAnnotation=r,this.finishNode(i,"FunctionTypeParam")}reinterpretTypeAsFunctionTypeParam(e){const t=this.startNodeAt(e.start,e.loc.start)
-return t.name=null,t.optional=!1,t.typeAnnotation=e,this.finishNode(t,"FunctionTypeParam")}flowParseFunctionTypeParams(e=[]){let t=null
-for(;!this.match(o.parenR)&&!this.match(o.ellipsis);)e.push(this.flowParseFunctionTypeParam()),this.match(o.parenR)||this.expect(o.comma)
-return this.eat(o.ellipsis)&&(t=this.flowParseFunctionTypeParam()),{params:e,rest:t}}flowIdentToTypeAnnotation(e,t,r,i){switch(i.name){case"any":return this.finishNode(r,"AnyTypeAnnotation")
+return this.expect(86),e.argument=this.flowParsePrimaryType(),this.finishNode(e,"TypeofTypeAnnotation")}flowParseTupleType(){const e=this.startNode()
+for(e.types=[],this.expect(8);this.state.pos<this.length&&!this.match(11)&&(e.types.push(this.flowParseType()),!this.match(11));)this.expect(20)
+return this.expect(11),this.finishNode(e,"TupleTypeAnnotation")}flowParseFunctionTypeParam(e){let t=null,r=!1,i=null
+const n=this.startNode(),s=this.lookahead(),a=77===this.state.type
+return 22===s.type||25===s.type?(a&&!e&&this.raise(n.start,Ae.ThisParamMustBeFirst),t=this.parseIdentifier(a),this.eat(25)&&(r=!0,a&&this.raise(n.start,Ae.ThisParamMayNotBeOptional)),i=this.flowParseTypeInitialiser()):i=this.flowParseType(),n.name=t,n.optional=r,n.typeAnnotation=i,this.finishNode(n,"FunctionTypeParam")}reinterpretTypeAsFunctionTypeParam(e){const t=this.startNodeAt(e.start,e.loc.start)
+return t.name=null,t.optional=!1,t.typeAnnotation=e,this.finishNode(t,"FunctionTypeParam")}flowParseFunctionTypeParams(e=[]){let t=null,r=null
+for(this.match(77)&&(r=this.flowParseFunctionTypeParam(!0),r.name=null,this.match(19)||this.expect(20));!this.match(19)&&!this.match(29);)e.push(this.flowParseFunctionTypeParam(!1)),this.match(19)||this.expect(20)
+return this.eat(29)&&(t=this.flowParseFunctionTypeParam(!1)),{params:e,rest:t,_this:r}}flowIdentToTypeAnnotation(e,t,r,i){switch(i.name){case"any":return this.finishNode(r,"AnyTypeAnnotation")
 case"bool":case"boolean":return this.finishNode(r,"BooleanTypeAnnotation")
 case"mixed":return this.finishNode(r,"MixedTypeAnnotation")
 case"empty":return this.finishNode(r,"EmptyTypeAnnotation")
@@ -9750,283 +9791,294 @@ case"symbol":return this.finishNode(r,"SymbolTypeAnnotation")
 default:return this.checkNotUnderscore(i.name),this.flowParseGenericType(e,t,i)}}flowParsePrimaryType(){const e=this.state.start,t=this.state.startLoc,r=this.startNode()
 let i,n,s=!1
 const a=this.state.noAnonFunctionType
-switch(this.state.type){case o.name:return this.isContextual("interface")?this.flowParseInterfaceType():this.flowIdentToTypeAnnotation(e,t,r,this.parseIdentifier())
-case o.braceL:return this.flowParseObjectType({allowStatic:!1,allowExact:!1,allowSpread:!0,allowProto:!1,allowInexact:!0})
-case o.braceBarL:return this.flowParseObjectType({allowStatic:!1,allowExact:!0,allowSpread:!0,allowProto:!1,allowInexact:!1})
-case o.bracketL:return this.state.noAnonFunctionType=!1,n=this.flowParseTupleType(),this.state.noAnonFunctionType=a,n
-case o.relational:if("<"===this.state.value)return r.typeParameters=this.flowParseTypeParameterDeclaration(),this.expect(o.parenL),i=this.flowParseFunctionTypeParams(),r.params=i.params,r.rest=i.rest,this.expect(o.parenR),this.expect(o.arrow),r.returnType=this.flowParseType(),this.finishNode(r,"FunctionTypeAnnotation")
+switch(this.state.type){case 5:return this.isContextual("interface")?this.flowParseInterfaceType():this.flowIdentToTypeAnnotation(e,t,r,this.parseIdentifier())
+case 13:return this.flowParseObjectType({allowStatic:!1,allowExact:!1,allowSpread:!0,allowProto:!1,allowInexact:!0})
+case 14:return this.flowParseObjectType({allowStatic:!1,allowExact:!0,allowSpread:!0,allowProto:!1,allowInexact:!1})
+case 8:return this.state.noAnonFunctionType=!1,n=this.flowParseTupleType(),this.state.noAnonFunctionType=a,n
+case 50:if("<"===this.state.value)return r.typeParameters=this.flowParseTypeParameterDeclaration(),this.expect(18),i=this.flowParseFunctionTypeParams(),r.params=i.params,r.rest=i.rest,r.this=i._this,this.expect(19),this.expect(27),r.returnType=this.flowParseType(),this.finishNode(r,"FunctionTypeAnnotation")
 break
-case o.parenL:if(this.next(),!this.match(o.parenR)&&!this.match(o.ellipsis))if(this.match(o.name)){const e=this.lookahead().type
-s=e!==o.question&&e!==o.colon}else s=!0
-if(s){if(this.state.noAnonFunctionType=!1,n=this.flowParseType(),this.state.noAnonFunctionType=a,this.state.noAnonFunctionType||!(this.match(o.comma)||this.match(o.parenR)&&this.lookahead().type===o.arrow))return this.expect(o.parenR),n
-this.eat(o.comma)}return i=n?this.flowParseFunctionTypeParams([this.reinterpretTypeAsFunctionTypeParam(n)]):this.flowParseFunctionTypeParams(),r.params=i.params,r.rest=i.rest,this.expect(o.parenR),this.expect(o.arrow),r.returnType=this.flowParseType(),r.typeParameters=null,this.finishNode(r,"FunctionTypeAnnotation")
-case o.string:return this.parseLiteral(this.state.value,"StringLiteralTypeAnnotation")
-case o._true:case o._false:return r.value=this.match(o._true),this.next(),this.finishNode(r,"BooleanLiteralTypeAnnotation")
-case o.plusMin:if("-"===this.state.value){if(this.next(),this.match(o.num))return this.parseLiteral(-this.state.value,"NumberLiteralTypeAnnotation",r.start,r.loc.start)
-if(this.match(o.bigint))return this.parseLiteral(-this.state.value,"BigIntLiteralTypeAnnotation",r.start,r.loc.start)
-throw this.raise(this.state.start,B.UnexpectedSubtractionOperand)}throw this.unexpected()
-case o.num:return this.parseLiteral(this.state.value,"NumberLiteralTypeAnnotation")
-case o.bigint:return this.parseLiteral(this.state.value,"BigIntLiteralTypeAnnotation")
-case o._void:return this.next(),this.finishNode(r,"VoidTypeAnnotation")
-case o._null:return this.next(),this.finishNode(r,"NullLiteralTypeAnnotation")
-case o._this:return this.next(),this.finishNode(r,"ThisTypeAnnotation")
-case o.star:return this.next(),this.finishNode(r,"ExistsTypeAnnotation")
-default:if("typeof"===this.state.type.keyword)return this.flowParseTypeofType()
-if(this.state.type.keyword){const e=this.state.type.label
+case 18:if(this.next(),!this.match(19)&&!this.match(29))if(this.match(5)||this.match(77)){const e=this.lookahead().type
+s=25!==e&&22!==e}else s=!0
+if(s){if(this.state.noAnonFunctionType=!1,n=this.flowParseType(),this.state.noAnonFunctionType=a,this.state.noAnonFunctionType||!(this.match(20)||this.match(19)&&27===this.lookahead().type))return this.expect(19),n
+this.eat(20)}return i=n?this.flowParseFunctionTypeParams([this.reinterpretTypeAsFunctionTypeParam(n)]):this.flowParseFunctionTypeParams(),r.params=i.params,r.rest=i.rest,r.this=i._this,this.expect(19),this.expect(27),r.returnType=this.flowParseType(),r.typeParameters=null,this.finishNode(r,"FunctionTypeAnnotation")
+case 4:return this.parseLiteral(this.state.value,"StringLiteralTypeAnnotation")
+case 84:case 85:return r.value=this.match(84),this.next(),this.finishNode(r,"BooleanLiteralTypeAnnotation")
+case 52:if("-"===this.state.value){if(this.next(),this.match(0))return this.parseLiteralAtNode(-this.state.value,"NumberLiteralTypeAnnotation",r)
+if(this.match(1))return this.parseLiteralAtNode(-this.state.value,"BigIntLiteralTypeAnnotation",r)
+throw this.raise(this.state.start,Ae.UnexpectedSubtractionOperand)}throw this.unexpected()
+case 0:return this.parseLiteral(this.state.value,"NumberLiteralTypeAnnotation")
+case 1:return this.parseLiteral(this.state.value,"BigIntLiteralTypeAnnotation")
+case 87:return this.next(),this.finishNode(r,"VoidTypeAnnotation")
+case 83:return this.next(),this.finishNode(r,"NullLiteralTypeAnnotation")
+case 77:return this.next(),this.finishNode(r,"ThisTypeAnnotation")
+case 54:return this.next(),this.finishNode(r,"ExistsTypeAnnotation")
+case 86:return this.flowParseTypeofType()
+default:if(L(this.state.type)){const e=R(this.state.type)
 return this.next(),super.createIdentifier(r,e)}}throw this.unexpected()}flowParsePostfixType(){const e=this.state.start,t=this.state.startLoc
-let r=this.flowParsePrimaryType()
-for(;this.match(o.bracketL)&&!this.canInsertSemicolon();){const i=this.startNodeAt(e,t)
-i.elementType=r,this.expect(o.bracketL),this.expect(o.bracketR),r=this.finishNode(i,"ArrayTypeAnnotation")}return r}flowParsePrefixType(){const e=this.startNode()
-return this.eat(o.question)?(e.typeAnnotation=this.flowParsePrefixType(),this.finishNode(e,"NullableTypeAnnotation")):this.flowParsePostfixType()}flowParseAnonFunctionWithoutParens(){const e=this.flowParsePrefixType()
-if(!this.state.noAnonFunctionType&&this.eat(o.arrow)){const t=this.startNodeAt(e.start,e.loc.start)
-return t.params=[this.reinterpretTypeAsFunctionTypeParam(e)],t.rest=null,t.returnType=this.flowParseType(),t.typeParameters=null,this.finishNode(t,"FunctionTypeAnnotation")}return e}flowParseIntersectionType(){const e=this.startNode()
-this.eat(o.bitwiseAND)
+let r=this.flowParsePrimaryType(),i=!1
+for(;(this.match(8)||this.match(26))&&!this.canInsertSemicolon();){const n=this.startNodeAt(e,t),s=this.eat(26)
+i=i||s,this.expect(8),!s&&this.match(11)?(n.elementType=r,this.next(),r=this.finishNode(n,"ArrayTypeAnnotation")):(n.objectType=r,n.indexType=this.flowParseType(),this.expect(11),i?(n.optional=s,r=this.finishNode(n,"OptionalIndexedAccessType")):r=this.finishNode(n,"IndexedAccessType"))}return r}flowParsePrefixType(){const e=this.startNode()
+return this.eat(25)?(e.typeAnnotation=this.flowParsePrefixType(),this.finishNode(e,"NullableTypeAnnotation")):this.flowParsePostfixType()}flowParseAnonFunctionWithoutParens(){const e=this.flowParsePrefixType()
+if(!this.state.noAnonFunctionType&&this.eat(27)){const t=this.startNodeAt(e.start,e.loc.start)
+return t.params=[this.reinterpretTypeAsFunctionTypeParam(e)],t.rest=null,t.this=null,t.returnType=this.flowParseType(),t.typeParameters=null,this.finishNode(t,"FunctionTypeAnnotation")}return e}flowParseIntersectionType(){const e=this.startNode()
+this.eat(48)
 const t=this.flowParseAnonFunctionWithoutParens()
-for(e.types=[t];this.eat(o.bitwiseAND);)e.types.push(this.flowParseAnonFunctionWithoutParens())
+for(e.types=[t];this.eat(48);)e.types.push(this.flowParseAnonFunctionWithoutParens())
 return 1===e.types.length?t:this.finishNode(e,"IntersectionTypeAnnotation")}flowParseUnionType(){const e=this.startNode()
-this.eat(o.bitwiseOR)
+this.eat(46)
 const t=this.flowParseIntersectionType()
-for(e.types=[t];this.eat(o.bitwiseOR);)e.types.push(this.flowParseIntersectionType())
+for(e.types=[t];this.eat(46);)e.types.push(this.flowParseIntersectionType())
 return 1===e.types.length?t:this.finishNode(e,"UnionTypeAnnotation")}flowParseType(){const e=this.state.inType
 this.state.inType=!0
 const t=this.flowParseUnionType()
-return this.state.inType=e,this.state.exprAllowed=this.state.exprAllowed||this.state.noAnonFunctionType,t}flowParseTypeOrImplicitInstantiation(){if(this.state.type===o.name&&"_"===this.state.value){const e=this.state.start,t=this.state.startLoc,r=this.parseIdentifier()
+return this.state.inType=e,t}flowParseTypeOrImplicitInstantiation(){if(5===this.state.type&&"_"===this.state.value){const e=this.state.start,t=this.state.startLoc,r=this.parseIdentifier()
 return this.flowParseGenericType(e,t,r)}return this.flowParseType()}flowParseTypeAnnotation(){const e=this.startNode()
 return e.typeAnnotation=this.flowParseTypeInitialiser(),this.finishNode(e,"TypeAnnotation")}flowParseTypeAnnotatableIdentifier(e){const t=e?this.parseIdentifier():this.flowParseRestrictedIdentifier()
-return this.match(o.colon)&&(t.typeAnnotation=this.flowParseTypeAnnotation(),this.resetEndLocation(t)),t}typeCastToParameter(e){return e.expression.typeAnnotation=e.typeAnnotation,this.resetEndLocation(e.expression,e.typeAnnotation.end,e.typeAnnotation.loc.end),e.expression}flowParseVariance(){let e=null
-return this.match(o.plusMin)&&(e=this.startNode(),"+"===this.state.value?e.kind="plus":e.kind="minus",this.next(),this.finishNode(e,"Variance")),e}parseFunctionBody(e,t,r=!1){return t?this.forwardNoArrowParamsConversionAt(e,(()=>super.parseFunctionBody(e,!0,r))):super.parseFunctionBody(e,!1,r)}parseFunctionBodyAndFinish(e,t,r=!1){if(this.match(o.colon)){const t=this.startNode();[t.typeAnnotation,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),e.returnType=t.typeAnnotation?this.finishNode(t,"TypeAnnotation"):null}super.parseFunctionBodyAndFinish(e,t,r)}parseStatement(e,t){if(this.state.strict&&this.match(o.name)&&"interface"===this.state.value){const e=this.lookahead()
-if(e.type===o.name||R(e.value)){const e=this.startNode()
+return this.match(22)&&(t.typeAnnotation=this.flowParseTypeAnnotation(),this.resetEndLocation(t)),t}typeCastToParameter(e){return e.expression.typeAnnotation=e.typeAnnotation,this.resetEndLocation(e.expression,e.typeAnnotation.end,e.typeAnnotation.loc.end),e.expression}flowParseVariance(){let e=null
+return this.match(52)&&(e=this.startNode(),"+"===this.state.value?e.kind="plus":e.kind="minus",this.next(),this.finishNode(e,"Variance")),e}parseFunctionBody(e,t,r=!1){return t?this.forwardNoArrowParamsConversionAt(e,(()=>super.parseFunctionBody(e,!0,r))):super.parseFunctionBody(e,!1,r)}parseFunctionBodyAndFinish(e,t,r=!1){if(this.match(22)){const t=this.startNode();[t.typeAnnotation,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),e.returnType=t.typeAnnotation?this.finishNode(t,"TypeAnnotation"):null}super.parseFunctionBodyAndFinish(e,t,r)}parseStatement(e,t){if(this.state.strict&&this.match(5)&&"interface"===this.state.value){const e=this.lookahead()
+if(5===e.type||te(e.value)){const e=this.startNode()
 return this.next(),this.flowParseInterface(e)}}else if(this.shouldParseEnums()&&this.isContextual("enum")){const e=this.startNode()
 return this.next(),this.flowParseEnumDeclaration(e)}const r=super.parseStatement(e,t)
-return void 0!==this.flowPragma||this.isValidDirective(r)||(this.flowPragma=null),r}parseExpressionStatement(e,t){if("Identifier"===t.type)if("declare"===t.name){if(this.match(o._class)||this.match(o.name)||this.match(o._function)||this.match(o._var)||this.match(o._export))return this.flowParseDeclare(e)}else if(this.match(o.name)){if("interface"===t.name)return this.flowParseInterface(e)
+return void 0!==this.flowPragma||this.isValidDirective(r)||(this.flowPragma=null),r}parseExpressionStatement(e,t){if("Identifier"===t.type)if("declare"===t.name){if(this.match(79)||this.match(5)||this.match(67)||this.match(73)||this.match(81))return this.flowParseDeclare(e)}else if(this.match(5)){if("interface"===t.name)return this.flowParseInterface(e)
 if("type"===t.name)return this.flowParseTypeAlias(e)
-if("opaque"===t.name)return this.flowParseOpaqueType(e,!1)}return super.parseExpressionStatement(e,t)}shouldParseExportDeclaration(){return this.isContextual("type")||this.isContextual("interface")||this.isContextual("opaque")||this.shouldParseEnums()&&this.isContextual("enum")||super.shouldParseExportDeclaration()}isExportDefaultSpecifier(){return(!this.match(o.name)||!("type"===this.state.value||"interface"===this.state.value||"opaque"===this.state.value||this.shouldParseEnums()&&"enum"===this.state.value))&&super.isExportDefaultSpecifier()}parseExportDefaultExpression(){if(this.shouldParseEnums()&&this.isContextual("enum")){const e=this.startNode()
-return this.next(),this.flowParseEnumDeclaration(e)}return super.parseExportDefaultExpression()}parseConditional(e,t,r,i){if(!this.match(o.question))return e
-if(i){const n=this.tryParse((()=>super.parseConditional(e,t,r)))
-return n.node?(n.error&&(this.state=n.failState),n.node):(i.start=n.error.pos||this.state.start,e)}this.expect(o.question)
+if("opaque"===t.name)return this.flowParseOpaqueType(e,!1)}return super.parseExpressionStatement(e,t)}shouldParseExportDeclaration(){return this.isContextual("type")||this.isContextual("interface")||this.isContextual("opaque")||this.shouldParseEnums()&&this.isContextual("enum")||super.shouldParseExportDeclaration()}isExportDefaultSpecifier(){return(!this.match(5)||!("type"===this.state.value||"interface"===this.state.value||"opaque"===this.state.value||this.shouldParseEnums()&&"enum"===this.state.value))&&super.isExportDefaultSpecifier()}parseExportDefaultExpression(){if(this.shouldParseEnums()&&this.isContextual("enum")){const e=this.startNode()
+return this.next(),this.flowParseEnumDeclaration(e)}return super.parseExportDefaultExpression()}parseConditional(e,t,r,i){if(!this.match(25))return e
+if(this.state.maybeInArrowParameters){const t=this.lookaheadCharCode()
+if(44===t||61===t||58===t||41===t)return this.setOptionalParametersError(i),e}this.expect(25)
 const n=this.state.clone(),s=this.state.noArrowAt,a=this.startNodeAt(t,r)
-let{consequent:l,failed:u}=this.tryParseConditionalConsequent(),[c,h]=this.getArrowLikeExpressions(l)
-if(u||h.length>0){const e=[...s]
-if(h.length>0){this.state=n,this.state.noArrowAt=e
-for(let t=0;t<h.length;t++)e.push(h[t].start);({consequent:l,failed:u}=this.tryParseConditionalConsequent()),[c,h]=this.getArrowLikeExpressions(l)}u&&c.length>1&&this.raise(n.start,B.AmbiguousConditionalArrow),u&&1===c.length&&(this.state=n,this.state.noArrowAt=e.concat(c[0].start),({consequent:l,failed:u}=this.tryParseConditionalConsequent()))}return this.getArrowLikeExpressions(l,!0),this.state.noArrowAt=s,this.expect(o.colon),a.test=e,a.consequent=l,a.alternate=this.forwardNoArrowParamsConversionAt(a,(()=>this.parseMaybeAssign(void 0,void 0,void 0))),this.finishNode(a,"ConditionalExpression")}tryParseConditionalConsequent(){this.state.noArrowParamsConversionAt.push(this.state.start)
-const e=this.parseMaybeAssignAllowIn(),t=!this.match(o.colon)
+let{consequent:o,failed:l}=this.tryParseConditionalConsequent(),[u,c]=this.getArrowLikeExpressions(o)
+if(l||c.length>0){const e=[...s]
+if(c.length>0){this.state=n,this.state.noArrowAt=e
+for(let t=0;t<c.length;t++)e.push(c[t].start);({consequent:o,failed:l}=this.tryParseConditionalConsequent()),[u,c]=this.getArrowLikeExpressions(o)}l&&u.length>1&&this.raise(n.start,Ae.AmbiguousConditionalArrow),l&&1===u.length&&(this.state=n,e.push(u[0].start),this.state.noArrowAt=e,({consequent:o,failed:l}=this.tryParseConditionalConsequent()))}return this.getArrowLikeExpressions(o,!0),this.state.noArrowAt=s,this.expect(22),a.test=e,a.consequent=o,a.alternate=this.forwardNoArrowParamsConversionAt(a,(()=>this.parseMaybeAssign(void 0,void 0))),this.finishNode(a,"ConditionalExpression")}tryParseConditionalConsequent(){this.state.noArrowParamsConversionAt.push(this.state.start)
+const e=this.parseMaybeAssignAllowIn(),t=!this.match(22)
 return this.state.noArrowParamsConversionAt.pop(),{consequent:e,failed:t}}getArrowLikeExpressions(e,t){const r=[e],i=[]
 for(;0!==r.length;){const e=r.pop()
 "ArrowFunctionExpression"===e.type?(e.typeParameters||!e.returnType?this.finishArrowValidation(e):i.push(e),r.push(e.body)):"ConditionalExpression"===e.type&&(r.push(e.consequent),r.push(e.alternate))}return t?(i.forEach((e=>this.finishArrowValidation(e))),[i,[]]):function(e,t){const r=[],i=[]
 for(let n=0;n<e.length;n++)(t(e[n])?r:i).push(e[n])
 return[r,i]}(i,(e=>e.params.every((e=>this.isAssignable(e,!0)))))}finishArrowValidation(e){var t
 this.toAssignableList(e.params,null==(t=e.extra)?void 0:t.trailingComma,!1),this.scope.enter(6),super.checkParams(e,!1,!0),this.scope.exit()}forwardNoArrowParamsConversionAt(e,t){let r
-return-1!==this.state.noArrowParamsConversionAt.indexOf(e.start)?(this.state.noArrowParamsConversionAt.push(this.state.start),r=t(),this.state.noArrowParamsConversionAt.pop()):r=t(),r}parseParenItem(e,t,r){if(e=super.parseParenItem(e,t,r),this.eat(o.question)&&(e.optional=!0,this.resetEndLocation(e)),this.match(o.colon)){const i=this.startNodeAt(t,r)
+return-1!==this.state.noArrowParamsConversionAt.indexOf(e.start)?(this.state.noArrowParamsConversionAt.push(this.state.start),r=t(),this.state.noArrowParamsConversionAt.pop()):r=t(),r}parseParenItem(e,t,r){if(e=super.parseParenItem(e,t,r),this.eat(25)&&(e.optional=!0,this.resetEndLocation(e)),this.match(22)){const i=this.startNodeAt(t,r)
 return i.expression=e,i.typeAnnotation=this.flowParseTypeAnnotation(),this.finishNode(i,"TypeCastExpression")}return e}assertModuleNodeAllowed(e){"ImportDeclaration"===e.type&&("type"===e.importKind||"typeof"===e.importKind)||"ExportNamedDeclaration"===e.type&&"type"===e.exportKind||"ExportAllDeclaration"===e.type&&"type"===e.exportKind||super.assertModuleNodeAllowed(e)}parseExport(e){const t=super.parseExport(e)
 return"ExportNamedDeclaration"!==t.type&&"ExportAllDeclaration"!==t.type||(t.exportKind=t.exportKind||"value"),t}parseExportDeclaration(e){if(this.isContextual("type")){e.exportKind="type"
 const t=this.startNode()
-return this.next(),this.match(o.braceL)?(e.specifiers=this.parseExportSpecifiers(),this.parseExportFrom(e),null):this.flowParseTypeAlias(t)}if(this.isContextual("opaque")){e.exportKind="type"
+return this.next(),this.match(13)?(e.specifiers=this.parseExportSpecifiers(),this.parseExportFrom(e),null):this.flowParseTypeAlias(t)}if(this.isContextual("opaque")){e.exportKind="type"
 const t=this.startNode()
 return this.next(),this.flowParseOpaqueType(t,!1)}if(this.isContextual("interface")){e.exportKind="type"
 const t=this.startNode()
 return this.next(),this.flowParseInterface(t)}if(this.shouldParseEnums()&&this.isContextual("enum")){e.exportKind="value"
 const t=this.startNode()
-return this.next(),this.flowParseEnumDeclaration(t)}return super.parseExportDeclaration(e)}eatExportStar(e){return!!super.eatExportStar(...arguments)||!(!this.isContextual("type")||this.lookahead().type!==o.star)&&(e.exportKind="type",this.next(),this.next(),!0)}maybeParseExportNamespaceSpecifier(e){const t=this.state.start,r=super.maybeParseExportNamespaceSpecifier(e)
+return this.next(),this.flowParseEnumDeclaration(t)}return super.parseExportDeclaration(e)}eatExportStar(e){return!!super.eatExportStar(...arguments)||!(!this.isContextual("type")||54!==this.lookahead().type)&&(e.exportKind="type",this.next(),this.next(),!0)}maybeParseExportNamespaceSpecifier(e){const t=this.state.start,r=super.maybeParseExportNamespaceSpecifier(e)
 return r&&"type"===e.exportKind&&this.unexpected(t),r}parseClassId(e,t,r){super.parseClassId(e,t,r),this.isRelational("<")&&(e.typeParameters=this.flowParseTypeParameterDeclaration())}parseClassMember(e,t,r){const i=this.state.start
 if(this.isContextual("declare")){if(this.parseClassMemberFromModifier(e,t))return
-t.declare=!0}super.parseClassMember(e,t,r),t.declare&&("ClassProperty"!==t.type&&"ClassPrivateProperty"!==t.type?this.raise(i,B.DeclareClassElement):t.value&&this.raise(t.value.start,B.DeclareClassFieldInitializer))}getTokenFromCode(e){const t=this.input.charCodeAt(this.state.pos+1)
-return 123===e&&124===t?this.finishOp(o.braceBarL,2):!this.state.inType||62!==e&&60!==e?this.state.inType&&63===e?this.finishOp(o.question,1):function(e,t){return 64===e&&64===t}(e,t)?(this.state.isIterator=!0,super.readWord()):super.getTokenFromCode(e):this.finishOp(o.relational,1)}isAssignable(e,t){switch(e.type){case"Identifier":case"ObjectPattern":case"ArrayPattern":case"AssignmentPattern":return!0
-case"ObjectExpression":{const t=e.properties.length-1
-return e.properties.every(((e,r)=>"ObjectMethod"!==e.type&&(r===t||"SpreadElement"===e.type)&&this.isAssignable(e)))}case"ObjectProperty":return this.isAssignable(e.value)
-case"SpreadElement":return this.isAssignable(e.argument)
-case"ArrayExpression":return e.elements.every((e=>this.isAssignable(e)))
-case"AssignmentExpression":return"="===e.operator
-case"ParenthesizedExpression":case"TypeCastExpression":return this.isAssignable(e.expression)
-case"MemberExpression":case"OptionalMemberExpression":return!t
-default:return!1}}toAssignable(e,t=!1){return"TypeCastExpression"===e.type?super.toAssignable(this.typeCastToParameter(e),t):super.toAssignable(e,t)}toAssignableList(e,t,r){for(let i=0;i<e.length;i++){const t=e[i]
+t.declare=!0}super.parseClassMember(e,t,r),t.declare&&("ClassProperty"!==t.type&&"ClassPrivateProperty"!==t.type&&"PropertyDefinition"!==t.type?this.raise(i,Ae.DeclareClassElement):t.value&&this.raise(t.value.start,Ae.DeclareClassFieldInitializer))}isIterator(e){return"iterator"===e||"asyncIterator"===e}readIterator(){const e=super.readWord1(),t="@@"+e
+this.isIterator(e)&&this.state.inType||this.raise(this.state.pos,m.InvalidIdentifier,t),this.finishToken(5,t)}getTokenFromCode(e){const t=this.input.charCodeAt(this.state.pos+1)
+return 123===e&&124===t?this.finishOp(14,2):!this.state.inType||62!==e&&60!==e?this.state.inType&&63===e?46===t?this.finishOp(26,2):this.finishOp(25,1):function(e,t){return 64===e&&64===t}(e,t)?(this.state.pos+=2,this.readIterator()):super.getTokenFromCode(e):this.finishOp(50,1)}isAssignable(e,t){return"TypeCastExpression"===e.type?this.isAssignable(e.expression,t):super.isAssignable(e,t)}toAssignable(e,t=!1){return"TypeCastExpression"===e.type?super.toAssignable(this.typeCastToParameter(e),t):super.toAssignable(e,t)}toAssignableList(e,t,r){for(let i=0;i<e.length;i++){const t=e[i]
 "TypeCastExpression"===(null==t?void 0:t.type)&&(e[i]=this.typeCastToParameter(t))}return super.toAssignableList(e,t,r)}toReferencedList(e,t){for(let i=0;i<e.length;i++){var r
 const n=e[i]
-n&&"TypeCastExpression"===n.type&&!(null==(r=n.extra)?void 0:r.parenthesized)&&(e.length>1||!t)&&this.raise(n.typeAnnotation.start,B.TypeCastInPattern)}return e}parseArrayLike(e,t,r,i){const n=super.parseArrayLike(e,t,r,i)
-return t&&!this.state.maybeInArrowParameters&&this.toReferencedList(n.elements),n}checkLVal(e,...t){if("TypeCastExpression"!==e.type)return super.checkLVal(e,...t)}parseClassProperty(e){return this.match(o.colon)&&(e.typeAnnotation=this.flowParseTypeAnnotation()),super.parseClassProperty(e)}parseClassPrivateProperty(e){return this.match(o.colon)&&(e.typeAnnotation=this.flowParseTypeAnnotation()),super.parseClassPrivateProperty(e)}isClassMethod(){return this.isRelational("<")||super.isClassMethod()}isClassProperty(){return this.match(o.colon)||super.isClassProperty()}isNonstaticConstructor(e){return!this.match(o.colon)&&super.isNonstaticConstructor(e)}pushClassMethod(e,t,r,i,n,s){t.variance&&this.unexpected(t.variance.start),delete t.variance,this.isRelational("<")&&(t.typeParameters=this.flowParseTypeParameterDeclaration()),super.pushClassMethod(e,t,r,i,n,s)}pushClassPrivateMethod(e,t,r,i){t.variance&&this.unexpected(t.variance.start),delete t.variance,this.isRelational("<")&&(t.typeParameters=this.flowParseTypeParameterDeclaration()),super.pushClassPrivateMethod(e,t,r,i)}parseClassSuper(e){if(super.parseClassSuper(e),e.superClass&&this.isRelational("<")&&(e.superTypeParameters=this.flowParseTypeParameterInstantiation()),this.isContextual("implements")){this.next()
+!n||"TypeCastExpression"!==n.type||null!=(r=n.extra)&&r.parenthesized||!(e.length>1)&&t||this.raise(n.typeAnnotation.start,Ae.TypeCastInPattern)}return e}parseArrayLike(e,t,r,i){const n=super.parseArrayLike(e,t,r,i)
+return t&&!this.state.maybeInArrowParameters&&this.toReferencedList(n.elements),n}checkLVal(e,...t){if("TypeCastExpression"!==e.type)return super.checkLVal(e,...t)}parseClassProperty(e){return this.match(22)&&(e.typeAnnotation=this.flowParseTypeAnnotation()),super.parseClassProperty(e)}parseClassPrivateProperty(e){return this.match(22)&&(e.typeAnnotation=this.flowParseTypeAnnotation()),super.parseClassPrivateProperty(e)}isClassMethod(){return this.isRelational("<")||super.isClassMethod()}isClassProperty(){return this.match(22)||super.isClassProperty()}isNonstaticConstructor(e){return!this.match(22)&&super.isNonstaticConstructor(e)}pushClassMethod(e,t,r,i,n,s){if(t.variance&&this.unexpected(t.variance.start),delete t.variance,this.isRelational("<")&&(t.typeParameters=this.flowParseTypeParameterDeclaration()),super.pushClassMethod(e,t,r,i,n,s),t.params&&n){const e=t.params
+e.length>0&&this.isThisParam(e[0])&&this.raise(t.start,Ae.ThisParamBannedInConstructor)}else if("MethodDefinition"===t.type&&n&&t.value.params){const e=t.value.params
+e.length>0&&this.isThisParam(e[0])&&this.raise(t.start,Ae.ThisParamBannedInConstructor)}}pushClassPrivateMethod(e,t,r,i){t.variance&&this.unexpected(t.variance.start),delete t.variance,this.isRelational("<")&&(t.typeParameters=this.flowParseTypeParameterDeclaration()),super.pushClassPrivateMethod(e,t,r,i)}parseClassSuper(e){if(super.parseClassSuper(e),e.superClass&&this.isRelational("<")&&(e.superTypeParameters=this.flowParseTypeParameterInstantiation()),this.isContextual("implements")){this.next()
 const t=e.implements=[]
 do{const e=this.startNode()
-e.id=this.flowParseRestrictedIdentifier(!0),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterInstantiation():e.typeParameters=null,t.push(this.finishNode(e,"ClassImplements"))}while(this.eat(o.comma))}}parsePropertyName(e,t){const r=this.flowParseVariance(),i=super.parsePropertyName(e,t)
-return e.variance=r,i}parseObjPropValue(e,t,r,i,n,s,a,l){let u
-e.variance&&this.unexpected(e.variance.start),delete e.variance,this.isRelational("<")&&!a&&(u=this.flowParseTypeParameterDeclaration(),this.match(o.parenL)||this.unexpected()),super.parseObjPropValue(e,t,r,i,n,s,a,l),u&&((e.value||e).typeParameters=u)}parseAssignableListItemTypes(e){return this.eat(o.question)&&("Identifier"!==e.type&&this.raise(e.start,B.OptionalBindingPattern),e.optional=!0),this.match(o.colon)&&(e.typeAnnotation=this.flowParseTypeAnnotation()),this.resetEndLocation(e),e}parseMaybeDefault(e,t,r){const i=super.parseMaybeDefault(e,t,r)
-return"AssignmentPattern"===i.type&&i.typeAnnotation&&i.right.start<i.typeAnnotation.start&&this.raise(i.typeAnnotation.start,B.TypeBeforeInitializer),i}shouldParseDefaultImport(e){return U(e)?z(this.state):super.shouldParseDefaultImport(e)}parseImportSpecifierLocal(e,t,r,i){t.local=U(e)?this.flowParseRestrictedIdentifier(!0,!0):this.parseIdentifier(),this.checkLVal(t.local,i,9),e.specifiers.push(this.finishNode(t,r))}maybeParseDefaultImportSpecifier(e){e.importKind="value"
+e.id=this.flowParseRestrictedIdentifier(!0),this.isRelational("<")?e.typeParameters=this.flowParseTypeParameterInstantiation():e.typeParameters=null,t.push(this.finishNode(e,"ClassImplements"))}while(this.eat(20))}}checkGetterSetterParams(e){super.checkGetterSetterParams(e)
+const t=this.getObjectOrClassMethodParams(e)
+if(t.length>0){const r=t[0]
+this.isThisParam(r)&&"get"===e.kind?this.raise(r.start,Ae.GetterMayNotHaveThisParam):this.isThisParam(r)&&this.raise(r.start,Ae.SetterMayNotHaveThisParam)}}parsePropertyName(e,t){const r=this.flowParseVariance(),i=super.parsePropertyName(e,t)
+return e.variance=r,i}parseObjPropValue(e,t,r,i,n,s,a,o){let l
+e.variance&&this.unexpected(e.variance.start),delete e.variance,this.isRelational("<")&&!a&&(l=this.flowParseTypeParameterDeclaration(),this.match(18)||this.unexpected()),super.parseObjPropValue(e,t,r,i,n,s,a,o),l&&((e.value||e).typeParameters=l)}parseAssignableListItemTypes(e){return this.eat(25)&&("Identifier"!==e.type&&this.raise(e.start,Ae.PatternIsOptional),this.isThisParam(e)&&this.raise(e.start,Ae.ThisParamMayNotBeOptional),e.optional=!0),this.match(22)?e.typeAnnotation=this.flowParseTypeAnnotation():this.isThisParam(e)&&this.raise(e.start,Ae.ThisParamAnnotationRequired),this.match(35)&&this.isThisParam(e)&&this.raise(e.start,Ae.ThisParamNoDefault),this.resetEndLocation(e),e}parseMaybeDefault(e,t,r){const i=super.parseMaybeDefault(e,t,r)
+return"AssignmentPattern"===i.type&&i.typeAnnotation&&i.right.start<i.typeAnnotation.start&&this.raise(i.typeAnnotation.start,Ae.TypeBeforeInitializer),i}shouldParseDefaultImport(e){return Pe(e)?_e(this.state):super.shouldParseDefaultImport(e)}parseImportSpecifierLocal(e,t,r,i){t.local=Pe(e)?this.flowParseRestrictedIdentifier(!0,!0):this.parseIdentifier(),this.checkLVal(t.local,i,9),e.specifiers.push(this.finishNode(t,r))}maybeParseDefaultImportSpecifier(e){e.importKind="value"
 let t=null
-if(this.match(o._typeof)?t="typeof":this.isContextual("type")&&(t="type"),t){const r=this.lookahead()
-"type"===t&&r.type===o.star&&this.unexpected(r.start),(z(r)||r.type===o.braceL||r.type===o.star)&&(this.next(),e.importKind=t)}return super.maybeParseDefaultImportSpecifier(e)}parseImportSpecifier(e){const t=this.startNode(),r=this.state.start,i=this.parseModuleExportName()
+if(this.match(86)?t="typeof":this.isContextual("type")&&(t="type"),t){const r=this.lookahead()
+"type"===t&&54===r.type&&this.unexpected(r.start),(_e(r)||13===r.type||54===r.type)&&(this.next(),e.importKind=t)}return super.maybeParseDefaultImportSpecifier(e)}parseImportSpecifier(e){const t=this.startNode(),r=this.match(4),i=this.parseModuleExportName()
 let n=null
 "Identifier"===i.type&&("type"===i.name?n="type":"typeof"===i.name&&(n="typeof"))
 let s=!1
 if(this.isContextual("as")&&!this.isLookaheadContextual("as")){const e=this.parseIdentifier(!0)
-null===n||this.match(o.name)||this.state.type.keyword?(t.imported=i,t.importKind=null,t.local=this.parseIdentifier()):(t.imported=e,t.importKind=n,t.local=e.__clone())}else if(null!==n&&(this.match(o.name)||this.state.type.keyword))t.imported=this.parseIdentifier(!0),t.importKind=n,this.eatContextual("as")?t.local=this.parseIdentifier():(s=!0,t.local=t.imported.__clone())
-else{if("StringLiteral"===i.type)throw this.raise(t.start,g.ImportBindingIsString,i.value)
-s=!0,t.imported=i,t.importKind=null,t.local=t.imported.__clone()}const a=U(e),l=U(t)
-a&&l&&this.raise(r,B.ImportTypeShorthandOnlyInPureImport),(a||l)&&this.checkReservedType(t.local.name,t.local.start,!0),!s||a||l||this.checkReservedWord(t.local.name,t.start,!0,!0),this.checkLVal(t.local,"import specifier",9),e.specifiers.push(this.finishNode(t,"ImportSpecifier"))}parseFunctionParams(e,t){const r=e.kind
-"get"!==r&&"set"!==r&&this.isRelational("<")&&(e.typeParameters=this.flowParseTypeParameterDeclaration()),super.parseFunctionParams(e,t)}parseVarId(e,t){super.parseVarId(e,t),this.match(o.colon)&&(e.id.typeAnnotation=this.flowParseTypeAnnotation(),this.resetEndLocation(e.id))}parseAsyncArrowFromCallExpression(e,t){if(this.match(o.colon)){const t=this.state.noAnonFunctionType
-this.state.noAnonFunctionType=!0,e.returnType=this.flowParseTypeAnnotation(),this.state.noAnonFunctionType=t}return super.parseAsyncArrowFromCallExpression(e,t)}shouldParseAsyncArrow(){return this.match(o.colon)||super.shouldParseAsyncArrow()}parseMaybeAssign(e,t,r){var i
-let n,s=null
-if(this.hasPlugin("jsx")&&(this.match(o.jsxTagStart)||this.isRelational("<"))){if(s=this.state.clone(),n=this.tryParse((()=>super.parseMaybeAssign(e,t,r)),s),!n.error)return n.node
-const{context:i}=this.state
-i[i.length-1]===b.j_oTag?i.length-=2:i[i.length-1]===b.j_expr&&(i.length-=1)}if((null==(i=n)?void 0:i.error)||this.isRelational("<")){var a,l
-let i
-s=s||this.state.clone()
-const o=this.tryParse((n=>{var s
-i=this.flowParseTypeParameterDeclaration()
-const a=this.forwardNoArrowParamsConversionAt(i,(()=>{const n=super.parseMaybeAssign(e,t,r)
-return this.resetStartLocationFromNode(n,i),n}))
-"ArrowFunctionExpression"!==a.type&&(null==(s=a.extra)?void 0:s.parenthesized)&&n()
-const o=this.maybeUnwrapTypeCastExpression(a)
-return o.typeParameters=i,this.resetStartLocationFromNode(o,i),a}),s)
-let u=null
-if(o.node&&"ArrowFunctionExpression"===this.maybeUnwrapTypeCastExpression(o.node).type){if(!o.error&&!o.aborted)return o.node.async&&this.raise(i.start,B.UnexpectedTypeParameterBeforeAsyncArrowFunction),o.node
-u=o.node}if(null==(a=n)?void 0:a.node)return this.state=n.failState,n.node
-if(u)return this.state=o.failState,u
-if(null==(l=n)?void 0:l.thrown)throw n.error
+null===n||this.match(5)||L(this.state.type)?(t.imported=i,t.importKind=null,t.local=this.parseIdentifier()):(t.imported=e,t.importKind=n,t.local=Te(e))}else{if(null!==n&&(this.match(5)||L(this.state.type)))t.imported=this.parseIdentifier(!0),t.importKind=n
+else{if(r)throw this.raise(t.start,m.ImportBindingIsString,i.value)
+t.imported=i,t.importKind=null}this.eatContextual("as")?t.local=this.parseIdentifier():(s=!0,t.local=Te(t.imported))}const a=Pe(e),o=Pe(t)
+a&&o&&this.raise(t.start,Ae.ImportTypeShorthandOnlyInPureImport),(a||o)&&this.checkReservedType(t.local.name,t.local.start,!0),!s||a||o||this.checkReservedWord(t.local.name,t.start,!0,!0),this.checkLVal(t.local,"import specifier",9),e.specifiers.push(this.finishNode(t,"ImportSpecifier"))}parseBindingAtom(){switch(this.state.type){case 77:return this.parseIdentifier(!0)
+default:return super.parseBindingAtom()}}parseFunctionParams(e,t){const r=e.kind
+"get"!==r&&"set"!==r&&this.isRelational("<")&&(e.typeParameters=this.flowParseTypeParameterDeclaration()),super.parseFunctionParams(e,t)}parseVarId(e,t){super.parseVarId(e,t),this.match(22)&&(e.id.typeAnnotation=this.flowParseTypeAnnotation(),this.resetEndLocation(e.id))}parseAsyncArrowFromCallExpression(e,t){if(this.match(22)){const t=this.state.noAnonFunctionType
+this.state.noAnonFunctionType=!0,e.returnType=this.flowParseTypeAnnotation(),this.state.noAnonFunctionType=t}return super.parseAsyncArrowFromCallExpression(e,t)}shouldParseAsyncArrow(){return this.match(22)||super.shouldParseAsyncArrow()}parseMaybeAssign(e,t){var r
+let i,n=null
+if(this.hasPlugin("jsx")&&(this.match(94)||this.isRelational("<"))){if(n=this.state.clone(),i=this.tryParse((()=>super.parseMaybeAssign(e,t)),n),!i.error)return i.node
+const{context:r}=this.state,s=r[r.length-1]
+s===x.j_oTag?r.length-=2:s===x.j_expr&&(r.length-=1)}if(null!=(r=i)&&r.error||this.isRelational("<")){var s,a
+let r
+n=n||this.state.clone()
+const o=this.tryParse((i=>{var n
+r=this.flowParseTypeParameterDeclaration()
+const s=this.forwardNoArrowParamsConversionAt(r,(()=>{const i=super.parseMaybeAssign(e,t)
+return this.resetStartLocationFromNode(i,r),i}))
+null!=(n=s.extra)&&n.parenthesized&&i()
+const a=this.maybeUnwrapTypeCastExpression(s)
+return"ArrowFunctionExpression"!==a.type&&i(),a.typeParameters=r,this.resetStartLocationFromNode(a,r),s}),n)
+let l=null
+if(o.node&&"ArrowFunctionExpression"===this.maybeUnwrapTypeCastExpression(o.node).type){if(!o.error&&!o.aborted)return o.node.async&&this.raise(r.start,Ae.UnexpectedTypeParameterBeforeAsyncArrowFunction),o.node
+l=o.node}if(null!=(s=i)&&s.node)return this.state=i.failState,i.node
+if(l)return this.state=o.failState,l
+if(null!=(a=i)&&a.thrown)throw i.error
 if(o.thrown)throw o.error
-throw this.raise(i.start,B.UnexpectedTokenAfterTypeParameter)}return super.parseMaybeAssign(e,t,r)}parseArrow(e){if(this.match(o.colon)){const t=this.tryParse((()=>{const t=this.state.noAnonFunctionType
+throw this.raise(r.start,Ae.UnexpectedTokenAfterTypeParameter)}return super.parseMaybeAssign(e,t)}parseArrow(e){if(this.match(22)){const t=this.tryParse((()=>{const t=this.state.noAnonFunctionType
 this.state.noAnonFunctionType=!0
 const r=this.startNode()
-return[r.typeAnnotation,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),this.state.noAnonFunctionType=t,this.canInsertSemicolon()&&this.unexpected(),this.match(o.arrow)||this.unexpected(),r}))
+return[r.typeAnnotation,e.predicate]=this.flowParseTypeAndPredicateInitialiser(),this.state.noAnonFunctionType=t,this.canInsertSemicolon()&&this.unexpected(),this.match(27)||this.unexpected(),r}))
 if(t.thrown)return null
-t.error&&(this.state=t.failState),e.returnType=t.node.typeAnnotation?this.finishNode(t.node,"TypeAnnotation"):null}return super.parseArrow(e)}shouldParseArrow(){return this.match(o.colon)||super.shouldParseArrow()}setArrowFunctionParameters(e,t){-1!==this.state.noArrowParamsConversionAt.indexOf(e.start)?e.params=t:super.setArrowFunctionParameters(e,t)}checkParams(e,t,r){if(!r||-1===this.state.noArrowParamsConversionAt.indexOf(e.start))return super.checkParams(...arguments)}parseParenAndDistinguishExpression(e){return super.parseParenAndDistinguishExpression(e&&-1===this.state.noArrowAt.indexOf(this.state.start))}parseSubscripts(e,t,r,i){if("Identifier"===e.type&&"async"===e.name&&-1!==this.state.noArrowAt.indexOf(t)){this.next()
+t.error&&(this.state=t.failState),e.returnType=t.node.typeAnnotation?this.finishNode(t.node,"TypeAnnotation"):null}return super.parseArrow(e)}shouldParseArrow(e){return this.match(22)||super.shouldParseArrow(e)}setArrowFunctionParameters(e,t){-1!==this.state.noArrowParamsConversionAt.indexOf(e.start)?e.params=t:super.setArrowFunctionParameters(e,t)}checkParams(e,t,r){if(!r||-1===this.state.noArrowParamsConversionAt.indexOf(e.start)){for(let t=0;t<e.params.length;t++)this.isThisParam(e.params[t])&&t>0&&this.raise(e.params[t].start,Ae.ThisParamMustBeFirst)
+return super.checkParams(...arguments)}}parseParenAndDistinguishExpression(e){return super.parseParenAndDistinguishExpression(e&&-1===this.state.noArrowAt.indexOf(this.state.start))}parseSubscripts(e,t,r,i){if("Identifier"===e.type&&"async"===e.name&&-1!==this.state.noArrowAt.indexOf(t)){this.next()
 const i=this.startNodeAt(t,r)
-i.callee=e,i.arguments=this.parseCallExpressionArguments(o.parenR,!1),e=this.finishNode(i,"CallExpression")}else if("Identifier"===e.type&&"async"===e.name&&this.isRelational("<")){const n=this.state.clone(),s=this.tryParse((e=>this.parseAsyncArrowWithTypeParameters(t,r)||e()),n)
+i.callee=e,i.arguments=this.parseCallExpressionArguments(19,!1),e=this.finishNode(i,"CallExpression")}else if("Identifier"===e.type&&"async"===e.name&&this.isRelational("<")){const n=this.state.clone(),s=this.tryParse((e=>this.parseAsyncArrowWithTypeParameters(t,r)||e()),n)
 if(!s.error&&!s.aborted)return s.node
 const a=this.tryParse((()=>super.parseSubscripts(e,t,r,i)),n)
 if(a.node&&!a.error)return a.node
 if(s.node)return this.state=s.failState,s.node
 if(a.node)return this.state=a.failState,a.node
-throw s.error||a.error}return super.parseSubscripts(e,t,r,i)}parseSubscript(e,t,r,i,n){if(this.match(o.questionDot)&&this.isLookaheadToken_lt()){if(n.optionalChainMember=!0,i)return n.stop=!0,e
+throw s.error||a.error}return super.parseSubscripts(e,t,r,i)}parseSubscript(e,t,r,i,n){if(this.match(26)&&this.isLookaheadToken_lt()){if(n.optionalChainMember=!0,i)return n.stop=!0,e
 this.next()
 const s=this.startNodeAt(t,r)
-return s.callee=e,s.typeArguments=this.flowParseTypeParameterInstantiation(),this.expect(o.parenL),s.arguments=this.parseCallExpressionArguments(o.parenR,!1),s.optional=!0,this.finishCallExpression(s,!0)}if(!i&&this.shouldParseTypes()&&this.isRelational("<")){const i=this.startNodeAt(t,r)
+return s.callee=e,s.typeArguments=this.flowParseTypeParameterInstantiation(),this.expect(18),s.arguments=this.parseCallExpressionArguments(19,!1),s.optional=!0,this.finishCallExpression(s,!0)}if(!i&&this.shouldParseTypes()&&this.isRelational("<")){const i=this.startNodeAt(t,r)
 i.callee=e
-const s=this.tryParse((()=>(i.typeArguments=this.flowParseTypeParameterInstantiationCallOrNew(),this.expect(o.parenL),i.arguments=this.parseCallExpressionArguments(o.parenR,!1),n.optionalChainMember&&(i.optional=!1),this.finishCallExpression(i,n.optionalChainMember))))
+const s=this.tryParse((()=>(i.typeArguments=this.flowParseTypeParameterInstantiationCallOrNew(),this.expect(18),i.arguments=this.parseCallExpressionArguments(19,!1),n.optionalChainMember&&(i.optional=!1),this.finishCallExpression(i,n.optionalChainMember))))
 if(s.node)return s.error&&(this.state=s.failState),s.node}return super.parseSubscript(e,t,r,i,n)}parseNewArguments(e){let t=null
 this.shouldParseTypes()&&this.isRelational("<")&&(t=this.tryParse((()=>this.flowParseTypeParameterInstantiationCallOrNew())).node),e.typeArguments=t,super.parseNewArguments(e)}parseAsyncArrowWithTypeParameters(e,t){const r=this.startNodeAt(e,t)
 if(this.parseFunctionParams(r),this.parseArrow(r))return this.parseArrowExpression(r,void 0,!0)}readToken_mult_modulo(e){const t=this.input.charCodeAt(this.state.pos+1)
 if(42===e&&47===t&&this.state.hasFlowComment)return this.state.hasFlowComment=!1,this.state.pos+=2,void this.nextToken()
 super.readToken_mult_modulo(e)}readToken_pipe_amp(e){const t=this.input.charCodeAt(this.state.pos+1)
-124!==e||125!==t?super.readToken_pipe_amp(e):this.finishOp(o.braceBarR,2)}parseTopLevel(e,t){const r=super.parseTopLevel(e,t)
-return this.state.hasFlowComment&&this.raise(this.state.pos,B.UnterminatedFlowComment),r}skipBlockComment(){if(this.hasPlugin("flowComments")&&this.skipFlowComment())return this.state.hasFlowComment&&this.unexpected(null,B.NestedFlowComment),this.hasFlowCommentCompletion(),this.state.pos+=this.skipFlowComment(),void(this.state.hasFlowComment=!0)
-if(this.state.hasFlowComment){const e=this.input.indexOf("*-/",this.state.pos+=2)
-if(-1===e)throw this.raise(this.state.pos-2,g.UnterminatedComment)
-this.state.pos=e+3}else super.skipBlockComment()}skipFlowComment(){const{pos:e}=this.state
+124!==e||125!==t?super.readToken_pipe_amp(e):this.finishOp(17,2)}parseTopLevel(e,t){const r=super.parseTopLevel(e,t)
+return this.state.hasFlowComment&&this.raise(this.state.pos,Ae.UnterminatedFlowComment),r}skipBlockComment(){if(this.hasPlugin("flowComments")&&this.skipFlowComment())return this.state.hasFlowComment&&this.unexpected(null,Ae.NestedFlowComment),this.hasFlowCommentCompletion(),this.state.pos+=this.skipFlowComment(),void(this.state.hasFlowComment=!0)
+if(!this.state.hasFlowComment)return super.skipBlockComment()
+{const e=this.input.indexOf("*-/",this.state.pos+=2)
+if(-1===e)throw this.raise(this.state.pos-2,m.UnterminatedComment)
+this.state.pos=e+3}}skipFlowComment(){const{pos:e}=this.state
 let t=2
 for(;[32,9].includes(this.input.charCodeAt(e+t));)t++
 const r=this.input.charCodeAt(t+e),i=this.input.charCodeAt(t+e+1)
-return 58===r&&58===i?t+2:"flow-include"===this.input.slice(t+e,t+e+12)?t+12:58===r&&58!==i&&t}hasFlowCommentCompletion(){if(-1===this.input.indexOf("*/",this.state.pos))throw this.raise(this.state.pos,g.UnterminatedComment)}flowEnumErrorBooleanMemberNotInitialized(e,{enumName:t,memberName:r}){this.raise(e,B.EnumBooleanMemberNotInitialized,r,t)}flowEnumErrorInvalidMemberName(e,{enumName:t,memberName:r}){const i=r[0].toUpperCase()+r.slice(1)
-this.raise(e,B.EnumInvalidMemberName,r,i,t)}flowEnumErrorDuplicateMemberName(e,{enumName:t,memberName:r}){this.raise(e,B.EnumDuplicateMemberName,r,t)}flowEnumErrorInconsistentMemberValues(e,{enumName:t}){this.raise(e,B.EnumInconsistentMemberValues,t)}flowEnumErrorInvalidExplicitType(e,{enumName:t,suppliedType:r}){return this.raise(e,null===r?B.EnumInvalidExplicitTypeUnknownSupplied:B.EnumInvalidExplicitType,t,r)}flowEnumErrorInvalidMemberInitializer(e,{enumName:t,explicitType:r,memberName:i}){let n=null
-switch(r){case"boolean":case"number":case"string":n=B.EnumInvalidMemberInitializerPrimaryType
+return 58===r&&58===i?t+2:"flow-include"===this.input.slice(t+e,t+e+12)?t+12:58===r&&58!==i&&t}hasFlowCommentCompletion(){if(-1===this.input.indexOf("*/",this.state.pos))throw this.raise(this.state.pos,m.UnterminatedComment)}flowEnumErrorBooleanMemberNotInitialized(e,{enumName:t,memberName:r}){this.raise(e,Ae.EnumBooleanMemberNotInitialized,r,t)}flowEnumErrorInvalidMemberName(e,{enumName:t,memberName:r}){const i=r[0].toUpperCase()+r.slice(1)
+this.raise(e,Ae.EnumInvalidMemberName,r,i,t)}flowEnumErrorDuplicateMemberName(e,{enumName:t,memberName:r}){this.raise(e,Ae.EnumDuplicateMemberName,r,t)}flowEnumErrorInconsistentMemberValues(e,{enumName:t}){this.raise(e,Ae.EnumInconsistentMemberValues,t)}flowEnumErrorInvalidExplicitType(e,{enumName:t,suppliedType:r}){return this.raise(e,null===r?Ae.EnumInvalidExplicitTypeUnknownSupplied:Ae.EnumInvalidExplicitType,t,r)}flowEnumErrorInvalidMemberInitializer(e,{enumName:t,explicitType:r,memberName:i}){let n=null
+switch(r){case"boolean":case"number":case"string":n=Ae.EnumInvalidMemberInitializerPrimaryType
 break
-case"symbol":n=B.EnumInvalidMemberInitializerSymbolType
+case"symbol":n=Ae.EnumInvalidMemberInitializerSymbolType
 break
-default:n=B.EnumInvalidMemberInitializerUnknownType}return this.raise(e,n,t,i,r)}flowEnumErrorNumberMemberNotInitialized(e,{enumName:t,memberName:r}){this.raise(e,B.EnumNumberMemberNotInitialized,t,r)}flowEnumErrorStringMemberInconsistentlyInitailized(e,{enumName:t}){this.raise(e,B.EnumStringMemberInconsistentlyInitailized,t)}flowEnumMemberInit(){const e=this.state.start,t=()=>this.match(o.comma)||this.match(o.braceR)
-switch(this.state.type){case o.num:{const r=this.parseLiteral(this.state.value,"NumericLiteral")
-return t()?{type:"number",pos:r.start,value:r}:{type:"invalid",pos:e}}case o.string:{const r=this.parseLiteral(this.state.value,"StringLiteral")
-return t()?{type:"string",pos:r.start,value:r}:{type:"invalid",pos:e}}case o._true:case o._false:{const r=this.parseBooleanLiteral()
+default:n=Ae.EnumInvalidMemberInitializerUnknownType}return this.raise(e,n,t,i,r)}flowEnumErrorNumberMemberNotInitialized(e,{enumName:t,memberName:r}){this.raise(e,Ae.EnumNumberMemberNotInitialized,t,r)}flowEnumErrorStringMemberInconsistentlyInitailized(e,{enumName:t}){this.raise(e,Ae.EnumStringMemberInconsistentlyInitailized,t)}flowEnumMemberInit(){const e=this.state.start,t=()=>this.match(20)||this.match(16)
+switch(this.state.type){case 0:{const r=this.parseNumericLiteral(this.state.value)
+return t()?{type:"number",pos:r.start,value:r}:{type:"invalid",pos:e}}case 4:{const r=this.parseStringLiteral(this.state.value)
+return t()?{type:"string",pos:r.start,value:r}:{type:"invalid",pos:e}}case 84:case 85:{const r=this.parseBooleanLiteral(this.match(84))
 return t()?{type:"boolean",pos:r.start,value:r}:{type:"invalid",pos:e}}default:return{type:"invalid",pos:e}}}flowEnumMemberRaw(){const e=this.state.start
-return{id:this.parseIdentifier(!0),init:this.eat(o.eq)?this.flowEnumMemberInit():{type:"none",pos:e}}}flowEnumCheckExplicitTypeMismatch(e,t,r){const{explicitType:i}=t
+return{id:this.parseIdentifier(!0),init:this.eat(35)?this.flowEnumMemberInit():{type:"none",pos:e}}}flowEnumCheckExplicitTypeMismatch(e,t,r){const{explicitType:i}=t
 null!==i&&i!==r&&this.flowEnumErrorInvalidMemberInitializer(e,t)}flowEnumMembers({enumName:e,explicitType:t}){const r=new Set,i={booleanMembers:[],numberMembers:[],stringMembers:[],defaultedMembers:[]}
-for(;!this.match(o.braceR);){const n=this.startNode(),{id:s,init:a}=this.flowEnumMemberRaw(),l=s.name
-if(""===l)continue;/^[a-z]/.test(l)&&this.flowEnumErrorInvalidMemberName(s.start,{enumName:e,memberName:l}),r.has(l)&&this.flowEnumErrorDuplicateMemberName(s.start,{enumName:e,memberName:l}),r.add(l)
+let n=!1
+for(;!this.match(16);){if(this.eat(29)){n=!0
+break}const s=this.startNode(),{id:a,init:o}=this.flowEnumMemberRaw(),l=a.name
+if(""===l)continue;/^[a-z]/.test(l)&&this.flowEnumErrorInvalidMemberName(a.start,{enumName:e,memberName:l}),r.has(l)&&this.flowEnumErrorDuplicateMemberName(a.start,{enumName:e,memberName:l}),r.add(l)
 const u={enumName:e,explicitType:t,memberName:l}
-switch(n.id=s,a.type){case"boolean":this.flowEnumCheckExplicitTypeMismatch(a.pos,u,"boolean"),n.init=a.value,i.booleanMembers.push(this.finishNode(n,"EnumBooleanMember"))
+switch(s.id=a,o.type){case"boolean":this.flowEnumCheckExplicitTypeMismatch(o.pos,u,"boolean"),s.init=o.value,i.booleanMembers.push(this.finishNode(s,"EnumBooleanMember"))
 break
-case"number":this.flowEnumCheckExplicitTypeMismatch(a.pos,u,"number"),n.init=a.value,i.numberMembers.push(this.finishNode(n,"EnumNumberMember"))
+case"number":this.flowEnumCheckExplicitTypeMismatch(o.pos,u,"number"),s.init=o.value,i.numberMembers.push(this.finishNode(s,"EnumNumberMember"))
 break
-case"string":this.flowEnumCheckExplicitTypeMismatch(a.pos,u,"string"),n.init=a.value,i.stringMembers.push(this.finishNode(n,"EnumStringMember"))
+case"string":this.flowEnumCheckExplicitTypeMismatch(o.pos,u,"string"),s.init=o.value,i.stringMembers.push(this.finishNode(s,"EnumStringMember"))
 break
-case"invalid":throw this.flowEnumErrorInvalidMemberInitializer(a.pos,u)
-case"none":switch(t){case"boolean":this.flowEnumErrorBooleanMemberNotInitialized(a.pos,u)
+case"invalid":throw this.flowEnumErrorInvalidMemberInitializer(o.pos,u)
+case"none":switch(t){case"boolean":this.flowEnumErrorBooleanMemberNotInitialized(o.pos,u)
 break
-case"number":this.flowEnumErrorNumberMemberNotInitialized(a.pos,u)
+case"number":this.flowEnumErrorNumberMemberNotInitialized(o.pos,u)
 break
-default:i.defaultedMembers.push(this.finishNode(n,"EnumDefaultedMember"))}}this.match(o.braceR)||this.expect(o.comma)}return i}flowEnumStringMembers(e,t,{enumName:r}){if(0===e.length)return t
+default:i.defaultedMembers.push(this.finishNode(s,"EnumDefaultedMember"))}}this.match(16)||this.expect(20)}return{members:i,hasUnknownMembers:n}}flowEnumStringMembers(e,t,{enumName:r}){if(0===e.length)return t
 if(0===t.length)return e
-if(t.length>e.length){for(let t=0;t<e.length;t++){const i=e[t]
-this.flowEnumErrorStringMemberInconsistentlyInitailized(i.start,{enumName:r})}return t}for(let i=0;i<t.length;i++){const e=t[i]
-this.flowEnumErrorStringMemberInconsistentlyInitailized(e.start,{enumName:r})}return e}flowEnumParseExplicitType({enumName:e}){if(this.eatContextual("of")){if(!this.match(o.name))throw this.flowEnumErrorInvalidExplicitType(this.state.start,{enumName:e,suppliedType:null})
+if(t.length>e.length){for(const t of e)this.flowEnumErrorStringMemberInconsistentlyInitailized(t.start,{enumName:r})
+return t}for(const i of t)this.flowEnumErrorStringMemberInconsistentlyInitailized(i.start,{enumName:r})
+return e}flowEnumParseExplicitType({enumName:e}){if(this.eatContextual("of")){if(!this.match(5))throw this.flowEnumErrorInvalidExplicitType(this.state.start,{enumName:e,suppliedType:null})
 const{value:t}=this.state
 return this.next(),"boolean"!==t&&"number"!==t&&"string"!==t&&"symbol"!==t&&this.flowEnumErrorInvalidExplicitType(this.state.start,{enumName:e,suppliedType:t}),t}return null}flowEnumBody(e,{enumName:t,nameLoc:r}){const i=this.flowEnumParseExplicitType({enumName:t})
-this.expect(o.braceL)
-const n=this.flowEnumMembers({enumName:t,explicitType:i})
-switch(i){case"boolean":return e.explicitType=!0,e.members=n.booleanMembers,this.expect(o.braceR),this.finishNode(e,"EnumBooleanBody")
-case"number":return e.explicitType=!0,e.members=n.numberMembers,this.expect(o.braceR),this.finishNode(e,"EnumNumberBody")
-case"string":return e.explicitType=!0,e.members=this.flowEnumStringMembers(n.stringMembers,n.defaultedMembers,{enumName:t}),this.expect(o.braceR),this.finishNode(e,"EnumStringBody")
-case"symbol":return e.members=n.defaultedMembers,this.expect(o.braceR),this.finishNode(e,"EnumSymbolBody")
-default:{const i=()=>(e.members=[],this.expect(o.braceR),this.finishNode(e,"EnumStringBody"))
+this.expect(13)
+const{members:n,hasUnknownMembers:s}=this.flowEnumMembers({enumName:t,explicitType:i})
+switch(e.hasUnknownMembers=s,i){case"boolean":return e.explicitType=!0,e.members=n.booleanMembers,this.expect(16),this.finishNode(e,"EnumBooleanBody")
+case"number":return e.explicitType=!0,e.members=n.numberMembers,this.expect(16),this.finishNode(e,"EnumNumberBody")
+case"string":return e.explicitType=!0,e.members=this.flowEnumStringMembers(n.stringMembers,n.defaultedMembers,{enumName:t}),this.expect(16),this.finishNode(e,"EnumStringBody")
+case"symbol":return e.members=n.defaultedMembers,this.expect(16),this.finishNode(e,"EnumSymbolBody")
+default:{const i=()=>(e.members=[],this.expect(16),this.finishNode(e,"EnumStringBody"))
 e.explicitType=!1
-const s=n.booleanMembers.length,a=n.numberMembers.length,l=n.stringMembers.length,u=n.defaultedMembers.length
-if(s||a||l||u){if(s||a){if(!a&&!l&&s>=u){for(let e=0,r=n.defaultedMembers;e<r.length;e++){const i=r[e]
-this.flowEnumErrorBooleanMemberNotInitialized(i.start,{enumName:t,memberName:i.id.name})}return e.members=n.booleanMembers,this.expect(o.braceR),this.finishNode(e,"EnumBooleanBody")}if(!s&&!l&&a>=u){for(let e=0,r=n.defaultedMembers;e<r.length;e++){const i=r[e]
-this.flowEnumErrorNumberMemberNotInitialized(i.start,{enumName:t,memberName:i.id.name})}return e.members=n.numberMembers,this.expect(o.braceR),this.finishNode(e,"EnumNumberBody")}return this.flowEnumErrorInconsistentMemberValues(r,{enumName:t}),i()}return e.members=this.flowEnumStringMembers(n.stringMembers,n.defaultedMembers,{enumName:t}),this.expect(o.braceR),this.finishNode(e,"EnumStringBody")}return i()}}}flowParseEnumDeclaration(e){const t=this.parseIdentifier()
-return e.id=t,e.body=this.flowEnumBody(this.startNode(),{enumName:t.name,nameLoc:t.start}),this.finishNode(e,"EnumDeclaration")}updateContext(e){this.match(o.name)&&"of"===this.state.value&&e===o.name&&"interface"===this.input.slice(this.state.lastTokStart,this.state.lastTokEnd)?this.state.exprAllowed=!1:super.updateContext(e)}isLookaheadToken_lt(){const e=this.nextTokenStart()
+const s=n.booleanMembers.length,a=n.numberMembers.length,o=n.stringMembers.length,l=n.defaultedMembers.length
+if(s||a||o||l){if(s||a){if(!a&&!o&&s>=l){for(const e of n.defaultedMembers)this.flowEnumErrorBooleanMemberNotInitialized(e.start,{enumName:t,memberName:e.id.name})
+return e.members=n.booleanMembers,this.expect(16),this.finishNode(e,"EnumBooleanBody")}if(!s&&!o&&a>=l){for(const e of n.defaultedMembers)this.flowEnumErrorNumberMemberNotInitialized(e.start,{enumName:t,memberName:e.id.name})
+return e.members=n.numberMembers,this.expect(16),this.finishNode(e,"EnumNumberBody")}return this.flowEnumErrorInconsistentMemberValues(r,{enumName:t}),i()}return e.members=this.flowEnumStringMembers(n.stringMembers,n.defaultedMembers,{enumName:t}),this.expect(16),this.finishNode(e,"EnumStringBody")}return i()}}}flowParseEnumDeclaration(e){const t=this.parseIdentifier()
+return e.id=t,e.body=this.flowEnumBody(this.startNode(),{enumName:t.name,nameLoc:t.start}),this.finishNode(e,"EnumDeclaration")}isLookaheadToken_lt(){const e=this.nextTokenStart()
 if(60===this.input.charCodeAt(e)){const t=this.input.charCodeAt(e+1)
-return 60!==t&&61!==t}return!1}maybeUnwrapTypeCastExpression(e){return"TypeCastExpression"===e.type?e.expression:e}},typescript:e=>class extends e{getScopeHandler(){return Z}tsIsIdentifier(){return this.match(o.name)}tsNextTokenCanFollowModifier(){return this.next(),(this.match(o.bracketL)||this.match(o.braceL)||this.match(o.star)||this.match(o.ellipsis)||this.match(o.hash)||this.isLiteralPropertyName())&&!this.hasPrecedingLineBreak()}tsParseModifier(e){if(!this.match(o.name))return
-const t=this.state.value
-return-1!==e.indexOf(t)&&this.tsTryParse(this.tsNextTokenCanFollowModifier.bind(this))?t:void 0}tsParseModifiers(e,t){for(;;){const r=this.state.start,i=this.tsParseModifier(t)
-if(!i)break
-Object.hasOwnProperty.call(e,i)&&this.raise(r,ne.DuplicateModifier,i),e[i]=!0}}tsIsListTerminator(e){switch(e){case"EnumMembers":case"TypeMembers":return this.match(o.braceR)
-case"HeritageClauseElement":return this.match(o.braceL)
-case"TupleElementTypes":return this.match(o.bracketR)
+return 60!==t&&61!==t}return!1}maybeUnwrapTypeCastExpression(e){return"TypeCastExpression"===e.type?e.expression:e}},typescript:e=>class extends e{getScopeHandler(){return Be}tsIsIdentifier(){return this.match(5)}tsTokenCanFollowModifier(){return(this.match(8)||this.match(13)||this.match(54)||this.match(29)||this.match(6)||this.isLiteralPropertyName())&&!this.hasPrecedingLineBreak()}tsNextTokenCanFollowModifier(){return this.next(),this.tsTokenCanFollowModifier()}tsParseModifier(e,t){if(!this.match(5))return
+const r=this.state.value
+if(-1!==e.indexOf(r)){if(t&&this.tsIsStartOfStaticBlocks())return
+if(this.tsTryParse(this.tsNextTokenCanFollowModifier.bind(this)))return r}}tsParseModifiers(e,t,r,i,n){const s=(t,r,i,n)=>{r===i&&e[n]&&this.raise(t,ze.InvalidModifiersOrder,i,n)},a=(t,r,i,n)=>{(e[i]&&r===n||e[n]&&r===i)&&this.raise(t,ze.IncompatibleModifiers,i,n)}
+for(;;){const o=this.state.start,l=this.tsParseModifier(t.concat(null!=r?r:[]),n)
+if(!l)break
+qe(l)?e.accessibility?this.raise(o,ze.DuplicateAccessibilityModifier):(s(o,l,l,"override"),s(o,l,l,"static"),s(o,l,l,"readonly"),e.accessibility=l):(Object.hasOwnProperty.call(e,l)?this.raise(o,ze.DuplicateModifier,l):(s(o,l,"static","readonly"),s(o,l,"static","override"),s(o,l,"override","readonly"),s(o,l,"abstract","override"),a(o,l,"declare","override"),a(o,l,"static","abstract")),e[l]=!0),null!=r&&r.includes(l)&&this.raise(o,i,l)}}tsIsListTerminator(e){switch(e){case"EnumMembers":case"TypeMembers":return this.match(16)
+case"HeritageClauseElement":return this.match(13)
+case"TupleElementTypes":return this.match(11)
 case"TypeParametersOrArguments":return this.isRelational(">")}throw new Error("Unreachable")}tsParseList(e,t){const r=[]
 for(;!this.tsIsListTerminator(e);)r.push(t())
-return r}tsParseDelimitedList(e,t){return re(this.tsParseDelimitedListWorker(e,t,!0))}tsParseDelimitedListWorker(e,t,r){const i=[]
+return r}tsParseDelimitedList(e,t){return function(e){if(null==e)throw new Error(`Unexpected ${e} value.`)
+return e}(this.tsParseDelimitedListWorker(e,t,!0))}tsParseDelimitedListWorker(e,t,r){const i=[]
 for(;!this.tsIsListTerminator(e);){const n=t()
 if(null==n)return
-if(i.push(n),!this.eat(o.comma)){if(this.tsIsListTerminator(e))break
-return void(r&&this.expect(o.comma))}}return i}tsParseBracketedList(e,t,r,i){i||(r?this.expect(o.bracketL):this.expectRelational("<"))
+if(i.push(n),!this.eat(20)){if(this.tsIsListTerminator(e))break
+return void(r&&this.expect(20))}}return i}tsParseBracketedList(e,t,r,i){i||(r?this.expect(8):this.expectRelational("<"))
 const n=this.tsParseDelimitedList(e,t)
-return r?this.expect(o.bracketR):this.expectRelational(">"),n}tsParseImportType(){const e=this.startNode()
-return this.expect(o._import),this.expect(o.parenL),this.match(o.string)||this.raise(this.state.start,ne.UnsupportedImportTypeArgument),e.argument=this.parseExprAtom(),this.expect(o.parenR),this.eat(o.dot)&&(e.qualifier=this.tsParseEntityName(!0)),this.isRelational("<")&&(e.typeParameters=this.tsParseTypeArguments()),this.finishNode(e,"TSImportType")}tsParseEntityName(e){let t=this.parseIdentifier()
-for(;this.eat(o.dot);){const r=this.startNodeAtNode(t)
+return r?this.expect(11):this.expectRelational(">"),n}tsParseImportType(){const e=this.startNode()
+return this.expect(82),this.expect(18),this.match(4)||this.raise(this.state.start,ze.UnsupportedImportTypeArgument),e.argument=this.parseExprAtom(),this.expect(19),this.eat(24)&&(e.qualifier=this.tsParseEntityName(!0)),this.isRelational("<")&&(e.typeParameters=this.tsParseTypeArguments()),this.finishNode(e,"TSImportType")}tsParseEntityName(e){let t=this.parseIdentifier()
+for(;this.eat(24);){const r=this.startNodeAtNode(t)
 r.left=t,r.right=this.parseIdentifier(e),t=this.finishNode(r,"TSQualifiedName")}return t}tsParseTypeReference(){const e=this.startNode()
 return e.typeName=this.tsParseEntityName(!1),!this.hasPrecedingLineBreak()&&this.isRelational("<")&&(e.typeParameters=this.tsParseTypeArguments()),this.finishNode(e,"TSTypeReference")}tsParseThisTypePredicate(e){this.next()
 const t=this.startNodeAtNode(e)
 return t.parameterName=e,t.typeAnnotation=this.tsParseTypeAnnotation(!1),t.asserts=!1,this.finishNode(t,"TSTypePredicate")}tsParseThisTypeNode(){const e=this.startNode()
 return this.next(),this.finishNode(e,"TSThisType")}tsParseTypeQuery(){const e=this.startNode()
-return this.expect(o._typeof),this.match(o._import)?e.exprName=this.tsParseImportType():e.exprName=this.tsParseEntityName(!0),this.finishNode(e,"TSTypeQuery")}tsParseTypeParameter(){const e=this.startNode()
-return e.name=this.parseIdentifierName(e.start),e.constraint=this.tsEatThenParseType(o._extends),e.default=this.tsEatThenParseType(o.eq),this.finishNode(e,"TSTypeParameter")}tsTryParseTypeParameters(){if(this.isRelational("<"))return this.tsParseTypeParameters()}tsParseTypeParameters(){const e=this.startNode()
-return this.isRelational("<")||this.match(o.jsxTagStart)?this.next():this.unexpected(),e.params=this.tsParseBracketedList("TypeParametersOrArguments",this.tsParseTypeParameter.bind(this),!1,!0),0===e.params.length&&this.raise(e.start,ne.EmptyTypeParameters),this.finishNode(e,"TSTypeParameterDeclaration")}tsTryNextParseConstantContext(){return this.lookahead().type===o._const?(this.next(),this.tsParseTypeReference()):null}tsFillSignature(e,t){const r=e===o.arrow
-t.typeParameters=this.tsTryParseTypeParameters(),this.expect(o.parenL),t.parameters=this.tsParseBindingListForSignature(),(r||this.match(e))&&(t.typeAnnotation=this.tsParseTypeOrTypePredicateAnnotation(e))}tsParseBindingListForSignature(){return this.parseBindingList(o.parenR,41).map((e=>("Identifier"!==e.type&&"RestElement"!==e.type&&"ObjectPattern"!==e.type&&"ArrayPattern"!==e.type&&this.raise(e.start,ne.UnsupportedSignatureParameterKind,e.type),e)))}tsParseTypeMemberSemicolon(){this.eat(o.comma)||this.semicolon()}tsParseSignatureMember(e,t){return this.tsFillSignature(o.colon,t),this.tsParseTypeMemberSemicolon(),this.finishNode(t,e)}tsIsUnambiguouslyIndexSignature(){return this.next(),this.eat(o.name)&&this.match(o.colon)}tsTryParseIndexSignature(e){if(!this.match(o.bracketL)||!this.tsLookAhead(this.tsIsUnambiguouslyIndexSignature.bind(this)))return
-this.expect(o.bracketL)
+return this.expect(86),this.match(82)?e.exprName=this.tsParseImportType():e.exprName=this.tsParseEntityName(!0),this.finishNode(e,"TSTypeQuery")}tsParseTypeParameter(){const e=this.startNode()
+return e.name=this.tsParseTypeParameterName(),e.constraint=this.tsEatThenParseType(80),e.default=this.tsEatThenParseType(35),this.finishNode(e,"TSTypeParameter")}tsTryParseTypeParameters(){if(this.isRelational("<"))return this.tsParseTypeParameters()}tsParseTypeParameters(){const e=this.startNode()
+return this.isRelational("<")||this.match(94)?this.next():this.unexpected(),e.params=this.tsParseBracketedList("TypeParametersOrArguments",this.tsParseTypeParameter.bind(this),!1,!0),0===e.params.length&&this.raise(e.start,ze.EmptyTypeParameters),this.finishNode(e,"TSTypeParameterDeclaration")}tsTryNextParseConstantContext(){return 74===this.lookahead().type?(this.next(),this.tsParseTypeReference()):null}tsFillSignature(e,t){const r=27===e
+t.typeParameters=this.tsTryParseTypeParameters(),this.expect(18),t.parameters=this.tsParseBindingListForSignature(),(r||this.match(e))&&(t.typeAnnotation=this.tsParseTypeOrTypePredicateAnnotation(e))}tsParseBindingListForSignature(){return this.parseBindingList(19,41).map((e=>("Identifier"!==e.type&&"RestElement"!==e.type&&"ObjectPattern"!==e.type&&"ArrayPattern"!==e.type&&this.raise(e.start,ze.UnsupportedSignatureParameterKind,e.type),e)))}tsParseTypeMemberSemicolon(){this.eat(20)||this.isLineTerminator()||this.expect(21)}tsParseSignatureMember(e,t){return this.tsFillSignature(22,t),this.tsParseTypeMemberSemicolon(),this.finishNode(t,e)}tsIsUnambiguouslyIndexSignature(){return this.next(),this.eat(5)&&this.match(22)}tsTryParseIndexSignature(e){if(!this.match(8)||!this.tsLookAhead(this.tsIsUnambiguouslyIndexSignature.bind(this)))return
+this.expect(8)
 const t=this.parseIdentifier()
-t.typeAnnotation=this.tsParseTypeAnnotation(),this.resetEndLocation(t),this.expect(o.bracketR),e.parameters=[t]
+t.typeAnnotation=this.tsParseTypeAnnotation(),this.resetEndLocation(t),this.expect(11),e.parameters=[t]
 const r=this.tsTryParseTypeAnnotation()
-return r&&(e.typeAnnotation=r),this.tsParseTypeMemberSemicolon(),this.finishNode(e,"TSIndexSignature")}tsParsePropertyOrMethodSignature(e,t){this.eat(o.question)&&(e.optional=!0)
+return r&&(e.typeAnnotation=r),this.tsParseTypeMemberSemicolon(),this.finishNode(e,"TSIndexSignature")}tsParsePropertyOrMethodSignature(e,t){this.eat(25)&&(e.optional=!0)
 const r=e
-if(t||!this.match(o.parenL)&&!this.isRelational("<")){const e=r
+if(this.match(18)||this.isRelational("<")){t&&this.raise(e.start,ze.ReadonlyForMethodSignature)
+const i=r
+if(i.kind&&this.isRelational("<")&&this.raise(this.state.pos,ze.AccesorCannotHaveTypeParameters),this.tsFillSignature(22,i),this.tsParseTypeMemberSemicolon(),"get"===i.kind)i.parameters.length>0&&(this.raise(this.state.pos,m.BadGetterArity),this.isThisParam(i.parameters[0])&&this.raise(this.state.pos,ze.AccesorCannotDeclareThisParameter))
+else if("set"===i.kind){if(1!==i.parameters.length)this.raise(this.state.pos,m.BadSetterArity)
+else{const e=i.parameters[0]
+this.isThisParam(e)&&this.raise(this.state.pos,ze.AccesorCannotDeclareThisParameter),"Identifier"===e.type&&e.optional&&this.raise(this.state.pos,ze.SetAccesorCannotHaveOptionalParameter),"RestElement"===e.type&&this.raise(this.state.pos,ze.SetAccesorCannotHaveRestParameter)}i.typeAnnotation&&this.raise(i.typeAnnotation.start,ze.SetAccesorCannotHaveReturnType)}else i.kind="method"
+return this.finishNode(i,"TSMethodSignature")}{const e=r
 t&&(e.readonly=!0)
 const i=this.tsTryParseTypeAnnotation()
-return i&&(e.typeAnnotation=i),this.tsParseTypeMemberSemicolon(),this.finishNode(e,"TSPropertySignature")}{const e=r
-return this.tsFillSignature(o.colon,e),this.tsParseTypeMemberSemicolon(),this.finishNode(e,"TSMethodSignature")}}tsParseTypeMember(){const e=this.startNode()
-if(this.match(o.parenL)||this.isRelational("<"))return this.tsParseSignatureMember("TSCallSignatureDeclaration",e)
-if(this.match(o._new)){const t=this.startNode()
-return this.next(),this.match(o.parenL)||this.isRelational("<")?this.tsParseSignatureMember("TSConstructSignatureDeclaration",e):(e.key=this.createIdentifier(t,"new"),this.tsParsePropertyOrMethodSignature(e,!1))}const t=!!this.tsParseModifier(["readonly"]),r=this.tsTryParseIndexSignature(e)
-return r?(t&&(e.readonly=!0),r):(this.parsePropertyName(e,!1),this.tsParsePropertyOrMethodSignature(e,t))}tsParseTypeLiteral(){const e=this.startNode()
-return e.members=this.tsParseObjectTypeMembers(),this.finishNode(e,"TSTypeLiteral")}tsParseObjectTypeMembers(){this.expect(o.braceL)
+return i&&(e.typeAnnotation=i),this.tsParseTypeMemberSemicolon(),this.finishNode(e,"TSPropertySignature")}}tsParseTypeMember(){const e=this.startNode()
+if(this.match(18)||this.isRelational("<"))return this.tsParseSignatureMember("TSCallSignatureDeclaration",e)
+if(this.match(76)){const t=this.startNode()
+return this.next(),this.match(18)||this.isRelational("<")?this.tsParseSignatureMember("TSConstructSignatureDeclaration",e):(e.key=this.createIdentifier(t,"new"),this.tsParsePropertyOrMethodSignature(e,!1))}this.tsParseModifiers(e,["readonly"],["declare","abstract","private","protected","public","static","override"],ze.InvalidModifierOnTypeMember)
+return this.tsTryParseIndexSignature(e)||(this.parsePropertyName(e,!1),e.computed||"Identifier"!==e.key.type||"get"!==e.key.name&&"set"!==e.key.name||!this.tsTokenCanFollowModifier()||(e.kind=e.key.name,this.parsePropertyName(e,!1)),this.tsParsePropertyOrMethodSignature(e,!!e.readonly))}tsParseTypeLiteral(){const e=this.startNode()
+return e.members=this.tsParseObjectTypeMembers(),this.finishNode(e,"TSTypeLiteral")}tsParseObjectTypeMembers(){this.expect(13)
 const e=this.tsParseList("TypeMembers",this.tsParseTypeMember.bind(this))
-return this.expect(o.braceR),e}tsIsStartOfMappedType(){return this.next(),this.eat(o.plusMin)?this.isContextual("readonly"):(this.isContextual("readonly")&&this.next(),!!this.match(o.bracketL)&&(this.next(),!!this.tsIsIdentifier()&&(this.next(),this.match(o._in))))}tsParseMappedTypeParameter(){const e=this.startNode()
-return e.name=this.parseIdentifierName(e.start),e.constraint=this.tsExpectThenParseType(o._in),this.finishNode(e,"TSTypeParameter")}tsParseMappedType(){const e=this.startNode()
-return this.expect(o.braceL),this.match(o.plusMin)?(e.readonly=this.state.value,this.next(),this.expectContextual("readonly")):this.eatContextual("readonly")&&(e.readonly=!0),this.expect(o.bracketL),e.typeParameter=this.tsParseMappedTypeParameter(),e.nameType=this.eatContextual("as")?this.tsParseType():null,this.expect(o.bracketR),this.match(o.plusMin)?(e.optional=this.state.value,this.next(),this.expect(o.question)):this.eat(o.question)&&(e.optional=!0),e.typeAnnotation=this.tsTryParseType(),this.semicolon(),this.expect(o.braceR),this.finishNode(e,"TSMappedType")}tsParseTupleType(){const e=this.startNode()
+return this.expect(16),e}tsIsStartOfMappedType(){return this.next(),this.eat(52)?this.isContextual("readonly"):(this.isContextual("readonly")&&this.next(),!!this.match(8)&&(this.next(),!!this.tsIsIdentifier()&&(this.next(),this.match(57))))}tsParseMappedTypeParameter(){const e=this.startNode()
+return e.name=this.tsParseTypeParameterName(),e.constraint=this.tsExpectThenParseType(57),this.finishNode(e,"TSTypeParameter")}tsParseMappedType(){const e=this.startNode()
+return this.expect(13),this.match(52)?(e.readonly=this.state.value,this.next(),this.expectContextual("readonly")):this.eatContextual("readonly")&&(e.readonly=!0),this.expect(8),e.typeParameter=this.tsParseMappedTypeParameter(),e.nameType=this.eatContextual("as")?this.tsParseType():null,this.expect(11),this.match(52)?(e.optional=this.state.value,this.next(),this.expect(25)):this.eat(25)&&(e.optional=!0),e.typeAnnotation=this.tsTryParseType(),this.semicolon(),this.expect(16),this.finishNode(e,"TSMappedType")}tsParseTupleType(){const e=this.startNode()
 e.elementTypes=this.tsParseBracketedList("TupleElementTypes",this.tsParseTupleElementType.bind(this),!0,!1)
 let t=!1,r=null
 return e.elementTypes.forEach((e=>{var i
 let{type:n}=e
-!t||"TSRestType"===n||"TSOptionalType"===n||"TSNamedTupleMember"===n&&e.optional||this.raise(e.start,ne.OptionalTypeBeforeRequired),t=t||"TSNamedTupleMember"===n&&e.optional||"TSOptionalType"===n,"TSRestType"===n&&(n=(e=e.typeAnnotation).type)
+!t||"TSRestType"===n||"TSOptionalType"===n||"TSNamedTupleMember"===n&&e.optional||this.raise(e.start,ze.OptionalTypeBeforeRequired),t=t||"TSNamedTupleMember"===n&&e.optional||"TSOptionalType"===n,"TSRestType"===n&&(n=(e=e.typeAnnotation).type)
 const s="TSNamedTupleMember"===n
-r=null!=(i=r)?i:s,r!==s&&this.raise(e.start,ne.MixedLabeledAndUnlabeledElements)})),this.finishNode(e,"TSTupleType")}tsParseTupleElementType(){const{start:e,startLoc:t}=this.state,r=this.eat(o.ellipsis)
+r=null!=(i=r)?i:s,r!==s&&this.raise(e.start,ze.MixedLabeledAndUnlabeledElements)})),this.finishNode(e,"TSTupleType")}tsParseTupleElementType(){const{start:e,startLoc:t}=this.state,r=this.eat(29)
 let i=this.tsParseType()
-const n=this.eat(o.question)
-if(this.eat(o.colon)){const e=this.startNodeAtNode(i)
-e.optional=n,"TSTypeReference"!==i.type||i.typeParameters||"Identifier"!==i.typeName.type?(this.raise(i.start,ne.InvalidTupleMemberLabel),e.label=i):e.label=i.typeName,e.elementType=this.tsParseType(),i=this.finishNode(e,"TSNamedTupleMember")}else if(n){const e=this.startNodeAtNode(i)
+const n=this.eat(25)
+if(this.eat(22)){const e=this.startNodeAtNode(i)
+e.optional=n,"TSTypeReference"!==i.type||i.typeParameters||"Identifier"!==i.typeName.type?(this.raise(i.start,ze.InvalidTupleMemberLabel),e.label=i):e.label=i.typeName,e.elementType=this.tsParseType(),i=this.finishNode(e,"TSNamedTupleMember")}else if(n){const e=this.startNodeAtNode(i)
 e.typeAnnotation=i,i=this.finishNode(e,"TSOptionalType")}if(r){const r=this.startNodeAt(e,t)
 r.typeAnnotation=i,i=this.finishNode(r,"TSRestType")}return i}tsParseParenthesizedType(){const e=this.startNode()
-return this.expect(o.parenL),e.typeAnnotation=this.tsParseType(),this.expect(o.parenR),this.finishNode(e,"TSParenthesizedType")}tsParseFunctionOrConstructorType(e){const t=this.startNode()
-return"TSConstructorType"===e&&this.expect(o._new),this.tsFillSignature(o.arrow,t),this.finishNode(t,e)}tsParseLiteralTypeNode(){const e=this.startNode()
-return e.literal=(()=>{switch(this.state.type){case o.num:case o.bigint:case o.string:case o._true:case o._false:return this.parseExprAtom()
+return this.expect(18),e.typeAnnotation=this.tsParseType(),this.expect(19),this.finishNode(e,"TSParenthesizedType")}tsParseFunctionOrConstructorType(e,t){const r=this.startNode()
+return"TSConstructorType"===e&&(r.abstract=!!t,t&&this.next(),this.next()),this.tsFillSignature(27,r),this.finishNode(r,e)}tsParseLiteralTypeNode(){const e=this.startNode()
+return e.literal=(()=>{switch(this.state.type){case 0:case 1:case 4:case 84:case 85:return this.parseExprAtom()
 default:throw this.unexpected()}})(),this.finishNode(e,"TSLiteralType")}tsParseTemplateLiteralType(){const e=this.startNode()
 return e.literal=this.parseTemplate(!1),this.finishNode(e,"TSLiteralType")}parseTemplateSubstitution(){return this.state.inType?this.tsParseType():super.parseTemplateSubstitution()}tsParseThisTypeOrThisTypePredicate(){const e=this.tsParseThisTypeNode()
-return this.isContextual("is")&&!this.hasPrecedingLineBreak()?this.tsParseThisTypePredicate(e):e}tsParseNonArrayType(){switch(this.state.type){case o.name:case o._void:case o._null:{const e=this.match(o._void)?"TSVoidKeyword":this.match(o._null)?"TSNullKeyword":function(e){switch(e){case"any":return"TSAnyKeyword"
+return this.isContextual("is")&&!this.hasPrecedingLineBreak()?this.tsParseThisTypePredicate(e):e}tsParseNonArrayType(){switch(this.state.type){case 5:case 87:case 83:{const e=this.match(87)?"TSVoidKeyword":this.match(83)?"TSNullKeyword":function(e){switch(e){case"any":return"TSAnyKeyword"
 case"boolean":return"TSBooleanKeyword"
 case"bigint":return"TSBigIntKeyword"
 case"never":return"TSNeverKeyword"
@@ -10038,357 +10090,354 @@ case"undefined":return"TSUndefinedKeyword"
 case"unknown":return"TSUnknownKeyword"
 default:return}}(this.state.value)
 if(void 0!==e&&46!==this.lookaheadCharCode()){const t=this.startNode()
-return this.next(),this.finishNode(t,e)}return this.tsParseTypeReference()}case o.string:case o.num:case o.bigint:case o._true:case o._false:return this.tsParseLiteralTypeNode()
-case o.plusMin:if("-"===this.state.value){const e=this.startNode(),t=this.lookahead()
-if(t.type!==o.num&&t.type!==o.bigint)throw this.unexpected()
+return this.next(),this.finishNode(t,e)}return this.tsParseTypeReference()}case 4:case 0:case 1:case 84:case 85:return this.tsParseLiteralTypeNode()
+case 52:if("-"===this.state.value){const e=this.startNode(),t=this.lookahead()
+if(0!==t.type&&1!==t.type)throw this.unexpected()
 return e.literal=this.parseMaybeUnary(),this.finishNode(e,"TSLiteralType")}break
-case o._this:return this.tsParseThisTypeOrThisTypePredicate()
-case o._typeof:return this.tsParseTypeQuery()
-case o._import:return this.tsParseImportType()
-case o.braceL:return this.tsLookAhead(this.tsIsStartOfMappedType.bind(this))?this.tsParseMappedType():this.tsParseTypeLiteral()
-case o.bracketL:return this.tsParseTupleType()
-case o.parenL:return this.tsParseParenthesizedType()
-case o.backQuote:return this.tsParseTemplateLiteralType()}throw this.unexpected()}tsParseArrayTypeOrHigher(){let e=this.tsParseNonArrayType()
-for(;!this.hasPrecedingLineBreak()&&this.eat(o.bracketL);)if(this.match(o.bracketR)){const t=this.startNodeAtNode(e)
-t.elementType=e,this.expect(o.bracketR),e=this.finishNode(t,"TSArrayType")}else{const t=this.startNodeAtNode(e)
-t.objectType=e,t.indexType=this.tsParseType(),this.expect(o.bracketR),e=this.finishNode(t,"TSIndexedAccessType")}return e}tsParseTypeOperator(e){const t=this.startNode()
+case 77:return this.tsParseThisTypeOrThisTypePredicate()
+case 86:return this.tsParseTypeQuery()
+case 82:return this.tsParseImportType()
+case 13:return this.tsLookAhead(this.tsIsStartOfMappedType.bind(this))?this.tsParseMappedType():this.tsParseTypeLiteral()
+case 8:return this.tsParseTupleType()
+case 18:return this.tsParseParenthesizedType()
+case 30:return this.tsParseTemplateLiteralType()}throw this.unexpected()}tsParseArrayTypeOrHigher(){let e=this.tsParseNonArrayType()
+for(;!this.hasPrecedingLineBreak()&&this.eat(8);)if(this.match(11)){const t=this.startNodeAtNode(e)
+t.elementType=e,this.expect(11),e=this.finishNode(t,"TSArrayType")}else{const t=this.startNodeAtNode(e)
+t.objectType=e,t.indexType=this.tsParseType(),this.expect(11),e=this.finishNode(t,"TSIndexedAccessType")}return e}tsParseTypeOperator(e){const t=this.startNode()
 return this.expectContextual(e),t.operator=e,t.typeAnnotation=this.tsParseTypeOperatorOrHigher(),"readonly"===e&&this.tsCheckTypeAnnotationForReadOnly(t),this.finishNode(t,"TSTypeOperator")}tsCheckTypeAnnotationForReadOnly(e){switch(e.typeAnnotation.type){case"TSTupleType":case"TSArrayType":return
-default:this.raise(e.start,ne.UnexpectedReadonly)}}tsParseInferType(){const e=this.startNode()
+default:this.raise(e.start,ze.UnexpectedReadonly)}}tsParseInferType(){const e=this.startNode()
 this.expectContextual("infer")
 const t=this.startNode()
-return t.name=this.parseIdentifierName(t.start),e.typeParameter=this.finishNode(t,"TSTypeParameter"),this.finishNode(e,"TSInferType")}tsParseTypeOperatorOrHigher(){const e=["keyof","unique","readonly"].find((e=>this.isContextual(e)))
-return e?this.tsParseTypeOperator(e):this.isContextual("infer")?this.tsParseInferType():this.tsParseArrayTypeOrHigher()}tsParseUnionOrIntersectionType(e,t,r){this.eat(r)
-let i=t()
-if(this.match(r)){const n=[i]
-for(;this.eat(r);)n.push(t())
-const s=this.startNodeAtNode(i)
-s.types=n,i=this.finishNode(s,e)}return i}tsParseIntersectionTypeOrHigher(){return this.tsParseUnionOrIntersectionType("TSIntersectionType",this.tsParseTypeOperatorOrHigher.bind(this),o.bitwiseAND)}tsParseUnionTypeOrHigher(){return this.tsParseUnionOrIntersectionType("TSUnionType",this.tsParseIntersectionTypeOrHigher.bind(this),o.bitwiseOR)}tsIsStartOfFunctionType(){return!!this.isRelational("<")||this.match(o.parenL)&&this.tsLookAhead(this.tsIsUnambiguouslyStartOfFunctionType.bind(this))}tsSkipParameterStart(){if(this.match(o.name)||this.match(o._this))return this.next(),!0
-if(this.match(o.braceL)){let e=1
-for(this.next();e>0;)this.match(o.braceL)?++e:this.match(o.braceR)&&--e,this.next()
-return!0}if(this.match(o.bracketL)){let e=1
-for(this.next();e>0;)this.match(o.bracketL)?++e:this.match(o.bracketR)&&--e,this.next()
-return!0}return!1}tsIsUnambiguouslyStartOfFunctionType(){if(this.next(),this.match(o.parenR)||this.match(o.ellipsis))return!0
-if(this.tsSkipParameterStart()){if(this.match(o.colon)||this.match(o.comma)||this.match(o.question)||this.match(o.eq))return!0
-if(this.match(o.parenR)&&(this.next(),this.match(o.arrow)))return!0}return!1}tsParseTypeOrTypePredicateAnnotation(e){return this.tsInType((()=>{const t=this.startNode()
+return t.name=this.tsParseTypeParameterName(),e.typeParameter=this.finishNode(t,"TSTypeParameter"),this.finishNode(e,"TSInferType")}tsParseTypeOperatorOrHigher(){const e=["keyof","unique","readonly"].find((e=>this.isContextual(e)))
+return e?this.tsParseTypeOperator(e):this.isContextual("infer")?this.tsParseInferType():this.tsParseArrayTypeOrHigher()}tsParseUnionOrIntersectionType(e,t,r){const i=this.startNode(),n=this.eat(r),s=[]
+do{s.push(t())}while(this.eat(r))
+return 1!==s.length||n?(i.types=s,this.finishNode(i,e)):s[0]}tsParseIntersectionTypeOrHigher(){return this.tsParseUnionOrIntersectionType("TSIntersectionType",this.tsParseTypeOperatorOrHigher.bind(this),48)}tsParseUnionTypeOrHigher(){return this.tsParseUnionOrIntersectionType("TSUnionType",this.tsParseIntersectionTypeOrHigher.bind(this),46)}tsIsStartOfFunctionType(){return!!this.isRelational("<")||this.match(18)&&this.tsLookAhead(this.tsIsUnambiguouslyStartOfFunctionType.bind(this))}tsSkipParameterStart(){if(this.match(5)||this.match(77))return this.next(),!0
+if(this.match(13)){let e=1
+for(this.next();e>0;)this.match(13)?++e:this.match(16)&&--e,this.next()
+return!0}if(this.match(8)){let e=1
+for(this.next();e>0;)this.match(8)?++e:this.match(11)&&--e,this.next()
+return!0}return!1}tsIsUnambiguouslyStartOfFunctionType(){if(this.next(),this.match(19)||this.match(29))return!0
+if(this.tsSkipParameterStart()){if(this.match(22)||this.match(20)||this.match(25)||this.match(35))return!0
+if(this.match(19)&&(this.next(),this.match(27)))return!0}return!1}tsParseTypeOrTypePredicateAnnotation(e){return this.tsInType((()=>{const t=this.startNode()
 this.expect(e)
-const r=!!this.tsTryParse(this.tsParseTypePredicateAsserts.bind(this))
-if(r&&this.match(o._this)){let e=this.tsParseThisTypeOrThisTypePredicate()
-if("TSThisType"===e.type){const r=this.startNodeAtNode(t)
-r.parameterName=e,r.asserts=!0,e=this.finishNode(r,"TSTypePredicate")}else e.asserts=!0
-return t.typeAnnotation=e,this.finishNode(t,"TSTypeAnnotation")}const i=this.tsIsIdentifier()&&this.tsTryParse(this.tsParseTypePredicatePrefix.bind(this))
-if(!i){if(!r)return this.tsParseTypeAnnotation(!1,t)
-const e=this.startNodeAtNode(t)
-return e.parameterName=this.parseIdentifier(),e.asserts=r,t.typeAnnotation=this.finishNode(e,"TSTypePredicate"),this.finishNode(t,"TSTypeAnnotation")}const n=this.tsParseTypeAnnotation(!1),s=this.startNodeAtNode(t)
-return s.parameterName=i,s.typeAnnotation=n,s.asserts=r,t.typeAnnotation=this.finishNode(s,"TSTypePredicate"),this.finishNode(t,"TSTypeAnnotation")}))}tsTryParseTypeOrTypePredicateAnnotation(){return this.match(o.colon)?this.tsParseTypeOrTypePredicateAnnotation(o.colon):void 0}tsTryParseTypeAnnotation(){return this.match(o.colon)?this.tsParseTypeAnnotation():void 0}tsTryParseType(){return this.tsEatThenParseType(o.colon)}tsParseTypePredicatePrefix(){const e=this.parseIdentifier()
-if(this.isContextual("is")&&!this.hasPrecedingLineBreak())return this.next(),e}tsParseTypePredicateAsserts(){if(!this.match(o.name)||"asserts"!==this.state.value||this.hasPrecedingLineBreak())return!1
+const r=this.startNode(),i=!!this.tsTryParse(this.tsParseTypePredicateAsserts.bind(this))
+if(i&&this.match(77)){let e=this.tsParseThisTypeOrThisTypePredicate()
+return"TSThisType"===e.type?(r.parameterName=e,r.asserts=!0,r.typeAnnotation=null,e=this.finishNode(r,"TSTypePredicate")):(this.resetStartLocationFromNode(e,r),e.asserts=!0),t.typeAnnotation=e,this.finishNode(t,"TSTypeAnnotation")}const n=this.tsIsIdentifier()&&this.tsTryParse(this.tsParseTypePredicatePrefix.bind(this))
+if(!n)return i?(r.parameterName=this.parseIdentifier(),r.asserts=i,r.typeAnnotation=null,t.typeAnnotation=this.finishNode(r,"TSTypePredicate"),this.finishNode(t,"TSTypeAnnotation")):this.tsParseTypeAnnotation(!1,t)
+const s=this.tsParseTypeAnnotation(!1)
+return r.parameterName=n,r.typeAnnotation=s,r.asserts=i,t.typeAnnotation=this.finishNode(r,"TSTypePredicate"),this.finishNode(t,"TSTypeAnnotation")}))}tsTryParseTypeOrTypePredicateAnnotation(){return this.match(22)?this.tsParseTypeOrTypePredicateAnnotation(22):void 0}tsTryParseTypeAnnotation(){return this.match(22)?this.tsParseTypeAnnotation():void 0}tsTryParseType(){return this.tsEatThenParseType(22)}tsParseTypePredicatePrefix(){const e=this.parseIdentifier()
+if(this.isContextual("is")&&!this.hasPrecedingLineBreak())return this.next(),e}tsParseTypePredicateAsserts(){if(!this.match(5)||"asserts"!==this.state.value)return!1
 const e=this.state.containsEsc
-return this.next(),!(!this.match(o.name)&&!this.match(o._this)||(e&&this.raise(this.state.lastTokStart,g.InvalidEscapedReservedWord,"asserts"),0))}tsParseTypeAnnotation(e=!0,t=this.startNode()){return this.tsInType((()=>{e&&this.expect(o.colon),t.typeAnnotation=this.tsParseType()})),this.finishNode(t,"TSTypeAnnotation")}tsParseType(){ie(this.state.inType)
+return this.next(),!(!this.match(5)&&!this.match(77)||(e&&this.raise(this.state.lastTokStart,m.InvalidEscapedReservedWord,"asserts"),0))}tsParseTypeAnnotation(e=!0,t=this.startNode()){return this.tsInType((()=>{e&&this.expect(22),t.typeAnnotation=this.tsParseType()})),this.finishNode(t,"TSTypeAnnotation")}tsParseType(){Ue(this.state.inType)
 const e=this.tsParseNonConditionalType()
-if(this.hasPrecedingLineBreak()||!this.eat(o._extends))return e
+if(this.hasPrecedingLineBreak()||!this.eat(80))return e
 const t=this.startNodeAtNode(e)
-return t.checkType=e,t.extendsType=this.tsParseNonConditionalType(),this.expect(o.question),t.trueType=this.tsParseType(),this.expect(o.colon),t.falseType=this.tsParseType(),this.finishNode(t,"TSConditionalType")}tsParseNonConditionalType(){return this.tsIsStartOfFunctionType()?this.tsParseFunctionOrConstructorType("TSFunctionType"):this.match(o._new)?this.tsParseFunctionOrConstructorType("TSConstructorType"):this.tsParseUnionTypeOrHigher()}tsParseTypeAssertion(){const e=this.startNode(),t=this.tsTryNextParseConstantContext()
+return t.checkType=e,t.extendsType=this.tsParseNonConditionalType(),this.expect(25),t.trueType=this.tsParseType(),this.expect(22),t.falseType=this.tsParseType(),this.finishNode(t,"TSConditionalType")}isAbstractConstructorSignature(){return this.isContextual("abstract")&&76===this.lookahead().type}tsParseNonConditionalType(){return this.tsIsStartOfFunctionType()?this.tsParseFunctionOrConstructorType("TSFunctionType"):this.match(76)?this.tsParseFunctionOrConstructorType("TSConstructorType"):this.isAbstractConstructorSignature()?this.tsParseFunctionOrConstructorType("TSConstructorType",!0):this.tsParseUnionTypeOrHigher()}tsParseTypeAssertion(){const e=this.startNode(),t=this.tsTryNextParseConstantContext()
 return e.typeAnnotation=t||this.tsNextThenParseType(),this.expectRelational(">"),e.expression=this.parseMaybeUnary(),this.finishNode(e,"TSTypeAssertion")}tsParseHeritageClause(e){const t=this.state.start,r=this.tsParseDelimitedList("HeritageClauseElement",this.tsParseExpressionWithTypeArguments.bind(this))
-return r.length||this.raise(t,ne.EmptyHeritageClauseType,e),r}tsParseExpressionWithTypeArguments(){const e=this.startNode()
-return e.expression=this.tsParseEntityName(!1),this.isRelational("<")&&(e.typeParameters=this.tsParseTypeArguments()),this.finishNode(e,"TSExpressionWithTypeArguments")}tsParseInterfaceDeclaration(e){e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript interface declaration",130),e.typeParameters=this.tsTryParseTypeParameters(),this.eat(o._extends)&&(e.extends=this.tsParseHeritageClause("extends"))
+return r.length||this.raise(t,ze.EmptyHeritageClauseType,e),r}tsParseExpressionWithTypeArguments(){const e=this.startNode()
+return e.expression=this.tsParseEntityName(!1),this.isRelational("<")&&(e.typeParameters=this.tsParseTypeArguments()),this.finishNode(e,"TSExpressionWithTypeArguments")}tsParseInterfaceDeclaration(e){this.match(5)?(e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript interface declaration",130)):(e.id=null,this.raise(this.state.start,ze.MissingInterfaceName)),e.typeParameters=this.tsTryParseTypeParameters(),this.eat(80)&&(e.extends=this.tsParseHeritageClause("extends"))
 const t=this.startNode()
-return t.body=this.tsInType(this.tsParseObjectTypeMembers.bind(this)),e.body=this.finishNode(t,"TSInterfaceBody"),this.finishNode(e,"TSInterfaceDeclaration")}tsParseTypeAliasDeclaration(e){return e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript type alias",2),e.typeParameters=this.tsTryParseTypeParameters(),e.typeAnnotation=this.tsInType((()=>{if(this.expect(o.eq),this.isContextual("intrinsic")&&this.lookahead().type!==o.dot){const e=this.startNode()
+return t.body=this.tsInType(this.tsParseObjectTypeMembers.bind(this)),e.body=this.finishNode(t,"TSInterfaceBody"),this.finishNode(e,"TSInterfaceDeclaration")}tsParseTypeAliasDeclaration(e){return e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript type alias",2),e.typeParameters=this.tsTryParseTypeParameters(),e.typeAnnotation=this.tsInType((()=>{if(this.expect(35),this.isContextual("intrinsic")&&24!==this.lookahead().type){const e=this.startNode()
 return this.next(),this.finishNode(e,"TSIntrinsicKeyword")}return this.tsParseType()})),this.semicolon(),this.finishNode(e,"TSTypeAliasDeclaration")}tsInNoContext(e){const t=this.state.context
 this.state.context=[t[0]]
 try{return e()}finally{this.state.context=t}}tsInType(e){const t=this.state.inType
 this.state.inType=!0
 try{return e()}finally{this.state.inType=t}}tsEatThenParseType(e){return this.match(e)?this.tsNextThenParseType():void 0}tsExpectThenParseType(e){return this.tsDoThenParseType((()=>this.expect(e)))}tsNextThenParseType(){return this.tsDoThenParseType((()=>this.next()))}tsDoThenParseType(e){return this.tsInType((()=>(e(),this.tsParseType())))}tsParseEnumMember(){const e=this.startNode()
-return e.id=this.match(o.string)?this.parseExprAtom():this.parseIdentifier(!0),this.eat(o.eq)&&(e.initializer=this.parseMaybeAssignAllowIn()),this.finishNode(e,"TSEnumMember")}tsParseEnumDeclaration(e,t){return t&&(e.const=!0),e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript enum declaration",t?779:267),this.expect(o.braceL),e.members=this.tsParseDelimitedList("EnumMembers",this.tsParseEnumMember.bind(this)),this.expect(o.braceR),this.finishNode(e,"TSEnumDeclaration")}tsParseModuleBlock(){const e=this.startNode()
-return this.scope.enter(0),this.expect(o.braceL),this.parseBlockOrModuleBlockBody(e.body=[],void 0,!0,o.braceR),this.scope.exit(),this.finishNode(e,"TSModuleBlock")}tsParseModuleOrNamespaceDeclaration(e,t=!1){if(e.id=this.parseIdentifier(),t||this.checkLVal(e.id,"module or namespace declaration",1024),this.eat(o.dot)){const t=this.startNode()
-this.tsParseModuleOrNamespaceDeclaration(t,!0),e.body=t}else this.scope.enter(128),this.prodParam.enter(0),e.body=this.tsParseModuleBlock(),this.prodParam.exit(),this.scope.exit()
-return this.finishNode(e,"TSModuleDeclaration")}tsParseAmbientExternalModuleDeclaration(e){return this.isContextual("global")?(e.global=!0,e.id=this.parseIdentifier()):this.match(o.string)?e.id=this.parseExprAtom():this.unexpected(),this.match(o.braceL)?(this.scope.enter(128),this.prodParam.enter(0),e.body=this.tsParseModuleBlock(),this.prodParam.exit(),this.scope.exit()):this.semicolon(),this.finishNode(e,"TSModuleDeclaration")}tsParseImportEqualsDeclaration(e,t){return e.isExport=t||!1,e.id=this.parseIdentifier(),this.checkLVal(e.id,"import equals declaration",9),this.expect(o.eq),e.moduleReference=this.tsParseModuleReference(),this.semicolon(),this.finishNode(e,"TSImportEqualsDeclaration")}tsIsExternalModuleReference(){return this.isContextual("require")&&40===this.lookaheadCharCode()}tsParseModuleReference(){return this.tsIsExternalModuleReference()?this.tsParseExternalModuleReference():this.tsParseEntityName(!1)}tsParseExternalModuleReference(){const e=this.startNode()
-if(this.expectContextual("require"),this.expect(o.parenL),!this.match(o.string))throw this.unexpected()
-return e.expression=this.parseExprAtom(),this.expect(o.parenR),this.finishNode(e,"TSExternalModuleReference")}tsLookAhead(e){const t=this.state.clone(),r=e()
+return e.id=this.match(4)?this.parseExprAtom():this.parseIdentifier(!0),this.eat(35)&&(e.initializer=this.parseMaybeAssignAllowIn()),this.finishNode(e,"TSEnumMember")}tsParseEnumDeclaration(e,t){return t&&(e.const=!0),e.id=this.parseIdentifier(),this.checkLVal(e.id,"typescript enum declaration",t?779:267),this.expect(13),e.members=this.tsParseDelimitedList("EnumMembers",this.tsParseEnumMember.bind(this)),this.expect(16),this.finishNode(e,"TSEnumDeclaration")}tsParseModuleBlock(){const e=this.startNode()
+return this.scope.enter(0),this.expect(13),this.parseBlockOrModuleBlockBody(e.body=[],void 0,!0,16),this.scope.exit(),this.finishNode(e,"TSModuleBlock")}tsParseModuleOrNamespaceDeclaration(e,t=!1){if(e.id=this.parseIdentifier(),t||this.checkLVal(e.id,"module or namespace declaration",1024),this.eat(24)){const t=this.startNode()
+this.tsParseModuleOrNamespaceDeclaration(t,!0),e.body=t}else this.scope.enter(256),this.prodParam.enter(0),e.body=this.tsParseModuleBlock(),this.prodParam.exit(),this.scope.exit()
+return this.finishNode(e,"TSModuleDeclaration")}tsParseAmbientExternalModuleDeclaration(e){return this.isContextual("global")?(e.global=!0,e.id=this.parseIdentifier()):this.match(4)?e.id=this.parseExprAtom():this.unexpected(),this.match(13)?(this.scope.enter(256),this.prodParam.enter(0),e.body=this.tsParseModuleBlock(),this.prodParam.exit(),this.scope.exit()):this.semicolon(),this.finishNode(e,"TSModuleDeclaration")}tsParseImportEqualsDeclaration(e,t){e.isExport=t||!1,e.id=this.parseIdentifier(),this.checkLVal(e.id,"import equals declaration",9),this.expect(35)
+const r=this.tsParseModuleReference()
+return"type"===e.importKind&&"TSExternalModuleReference"!==r.type&&this.raise(r.start,ze.ImportAliasHasImportType),e.moduleReference=r,this.semicolon(),this.finishNode(e,"TSImportEqualsDeclaration")}tsIsExternalModuleReference(){return this.isContextual("require")&&40===this.lookaheadCharCode()}tsParseModuleReference(){return this.tsIsExternalModuleReference()?this.tsParseExternalModuleReference():this.tsParseEntityName(!1)}tsParseExternalModuleReference(){const e=this.startNode()
+if(this.expectContextual("require"),this.expect(18),!this.match(4))throw this.unexpected()
+return e.expression=this.parseExprAtom(),this.expect(19),this.finishNode(e,"TSExternalModuleReference")}tsLookAhead(e){const t=this.state.clone(),r=e()
 return this.state=t,r}tsTryParseAndCatch(e){const t=this.tryParse((t=>e()||t()))
 if(!t.aborted&&t.node)return t.error&&(this.state=t.failState),t.node}tsTryParse(e){const t=this.state.clone(),r=e()
 return void 0!==r&&!1!==r?r:void(this.state=t)}tsTryParseDeclare(e){if(this.isLineTerminator())return
 let t,r=this.state.type
-return this.isContextual("let")&&(r=o._var,t="let"),this.tsInDeclareContext((()=>{switch(r){case o._function:return e.declare=!0,this.parseFunctionStatement(e,!1,!0)
-case o._class:return e.declare=!0,this.parseClass(e,!0,!1)
-case o._const:if(this.match(o._const)&&this.isLookaheadContextual("enum"))return this.expect(o._const),this.expectContextual("enum"),this.tsParseEnumDeclaration(e,!0)
-case o._var:return t=t||this.state.value,this.parseVarStatement(e,t)
-case o.name:{const t=this.state.value
+return this.isContextual("let")&&(r=73,t="let"),this.tsInAmbientContext((()=>{switch(r){case 67:return e.declare=!0,this.parseFunctionStatement(e,!1,!0)
+case 79:return e.declare=!0,this.parseClass(e,!0,!1)
+case 74:if(this.match(74)&&this.isLookaheadContextual("enum"))return this.expect(74),this.expectContextual("enum"),this.tsParseEnumDeclaration(e,!0)
+case 73:return t=t||this.state.value,this.parseVarStatement(e,t)
+case 5:{const t=this.state.value
 return"global"===t?this.tsParseAmbientExternalModuleDeclaration(e):this.tsParseDeclaration(e,t,!0)}}}))}tsTryParseExportDeclaration(){return this.tsParseDeclaration(this.startNode(),this.state.value,!0)}tsParseExpressionStatement(e,t){switch(t.name){case"declare":{const t=this.tsTryParseDeclare(e)
 if(t)return t.declare=!0,t
-break}case"global":if(this.match(o.braceL)){this.scope.enter(128),this.prodParam.enter(0)
+break}case"global":if(this.match(13)){this.scope.enter(256),this.prodParam.enter(0)
 const r=e
 return r.global=!0,r.id=t,r.body=this.tsParseModuleBlock(),this.scope.exit(),this.prodParam.exit(),this.finishNode(r,"TSModuleDeclaration")}break
-default:return this.tsParseDeclaration(e,t.name,!1)}}tsParseDeclaration(e,t,r){switch(t){case"abstract":if(this.tsCheckLineTerminatorAndMatch(o._class,r)){const t=e
-return t.abstract=!0,r&&(this.next(),this.match(o._class)||this.unexpected(null,o._class)),this.parseClass(t,!0,!1)}break
-case"enum":if(r||this.match(o.name))return r&&this.next(),this.tsParseEnumDeclaration(e,!1)
+default:return this.tsParseDeclaration(e,t.name,!1)}}tsParseDeclaration(e,t,r){switch(t){case"abstract":if(this.tsCheckLineTerminator(r)&&(this.match(79)||this.match(5)))return this.tsParseAbstractDeclaration(e)
 break
-case"interface":if(this.tsCheckLineTerminatorAndMatch(o.name,r))return r&&this.next(),this.tsParseInterfaceDeclaration(e)
+case"enum":if(r||this.match(5))return r&&this.next(),this.tsParseEnumDeclaration(e,!1)
 break
-case"module":if(r&&this.next(),this.match(o.string))return this.tsParseAmbientExternalModuleDeclaration(e)
-if(this.tsCheckLineTerminatorAndMatch(o.name,r))return this.tsParseModuleOrNamespaceDeclaration(e)
+case"interface":if(this.tsCheckLineTerminator(r)&&this.match(5))return this.tsParseInterfaceDeclaration(e)
 break
-case"namespace":if(this.tsCheckLineTerminatorAndMatch(o.name,r))return r&&this.next(),this.tsParseModuleOrNamespaceDeclaration(e)
+case"module":if(this.tsCheckLineTerminator(r)){if(this.match(4))return this.tsParseAmbientExternalModuleDeclaration(e)
+if(this.match(5))return this.tsParseModuleOrNamespaceDeclaration(e)}break
+case"namespace":if(this.tsCheckLineTerminator(r)&&this.match(5))return this.tsParseModuleOrNamespaceDeclaration(e)
 break
-case"type":if(this.tsCheckLineTerminatorAndMatch(o.name,r))return r&&this.next(),this.tsParseTypeAliasDeclaration(e)}}tsCheckLineTerminatorAndMatch(e,t){return(t||this.match(e))&&!this.isLineTerminator()}tsTryParseGenericAsyncArrowFunction(e,t){if(!this.isRelational("<"))return
+case"type":if(this.tsCheckLineTerminator(r)&&this.match(5))return this.tsParseTypeAliasDeclaration(e)}}tsCheckLineTerminator(e){return e?!this.hasFollowingLineBreak()&&(this.next(),!0):!this.isLineTerminator()}tsTryParseGenericAsyncArrowFunction(e,t){if(!this.isRelational("<"))return
 const r=this.state.maybeInArrowParameters
 this.state.maybeInArrowParameters=!0
 const i=this.tsTryParseAndCatch((()=>{const r=this.startNodeAt(e,t)
-return r.typeParameters=this.tsParseTypeParameters(),super.parseFunctionParams(r),r.returnType=this.tsTryParseTypeOrTypePredicateAnnotation(),this.expect(o.arrow),r}))
+return r.typeParameters=this.tsParseTypeParameters(),super.parseFunctionParams(r),r.returnType=this.tsTryParseTypeOrTypePredicateAnnotation(),this.expect(27),r}))
 return this.state.maybeInArrowParameters=r,i?this.parseArrowExpression(i,null,!0):void 0}tsParseTypeArguments(){const e=this.startNode()
-return e.params=this.tsInType((()=>this.tsInNoContext((()=>(this.expectRelational("<"),this.tsParseDelimitedList("TypeParametersOrArguments",this.tsParseType.bind(this))))))),0===e.params.length&&this.raise(e.start,ne.EmptyTypeArguments),this.state.exprAllowed=!1,this.expectRelational(">"),this.finishNode(e,"TSTypeParameterInstantiation")}tsIsDeclarationStart(){if(this.match(o.name))switch(this.state.value){case"abstract":case"declare":case"enum":case"interface":case"module":case"namespace":case"type":return!0}return!1}isExportDefaultSpecifier(){return!this.tsIsDeclarationStart()&&super.isExportDefaultSpecifier()}parseAssignableListItem(e,t){const r=this.state.start,i=this.state.startLoc
-let n,s=!1
-void 0!==e&&(n=this.parseAccessModifier(),s=!!this.tsParseModifier(["readonly"]),!1===e&&(n||s)&&this.raise(r,ne.UnexpectedParameterModifier))
-const a=this.parseMaybeDefault()
-this.parseAssignableListItemTypes(a)
-const o=this.parseMaybeDefault(a.start,a.loc.start,a)
-if(n||s){const e=this.startNodeAt(r,i)
-return t.length&&(e.decorators=t),n&&(e.accessibility=n),s&&(e.readonly=s),"Identifier"!==o.type&&"AssignmentPattern"!==o.type&&this.raise(e.start,ne.UnsupportedParameterPropertyKind),e.parameter=o,this.finishNode(e,"TSParameterProperty")}return t.length&&(a.decorators=t),o}parseFunctionBodyAndFinish(e,t,r=!1){this.match(o.colon)&&(e.returnType=this.tsParseTypeOrTypePredicateAnnotation(o.colon))
+return e.params=this.tsInType((()=>this.tsInNoContext((()=>(this.expectRelational("<"),this.tsParseDelimitedList("TypeParametersOrArguments",this.tsParseType.bind(this))))))),0===e.params.length&&this.raise(e.start,ze.EmptyTypeArguments),this.expectRelational(">"),this.finishNode(e,"TSTypeParameterInstantiation")}tsIsDeclarationStart(){if(this.match(5))switch(this.state.value){case"abstract":case"declare":case"enum":case"interface":case"module":case"namespace":case"type":return!0}return!1}isExportDefaultSpecifier(){return!this.tsIsDeclarationStart()&&super.isExportDefaultSpecifier()}parseAssignableListItem(e,t){const r=this.state.start,i=this.state.startLoc
+let n,s=!1,a=!1
+if(void 0!==e){const t={}
+this.tsParseModifiers(t,["public","private","protected","override","readonly"]),n=t.accessibility,a=t.override,s=t.readonly,!1===e&&(n||s||a)&&this.raise(r,ze.UnexpectedParameterModifier)}const o=this.parseMaybeDefault()
+this.parseAssignableListItemTypes(o)
+const l=this.parseMaybeDefault(o.start,o.loc.start,o)
+if(n||s||a){const e=this.startNodeAt(r,i)
+return t.length&&(e.decorators=t),n&&(e.accessibility=n),s&&(e.readonly=s),a&&(e.override=a),"Identifier"!==l.type&&"AssignmentPattern"!==l.type&&this.raise(e.start,ze.UnsupportedParameterPropertyKind),e.parameter=l,this.finishNode(e,"TSParameterProperty")}return t.length&&(o.decorators=t),l}parseFunctionBodyAndFinish(e,t,r=!1){this.match(22)&&(e.returnType=this.tsParseTypeOrTypePredicateAnnotation(22))
 const i="FunctionDeclaration"===t?"TSDeclareFunction":"ClassMethod"===t?"TSDeclareMethod":void 0
-i&&!this.match(o.braceL)&&this.isLineTerminator()?this.finishNode(e,i):"TSDeclareFunction"===i&&this.state.isDeclareContext&&(this.raise(e.start,ne.DeclareFunctionHasImplementation),e.declare)?super.parseFunctionBodyAndFinish(e,i,r):super.parseFunctionBodyAndFinish(e,t,r)}registerFunctionStatementId(e){!e.body&&e.id?this.checkLVal(e.id,"function name",1024):super.registerFunctionStatementId(...arguments)}tsCheckForInvalidTypeCasts(e){e.forEach((e=>{"TSTypeCastExpression"===(null==e?void 0:e.type)&&this.raise(e.typeAnnotation.start,ne.UnexpectedTypeAnnotation)}))}toReferencedList(e,t){return this.tsCheckForInvalidTypeCasts(e),e}parseArrayLike(...e){const t=super.parseArrayLike(...e)
-return"ArrayExpression"===t.type&&this.tsCheckForInvalidTypeCasts(t.elements),t}parseSubscript(e,t,r,i,n){if(!this.hasPrecedingLineBreak()&&this.match(o.bang)){this.state.exprAllowed=!1,this.next()
+i&&!this.match(13)&&this.isLineTerminator()?this.finishNode(e,i):"TSDeclareFunction"===i&&this.state.isAmbientContext&&(this.raise(e.start,ze.DeclareFunctionHasImplementation),e.declare)?super.parseFunctionBodyAndFinish(e,i,r):super.parseFunctionBodyAndFinish(e,t,r)}registerFunctionStatementId(e){!e.body&&e.id?this.checkLVal(e.id,"function name",1024):super.registerFunctionStatementId(...arguments)}tsCheckForInvalidTypeCasts(e){e.forEach((e=>{"TSTypeCastExpression"===(null==e?void 0:e.type)&&this.raise(e.typeAnnotation.start,ze.UnexpectedTypeAnnotation)}))}toReferencedList(e,t){return this.tsCheckForInvalidTypeCasts(e),e}parseArrayLike(...e){const t=super.parseArrayLike(...e)
+return"ArrayExpression"===t.type&&this.tsCheckForInvalidTypeCasts(t.elements),t}parseSubscript(e,t,r,i,n){if(!this.hasPrecedingLineBreak()&&this.match(40)){this.state.exprAllowed=!1,this.next()
 const i=this.startNodeAt(t,r)
-return i.expression=e,this.finishNode(i,"TSNonNullExpression")}if(this.isRelational("<")){const s=this.tsTryParseAndCatch((()=>{if(!i&&this.atPossibleAsyncArrow(e)){const e=this.tsTryParseGenericAsyncArrowFunction(t,r)
-if(e)return e}const s=this.startNodeAt(t,r)
-s.callee=e
-const a=this.tsParseTypeArguments()
-if(a){if(!i&&this.eat(o.parenL))return s.arguments=this.parseCallExpressionArguments(o.parenR,!1),this.tsCheckForInvalidTypeCasts(s.arguments),s.typeParameters=a,this.finishCallExpression(s,n.optionalChainMember)
-if(this.match(o.backQuote)){const i=this.parseTaggedTemplateExpression(e,t,r,n)
-return i.typeParameters=a,i}}this.unexpected()}))
-if(s)return s}return super.parseSubscript(e,t,r,i,n)}parseNewArguments(e){if(this.isRelational("<")){const t=this.tsTryParseAndCatch((()=>{const e=this.tsParseTypeArguments()
-return this.match(o.parenL)||this.unexpected(),e}))
-t&&(e.typeParameters=t)}super.parseNewArguments(e)}parseExprOp(e,t,r,i){if(re(o._in.binop)>i&&!this.hasPrecedingLineBreak()&&this.isContextual("as")){const n=this.startNodeAt(t,r)
+return i.expression=e,this.finishNode(i,"TSNonNullExpression")}let s=!1
+if(this.match(26)&&60===this.lookaheadCharCode()){if(i)return n.stop=!0,e
+n.optionalChainMember=s=!0,this.next()}if(this.isRelational("<")){let a
+const o=this.tsTryParseAndCatch((()=>{if(!i&&this.atPossibleAsyncArrow(e)){const e=this.tsTryParseGenericAsyncArrowFunction(t,r)
+if(e)return e}const o=this.startNodeAt(t,r)
+o.callee=e
+const l=this.tsParseTypeArguments()
+if(l){if(s&&!this.match(18)&&(a=this.state.pos,this.unexpected()),!i&&this.eat(18))return o.arguments=this.parseCallExpressionArguments(19,!1),this.tsCheckForInvalidTypeCasts(o.arguments),o.typeParameters=l,n.optionalChainMember&&(o.optional=s),this.finishCallExpression(o,n.optionalChainMember)
+if(this.match(30)){const i=this.parseTaggedTemplateExpression(e,t,r,n)
+return i.typeParameters=l,i}}this.unexpected()}))
+if(a&&this.unexpected(a,18),o)return o}return super.parseSubscript(e,t,r,i,n)}parseNewArguments(e){if(this.isRelational("<")){const t=this.tsTryParseAndCatch((()=>{const e=this.tsParseTypeArguments()
+return this.match(18)||this.unexpected(),e}))
+t&&(e.typeParameters=t)}super.parseNewArguments(e)}parseExprOp(e,t,r,i){if(F(57)>i&&!this.hasPrecedingLineBreak()&&this.isContextual("as")){const n=this.startNodeAt(t,r)
 n.expression=e
 const s=this.tsTryNextParseConstantContext()
-return n.typeAnnotation=s||this.tsNextThenParseType(),this.finishNode(n,"TSAsExpression"),this.reScan_lt_gt(),this.parseExprOp(n,t,r,i)}return super.parseExprOp(e,t,r,i)}checkReservedWord(e,t,r,i){}checkDuplicateExports(){}parseImport(e){if(this.match(o.name)||this.match(o.star)||this.match(o.braceL)){const t=this.lookahead()
-if(this.match(o.name)&&t.type===o.eq)return this.tsParseImportEqualsDeclaration(e)
-!this.isContextual("type")||t.type===o.comma||t.type===o.name&&"from"===t.value||(e.importKind="type",this.next())}e.importKind||(e.importKind="value")
-const t=super.parseImport(e)
-return"type"===t.importKind&&t.specifiers.length>1&&"ImportDefaultSpecifier"===t.specifiers[0].type&&this.raise(t.start,"A type-only import can specify a default import or named bindings, but not both."),t}parseExport(e){if(this.match(o._import))return this.expect(o._import),this.tsParseImportEqualsDeclaration(e,!0)
-if(this.eat(o.eq)){const t=e
+return n.typeAnnotation=s||this.tsNextThenParseType(),this.finishNode(n,"TSAsExpression"),this.reScan_lt_gt(),this.parseExprOp(n,t,r,i)}return super.parseExprOp(e,t,r,i)}checkReservedWord(e,t,r,i){}checkDuplicateExports(){}parseImport(e){if(e.importKind="value",this.match(5)||this.match(54)||this.match(13)){let t=this.lookahead()
+if(!this.isContextual("type")||20===t.type||5===t.type&&"from"===t.value||35===t.type||(e.importKind="type",this.next(),t=this.lookahead()),this.match(5)&&35===t.type)return this.tsParseImportEqualsDeclaration(e)}const t=super.parseImport(e)
+return"type"===t.importKind&&t.specifiers.length>1&&"ImportDefaultSpecifier"===t.specifiers[0].type&&this.raise(t.start,ze.TypeImportCannotSpecifyDefaultAndNamed),t}parseExport(e){if(this.match(82))return this.next(),this.isContextual("type")&&61!==this.lookaheadCharCode()?(e.importKind="type",this.next()):e.importKind="value",this.tsParseImportEqualsDeclaration(e,!0)
+if(this.eat(35)){const t=e
 return t.expression=this.parseExpression(),this.semicolon(),this.finishNode(t,"TSExportAssignment")}if(this.eatContextual("as")){const t=e
-return this.expectContextual("namespace"),t.id=this.parseIdentifier(),this.semicolon(),this.finishNode(t,"TSNamespaceExportDeclaration")}return this.isContextual("type")&&this.lookahead().type===o.braceL?(this.next(),e.exportKind="type"):e.exportKind="value",super.parseExport(e)}isAbstractClass(){return this.isContextual("abstract")&&this.lookahead().type===o._class}parseExportDefaultExpression(){if(this.isAbstractClass()){const e=this.startNode()
-return this.next(),this.parseClass(e,!0,!0),e.abstract=!0,e}if("interface"===this.state.value){const e=this.tsParseDeclaration(this.startNode(),this.state.value,!0)
-if(e)return e}return super.parseExportDefaultExpression()}parseStatementContent(e,t){if(this.state.type===o._const){const e=this.lookahead()
-if(e.type===o.name&&"enum"===e.value){const e=this.startNode()
-return this.expect(o._const),this.expectContextual("enum"),this.tsParseEnumDeclaration(e,!0)}}return super.parseStatementContent(e,t)}parseAccessModifier(){return this.tsParseModifier(["public","protected","private"])}parseClassMember(e,t,r){this.tsParseModifiers(t,["declare"])
-const i=this.parseAccessModifier()
-i&&(t.accessibility=i),this.tsParseModifiers(t,["declare"])
-const n=()=>{super.parseClassMember(e,t,r)}
-t.declare?this.tsInDeclareContext(n):n()}parseClassMemberWithIsStatic(e,t,r,i){this.tsParseModifiers(t,["abstract","readonly","declare"])
-const n=this.tsTryParseIndexSignature(t)
-if(n)return e.body.push(n),t.abstract&&this.raise(t.start,ne.IndexSignatureHasAbstract),i&&this.raise(t.start,ne.IndexSignatureHasStatic),t.accessibility&&this.raise(t.start,ne.IndexSignatureHasAccessibility,t.accessibility),void(t.declare&&this.raise(t.start,ne.IndexSignatureHasDeclare))
-super.parseClassMemberWithIsStatic(e,t,r,i)}parsePostMemberNameModifiers(e){this.eat(o.question)&&(e.optional=!0),e.readonly&&this.match(o.parenL)&&this.raise(e.start,ne.ClassMethodHasReadonly),e.declare&&this.match(o.parenL)&&this.raise(e.start,ne.ClassMethodHasDeclare)}parseExpressionStatement(e,t){return("Identifier"===t.type?this.tsParseExpressionStatement(e,t):void 0)||super.parseExpressionStatement(e,t)}shouldParseExportDeclaration(){return!!this.tsIsDeclarationStart()||super.shouldParseExportDeclaration()}parseConditional(e,t,r,i){if(!i||!this.match(o.question))return super.parseConditional(e,t,r,i)
+return this.expectContextual("namespace"),t.id=this.parseIdentifier(),this.semicolon(),this.finishNode(t,"TSNamespaceExportDeclaration")}return this.isContextual("type")&&13===this.lookahead().type?(this.next(),e.exportKind="type"):e.exportKind="value",super.parseExport(e)}isAbstractClass(){return this.isContextual("abstract")&&79===this.lookahead().type}parseExportDefaultExpression(){if(this.isAbstractClass()){const e=this.startNode()
+return this.next(),e.abstract=!0,this.parseClass(e,!0,!0),e}if("interface"===this.state.value){const e=this.startNode()
+this.next()
+const t=this.tsParseInterfaceDeclaration(e)
+if(t)return t}return super.parseExportDefaultExpression()}parseStatementContent(e,t){if(74===this.state.type){const e=this.lookahead()
+if(5===e.type&&"enum"===e.value){const e=this.startNode()
+return this.expect(74),this.expectContextual("enum"),this.tsParseEnumDeclaration(e,!0)}}return super.parseStatementContent(e,t)}parseAccessModifier(){return this.tsParseModifier(["public","protected","private"])}tsHasSomeModifiers(e,t){return t.some((t=>qe(t)?e.accessibility===t:!!e[t]))}tsIsStartOfStaticBlocks(){return this.isContextual("static")&&123===this.lookaheadCharCode()}parseClassMember(e,t,r){const i=["declare","private","public","protected","override","abstract","readonly","static"]
+this.tsParseModifiers(t,i,void 0,void 0,!0)
+const n=()=>{this.tsIsStartOfStaticBlocks()?(this.next(),this.next(),this.tsHasSomeModifiers(t,i)&&this.raise(this.state.pos,ze.StaticBlockCannotHaveModifier),this.parseClassStaticBlock(e,t)):this.parseClassMemberWithIsStatic(e,t,r,!!t.static)}
+t.declare?this.tsInAmbientContext(n):n()}parseClassMemberWithIsStatic(e,t,r,i){const n=this.tsTryParseIndexSignature(t)
+if(n)return e.body.push(n),t.abstract&&this.raise(t.start,ze.IndexSignatureHasAbstract),t.accessibility&&this.raise(t.start,ze.IndexSignatureHasAccessibility,t.accessibility),t.declare&&this.raise(t.start,ze.IndexSignatureHasDeclare),void(t.override&&this.raise(t.start,ze.IndexSignatureHasOverride))
+!this.state.inAbstractClass&&t.abstract&&this.raise(t.start,ze.NonAbstractClassHasAbstractMethod),t.override&&(r.hadSuperClass||this.raise(t.start,ze.OverrideNotInSubClass)),super.parseClassMemberWithIsStatic(e,t,r,i)}parsePostMemberNameModifiers(e){this.eat(25)&&(e.optional=!0),e.readonly&&this.match(18)&&this.raise(e.start,ze.ClassMethodHasReadonly),e.declare&&this.match(18)&&this.raise(e.start,ze.ClassMethodHasDeclare)}parseExpressionStatement(e,t){return("Identifier"===t.type?this.tsParseExpressionStatement(e,t):void 0)||super.parseExpressionStatement(e,t)}shouldParseExportDeclaration(){return!!this.tsIsDeclarationStart()||super.shouldParseExportDeclaration()}parseConditional(e,t,r,i){if(!this.state.maybeInArrowParameters||!this.match(25))return super.parseConditional(e,t,r,i)
 const n=this.tryParse((()=>super.parseConditional(e,t,r)))
-return n.node?(n.error&&(this.state=n.failState),n.node):(i.start=n.error.pos||this.state.start,e)}parseParenItem(e,t,r){if(e=super.parseParenItem(e,t,r),this.eat(o.question)&&(e.optional=!0,this.resetEndLocation(e)),this.match(o.colon)){const i=this.startNodeAt(t,r)
+return n.node?(n.error&&(this.state=n.failState),n.node):(n.error&&super.setOptionalParametersError(i,n.error),e)}parseParenItem(e,t,r){if(e=super.parseParenItem(e,t,r),this.eat(25)&&(e.optional=!0,this.resetEndLocation(e)),this.match(22)){const i=this.startNodeAt(t,r)
 return i.expression=e,i.typeAnnotation=this.tsParseTypeAnnotation(),this.finishNode(i,"TSTypeCastExpression")}return e}parseExportDeclaration(e){const t=this.state.start,r=this.state.startLoc,i=this.eatContextual("declare")
+if(i&&(this.isContextual("declare")||!this.shouldParseExportDeclaration()))throw this.raise(this.state.start,ze.ExpectedAmbientAfterExportDeclare)
 let n
-return this.match(o.name)&&(n=this.tsTryParseExportDeclaration()),n||(n=super.parseExportDeclaration(e)),n&&("TSInterfaceDeclaration"===n.type||"TSTypeAliasDeclaration"===n.type||i)&&(e.exportKind="type"),n&&i&&(this.resetStartLocation(n,t,r),n.declare=!0),n}parseClassId(e,t,r){if((!t||r)&&this.isContextual("implements"))return
+return this.match(5)&&(n=this.tsTryParseExportDeclaration()),n||(n=super.parseExportDeclaration(e)),n&&("TSInterfaceDeclaration"===n.type||"TSTypeAliasDeclaration"===n.type||i)&&(e.exportKind="type"),n&&i&&(this.resetStartLocation(n,t,r),n.declare=!0),n}parseClassId(e,t,r){if((!t||r)&&this.isContextual("implements"))return
 super.parseClassId(e,t,r,e.declare?1024:139)
 const i=this.tsTryParseTypeParameters()
-i&&(e.typeParameters=i)}parseClassPropertyAnnotation(e){!e.optional&&this.eat(o.bang)&&(e.definite=!0)
+i&&(e.typeParameters=i)}parseClassPropertyAnnotation(e){!e.optional&&this.eat(40)&&(e.definite=!0)
 const t=this.tsTryParseTypeAnnotation()
-t&&(e.typeAnnotation=t)}parseClassProperty(e){return this.parseClassPropertyAnnotation(e),this.state.isDeclareContext&&this.match(o.eq)&&this.raise(this.state.start,ne.DeclareClassFieldHasInitializer),super.parseClassProperty(e)}parseClassPrivateProperty(e){return e.abstract&&this.raise(e.start,ne.PrivateElementHasAbstract),e.accessibility&&this.raise(e.start,ne.PrivateElementHasAccessibility,e.accessibility),this.parseClassPropertyAnnotation(e),super.parseClassPrivateProperty(e)}pushClassMethod(e,t,r,i,n,s){const a=this.tsTryParseTypeParameters()
-a&&n&&this.raise(a.start,ne.ConstructorHasTypeParameters),a&&(t.typeParameters=a),super.pushClassMethod(e,t,r,i,n,s)}pushClassPrivateMethod(e,t,r,i){const n=this.tsTryParseTypeParameters()
+t&&(e.typeAnnotation=t)}parseClassProperty(e){if(this.parseClassPropertyAnnotation(e),this.state.isAmbientContext&&this.match(35)&&this.raise(this.state.start,ze.DeclareClassFieldHasInitializer),e.abstract&&this.match(35)){const{key:t}=e
+this.raise(this.state.start,ze.AbstractPropertyHasInitializer,"Identifier"!==t.type||e.computed?`[${this.input.slice(t.start,t.end)}]`:t.name)}return super.parseClassProperty(e)}parseClassPrivateProperty(e){return e.abstract&&this.raise(e.start,ze.PrivateElementHasAbstract),e.accessibility&&this.raise(e.start,ze.PrivateElementHasAccessibility,e.accessibility),this.parseClassPropertyAnnotation(e),super.parseClassPrivateProperty(e)}pushClassMethod(e,t,r,i,n,s){const a=this.tsTryParseTypeParameters()
+a&&n&&this.raise(a.start,ze.ConstructorHasTypeParameters),!t.declare||"get"!==t.kind&&"set"!==t.kind||this.raise(t.start,ze.DeclareAccessor,t.kind),a&&(t.typeParameters=a),super.pushClassMethod(e,t,r,i,n,s)}pushClassPrivateMethod(e,t,r,i){const n=this.tsTryParseTypeParameters()
 n&&(t.typeParameters=n),super.pushClassPrivateMethod(e,t,r,i)}parseClassSuper(e){super.parseClassSuper(e),e.superClass&&this.isRelational("<")&&(e.superTypeParameters=this.tsParseTypeArguments()),this.eatContextual("implements")&&(e.implements=this.tsParseHeritageClause("implements"))}parseObjPropValue(e,...t){const r=this.tsTryParseTypeParameters()
 r&&(e.typeParameters=r),super.parseObjPropValue(e,...t)}parseFunctionParams(e,t){const r=this.tsTryParseTypeParameters()
-r&&(e.typeParameters=r),super.parseFunctionParams(e,t)}parseVarId(e,t){super.parseVarId(e,t),"Identifier"===e.id.type&&this.eat(o.bang)&&(e.definite=!0)
+r&&(e.typeParameters=r),super.parseFunctionParams(e,t)}parseVarId(e,t){super.parseVarId(e,t),"Identifier"===e.id.type&&this.eat(40)&&(e.definite=!0)
 const r=this.tsTryParseTypeAnnotation()
-r&&(e.id.typeAnnotation=r,this.resetEndLocation(e.id))}parseAsyncArrowFromCallExpression(e,t){return this.match(o.colon)&&(e.returnType=this.tsParseTypeAnnotation()),super.parseAsyncArrowFromCallExpression(e,t)}parseMaybeAssign(...e){var t,r,i,n,s,a,l
-let u,c,h,p
-if(this.match(o.jsxTagStart)){if(u=this.state.clone(),c=this.tryParse((()=>super.parseMaybeAssign(...e)),u),!c.error)return c.node
+r&&(e.id.typeAnnotation=r,this.resetEndLocation(e.id))}parseAsyncArrowFromCallExpression(e,t){return this.match(22)&&(e.returnType=this.tsParseTypeAnnotation()),super.parseAsyncArrowFromCallExpression(e,t)}parseMaybeAssign(...e){var t,r,i,n,s,a,o
+let l,u,c,h
+if(this.hasPlugin("jsx")&&(this.match(94)||this.isRelational("<"))){if(l=this.state.clone(),u=this.tryParse((()=>super.parseMaybeAssign(...e)),l),!u.error)return u.node
 const{context:t}=this.state
-t[t.length-1]===b.j_oTag?t.length-=2:t[t.length-1]===b.j_expr&&(t.length-=1)}if(!(null==(t=c)?void 0:t.error)&&!this.isRelational("<"))return super.parseMaybeAssign(...e)
-u=u||this.state.clone()
-const d=this.tryParse((t=>{var r
-p=this.tsParseTypeParameters()
-const i=super.parseMaybeAssign(...e)
-return("ArrowFunctionExpression"!==i.type||i.extra&&i.extra.parenthesized)&&t(),0!==(null==(r=p)?void 0:r.params.length)&&this.resetStartLocationFromNode(i,p),i.typeParameters=p,i}),u)
-if(!d.error&&!d.aborted)return d.node
-if(!c&&(ie(!this.hasPlugin("jsx")),h=this.tryParse((()=>super.parseMaybeAssign(...e)),u),!h.error))return h.node
-if(null==(r=c)?void 0:r.node)return this.state=c.failState,c.node
-if(d.node)return this.state=d.failState,d.node
-if(null==(i=h)?void 0:i.node)return this.state=h.failState,h.node
-if(null==(n=c)?void 0:n.thrown)throw c.error
-if(d.thrown)throw d.error
-if(null==(s=h)?void 0:s.thrown)throw h.error
-throw(null==(a=c)?void 0:a.error)||d.error||(null==(l=h)?void 0:l.error)}parseMaybeUnary(e){return!this.hasPlugin("jsx")&&this.isRelational("<")?this.tsParseTypeAssertion():super.parseMaybeUnary(e)}parseArrow(e){if(this.match(o.colon)){const t=this.tryParse((e=>{const t=this.tsParseTypeOrTypePredicateAnnotation(o.colon)
-return!this.canInsertSemicolon()&&this.match(o.arrow)||e(),t}))
+t[t.length-1]===x.j_oTag?t.length-=2:t[t.length-1]===x.j_expr&&(t.length-=1)}if(!(null!=(t=u)&&t.error||this.isRelational("<")))return super.parseMaybeAssign(...e)
+l=l||this.state.clone()
+const p=this.tryParse((t=>{var r,i
+h=this.tsParseTypeParameters()
+const n=super.parseMaybeAssign(...e)
+return("ArrowFunctionExpression"!==n.type||null!=(r=n.extra)&&r.parenthesized)&&t(),0!==(null==(i=h)?void 0:i.params.length)&&this.resetStartLocationFromNode(n,h),n.typeParameters=h,n}),l)
+if(!p.error&&!p.aborted)return p.node
+if(!u&&(Ue(!this.hasPlugin("jsx")),c=this.tryParse((()=>super.parseMaybeAssign(...e)),l),!c.error))return c.node
+if(null!=(r=u)&&r.node)return this.state=u.failState,u.node
+if(p.node)return this.state=p.failState,p.node
+if(null!=(i=c)&&i.node)return this.state=c.failState,c.node
+if(null!=(n=u)&&n.thrown)throw u.error
+if(p.thrown)throw p.error
+if(null!=(s=c)&&s.thrown)throw c.error
+throw(null==(a=u)?void 0:a.error)||p.error||(null==(o=c)?void 0:o.error)}parseMaybeUnary(e){return!this.hasPlugin("jsx")&&this.isRelational("<")?this.tsParseTypeAssertion():super.parseMaybeUnary(e)}parseArrow(e){if(this.match(22)){const t=this.tryParse((e=>{const t=this.tsParseTypeOrTypePredicateAnnotation(22)
+return!this.canInsertSemicolon()&&this.match(27)||e(),t}))
 if(t.aborted)return
-t.thrown||(t.error&&(this.state=t.failState),e.returnType=t.node)}return super.parseArrow(e)}parseAssignableListItemTypes(e){this.eat(o.question)&&("Identifier"===e.type||this.state.isDeclareContext||this.state.inType||this.raise(e.start,ne.PatternIsOptional),e.optional=!0)
+t.thrown||(t.error&&(this.state=t.failState),e.returnType=t.node)}return super.parseArrow(e)}parseAssignableListItemTypes(e){this.eat(25)&&("Identifier"===e.type||this.state.isAmbientContext||this.state.inType||this.raise(e.start,ze.PatternIsOptional),e.optional=!0)
 const t=this.tsTryParseTypeAnnotation()
-return t&&(e.typeAnnotation=t),this.resetEndLocation(e),e}toAssignable(e,t=!1){switch(e.type){case"TSTypeCastExpression":return super.toAssignable(this.typeCastToParameter(e),t)
+return t&&(e.typeAnnotation=t),this.resetEndLocation(e),e}isAssignable(e,t){switch(e.type){case"TSTypeCastExpression":return this.isAssignable(e.expression,t)
+case"TSParameterProperty":return!0
+default:return super.isAssignable(e,t)}}toAssignable(e,t=!1){switch(e.type){case"TSTypeCastExpression":return super.toAssignable(this.typeCastToParameter(e),t)
 case"TSParameterProperty":return super.toAssignable(e,t)
+case"ParenthesizedExpression":return this.toAssignableParenthesizedExpression(e,t)
 case"TSAsExpression":case"TSNonNullExpression":case"TSTypeAssertion":return e.expression=this.toAssignable(e.expression,t),e
-default:return super.toAssignable(e,t)}}checkLVal(e,t,...r){switch(e.type){case"TSTypeCastExpression":return
+default:return super.toAssignable(e,t)}}toAssignableParenthesizedExpression(e,t){switch(e.expression.type){case"TSAsExpression":case"TSNonNullExpression":case"TSTypeAssertion":case"ParenthesizedExpression":return e.expression=this.toAssignable(e.expression,t),e
+default:return super.toAssignable(e,t)}}checkLVal(e,t,...r){var i
+switch(e.type){case"TSTypeCastExpression":return
 case"TSParameterProperty":return void this.checkLVal(e.parameter,"parameter property",...r)
-case"TSAsExpression":case"TSNonNullExpression":case"TSTypeAssertion":return void this.checkLVal(e.expression,t,...r)
-default:return void super.checkLVal(e,t,...r)}}parseBindingAtom(){switch(this.state.type){case o._this:return this.parseIdentifier(!0)
+case"TSAsExpression":case"TSTypeAssertion":if(!(r[0]||"parenthesized expression"===t||null!=(i=e.extra)&&i.parenthesized)){this.raise(e.start,m.InvalidLhs,t)
+break}return void this.checkLVal(e.expression,"parenthesized expression",...r)
+case"TSNonNullExpression":return void this.checkLVal(e.expression,t,...r)
+default:return void super.checkLVal(e,t,...r)}}parseBindingAtom(){switch(this.state.type){case 77:return this.parseIdentifier(!0)
 default:return super.parseBindingAtom()}}parseMaybeDecoratorArguments(e){if(this.isRelational("<")){const t=this.tsParseTypeArguments()
-if(this.match(o.parenL)){const r=super.parseMaybeDecoratorArguments(e)
-return r.typeParameters=t,r}this.unexpected(this.state.start,o.parenL)}return super.parseMaybeDecoratorArguments(e)}isClassMethod(){return this.isRelational("<")||super.isClassMethod()}isClassProperty(){return this.match(o.bang)||this.match(o.colon)||super.isClassProperty()}parseMaybeDefault(...e){const t=super.parseMaybeDefault(...e)
-return"AssignmentPattern"===t.type&&t.typeAnnotation&&t.right.start<t.typeAnnotation.start&&this.raise(t.typeAnnotation.start,ne.TypeAnnotationAfterAssign),t}getTokenFromCode(e){return!this.state.inType||62!==e&&60!==e?super.getTokenFromCode(e):this.finishOp(o.relational,1)}reScan_lt_gt(){if(this.match(o.relational)){const e=this.input.charCodeAt(this.state.start)
+if(this.match(18)){const r=super.parseMaybeDecoratorArguments(e)
+return r.typeParameters=t,r}this.unexpected(this.state.start,18)}return super.parseMaybeDecoratorArguments(e)}checkCommaAfterRest(e){this.state.isAmbientContext&&this.match(20)&&this.lookaheadCharCode()===e?this.next():super.checkCommaAfterRest(e)}isClassMethod(){return this.isRelational("<")||super.isClassMethod()}isClassProperty(){return this.match(40)||this.match(22)||super.isClassProperty()}parseMaybeDefault(...e){const t=super.parseMaybeDefault(...e)
+return"AssignmentPattern"===t.type&&t.typeAnnotation&&t.right.start<t.typeAnnotation.start&&this.raise(t.typeAnnotation.start,ze.TypeAnnotationAfterAssign),t}getTokenFromCode(e){return!this.state.inType||62!==e&&60!==e?super.getTokenFromCode(e):this.finishOp(50,1)}reScan_lt_gt(){if(this.match(50)){const e=this.input.charCodeAt(this.state.start)
 60!==e&&62!==e||(this.state.pos-=1,this.readToken_lt_gt(e))}}toAssignableList(e){for(let t=0;t<e.length;t++){const r=e[t]
 if(r)switch(r.type){case"TSTypeCastExpression":e[t]=this.typeCastToParameter(r)
 break
-case"TSAsExpression":case"TSTypeAssertion":this.state.maybeInArrowParameters?this.raise(r.start,ne.UnexpectedTypeCastInParameter):e[t]=this.typeCastToParameter(r)}}return super.toAssignableList(...arguments)}typeCastToParameter(e){return e.expression.typeAnnotation=e.typeAnnotation,this.resetEndLocation(e.expression,e.typeAnnotation.end,e.typeAnnotation.loc.end),e.expression}shouldParseArrow(){return this.match(o.colon)||super.shouldParseArrow()}shouldParseAsyncArrow(){return this.match(o.colon)||super.shouldParseAsyncArrow()}canHaveLeadingDecorator(){return super.canHaveLeadingDecorator()||this.isAbstractClass()}jsxParseOpeningElementAfterName(e){if(this.isRelational("<")){const t=this.tsTryParseAndCatch((()=>this.tsParseTypeArguments()))
+case"TSAsExpression":case"TSTypeAssertion":this.state.maybeInArrowParameters?this.raise(r.start,ze.UnexpectedTypeCastInParameter):e[t]=this.typeCastToParameter(r)}}return super.toAssignableList(...arguments)}typeCastToParameter(e){return e.expression.typeAnnotation=e.typeAnnotation,this.resetEndLocation(e.expression,e.typeAnnotation.end,e.typeAnnotation.loc.end),e.expression}shouldParseArrow(e){return this.match(22)?e.every((e=>this.isAssignable(e,!0))):super.shouldParseArrow(e)}shouldParseAsyncArrow(){return this.match(22)||super.shouldParseAsyncArrow()}canHaveLeadingDecorator(){return super.canHaveLeadingDecorator()||this.isAbstractClass()}jsxParseOpeningElementAfterName(e){if(this.isRelational("<")){const t=this.tsTryParseAndCatch((()=>this.tsParseTypeArguments()))
 t&&(e.typeParameters=t)}return super.jsxParseOpeningElementAfterName(e)}getGetterSetterExpectedParamCount(e){const t=super.getGetterSetterExpectedParamCount(e),r=this.getObjectOrClassMethodParams(e)[0]
-return r&&"Identifier"===r.type&&"this"===r.name?t+1:t}parseCatchClauseParam(){const e=super.parseCatchClauseParam(),t=this.tsTryParseTypeAnnotation()
-return t&&(e.typeAnnotation=t,this.resetEndLocation(e)),e}tsInDeclareContext(e){const t=this.state.isDeclareContext
-this.state.isDeclareContext=!0
-try{return e()}finally{this.state.isDeclareContext=t}}},v8intrinsic:e=>class extends e{parseV8Intrinsic(){if(this.match(o.modulo)){const e=this.state.start,t=this.startNode()
-if(this.eat(o.modulo),this.match(o.name)){const e=this.parseIdentifierName(this.state.start),r=this.createIdentifier(t,e)
-if(r.type="V8IntrinsicIdentifier",this.match(o.parenL))return r}this.unexpected(e)}}parseExprAtom(){return this.parseV8Intrinsic()||super.parseExprAtom(...arguments)}},placeholders:e=>class extends e{parsePlaceholder(e){if(this.match(o.placeholder)){const t=this.startNode()
-return this.next(),this.assertNoSpace("Unexpected space in placeholder."),t.name=super.parseIdentifier(!0),this.assertNoSpace("Unexpected space in placeholder."),this.expect(o.placeholder),this.finishPlaceholder(t,e)}}finishPlaceholder(e,t){const r=!(!e.expectedNode||"Placeholder"!==e.type)
-return e.expectedNode=t,r?e:this.finishNode(e,"Placeholder")}getTokenFromCode(e){return 37===e&&37===this.input.charCodeAt(this.state.pos+1)?this.finishOp(o.placeholder,2):super.getTokenFromCode(...arguments)}parseExprAtom(){return this.parsePlaceholder("Expression")||super.parseExprAtom(...arguments)}parseIdentifier(){return this.parsePlaceholder("Identifier")||super.parseIdentifier(...arguments)}checkReservedWord(e){void 0!==e&&super.checkReservedWord(...arguments)}parseBindingAtom(){return this.parsePlaceholder("Pattern")||super.parseBindingAtom(...arguments)}checkLVal(e){"Placeholder"!==e.type&&super.checkLVal(...arguments)}toAssignable(e){return e&&"Placeholder"===e.type&&"Expression"===e.expectedNode?(e.expectedNode="Pattern",e):super.toAssignable(...arguments)}verifyBreakContinue(e){e.label&&"Placeholder"===e.label.type||super.verifyBreakContinue(...arguments)}parseExpressionStatement(e,t){if("Placeholder"!==t.type||t.extra&&t.extra.parenthesized)return super.parseExpressionStatement(...arguments)
-if(this.match(o.colon)){const r=e
+return r&&this.isThisParam(r)?t+1:t}parseCatchClauseParam(){const e=super.parseCatchClauseParam(),t=this.tsTryParseTypeAnnotation()
+return t&&(e.typeAnnotation=t,this.resetEndLocation(e)),e}tsInAmbientContext(e){const t=this.state.isAmbientContext
+this.state.isAmbientContext=!0
+try{return e()}finally{this.state.isAmbientContext=t}}parseClass(e,...t){const r=this.state.inAbstractClass
+this.state.inAbstractClass=!!e.abstract
+try{return super.parseClass(e,...t)}finally{this.state.inAbstractClass=r}}tsParseAbstractDeclaration(e){if(this.match(79))return e.abstract=!0,this.parseClass(e,!0,!1)
+if(this.isContextual("interface")){if(!this.hasFollowingLineBreak())return e.abstract=!0,this.raise(e.start,ze.NonClassMethodPropertyHasAbstractModifer),this.next(),this.tsParseInterfaceDeclaration(e)}else this.unexpected(null,79)}parseMethod(...e){const t=super.parseMethod(...e)
+if(t.abstract&&(this.hasPlugin("estree")?t.value.body:t.body)){const{key:e}=t
+this.raise(t.start,ze.AbstractMethodHasImplementation,"Identifier"!==e.type||t.computed?`[${this.input.slice(e.start,e.end)}]`:e.name)}return t}tsParseTypeParameterName(){return this.parseIdentifier().name}shouldParseAsAmbientContext(){return!!this.getPluginOption("typescript","dts")}parse(){return this.shouldParseAsAmbientContext()&&(this.state.isAmbientContext=!0),super.parse()}getExpression(){return this.shouldParseAsAmbientContext()&&(this.state.isAmbientContext=!0),super.getExpression()}},v8intrinsic:e=>class extends e{parseV8Intrinsic(){if(this.match(53)){const e=this.state.start,t=this.startNode()
+if(this.eat(53),this.match(5)){const e=this.parseIdentifierName(this.state.start),r=this.createIdentifier(t,e)
+if(r.type="V8IntrinsicIdentifier",this.match(18))return r}this.unexpected(e)}}parseExprAtom(){return this.parseV8Intrinsic()||super.parseExprAtom(...arguments)}},placeholders:e=>class extends e{parsePlaceholder(e){if(this.match(96)){const t=this.startNode()
+return this.next(),this.assertNoSpace("Unexpected space in placeholder."),t.name=super.parseIdentifier(!0),this.assertNoSpace("Unexpected space in placeholder."),this.expect(96),this.finishPlaceholder(t,e)}}finishPlaceholder(e,t){const r=!(!e.expectedNode||"Placeholder"!==e.type)
+return e.expectedNode=t,r?e:this.finishNode(e,"Placeholder")}getTokenFromCode(e){return 37===e&&37===this.input.charCodeAt(this.state.pos+1)?this.finishOp(96,2):super.getTokenFromCode(...arguments)}parseExprAtom(){return this.parsePlaceholder("Expression")||super.parseExprAtom(...arguments)}parseIdentifier(){return this.parsePlaceholder("Identifier")||super.parseIdentifier(...arguments)}checkReservedWord(e){void 0!==e&&super.checkReservedWord(...arguments)}parseBindingAtom(){return this.parsePlaceholder("Pattern")||super.parseBindingAtom(...arguments)}checkLVal(e){"Placeholder"!==e.type&&super.checkLVal(...arguments)}toAssignable(e){return e&&"Placeholder"===e.type&&"Expression"===e.expectedNode?(e.expectedNode="Pattern",e):super.toAssignable(...arguments)}isLet(e){return!!super.isLet(e)||!!this.isContextual("let")&&(!e&&96===this.lookahead().type)}verifyBreakContinue(e){e.label&&"Placeholder"===e.label.type||super.verifyBreakContinue(...arguments)}parseExpressionStatement(e,t){if("Placeholder"!==t.type||t.extra&&t.extra.parenthesized)return super.parseExpressionStatement(...arguments)
+if(this.match(22)){const r=e
 return r.label=this.finishPlaceholder(t,"Identifier"),this.next(),r.body=this.parseStatement("label"),this.finishNode(r,"LabeledStatement")}return this.semicolon(),e.name=t.name,this.finishPlaceholder(e,"Statement")}parseBlock(){return this.parsePlaceholder("BlockStatement")||super.parseBlock(...arguments)}parseFunctionId(){return this.parsePlaceholder("Identifier")||super.parseFunctionId(...arguments)}parseClass(e,t,r){const i=t?"ClassDeclaration":"ClassExpression"
 this.next(),this.takeDecorators(e)
 const n=this.state.strict,s=this.parsePlaceholder("Identifier")
-if(s)if(this.match(o._extends)||this.match(o.placeholder)||this.match(o.braceL))e.id=s
+if(s)if(this.match(80)||this.match(96)||this.match(13))e.id=s
 else{if(r||!t)return e.id=null,e.body=this.finishPlaceholder(s,"ClassBody"),this.finishNode(e,i)
-this.unexpected(null,"A class name is required")}else this.parseClassId(e,t,r)
+this.unexpected(null,$e.ClassNameIsRequired)}else this.parseClassId(e,t,r)
 return this.parseClassSuper(e),e.body=this.parsePlaceholder("ClassBody")||this.parseClassBody(!!e.superClass,n),this.finishNode(e,i)}parseExport(e){const t=this.parsePlaceholder("Identifier")
 if(!t)return super.parseExport(...arguments)
-if(!this.isContextual("from")&&!this.match(o.comma))return e.specifiers=[],e.source=null,e.declaration=this.finishPlaceholder(t,"Declaration"),this.finishNode(e,"ExportNamedDeclaration")
+if(!this.isContextual("from")&&!this.match(20))return e.specifiers=[],e.source=null,e.declaration=this.finishPlaceholder(t,"Declaration"),this.finishNode(e,"ExportNamedDeclaration")
 this.expectPlugin("exportDefaultFrom")
 const r=this.startNode()
-return r.exported=t,e.specifiers=[this.finishNode(r,"ExportDefaultSpecifier")],super.parseExport(e)}isExportDefaultSpecifier(){if(this.match(o._default)){const e=this.nextTokenStart()
-if(this.isUnparsedContextual(e,"from")&&this.input.startsWith(o.placeholder.label,this.nextTokenStartSince(e+4)))return!0}return super.isExportDefaultSpecifier()}maybeParseExportDefaultSpecifier(e){return!!(e.specifiers&&e.specifiers.length>0)||super.maybeParseExportDefaultSpecifier(...arguments)}checkExport(e){const{specifiers:t}=e;(null==t?void 0:t.length)&&(e.specifiers=t.filter((e=>"Placeholder"===e.exported.type))),super.checkExport(e),e.specifiers=t}parseImport(e){const t=this.parsePlaceholder("Identifier")
+return r.exported=t,e.specifiers=[this.finishNode(r,"ExportDefaultSpecifier")],super.parseExport(e)}isExportDefaultSpecifier(){if(this.match(64)){const e=this.nextTokenStart()
+if(this.isUnparsedContextual(e,"from")&&this.input.startsWith(R(96),this.nextTokenStartSince(e+4)))return!0}return super.isExportDefaultSpecifier()}maybeParseExportDefaultSpecifier(e){return!!(e.specifiers&&e.specifiers.length>0)||super.maybeParseExportDefaultSpecifier(...arguments)}checkExport(e){const{specifiers:t}=e
+null!=t&&t.length&&(e.specifiers=t.filter((e=>"Placeholder"===e.exported.type))),super.checkExport(e),e.specifiers=t}parseImport(e){const t=this.parsePlaceholder("Identifier")
 if(!t)return super.parseImport(...arguments)
-if(e.specifiers=[],!this.isContextual("from")&&!this.match(o.comma))return e.source=this.finishPlaceholder(t,"StringLiteral"),this.semicolon(),this.finishNode(e,"ImportDeclaration")
+if(e.specifiers=[],!this.isContextual("from")&&!this.match(20))return e.source=this.finishPlaceholder(t,"StringLiteral"),this.semicolon(),this.finishNode(e,"ImportDeclaration")
 const r=this.startNodeAtNode(t)
-return r.local=t,this.finishNode(r,"ImportDefaultSpecifier"),e.specifiers.push(r),this.eat(o.comma)&&(this.maybeParseStarImportSpecifier(e)||this.parseNamedImportSpecifiers(e)),this.expectContextual("from"),e.source=this.parseImportSource(),this.semicolon(),this.finishNode(e,"ImportDeclaration")}parseImportSource(){return this.parsePlaceholder("StringLiteral")||super.parseImportSource(...arguments)}}},ce=Object.keys(ue),he={sourceType:"script",sourceFilename:void 0,startLine:1,allowAwaitOutsideFunction:!1,allowReturnOutsideFunction:!1,allowImportExportEverywhere:!1,allowSuperOutsideMethod:!1,allowUndeclaredExports:!1,plugins:[],strictMode:null,ranges:!1,tokens:!1,createParenthesizedExpressions:!1,errorRecovery:!1}
-class pe{constructor(){this.strict=void 0,this.curLine=void 0,this.startLoc=void 0,this.endLoc=void 0,this.errors=[],this.potentialArrowAt=-1,this.noArrowAt=[],this.noArrowParamsConversionAt=[],this.maybeInArrowParameters=!1,this.inPipeline=!1,this.inType=!1,this.noAnonFunctionType=!1,this.inPropertyName=!1,this.hasFlowComment=!1,this.isIterator=!1,this.isDeclareContext=!1,this.topicContext={maxNumOfResolvableTopics:0,maxTopicIndex:null},this.soloAwait=!1,this.inFSharpPipelineDirectBody=!1,this.labels=[],this.decoratorStack=[[]],this.comments=[],this.trailingComments=[],this.leadingComments=[],this.commentStack=[],this.commentPreviousNode=null,this.pos=0,this.lineStart=0,this.type=o.eof,this.value=null,this.start=0,this.end=0,this.lastTokEndLoc=null,this.lastTokStartLoc=null,this.lastTokStart=0,this.lastTokEnd=0,this.context=[b.braceStatement],this.exprAllowed=!0,this.containsEsc=!1,this.octalPositions=[],this.exportedIdentifiers=[],this.tokensLength=0}init(e){this.strict=!1!==e.strictMode&&"module"===e.sourceType,this.curLine=e.startLine,this.startLoc=this.endLoc=this.curPosition()}curPosition(){return new d(this.curLine,this.pos-this.lineStart)}clone(e){const t=new pe,r=Object.keys(this)
-for(let i=0,n=r.length;i<n;i++){const n=r[i]
-let s=this[n]
-!e&&Array.isArray(s)&&(s=s.slice()),t[n]=s}return t}}var de=function(e){return e>=48&&e<=57}
-const fe=new Set(["g","m","s","i","y","u"]),me={decBinOct:[46,66,69,79,95,98,101,111],hex:[46,88,95,120]},ge={bin:[48,49]}
-ge.oct=[...ge.bin,50,51,52,53,54,55],ge.dec=[...ge.oct,56,57],ge.hex=[...ge.dec,65,66,67,68,69,70,97,98,99,100,101,102]
-class ye{constructor(e){this.type=e.type,this.value=e.value,this.start=e.start,this.end=e.end,this.loc=new f(e.startLoc,e.endLoc)}}class ve{constructor(){this.shorthandAssign=-1,this.doubleProto=-1}}class be{constructor(e,t,r){this.type=void 0,this.start=void 0,this.end=void 0,this.loc=void 0,this.range=void 0,this.leadingComments=void 0,this.trailingComments=void 0,this.innerComments=void 0,this.extra=void 0,this.type="",this.start=t,this.end=0,this.loc=new f(r),(null==e?void 0:e.options.ranges)&&(this.range=[t,0]),(null==e?void 0:e.filename)&&(this.loc.filename=e.filename)}__clone(){const e=new be,t=Object.keys(this)
-for(let r=0,i=t.length;r<i;r++){const i=t[r]
-"leadingComments"!==i&&"trailingComments"!==i&&"innerComments"!==i&&(e[i]=this[i])}return e}}const xe=e=>"ParenthesizedExpression"===e.type?xe(e.expression):e
-class Ee{constructor(e=0){this.type=void 0,this.type=e}canBeArrowParameterDeclaration(){return 2===this.type||1===this.type}isCertainlyParameterDeclaration(){return 3===this.type}}class we extends Ee{constructor(e){super(e),this.errors=new Map}recordDeclarationError(e,t){this.errors.set(e,t)}clearDeclarationError(e){this.errors.delete(e)}iterateErrors(e){this.errors.forEach(e)}}class Se{constructor(e){this.stack=[new Ee],this.raise=e}enter(e){this.stack.push(e)}exit(){this.stack.pop()}recordParameterInitializerError(e,t){const{stack:r}=this
-let i=r.length-1,n=r[i]
-for(;!n.isCertainlyParameterDeclaration();){if(!n.canBeArrowParameterDeclaration())return
-n.recordDeclarationError(e,t),n=r[--i]}this.raise(e,t)}recordParenthesizedIdentifierError(e,t){const{stack:r}=this,i=r[r.length-1]
-if(i.isCertainlyParameterDeclaration())this.raise(e,t)
-else{if(!i.canBeArrowParameterDeclaration())return
-i.recordDeclarationError(e,t)}}recordAsyncArrowParametersError(e,t){const{stack:r}=this
-let i=r.length-1,n=r[i]
-for(;n.canBeArrowParameterDeclaration();)2===n.type&&n.recordDeclarationError(e,t),n=r[--i]}validateAsPattern(){const{stack:e}=this,t=e[e.length-1]
-t.canBeArrowParameterDeclaration()&&t.iterateErrors(((t,r)=>{this.raise(r,t)
-let i=e.length-2,n=e[i]
-for(;n.canBeArrowParameterDeclaration();)n.clearDeclarationError(r),n=e[--i]}))}}function Te(){return new Ee}const ke={kind:"loop"},Ce={kind:"switch"},Ae=/[\uD800-\uDFFF]/u
-class Pe{constructor(){this.privateNames=new Set,this.loneAccessors=new Map,this.undefinedPrivateNames=new Map}}class _e{constructor(e){this.stack=[],this.undefinedPrivateNames=new Map,this.raise=e}current(){return this.stack[this.stack.length-1]}enter(){this.stack.push(new Pe)}exit(){const e=this.stack.pop(),t=this.current()
-for(let r=0,i=Array.from(e.undefinedPrivateNames);r<i.length;r++){const[e,n]=i[r]
-t?t.undefinedPrivateNames.has(e)||t.undefinedPrivateNames.set(e,n):this.raise(n,g.InvalidPrivateFieldResolution,e)}}declarePrivateName(e,t,r){const i=this.current()
-let n=i.privateNames.has(e)
-if(3&t){const r=n&&i.loneAccessors.get(e)
-if(r){const s=4&r,a=4&t
-n=(3&r)==(3&t)||s!==a,n||i.loneAccessors.delete(e)}else n||i.loneAccessors.set(e,t)}n&&this.raise(r,g.PrivateNameRedeclaration,e),i.privateNames.add(e),i.undefinedPrivateNames.delete(e)}usePrivateName(e,t){let r
-for(let i=0,n=this.stack;i<n.length;i++)if(r=n[i],r.privateNames.has(e))return
-r?r.undefinedPrivateNames.set(e,t):this.raise(t,g.InvalidPrivateFieldResolution,e)}}class De extends class extends class extends class extends class extends class extends class extends class extends class extends class{constructor(){this.sawUnambiguousESM=!1,this.ambiguousScriptDifferentAst=!1}hasPlugin(e){return this.plugins.has(e)}getPluginOption(e,t){if(this.hasPlugin(e))return this.plugins.get(e)[t]}}{addComment(e){this.filename&&(e.loc.filename=this.filename),this.state.trailingComments.push(e),this.state.leadingComments.push(e)}adjustCommentsAfterTrailingComma(e,t,r){if(0===this.state.leadingComments.length)return
-let i=null,n=t.length
-for(;null===i&&n>0;)i=t[--n]
-if(null===i)return
-for(let a=0;a<this.state.leadingComments.length;a++)this.state.leadingComments[a].end<this.state.commentPreviousNode.end&&(this.state.leadingComments.splice(a,1),a--)
-const s=[]
-for(let a=0;a<this.state.leadingComments.length;a++){const t=this.state.leadingComments[a]
-t.end<e.end?(s.push(t),r||(this.state.leadingComments.splice(a,1),a--)):(void 0===e.trailingComments&&(e.trailingComments=[]),e.trailingComments.push(t))}r&&(this.state.leadingComments=[]),s.length>0?i.trailingComments=s:void 0!==i.trailingComments&&(i.trailingComments=[])}processComment(e){if("Program"===e.type&&e.body.length>0)return
-const t=this.state.commentStack
-let r,i,n,s,a
-if(this.state.trailingComments.length>0)this.state.trailingComments[0].start>=e.end?(n=this.state.trailingComments,this.state.trailingComments=[]):this.state.trailingComments.length=0
-else if(t.length>0){const r=m(t)
-r.trailingComments&&r.trailingComments[0].start>=e.end&&(n=r.trailingComments,delete r.trailingComments)}for(t.length>0&&m(t).start>=e.start&&(r=t.pop());t.length>0&&m(t).start>=e.start;)i=t.pop()
-if(!i&&r&&(i=r),r)switch(e.type){case"ObjectExpression":this.adjustCommentsAfterTrailingComma(e,e.properties)
+return r.local=t,this.finishNode(r,"ImportDefaultSpecifier"),e.specifiers.push(r),this.eat(20)&&(this.maybeParseStarImportSpecifier(e)||this.parseNamedImportSpecifiers(e)),this.expectContextual("from"),e.source=this.parseImportSource(),this.semicolon(),this.finishNode(e,"ImportDeclaration")}parseImportSource(){return this.parsePlaceholder("StringLiteral")||super.parseImportSource(...arguments)}}},Ke=Object.keys(Xe),Ye={sourceType:"script",sourceFilename:void 0,startLine:1,allowAwaitOutsideFunction:!1,allowReturnOutsideFunction:!1,allowImportExportEverywhere:!1,allowSuperOutsideMethod:!1,allowUndeclaredExports:!1,plugins:[],strictMode:null,ranges:!1,tokens:!1,createParenthesizedExpressions:!1,errorRecovery:!1,attachComment:!0},Qe=e=>"ParenthesizedExpression"===e.type?Qe(e.expression):e,Ze=new Map([["ArrowFunctionExpression","arrow function"],["AssignmentExpression","assignment"],["ConditionalExpression","conditional"],["YieldExpression","yield"]]),et={kind:"loop"},tt={kind:"switch"},rt=/[\uD800-\uDFFF]/u,it=/in(?:stanceof)?/y
+class nt extends class extends class extends class extends class extends class extends class extends class extends class extends class{constructor(){this.sawUnambiguousESM=!1,this.ambiguousScriptDifferentAst=!1}hasPlugin(e){return this.plugins.has(e)}getPluginOption(e,t){if(this.hasPlugin(e))return this.plugins.get(e)[t]}}{addComment(e){this.filename&&(e.loc.filename=this.filename),this.state.comments.push(e)}processComment(e){const{commentStack:t}=this.state,r=t.length
+if(0===r)return
+let i=r-1
+const n=t[i]
+n.start===e.end&&(n.leadingNode=e,i--)
+const{start:s}=e
+for(;i>=0;i--){const r=t[i],n=r.end
+if(!(n>s)){n===s&&(r.trailingNode=e)
+break}r.containingNode=e,this.finalizeComment(r),t.splice(i,1)}}finalizeComment(e){const{comments:t}=e
+if(null!==e.leadingNode||null!==e.trailingNode)null!==e.leadingNode&&h(e.leadingNode,t),null!==e.trailingNode&&(e.trailingNode.leadingComments=t)
+else{const{containingNode:r,start:i}=e
+if(44===this.input.charCodeAt(i-1))switch(r.type){case"ObjectExpression":case"ObjectPattern":case"RecordExpression":d(r,r.properties,e)
 break
-case"ObjectPattern":this.adjustCommentsAfterTrailingComma(e,e.properties,!0)
+case"CallExpression":case"OptionalCallExpression":d(r,r.arguments,e)
 break
-case"CallExpression":this.adjustCommentsAfterTrailingComma(e,e.arguments)
+case"FunctionDeclaration":case"FunctionExpression":case"ArrowFunctionExpression":case"ObjectMethod":case"ClassMethod":case"ClassPrivateMethod":d(r,r.params,e)
 break
-case"ArrayExpression":this.adjustCommentsAfterTrailingComma(e,e.elements)
+case"ArrayExpression":case"ArrayPattern":case"TupleExpression":d(r,r.elements,e)
 break
-case"ArrayPattern":this.adjustCommentsAfterTrailingComma(e,e.elements,!0)}else this.state.commentPreviousNode&&("ImportSpecifier"===this.state.commentPreviousNode.type&&"ImportSpecifier"!==e.type||"ExportSpecifier"===this.state.commentPreviousNode.type&&"ExportSpecifier"!==e.type)&&this.adjustCommentsAfterTrailingComma(e,[this.state.commentPreviousNode])
-if(i){if(i.leadingComments)if(i!==e&&i.leadingComments.length>0&&m(i.leadingComments).end<=e.start)e.leadingComments=i.leadingComments,delete i.leadingComments
-else for(s=i.leadingComments.length-2;s>=0;--s)if(i.leadingComments[s].end<=e.start){e.leadingComments=i.leadingComments.splice(0,s+1)
-break}}else if(this.state.leadingComments.length>0)if(m(this.state.leadingComments).end<=e.start){if(this.state.commentPreviousNode)for(a=0;a<this.state.leadingComments.length;a++)this.state.leadingComments[a].end<this.state.commentPreviousNode.end&&(this.state.leadingComments.splice(a,1),a--)
-this.state.leadingComments.length>0&&(e.leadingComments=this.state.leadingComments,this.state.leadingComments=[])}else{for(s=0;s<this.state.leadingComments.length&&!(this.state.leadingComments[s].end>e.start);s++);const t=this.state.leadingComments.slice(0,s)
-t.length&&(e.leadingComments=t),n=this.state.leadingComments.slice(s),0===n.length&&(n=null)}if(this.state.commentPreviousNode=e,n)if(n.length&&n[0].start>=e.start&&m(n).end<=e.end)e.innerComments=n
-else{const t=n.findIndex((t=>t.end>=e.end))
-t>0?(e.innerComments=n.slice(0,t),e.trailingComments=n.slice(t)):e.trailingComments=n}t.push(e)}}{getLocationForPosition(e){let t
-return t=e===this.state.start?this.state.startLoc:e===this.state.lastTokStart?this.state.lastTokStartLoc:e===this.state.end?this.state.endLoc:e===this.state.lastTokEnd?this.state.lastTokEndLoc:function(e,t){let r,i=1,n=0
-for(u.lastIndex=0;(r=u.exec(e))&&r.index<t;)i++,n=u.lastIndex
-return new d(i,t-n)}(this.input,e),t}raise(e,t,...r){return this.raiseWithData(e,void 0,t,...r)}raiseWithData(e,t,r,...i){const n=this.getLocationForPosition(e),s=r.replace(/%(\d+)/g,((e,t)=>i[t]))+` (${n.line}:${n.column})`
+case"ExportNamedDeclaration":case"ImportDeclaration":d(r,r.specifiers,e)
+break
+default:p(r,t)}else p(r,t)}}finalizeRemainingComments(){const{commentStack:e}=this.state
+for(let t=e.length-1;t>=0;t--)this.finalizeComment(e[t])
+this.state.commentStack=[]}resetPreviousNodeTrailingComments(e){const{commentStack:t}=this.state,{length:r}=t
+if(0===r)return
+const i=t[r-1]
+i.leadingNode===e&&(i.leadingNode=null)}}{getLocationForPosition(e){let t
+return t=e===this.state.start?this.state.startLoc:e===this.state.lastTokStart?this.state.lastTokStartLoc:e===this.state.end?this.state.endLoc:e===this.state.lastTokEnd?this.state.lastTokEndLoc:function(e,t){let r,i=1,s=0
+for(n.lastIndex=0;(r=n.exec(e))&&r.index<t;)i++,s=n.lastIndex
+return new u(i,t-s)}(this.input,e),t}raise(e,{code:t,reasonCode:r,template:i},...n){return this.raiseWithData(e,{code:t,reasonCode:r},i,...n)}raiseOverwrite(e,{code:t,template:r},...i){const n=this.getLocationForPosition(e),s=r.replace(/%(\d+)/g,((e,t)=>i[t]))+` (${n.line}:${n.column})`
+if(this.options.errorRecovery){const t=this.state.errors
+for(let r=t.length-1;r>=0;r--){const i=t[r]
+if(i.pos===e)return Object.assign(i,{message:s})
+if(i.pos<e)break}}return this._raise({code:t,loc:n,pos:e},s)}raiseWithData(e,t,r,...i){const n=this.getLocationForPosition(e),s=r.replace(/%(\d+)/g,((e,t)=>i[t]))+` (${n.line}:${n.column})`
 return this._raise(Object.assign({loc:n,pos:e},t),s)}_raise(e,t){const r=new SyntaxError(t)
 if(Object.assign(r,e),this.options.errorRecovery)return this.isLookahead||this.state.errors.push(r),r
-throw r}}{constructor(e,t){super(),this.isLookahead=void 0,this.tokens=[],this.state=new pe,this.state.init(e),this.input=t,this.length=t.length,this.isLookahead=!1}pushToken(e){this.tokens.length=this.state.tokensLength,this.tokens.push(e),++this.state.tokensLength}next(){this.isLookahead||(this.checkKeywordEscapes(),this.options.tokens&&this.pushToken(new ye(this.state))),this.state.lastTokEnd=this.state.end,this.state.lastTokStart=this.state.start,this.state.lastTokEndLoc=this.state.endLoc,this.state.lastTokStartLoc=this.state.startLoc,this.nextToken()}eat(e){return!!this.match(e)&&(this.next(),!0)}match(e){return this.state.type===e}lookahead(){const e=this.state
-this.state=e.clone(!0),this.isLookahead=!0,this.next(),this.isLookahead=!1
+throw r}}{constructor(e,t){super(),this.isLookahead=void 0,this.tokens=[],this.state=new oe,this.state.init(e),this.input=t,this.length=t.length,this.isLookahead=!1}pushToken(e){this.tokens.length=this.state.tokensLength,this.tokens.push(e),++this.state.tokensLength}next(){this.checkKeywordEscapes(),this.options.tokens&&this.pushToken(new pe(this.state)),this.state.lastTokEnd=this.state.end,this.state.lastTokStart=this.state.start,this.state.lastTokEndLoc=this.state.endLoc,this.state.lastTokStartLoc=this.state.startLoc,this.nextToken()}eat(e){return!!this.match(e)&&(this.next(),!0)}match(e){return this.state.type===e}createLookaheadState(e){return{pos:e.pos,value:null,type:e.type,start:e.start,end:e.end,lastTokEnd:e.end,context:[this.curContext()],inType:e.inType}}lookahead(){const e=this.state
+this.state=this.createLookaheadState(e),this.isLookahead=!0,this.nextToken(),this.isLookahead=!1
 const t=this.state
-return this.state=e,t}nextTokenStart(){return this.nextTokenStartSince(this.state.pos)}nextTokenStartSince(e){return h.lastIndex=e,e+h.exec(this.input)[0].length}lookaheadCharCode(){return this.input.charCodeAt(this.nextTokenStart())}setStrict(e){if(this.state.strict=e,this.match(o.num)||this.match(o.string)){for(this.state.pos=this.state.start;this.state.pos<this.state.lineStart;)this.state.lineStart=this.input.lastIndexOf("\n",this.state.lineStart-2)+1,--this.state.curLine
-this.nextToken()}}curContext(){return this.state.context[this.state.context.length-1]}nextToken(){const e=this.curContext()
-if((null==e?void 0:e.preserveSpace)||this.skipSpace(),this.state.octalPositions=[],this.state.start=this.state.pos,this.state.startLoc=this.state.curPosition(),this.state.pos>=this.length)return void this.finishToken(o.eof)
-const t=null==e?void 0:e.override
-t?t(this):this.getTokenFromCode(this.input.codePointAt(this.state.pos))}pushComment(e,t,r,i,n,s){const a={type:e?"CommentBlock":"CommentLine",value:t,start:r,end:i,loc:new f(n,s)}
-this.options.tokens&&this.pushToken(a),this.state.comments.push(a),this.addComment(a)}skipBlockComment(){const e=this.state.curPosition(),t=this.state.pos,r=this.input.indexOf("*/",this.state.pos+2)
-if(-1===r)throw this.raise(t,g.UnterminatedComment)
-let i
-for(this.state.pos=r+2,u.lastIndex=t;(i=u.exec(this.input))&&i.index<this.state.pos;)++this.state.curLine,this.state.lineStart=i.index+i[0].length
-this.isLookahead||this.pushComment(!0,this.input.slice(t+2,r),t,this.state.pos,e,this.state.curPosition())}skipLineComment(e){const t=this.state.pos,r=this.state.curPosition()
+return this.state=e,t}nextTokenStart(){return this.nextTokenStartSince(this.state.pos)}nextTokenStartSince(e){return a.lastIndex=e,a.test(this.input)?a.lastIndex:e}lookaheadCharCode(){return this.input.charCodeAt(this.nextTokenStart())}codePointAtPos(e){let t=this.input.charCodeAt(e)
+if(55296==(64512&t)&&++e<this.input.length){const r=this.input.charCodeAt(e)
+56320==(64512&r)&&(t=65536+((1023&t)<<10)+(1023&r))}return t}setStrict(e){this.state.strict=e,e&&(this.state.strictErrors.forEach(((e,t)=>this.raise(t,e))),this.state.strictErrors.clear())}curContext(){return this.state.context[this.state.context.length-1]}nextToken(){const e=this.curContext()
+e.preserveSpace||this.skipSpace(),this.state.start=this.state.pos,this.isLookahead||(this.state.startLoc=this.state.curPosition()),this.state.pos>=this.length?this.finishToken(7):e===x.template?this.readTmplToken():this.getTokenFromCode(this.codePointAtPos(this.state.pos))}skipBlockComment(){let e
+this.isLookahead||(e=this.state.curPosition())
+const t=this.state.pos,r=this.input.indexOf("*/",t+2)
+if(-1===r)throw this.raise(t,m.UnterminatedComment)
+for(this.state.pos=r+2,n.lastIndex=t+2;n.test(this.input)&&n.lastIndex<=r;)++this.state.curLine,this.state.lineStart=n.lastIndex
+if(this.isLookahead)return
+const i={type:"CommentBlock",value:this.input.slice(t+2,r),start:t,end:r+2,loc:new c(e,this.state.curPosition())}
+return this.options.tokens&&this.pushToken(i),i}skipLineComment(e){const t=this.state.pos
+let r
+this.isLookahead||(r=this.state.curPosition())
 let i=this.input.charCodeAt(this.state.pos+=e)
-if(this.state.pos<this.length)for(;!c(i)&&++this.state.pos<this.length;)i=this.input.charCodeAt(this.state.pos)
-this.isLookahead||this.pushComment(!1,this.input.slice(t+e,this.state.pos),t,this.state.pos,r,this.state.curPosition())}skipSpace(){e:for(;this.state.pos<this.length;){const e=this.input.charCodeAt(this.state.pos)
-switch(e){case 32:case 160:case 9:++this.state.pos
+if(this.state.pos<this.length)for(;!s(i)&&++this.state.pos<this.length;)i=this.input.charCodeAt(this.state.pos)
+if(this.isLookahead)return
+const n=this.state.pos,a={type:"CommentLine",value:this.input.slice(t+e,n),start:t,end:n,loc:new c(r,this.state.curPosition())}
+return this.options.tokens&&this.pushToken(a),a}skipSpace(){const e=this.state.pos,t=[]
+e:for(;this.state.pos<this.length;){const r=this.input.charCodeAt(this.state.pos)
+switch(r){case 32:case 160:case 9:++this.state.pos
 break
 case 13:10===this.input.charCodeAt(this.state.pos+1)&&++this.state.pos
 case 10:case 8232:case 8233:++this.state.pos,++this.state.curLine,this.state.lineStart=this.state.pos
 break
-case 47:switch(this.input.charCodeAt(this.state.pos+1)){case 42:this.skipBlockComment()
-break
-case 47:this.skipLineComment(2)
-break
-default:break e}break
-default:if(!p(e))break e;++this.state.pos}}}finishToken(e,t){this.state.end=this.state.pos,this.state.endLoc=this.state.curPosition()
+case 47:switch(this.input.charCodeAt(this.state.pos+1)){case 42:{const e=this.skipBlockComment()
+void 0!==e&&(this.addComment(e),this.options.attachComment&&t.push(e))
+break}case 47:{const e=this.skipLineComment(2)
+void 0!==e&&(this.addComment(e),this.options.attachComment&&t.push(e))
+break}default:break e}break
+default:if(l(r))++this.state.pos
+else if(45!==r||this.inModule){if(60!==r||this.inModule)break e
+{const e=this.state.pos
+if(33!==this.input.charCodeAt(e+1)||45!==this.input.charCodeAt(e+2)||45!==this.input.charCodeAt(e+3))break e
+{const e=this.skipLineComment(4)
+void 0!==e&&(this.addComment(e),this.options.attachComment&&t.push(e))}}}else{const r=this.state.pos
+if(45!==this.input.charCodeAt(r+1)||62!==this.input.charCodeAt(r+2)||!(0===e||this.state.lineStart>e))break e
+{const e=this.skipLineComment(3)
+void 0!==e&&(this.addComment(e),this.options.attachComment&&t.push(e))}}}}if(t.length>0){const r={start:e,end:this.state.pos,comments:t,leadingNode:null,trailingNode:null,containingNode:null}
+this.state.commentStack.push(r)}}finishToken(e,t){this.state.end=this.state.pos
 const r=this.state.type
-this.state.type=e,this.state.value=t,this.isLookahead||this.updateContext(r)}readToken_numberSign(){if(0===this.state.pos&&this.readToken_interpreter())return
-const e=this.state.pos+1,t=this.input.charCodeAt(e)
-if(t>=48&&t<=57)throw this.raise(this.state.pos,g.UnexpectedDigitAfterHash)
-if(123===t||91===t&&this.hasPlugin("recordAndTuple")){if(this.expectPlugin("recordAndTuple"),"hash"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,123===t?g.RecordExpressionHashIncorrectStartSyntaxType:g.TupleExpressionHashIncorrectStartSyntaxType)
-123===t?this.finishToken(o.braceHashL):this.finishToken(o.bracketHashL),this.state.pos+=2}else this.finishOp(o.hash,1)}readToken_dot(){const e=this.input.charCodeAt(this.state.pos+1)
-e>=48&&e<=57?this.readNumber(!0):46===e&&46===this.input.charCodeAt(this.state.pos+2)?(this.state.pos+=3,this.finishToken(o.ellipsis)):(++this.state.pos,this.finishToken(o.dot))}readToken_slash(){if(this.state.exprAllowed&&!this.state.inType)return++this.state.pos,void this.readRegexp()
-61===this.input.charCodeAt(this.state.pos+1)?this.finishOp(o.assign,2):this.finishOp(o.slash,1)}readToken_interpreter(){if(0!==this.state.pos||this.length<2)return!1
+this.state.type=e,this.state.value=t,this.isLookahead||(this.state.endLoc=this.state.curPosition(),this.updateContext(r))}readToken_numberSign(){if(0===this.state.pos&&this.readToken_interpreter())return
+const e=this.state.pos+1,t=this.codePointAtPos(e)
+if(t>=48&&t<=57)throw this.raise(this.state.pos,m.UnexpectedDigitAfterHash)
+if(123===t||91===t&&this.hasPlugin("recordAndTuple")){if(this.expectPlugin("recordAndTuple"),"hash"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,123===t?m.RecordExpressionHashIncorrectStartSyntaxType:m.TupleExpressionHashIncorrectStartSyntaxType)
+this.state.pos+=2,123===t?this.finishToken(15):this.finishToken(9)}else W(t)?(++this.state.pos,this.finishToken(6,this.readWord1(t))):92===t?(++this.state.pos,this.finishToken(6,this.readWord1())):this.finishOp(33,1)}readToken_dot(){const e=this.input.charCodeAt(this.state.pos+1)
+e>=48&&e<=57?this.readNumber(!0):46===e&&46===this.input.charCodeAt(this.state.pos+2)?(this.state.pos+=3,this.finishToken(29)):(++this.state.pos,this.finishToken(24))}readToken_slash(){61===this.input.charCodeAt(this.state.pos+1)?this.finishOp(37,2):this.finishOp(55,1)}readToken_interpreter(){if(0!==this.state.pos||this.length<2)return!1
 let e=this.input.charCodeAt(this.state.pos+1)
 if(33!==e)return!1
 const t=this.state.pos
-for(this.state.pos+=1;!c(e)&&++this.state.pos<this.length;)e=this.input.charCodeAt(this.state.pos)
+for(this.state.pos+=1;!s(e)&&++this.state.pos<this.length;)e=this.input.charCodeAt(this.state.pos)
 const r=this.input.slice(t+2,this.state.pos)
-return this.finishToken(o.interpreterDirective,r),!0}readToken_mult_modulo(e){let t=42===e?o.star:o.modulo,r=1,i=this.input.charCodeAt(this.state.pos+1)
-const n=this.state.exprAllowed
-42===e&&42===i&&(r++,i=this.input.charCodeAt(this.state.pos+2),t=o.exponent),61!==i||n||(r++,t=o.assign),this.finishOp(t,r)}readToken_pipe_amp(e){const t=this.input.charCodeAt(this.state.pos+1)
-if(t!==e){if(124===e){if(62===t)return void this.finishOp(o.pipeline,2)
-if(this.hasPlugin("recordAndTuple")&&125===t){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,g.RecordExpressionBarIncorrectEndSyntaxType)
-return void this.finishOp(o.braceBarR,2)}if(this.hasPlugin("recordAndTuple")&&93===t){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,g.TupleExpressionBarIncorrectEndSyntaxType)
-return void this.finishOp(o.bracketBarR,2)}}61!==t?this.finishOp(124===e?o.bitwiseOR:o.bitwiseAND,1):this.finishOp(o.assign,2)}else 61===this.input.charCodeAt(this.state.pos+2)?this.finishOp(o.assign,3):this.finishOp(124===e?o.logicalOR:o.logicalAND,2)}readToken_caret(){61===this.input.charCodeAt(this.state.pos+1)?this.finishOp(o.assign,2):this.finishOp(o.bitwiseXOR,1)}readToken_plus_min(e){const t=this.input.charCodeAt(this.state.pos+1)
-if(t===e)return 45!==t||this.inModule||62!==this.input.charCodeAt(this.state.pos+2)||0!==this.state.lastTokEnd&&!this.hasPrecedingLineBreak()?void this.finishOp(o.incDec,2):(this.skipLineComment(3),this.skipSpace(),void this.nextToken())
-61===t?this.finishOp(o.assign,2):this.finishOp(o.plusMin,1)}readToken_lt_gt(e){const t=this.input.charCodeAt(this.state.pos+1)
+return this.finishToken(34,r),!0}readToken_mult_modulo(e){let t=42===e?54:53,r=1,i=this.input.charCodeAt(this.state.pos+1)
+42===e&&42===i&&(r++,i=this.input.charCodeAt(this.state.pos+2),t=56),61!==i||this.state.inType||(r++,t=37===e?38:36),this.finishOp(t,r)}readToken_pipe_amp(e){const t=this.input.charCodeAt(this.state.pos+1)
+if(t!==e){if(124===e){if(62===t)return void this.finishOp(42,2)
+if(this.hasPlugin("recordAndTuple")&&125===t){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,m.RecordExpressionBarIncorrectEndSyntaxType)
+return this.state.pos+=2,void this.finishToken(17)}if(this.hasPlugin("recordAndTuple")&&93===t){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,m.TupleExpressionBarIncorrectEndSyntaxType)
+return this.state.pos+=2,void this.finishToken(12)}}61!==t?this.finishOp(124===e?46:48,1):this.finishOp(36,2)}else 61===this.input.charCodeAt(this.state.pos+2)?this.finishOp(36,3):this.finishOp(124===e?44:45,2)}readToken_caret(){61===this.input.charCodeAt(this.state.pos+1)?this.finishOp(36,2):this.finishOp(47,1)}readToken_plus_min(e){const t=this.input.charCodeAt(this.state.pos+1)
+t!==e?61===t?this.finishOp(36,2):this.finishOp(52,1):this.finishOp(39,2)}readToken_lt_gt(e){const t=this.input.charCodeAt(this.state.pos+1)
 let r=1
-return t===e?(r=62===e&&62===this.input.charCodeAt(this.state.pos+2)?3:2,61===this.input.charCodeAt(this.state.pos+r)?void this.finishOp(o.assign,r+1):void this.finishOp(o.bitShift,r)):33!==t||60!==e||this.inModule||45!==this.input.charCodeAt(this.state.pos+2)||45!==this.input.charCodeAt(this.state.pos+3)?(61===t&&(r=2),void this.finishOp(o.relational,r)):(this.skipLineComment(4),this.skipSpace(),void this.nextToken())}readToken_eq_excl(e){const t=this.input.charCodeAt(this.state.pos+1)
-if(61!==t)return 61===e&&62===t?(this.state.pos+=2,void this.finishToken(o.arrow)):void this.finishOp(61===e?o.eq:o.bang,1)
-this.finishOp(o.equality,61===this.input.charCodeAt(this.state.pos+2)?3:2)}readToken_question(){const e=this.input.charCodeAt(this.state.pos+1),t=this.input.charCodeAt(this.state.pos+2)
-63===e?61===t?this.finishOp(o.assign,3):this.finishOp(o.nullishCoalescing,2):46!==e||t>=48&&t<=57?(++this.state.pos,this.finishToken(o.question)):(this.state.pos+=2,this.finishToken(o.questionDot))}getTokenFromCode(e){switch(e){case 46:return void this.readToken_dot()
-case 40:return++this.state.pos,void this.finishToken(o.parenL)
-case 41:return++this.state.pos,void this.finishToken(o.parenR)
-case 59:return++this.state.pos,void this.finishToken(o.semi)
-case 44:return++this.state.pos,void this.finishToken(o.comma)
-case 91:if(this.hasPlugin("recordAndTuple")&&124===this.input.charCodeAt(this.state.pos+1)){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,g.TupleExpressionBarIncorrectStartSyntaxType)
-this.finishToken(o.bracketBarL),this.state.pos+=2}else++this.state.pos,this.finishToken(o.bracketL)
+if(t===e)return r=62===e&&62===this.input.charCodeAt(this.state.pos+2)?3:2,61===this.input.charCodeAt(this.state.pos+r)?void this.finishOp(36,r+1):void this.finishOp(51,r)
+61===t&&(r=2),this.finishOp(50,r)}readToken_eq_excl(e){const t=this.input.charCodeAt(this.state.pos+1)
+if(61!==t)return 61===e&&62===t?(this.state.pos+=2,void this.finishToken(27)):void this.finishOp(61===e?35:40,1)
+this.finishOp(49,61===this.input.charCodeAt(this.state.pos+2)?3:2)}readToken_question(){const e=this.input.charCodeAt(this.state.pos+1),t=this.input.charCodeAt(this.state.pos+2)
+63===e?61===t?this.finishOp(36,3):this.finishOp(43,2):46!==e||t>=48&&t<=57?(++this.state.pos,this.finishToken(25)):(this.state.pos+=2,this.finishToken(26))}getTokenFromCode(e){switch(e){case 46:return void this.readToken_dot()
+case 40:return++this.state.pos,void this.finishToken(18)
+case 41:return++this.state.pos,void this.finishToken(19)
+case 59:return++this.state.pos,void this.finishToken(21)
+case 44:return++this.state.pos,void this.finishToken(20)
+case 91:if(this.hasPlugin("recordAndTuple")&&124===this.input.charCodeAt(this.state.pos+1)){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,m.TupleExpressionBarIncorrectStartSyntaxType)
+this.state.pos+=2,this.finishToken(10)}else++this.state.pos,this.finishToken(8)
 return
-case 93:return++this.state.pos,void this.finishToken(o.bracketR)
-case 123:if(this.hasPlugin("recordAndTuple")&&124===this.input.charCodeAt(this.state.pos+1)){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,g.RecordExpressionBarIncorrectStartSyntaxType)
-this.finishToken(o.braceBarL),this.state.pos+=2}else++this.state.pos,this.finishToken(o.braceL)
+case 93:return++this.state.pos,void this.finishToken(11)
+case 123:if(this.hasPlugin("recordAndTuple")&&124===this.input.charCodeAt(this.state.pos+1)){if("bar"!==this.getPluginOption("recordAndTuple","syntaxType"))throw this.raise(this.state.pos,m.RecordExpressionBarIncorrectStartSyntaxType)
+this.state.pos+=2,this.finishToken(14)}else++this.state.pos,this.finishToken(13)
 return
-case 125:return++this.state.pos,void this.finishToken(o.braceR)
-case 58:return void(this.hasPlugin("functionBind")&&58===this.input.charCodeAt(this.state.pos+1)?this.finishOp(o.doubleColon,2):(++this.state.pos,this.finishToken(o.colon)))
+case 125:return++this.state.pos,void this.finishToken(16)
+case 58:return void(this.hasPlugin("functionBind")&&58===this.input.charCodeAt(this.state.pos+1)?this.finishOp(23,2):(++this.state.pos,this.finishToken(22)))
 case 63:return void this.readToken_question()
-case 96:return++this.state.pos,void this.finishToken(o.backQuote)
+case 96:return++this.state.pos,void this.finishToken(30)
 case 48:{const e=this.input.charCodeAt(this.state.pos+1)
 if(120===e||88===e)return void this.readRadixNumber(16)
 if(111===e||79===e)return void this.readRadixNumber(8)
@@ -10401,74 +10450,73 @@ case 94:return void this.readToken_caret()
 case 43:case 45:return void this.readToken_plus_min(e)
 case 60:case 62:return void this.readToken_lt_gt(e)
 case 61:case 33:return void this.readToken_eq_excl(e)
-case 126:return void this.finishOp(o.tilde,1)
-case 64:return++this.state.pos,void this.finishToken(o.at)
+case 126:return void this.finishOp(41,1)
+case 64:return++this.state.pos,void this.finishToken(32)
 case 35:return void this.readToken_numberSign()
 case 92:return void this.readWord()
-default:if(A(e))return void this.readWord()}throw this.raise(this.state.pos,g.InvalidOrUnexpectedToken,String.fromCodePoint(e))}finishOp(e,t){const r=this.input.slice(this.state.pos,this.state.pos+t)
-this.state.pos+=t,this.finishToken(e,r)}readRegexp(){const e=this.state.pos
-let t,r
-for(;;){if(this.state.pos>=this.length)throw this.raise(e,g.UnterminatedRegExp)
-const i=this.input.charAt(this.state.pos)
-if(l.test(i))throw this.raise(e,g.UnterminatedRegExp)
+default:if(W(e))return void this.readWord(e)}throw this.raise(this.state.pos,m.InvalidOrUnexpectedToken,String.fromCodePoint(e))}finishOp(e,t){const r=this.input.slice(this.state.pos,this.state.pos+t)
+this.state.pos+=t,this.finishToken(e,r)}readRegexp(){const e=this.state.start+1
+let t,r,{pos:i}=this.state
+for(;;++i){if(i>=this.length)throw this.raise(e,m.UnterminatedRegExp)
+const n=this.input.charCodeAt(i)
+if(s(n))throw this.raise(e,m.UnterminatedRegExp)
 if(t)t=!1
-else{if("["===i)r=!0
-else if("]"===i&&r)r=!1
-else if("/"===i&&!r)break
-t="\\"===i}++this.state.pos}const i=this.input.slice(e,this.state.pos);++this.state.pos
-let n=""
-for(;this.state.pos<this.length;){const e=this.input[this.state.pos],t=this.input.codePointAt(this.state.pos)
-if(fe.has(e))n.indexOf(e)>-1&&this.raise(this.state.pos+1,g.DuplicateRegExpFlags)
-else{if(!P(t)&&92!==t)break
-this.raise(this.state.pos+1,g.MalformedRegExpFlags)}++this.state.pos,n+=e}this.finishToken(o.regexp,{pattern:i,flags:n})}readInt(e,t,r,i=!0){const n=this.state.pos,s=16===e?me.hex:me.decBinOct,a=16===e?ge.hex:10===e?ge.dec:8===e?ge.oct:ge.bin
+else{if(91===n)r=!0
+else if(93===n&&r)r=!1
+else if(47===n&&!r)break
+t=92===n}}const n=this.input.slice(e,i);++i
+let a=""
+for(;i<this.length;){const e=this.codePointAtPos(i),t=String.fromCharCode(e)
+if(ue.has(e))a.includes(t)&&this.raise(i+1,m.DuplicateRegExpFlags)
+else{if(!J(e)&&92!==e)break
+this.raise(i+1,m.MalformedRegExpFlags)}++i,a+=t}this.state.pos=i,this.finishToken(3,{pattern:n,flags:a})}readInt(e,t,r,i=!0){const n=this.state.pos,s=16===e?ce.hex:ce.decBinOct,a=16===e?he.hex:10===e?he.dec:8===e?he.oct:he.bin
 let o=!1,l=0
 for(let u=0,c=null==t?1/0:t;u<c;++u){const t=this.input.charCodeAt(this.state.pos)
 let n
-if(95!==t){if(n=t>=97?t-97+10:t>=65?t-65+10:de(t)?t-48:1/0,n>=e)if(this.options.errorRecovery&&n<=9)n=0,this.raise(this.state.start+u+2,g.InvalidDigit,e)
+if(95!==t){if(n=t>=97?t-97+10:t>=65?t-65+10:le(t)?t-48:1/0,n>=e)if(this.options.errorRecovery&&n<=9)n=0,this.raise(this.state.start+u+2,m.InvalidDigit,e)
 else{if(!r)break
-n=0,o=!0}++this.state.pos,l=l*e+n}else{const e=this.input.charCodeAt(this.state.pos-1),t=this.input.charCodeAt(this.state.pos+1);(-1===a.indexOf(t)||s.indexOf(e)>-1||s.indexOf(t)>-1||Number.isNaN(t))&&this.raise(this.state.pos,g.UnexpectedNumericSeparator),i||this.raise(this.state.pos,g.NumericSeparatorInEscapeSequence),++this.state.pos}}return this.state.pos===n||null!=t&&this.state.pos-n!==t||o?null:l}readRadixNumber(e){const t=this.state.pos
+n=0,o=!0}++this.state.pos,l=l*e+n}else{const e=this.input.charCodeAt(this.state.pos-1),t=this.input.charCodeAt(this.state.pos+1);(-1===a.indexOf(t)||s.indexOf(e)>-1||s.indexOf(t)>-1||Number.isNaN(t))&&this.raise(this.state.pos,m.UnexpectedNumericSeparator),i||this.raise(this.state.pos,m.NumericSeparatorInEscapeSequence),++this.state.pos}}return this.state.pos===n||null!=t&&this.state.pos-n!==t||o?null:l}readRadixNumber(e){const t=this.state.pos
 let r=!1
 this.state.pos+=2
 const i=this.readInt(e)
-null==i&&this.raise(this.state.start+2,g.InvalidDigit,e)
+null==i&&this.raise(this.state.start+2,m.InvalidDigit,e)
 const n=this.input.charCodeAt(this.state.pos)
 if(110===n)++this.state.pos,r=!0
-else if(109===n)throw this.raise(t,g.InvalidDecimal)
-if(A(this.input.codePointAt(this.state.pos)))throw this.raise(this.state.pos,g.NumberIdentifier)
+else if(109===n)throw this.raise(t,m.InvalidDecimal)
+if(W(this.codePointAtPos(this.state.pos)))throw this.raise(this.state.pos,m.NumberIdentifier)
 if(r){const e=this.input.slice(t,this.state.pos).replace(/[_n]/g,"")
-this.finishToken(o.bigint,e)}else this.finishToken(o.num,i)}readNumber(e){const t=this.state.pos
+this.finishToken(1,e)}else this.finishToken(0,i)}readNumber(e){const t=this.state.pos
 let r=!1,i=!1,n=!1,s=!1,a=!1
-e||null!==this.readInt(10)||this.raise(t,g.InvalidNumber)
-const l=this.state.pos-t>=2&&48===this.input.charCodeAt(t)
-if(l){const e=this.input.slice(t,this.state.pos)
-if(this.state.strict)this.raise(t,g.StrictOctalLiteral)
-else{const r=e.indexOf("_")
-r>0&&this.raise(r+t,g.ZeroDigitNumericSeparator)}a=l&&!/[89]/.test(e)}let u=this.input.charCodeAt(this.state.pos)
-if(46!==u||a||(++this.state.pos,this.readInt(10),r=!0,u=this.input.charCodeAt(this.state.pos)),69!==u&&101!==u||a||(u=this.input.charCodeAt(++this.state.pos),43!==u&&45!==u||++this.state.pos,null===this.readInt(10)&&this.raise(t,g.InvalidOrMissingExponent),r=!0,s=!0,u=this.input.charCodeAt(this.state.pos)),110===u&&((r||l)&&this.raise(t,g.InvalidBigIntLiteral),++this.state.pos,i=!0),109===u&&(this.expectPlugin("decimal",this.state.pos),(s||l)&&this.raise(t,g.InvalidDecimal),++this.state.pos,n=!0),A(this.input.codePointAt(this.state.pos)))throw this.raise(this.state.pos,g.NumberIdentifier)
-const c=this.input.slice(t,this.state.pos).replace(/[_mn]/g,"")
-if(i)return void this.finishToken(o.bigint,c)
-if(n)return void this.finishToken(o.decimal,c)
-const h=a?parseInt(c,8):parseFloat(c)
-this.finishToken(o.num,h)}readCodePoint(e){let t
+e||null!==this.readInt(10)||this.raise(t,m.InvalidNumber)
+const o=this.state.pos-t>=2&&48===this.input.charCodeAt(t)
+if(o){const e=this.input.slice(t,this.state.pos)
+if(this.recordStrictModeErrors(t,m.StrictOctalLiteral),!this.state.strict){const r=e.indexOf("_")
+r>0&&this.raise(r+t,m.ZeroDigitNumericSeparator)}a=o&&!/[89]/.test(e)}let l=this.input.charCodeAt(this.state.pos)
+if(46!==l||a||(++this.state.pos,this.readInt(10),r=!0,l=this.input.charCodeAt(this.state.pos)),69!==l&&101!==l||a||(l=this.input.charCodeAt(++this.state.pos),43!==l&&45!==l||++this.state.pos,null===this.readInt(10)&&this.raise(t,m.InvalidOrMissingExponent),r=!0,s=!0,l=this.input.charCodeAt(this.state.pos)),110===l&&((r||o)&&this.raise(t,m.InvalidBigIntLiteral),++this.state.pos,i=!0),109===l&&(this.expectPlugin("decimal",this.state.pos),(s||o)&&this.raise(t,m.InvalidDecimal),++this.state.pos,n=!0),W(this.codePointAtPos(this.state.pos)))throw this.raise(this.state.pos,m.NumberIdentifier)
+const u=this.input.slice(t,this.state.pos).replace(/[_mn]/g,"")
+if(i)return void this.finishToken(1,u)
+if(n)return void this.finishToken(2,u)
+const c=a?parseInt(u,8):parseFloat(u)
+this.finishToken(0,c)}readCodePoint(e){let t
 if(123===this.input.charCodeAt(this.state.pos)){const r=++this.state.pos
 if(t=this.readHexChar(this.input.indexOf("}",this.state.pos)-this.state.pos,!0,e),++this.state.pos,null!==t&&t>1114111){if(!e)return null
-this.raise(r,g.InvalidCodePoint)}}else t=this.readHexChar(4,!1,e)
+this.raise(r,m.InvalidCodePoint)}}else t=this.readHexChar(4,!1,e)
 return t}readString(e){let t="",r=++this.state.pos
-for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,g.UnterminatedString)
+for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,m.UnterminatedString)
 const i=this.input.charCodeAt(this.state.pos)
 if(i===e)break
 if(92===i)t+=this.input.slice(r,this.state.pos),t+=this.readEscapedChar(!1),r=this.state.pos
 else if(8232===i||8233===i)++this.state.pos,++this.state.curLine,this.state.lineStart=this.state.pos
-else{if(c(i))throw this.raise(this.state.start,g.UnterminatedString);++this.state.pos}}t+=this.input.slice(r,this.state.pos++),this.finishToken(o.string,t)}readTmplToken(){let e="",t=this.state.pos,r=!1
-for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,g.UnterminatedTemplate)
+else{if(s(i))throw this.raise(this.state.start,m.UnterminatedString);++this.state.pos}}t+=this.input.slice(r,this.state.pos++),this.finishToken(4,t)}readTmplToken(){let e="",t=this.state.pos,r=!1
+for(;;){if(this.state.pos>=this.length)throw this.raise(this.state.start,m.UnterminatedTemplate)
 const i=this.input.charCodeAt(this.state.pos)
-if(96===i||36===i&&123===this.input.charCodeAt(this.state.pos+1))return this.state.pos===this.state.start&&this.match(o.template)?36===i?(this.state.pos+=2,void this.finishToken(o.dollarBraceL)):(++this.state.pos,void this.finishToken(o.backQuote)):(e+=this.input.slice(t,this.state.pos),void this.finishToken(o.template,r?null:e))
+if(96===i||36===i&&123===this.input.charCodeAt(this.state.pos+1))return this.state.pos===this.state.start&&this.match(28)?36===i?(this.state.pos+=2,void this.finishToken(31)):(++this.state.pos,void this.finishToken(30)):(e+=this.input.slice(t,this.state.pos),void this.finishToken(28,r?null:e))
 if(92===i){e+=this.input.slice(t,this.state.pos)
 const i=this.readEscapedChar(!0)
-null===i?r=!0:e+=i,t=this.state.pos}else if(c(i)){switch(e+=this.input.slice(t,this.state.pos),++this.state.pos,i){case 13:10===this.input.charCodeAt(this.state.pos)&&++this.state.pos
+null===i?r=!0:e+=i,t=this.state.pos}else if(s(i)){switch(e+=this.input.slice(t,this.state.pos),++this.state.pos,i){case 13:10===this.input.charCodeAt(this.state.pos)&&++this.state.pos
 case 10:e+="\n"
 break
-default:e+=String.fromCharCode(i)}++this.state.curLine,this.state.lineStart=this.state.pos,t=this.state.pos}else++this.state.pos}}readEscapedChar(e){const t=!e,r=this.input.charCodeAt(++this.state.pos)
+default:e+=String.fromCharCode(i)}++this.state.curLine,this.state.lineStart=this.state.pos,t=this.state.pos}else++this.state.pos}}recordStrictModeErrors(e,t){this.state.strict&&!this.state.strictErrors.has(e)?this.raise(e,t):this.state.strictErrors.set(e,t)}readEscapedChar(e){const t=!e,r=this.input.charCodeAt(++this.state.pos)
 switch(++this.state.pos,r){case 110:return"\n"
 case 114:return"\r"
 case 120:{const e=this.readHexChar(2,!1,t)
@@ -10481,50 +10529,66 @@ case 13:10===this.input.charCodeAt(this.state.pos)&&++this.state.pos
 case 10:this.state.lineStart=this.state.pos,++this.state.curLine
 case 8232:case 8233:return""
 case 56:case 57:if(e)return null
-this.state.strict&&this.raise(this.state.pos-1,g.StrictNumericEscape)
+this.recordStrictModeErrors(this.state.pos-1,m.StrictNumericEscape)
 default:if(r>=48&&r<=55){const t=this.state.pos-1
 let r=this.input.substr(this.state.pos-1,3).match(/^[0-7]+/)[0],i=parseInt(r,8)
 i>255&&(r=r.slice(0,-1),i=parseInt(r,8)),this.state.pos+=r.length-1
 const n=this.input.charCodeAt(this.state.pos)
 if("0"!==r||56===n||57===n){if(e)return null
-this.state.strict?this.raise(t,g.StrictNumericEscape):this.state.octalPositions.push(t)}return String.fromCharCode(i)}return String.fromCharCode(r)}}readHexChar(e,t,r){const i=this.state.pos,n=this.readInt(16,e,t,!1)
-return null===n&&(r?this.raise(i,g.InvalidEscapeSequence):this.state.pos=i-1),n}readWord1(){let e=""
-this.state.containsEsc=!1
-const t=this.state.pos
-let r=this.state.pos
-for(;this.state.pos<this.length;){const i=this.input.codePointAt(this.state.pos)
-if(P(i))this.state.pos+=i<=65535?1:2
-else if(this.state.isIterator&&64===i)++this.state.pos
-else{if(92!==i)break
-{this.state.containsEsc=!0,e+=this.input.slice(r,this.state.pos)
-const i=this.state.pos,n=this.state.pos===t?A:P
-if(117!==this.input.charCodeAt(++this.state.pos)){this.raise(this.state.pos,g.MissingUnicodeEscape)
+this.recordStrictModeErrors(t,m.StrictNumericEscape)}return String.fromCharCode(i)}return String.fromCharCode(r)}}readHexChar(e,t,r){const i=this.state.pos,n=this.readInt(16,e,t,!1)
+return null===n&&(r?this.raise(i,m.InvalidEscapeSequence):this.state.pos=i-1),n}readWord1(e){this.state.containsEsc=!1
+let t=""
+const r=this.state.pos
+let i=this.state.pos
+for(void 0!==e&&(this.state.pos+=e<=65535?1:2);this.state.pos<this.length;){const e=this.codePointAtPos(this.state.pos)
+if(J(e))this.state.pos+=e<=65535?1:2
+else{if(92!==e)break
+{this.state.containsEsc=!0,t+=this.input.slice(i,this.state.pos)
+const e=this.state.pos,n=this.state.pos===r?W:J
+if(117!==this.input.charCodeAt(++this.state.pos)){this.raise(this.state.pos,m.MissingUnicodeEscape),i=this.state.pos-1
 continue}++this.state.pos
 const s=this.readCodePoint(!0)
-null!==s&&(n(s)||this.raise(i,g.EscapedCharNotAnIdentifier),e+=String.fromCodePoint(s)),r=this.state.pos}}}return e+this.input.slice(r,this.state.pos)}isIterator(e){return"@@iterator"===e||"@@asyncIterator"===e}readWord(){const e=this.readWord1(),t=n.get(e)||o.name
-!this.state.isIterator||this.isIterator(e)&&this.state.inType||this.raise(this.state.pos,g.InvalidIdentifier,e),this.finishToken(t,e)}checkKeywordEscapes(){const e=this.state.type.keyword
-e&&this.state.containsEsc&&this.raise(this.state.start,g.InvalidEscapedReservedWord,e)}braceIsBlock(e){const t=this.curContext()
-return t===b.functionExpression||t===b.functionStatement||(e!==o.colon||t!==b.braceStatement&&t!==b.braceExpression?e===o._return||e===o.name&&this.state.exprAllowed?this.hasPrecedingLineBreak():e===o._else||e===o.semi||e===o.eof||e===o.parenR||e===o.arrow||(e===o.braceL?t===b.braceStatement:e!==o._var&&e!==o._const&&e!==o.name&&(e===o.relational||!this.state.exprAllowed)):!t.isExpr)}updateContext(e){const t=this.state.type
-let r
-!t.keyword||e!==o.dot&&e!==o.questionDot?(r=t.updateContext)?r.call(this,e):this.state.exprAllowed=t.beforeExpr:this.state.exprAllowed=!1}}{addExtra(e,t,r){e&&((e.extra=e.extra||{})[t]=r)}isRelational(e){return this.match(o.relational)&&this.state.value===e}expectRelational(e){this.isRelational(e)?this.next():this.unexpected(null,o.relational)}isContextual(e){return this.match(o.name)&&this.state.value===e&&!this.state.containsEsc}isUnparsedContextual(e,t){const r=e+t.length
-return this.input.slice(e,r)===t&&(r===this.input.length||!P(this.input.charCodeAt(r)))}isLookaheadContextual(e){const t=this.nextTokenStart()
-return this.isUnparsedContextual(t,e)}eatContextual(e){return this.isContextual(e)&&this.eat(o.name)}expectContextual(e,t){this.eatContextual(e)||this.unexpected(null,t)}canInsertSemicolon(){return this.match(o.eof)||this.match(o.braceR)||this.hasPrecedingLineBreak()}hasPrecedingLineBreak(){return l.test(this.input.slice(this.state.lastTokEnd,this.state.start))}isLineTerminator(){return this.eat(o.semi)||this.canInsertSemicolon()}semicolon(){this.isLineTerminator()||this.unexpected(null,o.semi)}expect(e,t){this.eat(e)||this.unexpected(t,e)}assertNoSpace(e="Unexpected space."){this.state.start>this.state.lastTokEnd&&this.raise(this.state.lastTokEnd,e)}unexpected(e,t="Unexpected token"){throw"string"!=typeof t&&(t=`Unexpected token, expected "${t.label}"`),this.raise(null!=e?e:this.state.start,t)}expectPlugin(e,t){if(!this.hasPlugin(e))throw this.raiseWithData(null!=t?t:this.state.start,{missingPlugin:[e]},`This experimental syntax requires enabling the parser plugin: '${e}'`)
+null!==s&&(n(s)||this.raise(e,m.EscapedCharNotAnIdentifier),t+=String.fromCodePoint(s)),i=this.state.pos}}}return t+this.input.slice(i,this.state.pos)}readWord(e){const t=this.readWord1(e),r=w.get(t)||5
+this.finishToken(r,t)}checkKeywordEscapes(){const{type:e}=this.state
+L(e)&&this.state.containsEsc&&this.raise(this.state.start,m.InvalidEscapedReservedWord,R(e))}updateContext(e){const{context:t,type:r}=this.state
+switch(r){case 16:t.pop()
+break
+case 13:case 15:case 31:t.push(x.brace)
+break
+case 30:t[t.length-1]===x.template?t.pop():t.push(x.template)}}}{addExtra(e,t,r){e&&((e.extra=e.extra||{})[t]=r)}isRelational(e){return this.match(50)&&this.state.value===e}expectRelational(e){this.isRelational(e)?this.next():this.unexpected(null,50)}isContextual(e){return this.match(5)&&this.state.value===e&&!this.state.containsEsc}isUnparsedContextual(e,t){const r=e+t.length
+if(this.input.slice(e,r)===t){const e=this.input.charCodeAt(r)
+return!(J(e)||55296==(64512&e))}return!1}isLookaheadContextual(e){const t=this.nextTokenStart()
+return this.isUnparsedContextual(t,e)}eatContextual(e){return this.isContextual(e)&&this.eat(5)}expectContextual(e,t){this.eatContextual(e)||this.unexpected(null,t)}canInsertSemicolon(){return this.match(7)||this.match(16)||this.hasPrecedingLineBreak()}hasPrecedingLineBreak(){return i.test(this.input.slice(this.state.lastTokEnd,this.state.start))}hasFollowingLineBreak(){return o.lastIndex=this.state.end,o.test(this.input)}isLineTerminator(){return this.eat(21)||this.canInsertSemicolon()}semicolon(e=!0){(e?this.isLineTerminator():this.eat(21))||this.raise(this.state.lastTokEnd,m.MissingSemicolon)}expect(e,t){this.eat(e)||this.unexpected(t,e)}assertNoSpace(e="Unexpected space."){this.state.start>this.state.lastTokEnd&&this.raise(this.state.lastTokEnd,{code:f.SyntaxError,reasonCode:"UnexpectedSpace",template:e})}unexpected(e,t={code:f.SyntaxError,reasonCode:"UnexpectedToken",template:"Unexpected token"}){throw"number"==typeof t&&(t={code:f.SyntaxError,reasonCode:"UnexpectedToken",template:`Unexpected token, expected "${R(t)}"`}),this.raise(null!=e?e:this.state.start,t)}expectPlugin(e,t){if(!this.hasPlugin(e))throw this.raiseWithData(null!=t?t:this.state.start,{missingPlugin:[e]},`This experimental syntax requires enabling the parser plugin: '${e}'`)
 return!0}expectOnePlugin(e,t){if(!e.some((e=>this.hasPlugin(e))))throw this.raiseWithData(null!=t?t:this.state.start,{missingPlugin:e},`This experimental syntax requires enabling one of the following parser plugin(s): '${e.join(", ")}'`)}tryParse(e,t=this.state.clone()){const r={node:null}
 try{const i=e(((e=null)=>{throw r.node=e,r}))
 if(this.state.errors.length>t.errors.length){const e=this.state
-return this.state=t,{node:i,error:e.errors[t.errors.length],thrown:!1,aborted:!1,failState:e}}return{node:i,error:null,thrown:!1,aborted:!1,failState:null}}catch(e){const i=this.state
+return this.state=t,this.state.tokensLength=e.tokensLength,{node:i,error:e.errors[t.errors.length],thrown:!1,aborted:!1,failState:e}}return{node:i,error:null,thrown:!1,aborted:!1,failState:null}}catch(e){const i=this.state
 if(this.state=t,e instanceof SyntaxError)return{node:null,error:e,thrown:!0,aborted:!1,failState:i}
 if(e===r)return{node:r.node,error:null,thrown:!1,aborted:!0,failState:i}
 throw e}}checkExpressionErrors(e,t){if(!e)return!1
-const{shorthandAssign:r,doubleProto:i}=e
-if(!t)return r>=0||i>=0
-r>=0&&this.unexpected(r),i>=0&&this.raise(i,g.DuplicateProto)}isLiteralPropertyName(){return this.match(o.name)||!!this.state.type.keyword||this.match(o.string)||this.match(o.num)||this.match(o.bigint)||this.match(o.decimal)}}{startNode(){return new be(this,this.state.start,this.state.startLoc)}startNodeAt(e,t){return new be(this,e,t)}startNodeAtNode(e){return this.startNodeAt(e.start,e.loc.start)}finishNode(e,t){return this.finishNodeAt(e,t,this.state.lastTokEnd,this.state.lastTokEndLoc)}finishNodeAt(e,t,r,i){return e.type=t,e.end=r,e.loc.end=i,this.options.ranges&&(e.range[1]=r),this.processComment(e),e}resetStartLocation(e,t,r){e.start=t,e.loc.start=r,this.options.ranges&&(e.range[0]=t)}resetEndLocation(e,t=this.state.lastTokEnd,r=this.state.lastTokEndLoc){e.end=t,e.loc.end=r,this.options.ranges&&(e.range[1]=t)}resetStartLocationFromNode(e,t){this.resetStartLocation(e,t.start,t.loc.start)}}{toAssignable(e,t=!1){var r,i
+const{shorthandAssign:r,doubleProto:i,optionalParameters:n}=e
+if(!t)return r>=0||i>=0||n>=0
+r>=0&&this.unexpected(r),i>=0&&this.raise(i,m.DuplicateProto),n>=0&&this.unexpected(n)}isLiteralPropertyName(){return this.match(5)||L(this.state.type)||this.match(4)||this.match(0)||this.match(1)||this.match(2)}isPrivateName(e){return"PrivateName"===e.type}getPrivateNameSV(e){return e.id.name}hasPropertyAsPrivateName(e){return("MemberExpression"===e.type||"OptionalMemberExpression"===e.type)&&this.isPrivateName(e.property)}isOptionalChain(e){return"OptionalMemberExpression"===e.type||"OptionalCallExpression"===e.type}isObjectProperty(e){return"ObjectProperty"===e.type}isObjectMethod(e){return"ObjectMethod"===e.type}initializeScopes(e="module"===this.options.sourceType){const t=this.state.labels
+this.state.labels=[]
+const r=this.exportedIdentifiers
+this.exportedIdentifiers=new Set
+const i=this.inModule
+this.inModule=e
+const n=this.scope,s=this.getScopeHandler()
+this.scope=new s(this.raise.bind(this),this.inModule)
+const a=this.prodParam
+this.prodParam=new be
+const o=this.classScope
+this.classScope=new fe(this.raise.bind(this))
+const l=this.expressionScope
+return this.expressionScope=new ye(this.raise.bind(this)),()=>{this.state.labels=t,this.exportedIdentifiers=r,this.inModule=i,this.scope=n,this.prodParam=a,this.classScope=o,this.expressionScope=l}}enterInitialScopes(){let e=0
+this.inModule&&(e|=2),this.scope.enter(1),this.prodParam.enter(e)}}{startNode(){return new we(this,this.state.start,this.state.startLoc)}startNodeAt(e,t){return new we(this,e,t)}startNodeAtNode(e){return this.startNodeAt(e.start,e.loc.start)}finishNode(e,t){return this.finishNodeAt(e,t,this.state.lastTokEnd,this.state.lastTokEndLoc)}finishNodeAt(e,t,r,i){return e.type=t,e.end=r,e.loc.end=i,this.options.ranges&&(e.range[1]=r),this.options.attachComment&&this.processComment(e),e}resetStartLocation(e,t,r){e.start=t,e.loc.start=r,this.options.ranges&&(e.range[0]=t)}resetEndLocation(e,t=this.state.lastTokEnd,r=this.state.lastTokEndLoc){e.end=t,e.loc.end=r,this.options.ranges&&(e.range[1]=t)}resetStartLocationFromNode(e,t){this.resetStartLocation(e,t.start,t.loc.start)}}{toAssignable(e,t=!1){var r,i
 let n
-switch(("ParenthesizedExpression"===e.type||(null==(r=e.extra)?void 0:r.parenthesized))&&(n=xe(e),t?"Identifier"===n.type?this.expressionScope.recordParenthesizedIdentifierError(e.start,g.InvalidParenthesizedAssignment):"MemberExpression"!==n.type&&this.raise(e.start,g.InvalidParenthesizedAssignment):this.raise(e.start,g.InvalidParenthesizedAssignment)),e.type){case"Identifier":case"ObjectPattern":case"ArrayPattern":case"AssignmentPattern":break
+switch(("ParenthesizedExpression"===e.type||null!=(r=e.extra)&&r.parenthesized)&&(n=Qe(e),t?"Identifier"===n.type?this.expressionScope.recordParenthesizedIdentifierError(e.start,m.InvalidParenthesizedAssignment):"MemberExpression"!==n.type&&this.raise(e.start,m.InvalidParenthesizedAssignment):this.raise(e.start,m.InvalidParenthesizedAssignment)),e.type){case"Identifier":case"ObjectPattern":case"ArrayPattern":case"AssignmentPattern":case"RestElement":break
 case"ObjectExpression":e.type="ObjectPattern"
 for(let r=0,i=e.properties.length,n=i-1;r<i;r++){var s
 const i=e.properties[r],a=r===n
-this.toAssignableObjectExpressionProp(i,a,t),a&&"RestElement"===i.type&&(null==(s=e.extra)?void 0:s.trailingComma)&&this.raiseRestNotLast(e.extra.trailingComma)}break
+this.toAssignableObjectExpressionProp(i,a,t),a&&"RestElement"===i.type&&null!=(s=e.extra)&&s.trailingComma&&this.raiseRestNotLast(e.extra.trailingComma)}break
 case"ObjectProperty":this.toAssignable(e.value,t)
 break
 case"SpreadElement":{this.checkToRestConversion(e),e.type="RestElement"
@@ -10532,508 +10596,550 @@ const r=e.argument
 this.toAssignable(r,t)
 break}case"ArrayExpression":e.type="ArrayPattern",this.toAssignableList(e.elements,null==(i=e.extra)?void 0:i.trailingComma,t)
 break
-case"AssignmentExpression":"="!==e.operator&&this.raise(e.left.end,g.MissingEqInAssignment),e.type="AssignmentPattern",delete e.operator,this.toAssignable(e.left,t)
+case"AssignmentExpression":"="!==e.operator&&this.raise(e.left.end,m.MissingEqInAssignment),e.type="AssignmentPattern",delete e.operator,this.toAssignable(e.left,t)
 break
-case"ParenthesizedExpression":this.toAssignable(n,t)}return e}toAssignableObjectExpressionProp(e,t,r){if("ObjectMethod"===e.type){const t="get"===e.kind||"set"===e.kind?g.PatternHasAccessor:g.PatternHasMethod
+case"ParenthesizedExpression":this.toAssignable(n,t)}return e}toAssignableObjectExpressionProp(e,t,r){if("ObjectMethod"===e.type){const t="get"===e.kind||"set"===e.kind?m.PatternHasAccessor:m.PatternHasMethod
 this.raise(e.key.start,t)}else"SpreadElement"!==e.type||t?this.toAssignable(e,r):this.raiseRestNotLast(e.start)}toAssignableList(e,t,r){let i=e.length
 if(i){const n=e[i-1]
 if("RestElement"===(null==n?void 0:n.type))--i
 else if("SpreadElement"===(null==n?void 0:n.type)){n.type="RestElement"
 let e=n.argument
-this.toAssignable(e,r),e=xe(e),"Identifier"!==e.type&&"MemberExpression"!==e.type&&"ArrayPattern"!==e.type&&"ObjectPattern"!==e.type&&this.unexpected(e.start),t&&this.raiseTrailingCommaAfterRest(t),--i}}for(let n=0;n<i;n++){const t=e[n]
-t&&(this.toAssignable(t,r),"RestElement"===t.type&&this.raiseRestNotLast(t.start))}return e}toReferencedList(e,t){return e}toReferencedListDeep(e,t){this.toReferencedList(e,t)
-for(let r=0;r<e.length;r++){const t=e[r]
-"ArrayExpression"===(null==t?void 0:t.type)&&this.toReferencedListDeep(t.elements)}}parseSpread(e,t){const r=this.startNode()
+this.toAssignable(e,r),e=Qe(e),"Identifier"!==e.type&&"MemberExpression"!==e.type&&"ArrayPattern"!==e.type&&"ObjectPattern"!==e.type&&this.unexpected(e.start),t&&this.raiseTrailingCommaAfterRest(t),--i}}for(let n=0;n<i;n++){const t=e[n]
+t&&(this.toAssignable(t,r),"RestElement"===t.type&&this.raiseRestNotLast(t.start))}return e}isAssignable(e,t){switch(e.type){case"Identifier":case"ObjectPattern":case"ArrayPattern":case"AssignmentPattern":case"RestElement":return!0
+case"ObjectExpression":{const t=e.properties.length-1
+return e.properties.every(((e,r)=>"ObjectMethod"!==e.type&&(r===t||"SpreadElement"!==e.type)&&this.isAssignable(e)))}case"ObjectProperty":return this.isAssignable(e.value)
+case"SpreadElement":return this.isAssignable(e.argument)
+case"ArrayExpression":return e.elements.every((e=>null===e||this.isAssignable(e)))
+case"AssignmentExpression":return"="===e.operator
+case"ParenthesizedExpression":return this.isAssignable(e.expression)
+case"MemberExpression":case"OptionalMemberExpression":return!t
+default:return!1}}toReferencedList(e,t){return e}toReferencedListDeep(e,t){this.toReferencedList(e,t)
+for(const r of e)"ArrayExpression"===(null==r?void 0:r.type)&&this.toReferencedListDeep(r.elements)}parseSpread(e,t){const r=this.startNode()
 return this.next(),r.argument=this.parseMaybeAssignAllowIn(e,void 0,t),this.finishNode(r,"SpreadElement")}parseRestBinding(){const e=this.startNode()
-return this.next(),e.argument=this.parseBindingAtom(),this.finishNode(e,"RestElement")}parseBindingAtom(){switch(this.state.type){case o.bracketL:{const e=this.startNode()
-return this.next(),e.elements=this.parseBindingList(o.bracketR,93,!0),this.finishNode(e,"ArrayPattern")}case o.braceL:return this.parseObjectLike(o.braceR,!0)}return this.parseIdentifier()}parseBindingList(e,t,r,i){const n=[]
+return this.next(),e.argument=this.parseBindingAtom(),this.finishNode(e,"RestElement")}parseBindingAtom(){switch(this.state.type){case 8:{const e=this.startNode()
+return this.next(),e.elements=this.parseBindingList(11,93,!0),this.finishNode(e,"ArrayPattern")}case 13:return this.parseObjectLike(16,!0)}return this.parseIdentifier()}parseBindingList(e,t,r,i){const n=[]
 let s=!0
-for(;!this.eat(e);)if(s?s=!1:this.expect(o.comma),r&&this.match(o.comma))n.push(null)
+for(;!this.eat(e);)if(s?s=!1:this.expect(20),r&&this.match(20))n.push(null)
 else{if(this.eat(e))break
-if(this.match(o.ellipsis)){n.push(this.parseAssignableListItemTypes(this.parseRestBinding())),this.checkCommaAfterRest(t),this.expect(e)
+if(this.match(29)){n.push(this.parseAssignableListItemTypes(this.parseRestBinding())),this.checkCommaAfterRest(t),this.expect(e)
 break}{const e=[]
-for(this.match(o.at)&&this.hasPlugin("decorators")&&this.raise(this.state.start,g.UnsupportedParameterDecorator);this.match(o.at);)e.push(this.parseDecorator())
+for(this.match(32)&&this.hasPlugin("decorators")&&this.raise(this.state.start,m.UnsupportedParameterDecorator);this.match(32);)e.push(this.parseDecorator())
 n.push(this.parseAssignableListItem(i,e))}}return n}parseAssignableListItem(e,t){const r=this.parseMaybeDefault()
 this.parseAssignableListItemTypes(r)
 const i=this.parseMaybeDefault(r.start,r.loc.start,r)
 return t.length&&(r.decorators=t),i}parseAssignableListItemTypes(e){return e}parseMaybeDefault(e,t,r){var i,n,s
-if(t=null!=(i=t)?i:this.state.startLoc,e=null!=(n=e)?n:this.state.start,r=null!=(s=r)?s:this.parseBindingAtom(),!this.eat(o.eq))return r
+if(t=null!=(i=t)?i:this.state.startLoc,e=null!=(n=e)?n:this.state.start,r=null!=(s=r)?s:this.parseBindingAtom(),!this.eat(35))return r
 const a=this.startNodeAt(e,t)
 return a.left=r,a.right=this.parseMaybeAssignAllowIn(),this.finishNode(a,"AssignmentPattern")}checkLVal(e,t,r=64,i,n,s=!1){switch(e.type){case"Identifier":{const{name:t}=e
-this.state.strict&&(s?L(t,this.inModule):M(t))&&this.raise(e.start,64===r?g.StrictEvalArguments:g.StrictEvalArgumentsBinding,t),i&&(i.has(t)?this.raise(e.start,g.ParamDupe):i.add(t)),n&&"let"===t&&this.raise(e.start,g.LetInLexicalBinding),64&r||this.scope.declareName(t,r,e.start)
-break}case"MemberExpression":64!==r&&this.raise(e.start,g.InvalidPropertyBindingPattern)
+this.state.strict&&(s?ee(t,this.inModule):Z(t))&&this.raise(e.start,64===r?m.StrictEvalArguments:m.StrictEvalArgumentsBinding,t),i&&(i.has(t)?this.raise(e.start,m.ParamDupe):i.add(t)),n&&"let"===t&&this.raise(e.start,m.LetInLexicalBinding),64&r||this.scope.declareName(t,r,e.start)
+break}case"MemberExpression":64!==r&&this.raise(e.start,m.InvalidPropertyBindingPattern)
 break
-case"ObjectPattern":for(let t=0,s=e.properties;t<s.length;t++){let e=s[t]
-if("ObjectProperty"===e.type)e=e.value
-else if("ObjectMethod"===e.type)continue
-this.checkLVal(e,"object destructuring pattern",r,i,n)}break
-case"ArrayPattern":for(let t=0,s=e.elements;t<s.length;t++){const e=s[t]
-e&&this.checkLVal(e,"array destructuring pattern",r,i,n)}break
+case"ObjectPattern":for(let t of e.properties){if(this.isObjectProperty(t))t=t.value
+else if(this.isObjectMethod(t))continue
+this.checkLVal(t,"object destructuring pattern",r,i,n)}break
+case"ArrayPattern":for(const t of e.elements)t&&this.checkLVal(t,"array destructuring pattern",r,i,n)
+break
 case"AssignmentPattern":this.checkLVal(e.left,"assignment pattern",r,i)
 break
 case"RestElement":this.checkLVal(e.argument,"rest element",r,i)
 break
 case"ParenthesizedExpression":this.checkLVal(e.expression,"parenthesized expression",r,i)
 break
-default:this.raise(e.start,64===r?g.InvalidLhs:g.InvalidLhsBinding,t)}}checkToRestConversion(e){"Identifier"!==e.argument.type&&"MemberExpression"!==e.argument.type&&this.raise(e.argument.start,g.InvalidRestAssignmentPattern)}checkCommaAfterRest(e){this.match(o.comma)&&(this.lookaheadCharCode()===e?this.raiseTrailingCommaAfterRest(this.state.start):this.raiseRestNotLast(this.state.start))}raiseRestNotLast(e){throw this.raise(e,g.ElementAfterRest)}raiseTrailingCommaAfterRest(e){this.raise(e,g.RestTrailingComma)}}{checkProto(e,t,r,i){if("SpreadElement"===e.type||"ObjectMethod"===e.type||e.computed||e.shorthand)return
+default:this.raise(e.start,64===r?m.InvalidLhs:m.InvalidLhsBinding,t)}}checkToRestConversion(e){"Identifier"!==e.argument.type&&"MemberExpression"!==e.argument.type&&this.raise(e.argument.start,m.InvalidRestAssignmentPattern)}checkCommaAfterRest(e){this.match(20)&&(this.lookaheadCharCode()===e?this.raiseTrailingCommaAfterRest(this.state.start):this.raiseRestNotLast(this.state.start))}raiseRestNotLast(e){throw this.raise(e,m.ElementAfterRest)}raiseTrailingCommaAfterRest(e){this.raise(e,m.RestTrailingComma)}}{checkProto(e,t,r,i){if("SpreadElement"===e.type||this.isObjectMethod(e)||e.computed||e.shorthand)return
 const n=e.key
-if("__proto__"===("Identifier"===n.type?n.name:n.value)){if(t)return void this.raise(n.start,g.RecordNoProto)
-r.used&&(i?-1===i.doubleProto&&(i.doubleProto=n.start):this.raise(n.start,g.DuplicateProto)),r.used=!0}}shouldExitDescending(e,t){return"ArrowFunctionExpression"===e.type&&e.start===t}getExpression(){let e=0
-this.hasPlugin("topLevelAwait")&&this.inModule&&(e|=2),this.scope.enter(1),this.prodParam.enter(e),this.nextToken()
-const t=this.parseExpression()
-return this.match(o.eof)||this.unexpected(),t.comments=this.state.comments,t.errors=this.state.errors,t}parseExpression(e,t){return e?this.disallowInAnd((()=>this.parseExpressionBase(t))):this.allowInAnd((()=>this.parseExpressionBase(t)))}parseExpressionBase(e){const t=this.state.start,r=this.state.startLoc,i=this.parseMaybeAssign(e)
-if(this.match(o.comma)){const n=this.startNodeAt(t,r)
-for(n.expressions=[i];this.eat(o.comma);)n.expressions.push(this.parseMaybeAssign(e))
-return this.toReferencedList(n.expressions),this.finishNode(n,"SequenceExpression")}return i}parseMaybeAssignDisallowIn(e,t,r){return this.disallowInAnd((()=>this.parseMaybeAssign(e,t,r)))}parseMaybeAssignAllowIn(e,t,r){return this.allowInAnd((()=>this.parseMaybeAssign(e,t,r)))}parseMaybeAssign(e,t,r){const i=this.state.start,n=this.state.startLoc
-if(this.isContextual("yield")&&this.prodParam.hasYield){this.state.exprAllowed=!0
-let e=this.parseYield()
-return t&&(e=t.call(this,e,i,n)),e}let s
-e?s=!1:(e=new ve,s=!0),(this.match(o.parenL)||this.match(o.name))&&(this.state.potentialArrowAt=this.state.start)
-let a=this.parseMaybeConditional(e,r)
-if(t&&(a=t.call(this,a,i,n)),this.state.type.isAssign){const t=this.startNodeAt(i,n),r=this.state.value
-return t.operator=r,this.match(o.eq)?(t.left=this.toAssignable(a,!0),e.doubleProto=-1):t.left=a,e.shorthandAssign>=t.left.start&&(e.shorthandAssign=-1),this.checkLVal(a,"assignment expression"),this.next(),t.right=this.parseMaybeAssign(),this.finishNode(t,"AssignmentExpression")}return s&&this.checkExpressionErrors(e,!0),a}parseMaybeConditional(e,t){const r=this.state.start,i=this.state.startLoc,n=this.state.potentialArrowAt,s=this.parseExprOps(e)
-return this.shouldExitDescending(s,n)?s:this.parseConditional(s,r,i,t)}parseConditional(e,t,r,i){if(this.eat(o.question)){const i=this.startNodeAt(t,r)
-return i.test=e,i.consequent=this.parseMaybeAssignAllowIn(),this.expect(o.colon),i.alternate=this.parseMaybeAssign(),this.finishNode(i,"ConditionalExpression")}return e}parseExprOps(e){const t=this.state.start,r=this.state.startLoc,i=this.state.potentialArrowAt,n=this.parseMaybeUnary(e)
-return this.shouldExitDescending(n,i)?n:this.parseExprOp(n,t,r,-1)}parseExprOp(e,t,r,i){let n=this.state.type.binop
-if(null!=n&&(this.prodParam.hasIn||!this.match(o._in))&&n>i){const s=this.state.type
-if(s===o.pipeline){if(this.expectPlugin("pipelineOperator"),this.state.inFSharpPipelineDirectBody)return e
-this.state.inPipeline=!0,this.checkPipelineAtInfixOperator(e,t)}const a=this.startNodeAt(t,r)
-a.left=e,a.operator=this.state.value,s!==o.exponent||"UnaryExpression"!==e.type||!this.options.createParenthesizedExpressions&&e.extra&&e.extra.parenthesized||this.raise(e.argument.start,g.UnexpectedTokenUnaryExponentiation)
-const l=s===o.logicalOR||s===o.logicalAND,u=s===o.nullishCoalescing
-if(u&&(n=o.logicalAND.binop),this.next(),s===o.pipeline&&"minimal"===this.getPluginOption("pipelineOperator","proposal")&&this.match(o.name)&&"await"===this.state.value&&this.prodParam.hasAwait)throw this.raise(this.state.start,g.UnexpectedAwaitAfterPipelineBody)
-a.right=this.parseExprOpRightExpr(s,n),this.finishNode(a,l||u?"LogicalExpression":"BinaryExpression")
-const c=this.state.type
-if(u&&(c===o.logicalOR||c===o.logicalAND)||l&&c===o.nullishCoalescing)throw this.raise(this.state.start,g.MixingCoalesceWithLogical)
-return this.parseExprOp(a,t,r,i)}return e}parseExprOpRightExpr(e,t){const r=this.state.start,i=this.state.startLoc
-switch(e){case o.pipeline:switch(this.getPluginOption("pipelineOperator","proposal")){case"smart":return this.withTopicPermittingContext((()=>this.parseSmartPipelineBody(this.parseExprOpBaseRightExpr(e,t),r,i)))
+if("__proto__"===("Identifier"===n.type?n.name:n.value)){if(t)return void this.raise(n.start,m.RecordNoProto)
+r.used&&(i?-1===i.doubleProto&&(i.doubleProto=n.start):this.raise(n.start,m.DuplicateProto)),r.used=!0}}shouldExitDescending(e,t){return"ArrowFunctionExpression"===e.type&&e.start===t}getExpression(){this.enterInitialScopes(),this.nextToken()
+const e=this.parseExpression()
+return this.match(7)||this.unexpected(),this.finalizeRemainingComments(),e.comments=this.state.comments,e.errors=this.state.errors,this.options.tokens&&(e.tokens=this.tokens),e}parseExpression(e,t){return e?this.disallowInAnd((()=>this.parseExpressionBase(t))):this.allowInAnd((()=>this.parseExpressionBase(t)))}parseExpressionBase(e){const t=this.state.start,r=this.state.startLoc,i=this.parseMaybeAssign(e)
+if(this.match(20)){const n=this.startNodeAt(t,r)
+for(n.expressions=[i];this.eat(20);)n.expressions.push(this.parseMaybeAssign(e))
+return this.toReferencedList(n.expressions),this.finishNode(n,"SequenceExpression")}return i}parseMaybeAssignDisallowIn(e,t){return this.disallowInAnd((()=>this.parseMaybeAssign(e,t)))}parseMaybeAssignAllowIn(e,t){return this.allowInAnd((()=>this.parseMaybeAssign(e,t)))}setOptionalParametersError(e,t){var r
+e.optionalParameters=null!=(r=null==t?void 0:t.pos)?r:this.state.start}parseMaybeAssign(e,t){const r=this.state.start,i=this.state.startLoc
+if(this.isContextual("yield")&&this.prodParam.hasYield){let e=this.parseYield()
+return t&&(e=t.call(this,e,r,i)),e}let n
+e?n=!1:(e=new Ee,n=!0),(this.match(18)||this.match(5))&&(this.state.potentialArrowAt=this.state.start)
+let s=this.parseMaybeConditional(e)
+if(t&&(s=t.call(this,s,r,i)),(a=this.state.type)>=35&&a<=38){const t=this.startNodeAt(r,i),n=this.state.value
+return t.operator=n,this.match(35)?(t.left=this.toAssignable(s,!0),e.doubleProto=-1):t.left=s,e.shorthandAssign>=t.left.start&&(e.shorthandAssign=-1),this.checkLVal(s,"assignment expression"),this.next(),t.right=this.parseMaybeAssign(),this.finishNode(t,"AssignmentExpression")}var a
+return n&&this.checkExpressionErrors(e,!0),s}parseMaybeConditional(e){const t=this.state.start,r=this.state.startLoc,i=this.state.potentialArrowAt,n=this.parseExprOps(e)
+return this.shouldExitDescending(n,i)?n:this.parseConditional(n,t,r,e)}parseConditional(e,t,r,i){if(this.eat(25)){const i=this.startNodeAt(t,r)
+return i.test=e,i.consequent=this.parseMaybeAssignAllowIn(),this.expect(22),i.alternate=this.parseMaybeAssign(),this.finishNode(i,"ConditionalExpression")}return e}parseMaybeUnaryOrPrivate(e){return this.match(6)?this.parsePrivateName():this.parseMaybeUnary(e)}parseExprOps(e){const t=this.state.start,r=this.state.startLoc,i=this.state.potentialArrowAt,n=this.parseMaybeUnaryOrPrivate(e)
+return this.shouldExitDescending(n,i)?n:this.parseExprOp(n,t,r,-1)}parseExprOp(e,t,r,i){if(this.isPrivateName(e)){const t=this.getPrivateNameSV(e),{start:r}=e;(i>=F(57)||!this.prodParam.hasIn||!this.match(57))&&this.raise(r,m.PrivateInExpectedIn,t),this.classScope.usePrivateName(t,r)}const n=this.state.type
+if((s=n)>=42&&s<=58&&(this.prodParam.hasIn||!this.match(57))){let s=F(n)
+if(s>i){if(42===n){if(this.expectPlugin("pipelineOperator"),this.state.inFSharpPipelineDirectBody)return e
+this.checkPipelineAtInfixOperator(e,t)}const a=this.startNodeAt(t,r)
+a.left=e,a.operator=this.state.value
+const o=44===n||45===n,l=43===n
+if(l&&(s=F(45)),this.next(),42===n&&"minimal"===this.getPluginOption("pipelineOperator","proposal")&&this.match(5)&&"await"===this.state.value&&this.prodParam.hasAwait)throw this.raise(this.state.start,m.UnexpectedAwaitAfterPipelineBody)
+a.right=this.parseExprOpRightExpr(n,s),this.finishNode(a,o||l?"LogicalExpression":"BinaryExpression")
+const u=this.state.type
+if(l&&(44===u||45===u)||o&&43===u)throw this.raise(this.state.start,m.MixingCoalesceWithLogical)
+return this.parseExprOp(a,t,r,i)}}var s
+return e}parseExprOpRightExpr(e,t){const r=this.state.start,i=this.state.startLoc
+switch(e){case 42:switch(this.getPluginOption("pipelineOperator","proposal")){case"hack":return this.withTopicBindingContext((()=>this.parseHackPipeBody()))
+case"smart":return this.withTopicBindingContext((()=>{if(this.prodParam.hasYield&&this.isContextual("yield"))throw this.raise(this.state.start,m.PipeBodyIsTighter,this.state.value)
+return this.parseSmartPipelineBodyInStyle(this.parseExprOpBaseRightExpr(e,t),r,i)}))
 case"fsharp":return this.withSoloAwaitPermittingContext((()=>this.parseFSharpPipelineBody(t)))}default:return this.parseExprOpBaseRightExpr(e,t)}}parseExprOpBaseRightExpr(e,t){const r=this.state.start,i=this.state.startLoc
-return this.parseExprOp(this.parseMaybeUnary(),r,i,e.rightAssociative?t-1:t)}parseMaybeUnary(e){if(this.isContextual("await")&&this.isAwaitAllowed())return this.parseAwait()
-const t=this.match(o.incDec),r=this.startNode()
-if(this.state.type.prefix){r.operator=this.state.value,r.prefix=!0,this.match(o._throw)&&this.expectPlugin("throwExpressions")
-const i=this.match(o._delete)
-if(this.next(),r.argument=this.parseMaybeUnary(),this.checkExpressionErrors(e,!0),this.state.strict&&i){const e=r.argument
-"Identifier"===e.type?this.raise(r.start,g.StrictDelete):"MemberExpression"!==e.type&&"OptionalMemberExpression"!==e.type||"PrivateName"!==e.property.type||this.raise(r.start,g.DeletePrivateField)}if(!t)return this.finishNode(r,"UnaryExpression")}return this.parseUpdate(r,t,e)}parseUpdate(e,t,r){if(t)return this.checkLVal(e.argument,"prefix operation"),this.finishNode(e,"UpdateExpression")
+return this.parseExprOp(this.parseMaybeUnaryOrPrivate(),r,i,56===e?t-1:t)}parseHackPipeBody(){var e
+const{start:t}=this.state,r=this.parseMaybeAssign()
+return!Ze.has(r.type)||null!=(e=r.extra)&&e.parenthesized||this.raise(t,m.PipeUnparenthesizedBody,Ze.get(r.type)),this.topicReferenceWasUsedInCurrentContext()||this.raise(t,m.PipeTopicUnused),r}checkExponentialAfterUnary(e){this.match(56)&&this.raise(e.argument.start,m.UnexpectedTokenUnaryExponentiation)}parseMaybeUnary(e,t){const r=this.state.start,i=this.state.startLoc,n=this.isContextual("await")
+if(n&&this.isAwaitAllowed()){this.next()
+const e=this.parseAwait(r,i)
+return t||this.checkExponentialAfterUnary(e),e}const s=this.match(39),a=this.startNode()
+if(o=this.state.type,N[o]){a.operator=this.state.value,a.prefix=!0,this.match(71)&&this.expectPlugin("throwExpressions")
+const r=this.match(88)
+if(this.next(),a.argument=this.parseMaybeUnary(null,!0),this.checkExpressionErrors(e,!0),this.state.strict&&r){const e=a.argument
+"Identifier"===e.type?this.raise(a.start,m.StrictDelete):this.hasPropertyAsPrivateName(e)&&this.raise(a.start,m.DeletePrivateField)}if(!s)return t||this.checkExponentialAfterUnary(a),this.finishNode(a,"UnaryExpression")}var o
+const l=this.parseUpdate(a,s,e)
+if(n){const{type:e}=this.state
+if((this.hasPlugin("v8intrinsic")?M(e):M(e)&&!this.match(53))&&!this.isAmbiguousAwait())return this.raiseOverwrite(r,m.AwaitNotInAsyncContext),this.parseAwait(r,i)}return l}parseUpdate(e,t,r){if(t)return this.checkLVal(e.argument,"prefix operation"),this.finishNode(e,"UpdateExpression")
 const i=this.state.start,n=this.state.startLoc
 let s=this.parseExprSubscripts(r)
 if(this.checkExpressionErrors(r,!1))return s
-for(;this.state.type.postfix&&!this.canInsertSemicolon();){const e=this.startNodeAt(i,n)
+for(;39===this.state.type&&!this.canInsertSemicolon();){const e=this.startNodeAt(i,n)
 e.operator=this.state.value,e.prefix=!1,e.argument=s,this.checkLVal(s,"postfix operation"),this.next(),s=this.finishNode(e,"UpdateExpression")}return s}parseExprSubscripts(e){const t=this.state.start,r=this.state.startLoc,i=this.state.potentialArrowAt,n=this.parseExprAtom(e)
 return this.shouldExitDescending(n,i)?n:this.parseSubscripts(n,t,r)}parseSubscripts(e,t,r,i){const n={optionalChainMember:!1,maybeAsyncArrow:this.atPossibleAsyncArrow(e),stop:!1}
 do{e=this.parseSubscript(e,t,r,i,n),n.maybeAsyncArrow=!1}while(!n.stop)
-return e}parseSubscript(e,t,r,i,n){if(!i&&this.eat(o.doubleColon))return this.parseBind(e,t,r,i,n)
-if(this.match(o.backQuote))return this.parseTaggedTemplateExpression(e,t,r,n)
+return e}parseSubscript(e,t,r,i,n){if(!i&&this.eat(23))return this.parseBind(e,t,r,i,n)
+if(this.match(30))return this.parseTaggedTemplateExpression(e,t,r,n)
 let s=!1
-if(this.match(o.questionDot)){if(n.optionalChainMember=s=!0,i&&40===this.lookaheadCharCode())return n.stop=!0,e
-this.next()}return!i&&this.match(o.parenL)?this.parseCoverCallAndAsyncArrowHead(e,t,r,n,s):s||this.match(o.bracketL)||this.eat(o.dot)?this.parseMember(e,t,r,n,s):(n.stop=!0,e)}parseMember(e,t,r,i,n){const s=this.startNodeAt(t,r),a=this.eat(o.bracketL)
-s.object=e,s.computed=a
-const l=a?this.parseExpression():this.parseMaybePrivateName(!0)
-return"PrivateName"===l.type&&("Super"===s.object.type&&this.raise(t,g.SuperPrivateField),this.classScope.usePrivateName(l.id.name,l.start)),s.property=l,a&&this.expect(o.bracketR),i.optionalChainMember?(s.optional=n,this.finishNode(s,"OptionalMemberExpression")):this.finishNode(s,"MemberExpression")}parseBind(e,t,r,i,n){const s=this.startNodeAt(t,r)
+if(this.match(26)){if(i&&40===this.lookaheadCharCode())return n.stop=!0,e
+n.optionalChainMember=s=!0,this.next()}if(!i&&this.match(18))return this.parseCoverCallAndAsyncArrowHead(e,t,r,n,s)
+{const i=this.eat(8)
+return i||s||this.eat(24)?this.parseMember(e,t,r,n,i,s):(n.stop=!0,e)}}parseMember(e,t,r,i,n,s){const a=this.startNodeAt(t,r)
+a.object=e,a.computed=n
+const o=!n&&this.match(6)&&this.state.value,l=n?this.parseExpression():o?this.parsePrivateName():this.parseIdentifier(!0)
+return!1!==o&&("Super"===a.object.type&&this.raise(t,m.SuperPrivateField),this.classScope.usePrivateName(o,l.start)),a.property=l,n&&this.expect(11),i.optionalChainMember?(a.optional=s,this.finishNode(a,"OptionalMemberExpression")):this.finishNode(a,"MemberExpression")}parseBind(e,t,r,i,n){const s=this.startNodeAt(t,r)
 return s.object=e,s.callee=this.parseNoCallExpr(),n.stop=!0,this.parseSubscripts(this.finishNode(s,"BindExpression"),t,r,i)}parseCoverCallAndAsyncArrowHead(e,t,r,i,n){const s=this.state.maybeInArrowParameters
+let a=null
 this.state.maybeInArrowParameters=!0,this.next()
-let a=this.startNodeAt(t,r)
-return a.callee=e,i.maybeAsyncArrow&&this.expressionScope.enter(new we(2)),i.optionalChainMember&&(a.optional=n),a.arguments=n?this.parseCallExpressionArguments(o.parenR,!1):this.parseCallExpressionArguments(o.parenR,i.maybeAsyncArrow,"Import"===e.type,"Super"!==e.type,a),this.finishCallExpression(a,i.optionalChainMember),i.maybeAsyncArrow&&this.shouldParseAsyncArrow()&&!n?(i.stop=!0,this.expressionScope.validateAsPattern(),this.expressionScope.exit(),a=this.parseAsyncArrowFromCallExpression(this.startNodeAt(t,r),a)):(i.maybeAsyncArrow&&this.expressionScope.exit(),this.toReferencedArguments(a)),this.state.maybeInArrowParameters=s,a}toReferencedArguments(e,t){this.toReferencedListDeep(e.arguments,t)}parseTaggedTemplateExpression(e,t,r,i){const n=this.startNodeAt(t,r)
-return n.tag=e,n.quasi=this.parseTemplate(!0),i.optionalChainMember&&this.raise(t,g.OptionalChainingNoTemplate),this.finishNode(n,"TaggedTemplateExpression")}atPossibleAsyncArrow(e){return"Identifier"===e.type&&"async"===e.name&&this.state.lastTokEnd===e.end&&!this.canInsertSemicolon()&&e.end-e.start==5&&e.start===this.state.potentialArrowAt}finishCallExpression(e,t){if("Import"===e.callee.type)if(2===e.arguments.length&&(this.hasPlugin("moduleAttributes")||this.expectPlugin("importAssertions")),0===e.arguments.length||e.arguments.length>2)this.raise(e.start,g.ImportCallArity,this.hasPlugin("importAssertions")||this.hasPlugin("moduleAttributes")?"one or two arguments":"one argument")
-else for(let r=0,i=e.arguments;r<i.length;r++){const e=i[r]
-"SpreadElement"===e.type&&this.raise(e.start,g.ImportCallSpreadArgument)}return this.finishNode(e,t?"OptionalCallExpression":"CallExpression")}parseCallExpressionArguments(e,t,r,i,n){const s=[]
+let o=this.startNodeAt(t,r)
+return o.callee=e,i.maybeAsyncArrow&&(this.expressionScope.enter(new ge(2)),a=new Ee),i.optionalChainMember&&(o.optional=n),o.arguments=n?this.parseCallExpressionArguments(19):this.parseCallExpressionArguments(19,"Import"===e.type,"Super"!==e.type,o,a),this.finishCallExpression(o,i.optionalChainMember),i.maybeAsyncArrow&&this.shouldParseAsyncArrow()&&!n?(i.stop=!0,this.expressionScope.validateAsPattern(),this.expressionScope.exit(),o=this.parseAsyncArrowFromCallExpression(this.startNodeAt(t,r),o)):(i.maybeAsyncArrow&&(this.checkExpressionErrors(a,!0),this.expressionScope.exit()),this.toReferencedArguments(o)),this.state.maybeInArrowParameters=s,o}toReferencedArguments(e,t){this.toReferencedListDeep(e.arguments,t)}parseTaggedTemplateExpression(e,t,r,i){const n=this.startNodeAt(t,r)
+return n.tag=e,n.quasi=this.parseTemplate(!0),i.optionalChainMember&&this.raise(t,m.OptionalChainingNoTemplate),this.finishNode(n,"TaggedTemplateExpression")}atPossibleAsyncArrow(e){return"Identifier"===e.type&&"async"===e.name&&this.state.lastTokEnd===e.end&&!this.canInsertSemicolon()&&e.end-e.start==5&&e.start===this.state.potentialArrowAt}finishCallExpression(e,t){if("Import"===e.callee.type)if(2===e.arguments.length&&(this.hasPlugin("moduleAttributes")||this.expectPlugin("importAssertions")),0===e.arguments.length||e.arguments.length>2)this.raise(e.start,m.ImportCallArity,this.hasPlugin("importAssertions")||this.hasPlugin("moduleAttributes")?"one or two arguments":"one argument")
+else for(const r of e.arguments)"SpreadElement"===r.type&&this.raise(r.start,m.ImportCallSpreadArgument)
+return this.finishNode(e,t?"OptionalCallExpression":"CallExpression")}parseCallExpressionArguments(e,t,r,i,n){const s=[]
 let a=!0
-const l=this.state.inFSharpPipelineDirectBody
+const o=this.state.inFSharpPipelineDirectBody
 for(this.state.inFSharpPipelineDirectBody=!1;!this.eat(e);){if(a)a=!1
-else if(this.expect(o.comma),this.match(e)){!r||this.hasPlugin("importAssertions")||this.hasPlugin("moduleAttributes")||this.raise(this.state.lastTokStart,g.ImportCallArgumentTrailingComma),n&&this.addExtra(n,"trailingComma",this.state.lastTokStart),this.next()
-break}s.push(this.parseExprListItem(!1,t?new ve:void 0,t?{start:0}:void 0,i))}return this.state.inFSharpPipelineDirectBody=l,s}shouldParseAsyncArrow(){return this.match(o.arrow)&&!this.canInsertSemicolon()}parseAsyncArrowFromCallExpression(e,t){var r
-return this.expect(o.arrow),this.parseArrowExpression(e,t.arguments,!0,null==(r=t.extra)?void 0:r.trailingComma),e}parseNoCallExpr(){const e=this.state.start,t=this.state.startLoc
-return this.parseSubscripts(this.parseExprAtom(),e,t,!0)}parseExprAtom(e){this.state.type===o.slash&&this.readRegexp()
-const t=this.state.potentialArrowAt===this.state.start
-let r
-switch(this.state.type){case o._super:return this.parseSuper()
-case o._import:return r=this.startNode(),this.next(),this.match(o.dot)?this.parseImportMetaProperty(r):(this.match(o.parenL)||this.raise(this.state.lastTokStart,g.UnsupportedImport),this.finishNode(r,"Import"))
-case o._this:return r=this.startNode(),this.next(),this.finishNode(r,"ThisExpression")
-case o.name:{const e=this.state.containsEsc,r=this.parseIdentifier()
-if(!e&&"async"===r.name&&!this.canInsertSemicolon()){if(this.match(o._function)){const e=this.state.context.length-1
-if(this.state.context[e]!==b.functionStatement)throw new Error("Internal error")
-return this.state.context[e]=b.functionExpression,this.next(),this.parseFunction(this.startNodeAtNode(r),void 0,!0)}if(this.match(o.name))return this.parseAsyncArrowUnaryFunction(r)}return t&&this.match(o.arrow)&&!this.canInsertSemicolon()?(this.next(),this.parseArrowExpression(this.startNodeAtNode(r),[r],!1)):r}case o._do:return this.parseDo()
-case o.regexp:{const e=this.state.value
-return r=this.parseLiteral(e.value,"RegExpLiteral"),r.pattern=e.pattern,r.flags=e.flags,r}case o.num:return this.parseLiteral(this.state.value,"NumericLiteral")
-case o.bigint:return this.parseLiteral(this.state.value,"BigIntLiteral")
-case o.decimal:return this.parseLiteral(this.state.value,"DecimalLiteral")
-case o.string:return this.parseLiteral(this.state.value,"StringLiteral")
-case o._null:return r=this.startNode(),this.next(),this.finishNode(r,"NullLiteral")
-case o._true:case o._false:return this.parseBooleanLiteral()
-case o.parenL:return this.parseParenAndDistinguishExpression(t)
-case o.bracketBarL:case o.bracketHashL:return this.parseArrayLike(this.state.type===o.bracketBarL?o.bracketBarR:o.bracketR,!1,!0,e)
-case o.bracketL:return this.parseArrayLike(o.bracketR,!0,!1,e)
-case o.braceBarL:case o.braceHashL:return this.parseObjectLike(this.state.type===o.braceBarL?o.braceBarR:o.braceR,!1,!0,e)
-case o.braceL:return this.parseObjectLike(o.braceR,!1,!1,e)
-case o._function:return this.parseFunctionOrFunctionSent()
-case o.at:this.parseDecorators()
-case o._class:return r=this.startNode(),this.takeDecorators(r),this.parseClass(r,!1)
-case o._new:return this.parseNewOrNewTarget()
-case o.backQuote:return this.parseTemplate(!1)
-case o.doubleColon:{r=this.startNode(),this.next(),r.object=null
-const e=r.callee=this.parseNoCallExpr()
-if("MemberExpression"===e.type)return this.finishNode(r,"BindExpression")
-throw this.raise(e.start,g.UnsupportedBind)}case o.hash:{if(this.state.inPipeline)return r=this.startNode(),"smart"!==this.getPluginOption("pipelineOperator","proposal")&&this.raise(r.start,g.PrimaryTopicRequiresSmartPipeline),this.next(),this.primaryTopicReferenceIsAllowedInCurrentTopicContext()||this.raise(r.start,g.PrimaryTopicNotAllowed),this.registerTopicReference(),this.finishNode(r,"PipelinePrimaryTopicReference")
-const e=this.input.codePointAt(this.state.end)
-if(A(e)||92===e){const e=this.state.start
-if(r=this.parseMaybePrivateName(!0),this.match(o._in))this.expectPlugin("privateIn"),this.classScope.usePrivateName(r.id.name,r.start)
-else{if(!this.hasPlugin("privateIn"))throw this.unexpected(e)
-this.raise(this.state.start,g.PrivateInExpectedIn,r.id.name)}return r}}case o.relational:if("<"===this.state.value){const e=this.input.codePointAt(this.nextTokenStart());(A(e)||62===e)&&this.expectOnePlugin(["jsx","flow","typescript"])}default:throw this.unexpected()}}parseAsyncArrowUnaryFunction(e){const t=this.startNodeAtNode(e)
-this.prodParam.enter(te(!0,this.prodParam.hasYield))
-const r=[this.parseIdentifier()]
-return this.prodParam.exit(),this.hasPrecedingLineBreak()&&this.raise(this.state.pos,g.LineTerminatorBeforeArrow),this.expect(o.arrow),this.parseArrowExpression(t,r,!0),t}parseDo(){this.expectPlugin("doExpressions")
-const e=this.startNode()
-this.next()
-const t=this.state.labels
-return this.state.labels=[],e.body=this.parseBlock(),this.state.labels=t,this.finishNode(e,"DoExpression")}parseSuper(){const e=this.startNode()
-return this.next(),!this.match(o.parenL)||this.scope.allowDirectSuper||this.options.allowSuperOutsideMethod?this.scope.allowSuper||this.options.allowSuperOutsideMethod||this.raise(e.start,g.UnexpectedSuper):this.raise(e.start,g.SuperNotAllowed),this.match(o.parenL)||this.match(o.bracketL)||this.match(o.dot)||this.raise(e.start,g.UnsupportedSuper),this.finishNode(e,"Super")}parseBooleanLiteral(){const e=this.startNode()
-return e.value=this.match(o._true),this.next(),this.finishNode(e,"BooleanLiteral")}parseMaybePrivateName(e){if(this.match(o.hash)){this.expectOnePlugin(["classPrivateProperties","classPrivateMethods"]),e||this.raise(this.state.pos,g.UnexpectedPrivateField)
-const t=this.startNode()
-return this.next(),this.assertNoSpace("Unexpected space between # and identifier"),t.id=this.parseIdentifier(!0),this.finishNode(t,"PrivateName")}return this.parseIdentifier(!0)}parseFunctionOrFunctionSent(){const e=this.startNode()
-if(this.next(),this.prodParam.hasYield&&this.match(o.dot)){const t=this.createIdentifier(this.startNodeAtNode(e),"function")
+else if(this.expect(20),this.match(e)){!t||this.hasPlugin("importAssertions")||this.hasPlugin("moduleAttributes")||this.raise(this.state.lastTokStart,m.ImportCallArgumentTrailingComma),i&&this.addExtra(i,"trailingComma",this.state.lastTokStart),this.next()
+break}s.push(this.parseExprListItem(!1,n,r))}return this.state.inFSharpPipelineDirectBody=o,s}shouldParseAsyncArrow(){return this.match(27)&&!this.canInsertSemicolon()}parseAsyncArrowFromCallExpression(e,t){var r
+return this.resetPreviousNodeTrailingComments(t),this.expect(27),this.parseArrowExpression(e,t.arguments,!0,null==(r=t.extra)?void 0:r.trailingComma),p(e,t.innerComments),p(e,t.callee.trailingComments),e}parseNoCallExpr(){const e=this.state.start,t=this.state.startLoc
+return this.parseSubscripts(this.parseExprAtom(),e,t,!0)}parseExprAtom(e){let t
+switch(this.state.type){case 78:return this.parseSuper()
+case 82:return t=this.startNode(),this.next(),this.match(24)?this.parseImportMetaProperty(t):(this.match(18)||this.raise(this.state.lastTokStart,m.UnsupportedImport),this.finishNode(t,"Import"))
+case 77:return t=this.startNode(),this.next(),this.finishNode(t,"ThisExpression")
+case 5:{if(this.isContextual("module")&&123===this.lookaheadCharCode()&&!this.hasFollowingLineBreak())return this.parseModuleExpression()
+const e=this.state.potentialArrowAt===this.state.start,t=this.state.containsEsc,r=this.parseIdentifier()
+if(!t&&"async"===r.name&&!this.canInsertSemicolon()){if(this.match(67))return this.resetPreviousNodeTrailingComments(r),this.next(),this.parseFunction(this.startNodeAtNode(r),void 0,!0)
+if(this.match(5))return 61===this.lookaheadCharCode()?this.parseAsyncArrowUnaryFunction(this.startNodeAtNode(r)):r
+if(this.match(89))return this.resetPreviousNodeTrailingComments(r),this.parseDo(this.startNodeAtNode(r),!0)}return e&&this.match(27)&&!this.canInsertSemicolon()?(this.next(),this.parseArrowExpression(this.startNodeAtNode(r),[r],!1)):r}case 89:return this.parseDo(this.startNode(),!1)
+case 55:case 37:return this.readRegexp(),this.parseRegExpLiteral(this.state.value)
+case 0:return this.parseNumericLiteral(this.state.value)
+case 1:return this.parseBigIntLiteral(this.state.value)
+case 2:return this.parseDecimalLiteral(this.state.value)
+case 4:return this.parseStringLiteral(this.state.value)
+case 83:return this.parseNullLiteral()
+case 84:return this.parseBooleanLiteral(!0)
+case 85:return this.parseBooleanLiteral(!1)
+case 18:{const e=this.state.potentialArrowAt===this.state.start
+return this.parseParenAndDistinguishExpression(e)}case 10:case 9:return this.parseArrayLike(10===this.state.type?12:11,!1,!0,e)
+case 8:return this.parseArrayLike(11,!0,!1,e)
+case 14:case 15:return this.parseObjectLike(14===this.state.type?17:16,!1,!0,e)
+case 13:return this.parseObjectLike(16,!1,!1,e)
+case 67:return this.parseFunctionOrFunctionSent()
+case 32:this.parseDecorators()
+case 79:return t=this.startNode(),this.takeDecorators(t),this.parseClass(t,!1)
+case 76:return this.parseNewOrNewTarget()
+case 30:return this.parseTemplate(!1)
+case 23:{t=this.startNode(),this.next(),t.object=null
+const e=t.callee=this.parseNoCallExpr()
+if("MemberExpression"===e.type)return this.finishNode(t,"BindExpression")
+throw this.raise(e.start,m.UnsupportedBind)}case 6:return this.raise(this.state.start,m.PrivateInExpectedIn,this.state.value),this.parsePrivateName()
+case 38:if("hack"!==this.getPluginOption("pipelineOperator","proposal")||"%"!==this.getPluginOption("pipelineOperator","topicToken"))throw this.unexpected()
+this.state.value="%",this.state.type=53,this.state.pos--,this.state.end--,this.state.endLoc.column--
+case 53:case 33:{const e=this.getPluginOption("pipelineOperator","proposal")
+if(e){t=this.startNode()
+const r=this.state.start,i=this.state.type
+return this.next(),this.finishTopicReference(t,r,e,i)}}case 50:if("<"===this.state.value){const e=this.input.codePointAt(this.nextTokenStart());(W(e)||62===e)&&this.expectOnePlugin(["jsx","flow","typescript"])}default:throw this.unexpected()}}finishTopicReference(e,t,r,i){if(this.testTopicReferenceConfiguration(r,t,i)){let i
+return i="smart"===r?"PipelinePrimaryTopicReference":"TopicReference",this.topicReferenceIsAllowedInCurrentContext()||("smart"===r?this.raise(t,m.PrimaryTopicNotAllowed):this.raise(t,m.PipeTopicUnbound)),this.registerTopicReference(),this.finishNode(e,i)}throw this.raise(t,m.PipeTopicUnconfiguredToken,R(i))}testTopicReferenceConfiguration(e,t,r){switch(e){case"hack":{const e=this.getPluginOption("pipelineOperator","topicToken")
+return R(r)===e}case"smart":return 33===r
+default:throw this.raise(t,m.PipeTopicRequiresHackPipes)}}parseAsyncArrowUnaryFunction(e){this.prodParam.enter(xe(!0,this.prodParam.hasYield))
+const t=[this.parseIdentifier()]
+return this.prodParam.exit(),this.hasPrecedingLineBreak()&&this.raise(this.state.pos,m.LineTerminatorBeforeArrow),this.expect(27),this.parseArrowExpression(e,t,!0),e}parseDo(e,t){this.expectPlugin("doExpressions"),t&&this.expectPlugin("asyncDoExpressions"),e.async=t,this.next()
+const r=this.state.labels
+return this.state.labels=[],t?(this.prodParam.enter(2),e.body=this.parseBlock(),this.prodParam.exit()):e.body=this.parseBlock(),this.state.labels=r,this.finishNode(e,"DoExpression")}parseSuper(){const e=this.startNode()
+return this.next(),!this.match(18)||this.scope.allowDirectSuper||this.options.allowSuperOutsideMethod?this.scope.allowSuper||this.options.allowSuperOutsideMethod||this.raise(e.start,m.UnexpectedSuper):this.raise(e.start,m.SuperNotAllowed),this.match(18)||this.match(8)||this.match(24)||this.raise(e.start,m.UnsupportedSuper),this.finishNode(e,"Super")}parseMaybePrivateName(e){return this.match(6)?(e||this.raise(this.state.start+1,m.UnexpectedPrivateField),this.parsePrivateName()):this.parseIdentifier(!0)}parsePrivateName(){const e=this.startNode(),t=this.startNodeAt(this.state.start+1,new u(this.state.curLine,this.state.start+1-this.state.lineStart)),r=this.state.value
+return this.next(),e.id=this.createIdentifier(t,r),this.finishNode(e,"PrivateName")}parseFunctionOrFunctionSent(){const e=this.startNode()
+if(this.next(),this.prodParam.hasYield&&this.match(24)){const t=this.createIdentifier(this.startNodeAtNode(e),"function")
 return this.next(),this.parseMetaProperty(e,t,"sent")}return this.parseFunction(e)}parseMetaProperty(e,t,r){e.meta=t,"function"===t.name&&"sent"===r&&(this.isContextual(r)?this.expectPlugin("functionSent"):this.hasPlugin("functionSent")||this.unexpected())
 const i=this.state.containsEsc
-return e.property=this.parseIdentifier(!0),(e.property.name!==r||i)&&this.raise(e.property.start,g.UnsupportedMetaProperty,t.name,r),this.finishNode(e,"MetaProperty")}parseImportMetaProperty(e){const t=this.createIdentifier(this.startNodeAtNode(e),"import")
-return this.next(),this.isContextual("meta")&&(this.inModule||this.raiseWithData(t.start,{code:"BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED"},g.ImportMetaOutsideModule),this.sawUnambiguousESM=!0),this.parseMetaProperty(e,t,"meta")}parseLiteral(e,t,r,i){r=r||this.state.start,i=i||this.state.startLoc
-const n=this.startNodeAt(r,i)
-return this.addExtra(n,"rawValue",e),this.addExtra(n,"raw",this.input.slice(r,this.state.end)),n.value=e,this.next(),this.finishNode(n,t)}parseParenAndDistinguishExpression(e){const t=this.state.start,r=this.state.startLoc
+return e.property=this.parseIdentifier(!0),(e.property.name!==r||i)&&this.raise(e.property.start,m.UnsupportedMetaProperty,t.name,r),this.finishNode(e,"MetaProperty")}parseImportMetaProperty(e){const t=this.createIdentifier(this.startNodeAtNode(e),"import")
+return this.next(),this.isContextual("meta")&&(this.inModule||this.raise(t.start,g.ImportMetaOutsideModule),this.sawUnambiguousESM=!0),this.parseMetaProperty(e,t,"meta")}parseLiteralAtNode(e,t,r){return this.addExtra(r,"rawValue",e),this.addExtra(r,"raw",this.input.slice(r.start,this.state.end)),r.value=e,this.next(),this.finishNode(r,t)}parseLiteral(e,t){const r=this.startNode()
+return this.parseLiteralAtNode(e,t,r)}parseStringLiteral(e){return this.parseLiteral(e,"StringLiteral")}parseNumericLiteral(e){return this.parseLiteral(e,"NumericLiteral")}parseBigIntLiteral(e){return this.parseLiteral(e,"BigIntLiteral")}parseDecimalLiteral(e){return this.parseLiteral(e,"DecimalLiteral")}parseRegExpLiteral(e){const t=this.parseLiteral(e.value,"RegExpLiteral")
+return t.pattern=e.pattern,t.flags=e.flags,t}parseBooleanLiteral(e){const t=this.startNode()
+return t.value=e,this.next(),this.finishNode(t,"BooleanLiteral")}parseNullLiteral(){const e=this.startNode()
+return this.next(),this.finishNode(e,"NullLiteral")}parseParenAndDistinguishExpression(e){const t=this.state.start,r=this.state.startLoc
 let i
-this.next(),this.expressionScope.enter(new we(1))
+this.next(),this.expressionScope.enter(new ge(1))
 const n=this.state.maybeInArrowParameters,s=this.state.inFSharpPipelineDirectBody
 this.state.maybeInArrowParameters=!0,this.state.inFSharpPipelineDirectBody=!1
-const a=this.state.start,l=this.state.startLoc,u=[],c=new ve,h={start:0}
-let p,d,f=!0
-for(;!this.match(o.parenR);){if(f)f=!1
-else if(this.expect(o.comma,h.start||null),this.match(o.parenR)){d=this.state.start
-break}if(this.match(o.ellipsis)){const e=this.state.start,t=this.state.startLoc
-p=this.state.start,u.push(this.parseParenItem(this.parseRestBinding(),e,t)),this.checkCommaAfterRest(41)
-break}u.push(this.parseMaybeAssignAllowIn(c,this.parseParenItem,h))}const m=this.state.lastTokEnd,g=this.state.lastTokEndLoc
-this.expect(o.parenR),this.state.maybeInArrowParameters=n,this.state.inFSharpPipelineDirectBody=s
-let y=this.startNodeAt(t,r)
-if(e&&this.shouldParseArrow()&&(y=this.parseArrow(y)))return this.expressionScope.validateAsPattern(),this.expressionScope.exit(),this.parseArrowExpression(y,u,!1),y
-if(this.expressionScope.exit(),u.length||this.unexpected(this.state.lastTokStart),d&&this.unexpected(d),p&&this.unexpected(p),this.checkExpressionErrors(c,!0),h.start&&this.unexpected(h.start),this.toReferencedListDeep(u,!0),u.length>1?(i=this.startNodeAt(a,l),i.expressions=u,this.finishNodeAt(i,"SequenceExpression",m,g)):i=u[0],!this.options.createParenthesizedExpressions)return this.addExtra(i,"parenthesized",!0),this.addExtra(i,"parenStart",t),i
-const v=this.startNodeAt(t,r)
-return v.expression=i,this.finishNode(v,"ParenthesizedExpression"),v}shouldParseArrow(){return!this.canInsertSemicolon()}parseArrow(e){if(this.eat(o.arrow))return e}parseParenItem(e,t,r){return e}parseNewOrNewTarget(){const e=this.startNode()
-if(this.next(),this.match(o.dot)){const t=this.createIdentifier(this.startNodeAtNode(e),"new")
+const a=this.state.start,o=this.state.startLoc,l=[],u=new Ee
+let c,h,p=!0
+for(;!this.match(19);){if(p)p=!1
+else if(this.expect(20,-1===u.optionalParameters?null:u.optionalParameters),this.match(19)){h=this.state.start
+break}if(this.match(29)){const e=this.state.start,t=this.state.startLoc
+c=this.state.start,l.push(this.parseParenItem(this.parseRestBinding(),e,t)),this.checkCommaAfterRest(41)
+break}l.push(this.parseMaybeAssignAllowIn(u,this.parseParenItem))}const d=this.state.lastTokEnd,f=this.state.lastTokEndLoc
+this.expect(19),this.state.maybeInArrowParameters=n,this.state.inFSharpPipelineDirectBody=s
+let m=this.startNodeAt(t,r)
+if(e&&this.shouldParseArrow(l)&&(m=this.parseArrow(m)))return this.expressionScope.validateAsPattern(),this.expressionScope.exit(),this.parseArrowExpression(m,l,!1),m
+if(this.expressionScope.exit(),l.length||this.unexpected(this.state.lastTokStart),h&&this.unexpected(h),c&&this.unexpected(c),this.checkExpressionErrors(u,!0),this.toReferencedListDeep(l,!0),l.length>1?(i=this.startNodeAt(a,o),i.expressions=l,this.finishNode(i,"SequenceExpression"),this.resetEndLocation(i,d,f)):i=l[0],!this.options.createParenthesizedExpressions)return this.addExtra(i,"parenthesized",!0),this.addExtra(i,"parenStart",t),i
+const g=this.startNodeAt(t,r)
+return g.expression=i,this.finishNode(g,"ParenthesizedExpression"),g}shouldParseArrow(e){return!this.canInsertSemicolon()}parseArrow(e){if(this.eat(27))return e}parseParenItem(e,t,r){return e}parseNewOrNewTarget(){const e=this.startNode()
+if(this.next(),this.match(24)){const t=this.createIdentifier(this.startNodeAtNode(e),"new")
 this.next()
 const r=this.parseMetaProperty(e,t,"target")
-if(!this.scope.inNonArrowFunction&&!this.scope.inClass){let e=g.UnexpectedNewTarget
-this.hasPlugin("classProperties")&&(e+=" or class properties"),this.raise(r.start,e)}return r}return this.parseNew(e)}parseNew(e){return e.callee=this.parseNoCallExpr(),"Import"===e.callee.type?this.raise(e.callee.start,g.ImportCallNotNewExpression):"OptionalMemberExpression"===e.callee.type||"OptionalCallExpression"===e.callee.type?this.raise(this.state.lastTokEnd,g.OptionalChainingNoNew):this.eat(o.questionDot)&&this.raise(this.state.start,g.OptionalChainingNoNew),this.parseNewArguments(e),this.finishNode(e,"NewExpression")}parseNewArguments(e){if(this.eat(o.parenL)){const t=this.parseExprList(o.parenR)
+return this.scope.inNonArrowFunction||this.scope.inClass||this.raise(r.start,m.UnexpectedNewTarget),r}return this.parseNew(e)}parseNew(e){return e.callee=this.parseNoCallExpr(),"Import"===e.callee.type?this.raise(e.callee.start,m.ImportCallNotNewExpression):this.isOptionalChain(e.callee)?this.raise(this.state.lastTokEnd,m.OptionalChainingNoNew):this.eat(26)&&this.raise(this.state.start,m.OptionalChainingNoNew),this.parseNewArguments(e),this.finishNode(e,"NewExpression")}parseNewArguments(e){if(this.eat(18)){const t=this.parseExprList(19)
 this.toReferencedList(t),e.arguments=t}else e.arguments=[]}parseTemplateElement(e){const t=this.startNode()
-return null===this.state.value&&(e||this.raise(this.state.start+1,g.InvalidEscapeSequenceTemplate)),t.value={raw:this.input.slice(this.state.start,this.state.end).replace(/\r\n?/g,"\n"),cooked:this.state.value},this.next(),t.tail=this.match(o.backQuote),this.finishNode(t,"TemplateElement")}parseTemplate(e){const t=this.startNode()
+return null===this.state.value&&(e||this.raise(this.state.start+1,m.InvalidEscapeSequenceTemplate)),t.value={raw:this.input.slice(this.state.start,this.state.end).replace(/\r\n?/g,"\n"),cooked:this.state.value},this.next(),t.tail=this.match(30),this.finishNode(t,"TemplateElement")}parseTemplate(e){const t=this.startNode()
 this.next(),t.expressions=[]
 let r=this.parseTemplateElement(e)
-for(t.quasis=[r];!r.tail;)this.expect(o.dollarBraceL),t.expressions.push(this.parseTemplateSubstitution()),this.expect(o.braceR),t.quasis.push(r=this.parseTemplateElement(e))
+for(t.quasis=[r];!r.tail;)this.expect(31),t.expressions.push(this.parseTemplateSubstitution()),this.expect(16),t.quasis.push(r=this.parseTemplateElement(e))
 return this.next(),this.finishNode(t,"TemplateLiteral")}parseTemplateSubstitution(){return this.parseExpression()}parseObjectLike(e,t,r,i){r&&this.expectPlugin("recordAndTuple")
 const n=this.state.inFSharpPipelineDirectBody
 this.state.inFSharpPipelineDirectBody=!1
 const s=Object.create(null)
 let a=!0
-const l=this.startNode()
-for(l.properties=[],this.next();!this.match(e);){if(a)a=!1
-else if(this.expect(o.comma),this.match(e)){this.addExtra(l,"trailingComma",this.state.lastTokStart)
+const o=this.startNode()
+for(o.properties=[],this.next();!this.match(e);){if(a)a=!1
+else if(this.expect(20),this.match(e)){this.addExtra(o,"trailingComma",this.state.lastTokStart)
 break}const n=this.parsePropertyDefinition(t,i)
-t||this.checkProto(n,r,s,i),r&&"ObjectProperty"!==n.type&&"SpreadElement"!==n.type&&this.raise(n.start,g.InvalidRecordProperty),n.shorthand&&this.addExtra(n,"shorthand",!0),l.properties.push(n)}this.state.exprAllowed=!1,this.next(),this.state.inFSharpPipelineDirectBody=n
-let u="ObjectExpression"
-return t?u="ObjectPattern":r&&(u="RecordExpression"),this.finishNode(l,u)}maybeAsyncOrAccessorProp(e){return!e.computed&&"Identifier"===e.key.type&&(this.isLiteralPropertyName()||this.match(o.bracketL)||this.match(o.star))}parsePropertyDefinition(e,t){let r=[]
-if(this.match(o.at))for(this.hasPlugin("decorators")&&this.raise(this.state.start,g.UnsupportedPropertyDecorator);this.match(o.at);)r.push(this.parseDecorator())
+t||this.checkProto(n,r,s,i),r&&!this.isObjectProperty(n)&&"SpreadElement"!==n.type&&this.raise(n.start,m.InvalidRecordProperty),n.shorthand&&this.addExtra(n,"shorthand",!0),o.properties.push(n)}this.next(),this.state.inFSharpPipelineDirectBody=n
+let l="ObjectExpression"
+return t?l="ObjectPattern":r&&(l="RecordExpression"),this.finishNode(o,l)}maybeAsyncOrAccessorProp(e){return!e.computed&&"Identifier"===e.key.type&&(this.isLiteralPropertyName()||this.match(8)||this.match(54))}parsePropertyDefinition(e,t){let r=[]
+if(this.match(32))for(this.hasPlugin("decorators")&&this.raise(this.state.start,m.UnsupportedPropertyDecorator);this.match(32);)r.push(this.parseDecorator())
 const i=this.startNode()
-let n,s,a=!1,l=!1,u=!1
-if(this.match(o.ellipsis))return r.length&&this.unexpected(),e?(this.next(),i.argument=this.parseIdentifier(),this.checkCommaAfterRest(125),this.finishNode(i,"RestElement")):this.parseSpread()
-r.length&&(i.decorators=r,r=[]),i.method=!1,(e||t)&&(n=this.state.start,s=this.state.startLoc),e||(a=this.eat(o.star))
-const c=this.state.containsEsc,h=this.parsePropertyName(i,!1)
-if(!e&&!a&&!c&&this.maybeAsyncOrAccessorProp(i)){const e=h.name
-"async"!==e||this.hasPrecedingLineBreak()||(l=!0,a=this.eat(o.star),this.parsePropertyName(i,!1)),"get"!==e&&"set"!==e||(u=!0,i.kind=e,this.match(o.star)&&(a=!0,this.raise(this.state.pos,g.AccessorIsGenerator,e),this.next()),this.parsePropertyName(i,!1))}return this.parseObjPropValue(i,n,s,a,l,e,u,t),i}getGetterSetterExpectedParamCount(e){return"get"===e.kind?0:1}getObjectOrClassMethodParams(e){return e.params}checkGetterSetterParams(e){var t
+let n,s,a=!1,o=!1,l=!1
+if(this.match(29))return r.length&&this.unexpected(),e?(this.next(),i.argument=this.parseIdentifier(),this.checkCommaAfterRest(125),this.finishNode(i,"RestElement")):this.parseSpread()
+r.length&&(i.decorators=r,r=[]),i.method=!1,(e||t)&&(n=this.state.start,s=this.state.startLoc),e||(a=this.eat(54))
+const u=this.state.containsEsc,c=this.parsePropertyName(i,!1)
+if(!e&&!a&&!u&&this.maybeAsyncOrAccessorProp(i)){const e=c.name
+"async"!==e||this.hasPrecedingLineBreak()||(o=!0,this.resetPreviousNodeTrailingComments(c),a=this.eat(54),this.parsePropertyName(i,!1)),"get"!==e&&"set"!==e||(l=!0,this.resetPreviousNodeTrailingComments(c),i.kind=e,this.match(54)&&(a=!0,this.raise(this.state.pos,m.AccessorIsGenerator,e),this.next()),this.parsePropertyName(i,!1))}return this.parseObjPropValue(i,n,s,a,o,e,l,t),i}getGetterSetterExpectedParamCount(e){return"get"===e.kind?0:1}getObjectOrClassMethodParams(e){return e.params}checkGetterSetterParams(e){var t
 const r=this.getGetterSetterExpectedParamCount(e),i=this.getObjectOrClassMethodParams(e),n=e.start
-i.length!==r&&("get"===e.kind?this.raise(n,g.BadGetterArity):this.raise(n,g.BadSetterArity)),"set"===e.kind&&"RestElement"===(null==(t=i[i.length-1])?void 0:t.type)&&this.raise(n,g.BadSetterRestParameter)}parseObjectMethod(e,t,r,i,n){return n?(this.parseMethod(e,t,!1,!1,!1,"ObjectMethod"),this.checkGetterSetterParams(e),e):r||t||this.match(o.parenL)?(i&&this.unexpected(),e.kind="method",e.method=!0,this.parseMethod(e,t,r,!1,!1,"ObjectMethod")):void 0}parseObjectProperty(e,t,r,i,n){return e.shorthand=!1,this.eat(o.colon)?(e.value=i?this.parseMaybeDefault(this.state.start,this.state.startLoc):this.parseMaybeAssignAllowIn(n),this.finishNode(e,"ObjectProperty")):e.computed||"Identifier"!==e.key.type?void 0:(this.checkReservedWord(e.key.name,e.key.start,!0,!1),i?e.value=this.parseMaybeDefault(t,r,e.key.__clone()):this.match(o.eq)&&n?(-1===n.shorthandAssign&&(n.shorthandAssign=this.state.start),e.value=this.parseMaybeDefault(t,r,e.key.__clone())):e.value=e.key.__clone(),e.shorthand=!0,this.finishNode(e,"ObjectProperty"))}parseObjPropValue(e,t,r,i,n,s,a,o){const l=this.parseObjectMethod(e,i,n,s,a)||this.parseObjectProperty(e,t,r,s,o)
-return l||this.unexpected(),l}parsePropertyName(e,t){if(this.eat(o.bracketL))e.computed=!0,e.key=this.parseMaybeAssignAllowIn(),this.expect(o.bracketR)
+i.length!==r&&("get"===e.kind?this.raise(n,m.BadGetterArity):this.raise(n,m.BadSetterArity)),"set"===e.kind&&"RestElement"===(null==(t=i[i.length-1])?void 0:t.type)&&this.raise(n,m.BadSetterRestParameter)}parseObjectMethod(e,t,r,i,n){return n?(this.parseMethod(e,t,!1,!1,!1,"ObjectMethod"),this.checkGetterSetterParams(e),e):r||t||this.match(18)?(i&&this.unexpected(),e.kind="method",e.method=!0,this.parseMethod(e,t,r,!1,!1,"ObjectMethod")):void 0}parseObjectProperty(e,t,r,i,n){return e.shorthand=!1,this.eat(22)?(e.value=i?this.parseMaybeDefault(this.state.start,this.state.startLoc):this.parseMaybeAssignAllowIn(n),this.finishNode(e,"ObjectProperty")):e.computed||"Identifier"!==e.key.type?void 0:(this.checkReservedWord(e.key.name,e.key.start,!0,!1),i?e.value=this.parseMaybeDefault(t,r,Te(e.key)):this.match(35)&&n?(-1===n.shorthandAssign&&(n.shorthandAssign=this.state.start),e.value=this.parseMaybeDefault(t,r,Te(e.key))):e.value=Te(e.key),e.shorthand=!0,this.finishNode(e,"ObjectProperty"))}parseObjPropValue(e,t,r,i,n,s,a,o){const l=this.parseObjectMethod(e,i,n,s,a)||this.parseObjectProperty(e,t,r,s,o)
+return l||this.unexpected(),l}parsePropertyName(e,t){if(this.eat(8))e.computed=!0,e.key=this.parseMaybeAssignAllowIn(),this.expect(11)
 else{const r=this.state.inPropertyName
-this.state.inPropertyName=!0,e.key=this.match(o.num)||this.match(o.string)||this.match(o.bigint)||this.match(o.decimal)?this.parseExprAtom():this.parseMaybePrivateName(t),"PrivateName"!==e.key.type&&(e.computed=!1),this.state.inPropertyName=r}return e.key}initFunction(e,t){e.id=null,e.generator=!1,e.async=!!t}parseMethod(e,t,r,i,n,s,a=!1){this.initFunction(e,r),e.generator=!!t
+this.state.inPropertyName=!0
+const i=this.state.type
+e.key=0===i||4===i||1===i||2===i?this.parseExprAtom():this.parseMaybePrivateName(t),6!==i&&(e.computed=!1),this.state.inPropertyName=r}return e.key}initFunction(e,t){e.id=null,e.generator=!1,e.async=!!t}parseMethod(e,t,r,i,n,s,a=!1){this.initFunction(e,r),e.generator=!!t
 const o=i
-return this.scope.enter(18|(a?64:0)|(n?32:0)),this.prodParam.enter(te(r,e.generator)),this.parseFunctionParams(e,o),this.parseFunctionBodyAndFinish(e,s,!0),this.prodParam.exit(),this.scope.exit(),e}parseArrayLike(e,t,r,i){r&&this.expectPlugin("recordAndTuple")
+return this.scope.enter(18|(a?64:0)|(n?32:0)),this.prodParam.enter(xe(r,e.generator)),this.parseFunctionParams(e,o),this.parseFunctionBodyAndFinish(e,s,!0),this.prodParam.exit(),this.scope.exit(),e}parseArrayLike(e,t,r,i){r&&this.expectPlugin("recordAndTuple")
 const n=this.state.inFSharpPipelineDirectBody
 this.state.inFSharpPipelineDirectBody=!1
 const s=this.startNode()
 return this.next(),s.elements=this.parseExprList(e,!r,i,s),this.state.inFSharpPipelineDirectBody=n,this.finishNode(s,r?"TupleExpression":"ArrayExpression")}parseArrowExpression(e,t,r,i){this.scope.enter(6)
-let n=te(r,!1)
-!this.match(o.bracketL)&&this.prodParam.hasIn&&(n|=8),this.prodParam.enter(n),this.initFunction(e,r)
+let n=xe(r,!1)
+!this.match(8)&&this.prodParam.hasIn&&(n|=8),this.prodParam.enter(n),this.initFunction(e,r)
 const s=this.state.maybeInArrowParameters
-return t&&(this.state.maybeInArrowParameters=!0,this.setArrowFunctionParameters(e,t,i)),this.state.maybeInArrowParameters=!1,this.parseFunctionBody(e,!0),this.prodParam.exit(),this.scope.exit(),this.state.maybeInArrowParameters=s,this.finishNode(e,"ArrowFunctionExpression")}setArrowFunctionParameters(e,t,r){e.params=this.toAssignableList(t,r,!1)}parseFunctionBodyAndFinish(e,t,r=!1){this.parseFunctionBody(e,!1,r),this.finishNode(e,t)}parseFunctionBody(e,t,r=!1){const i=t&&!this.match(o.braceL)
-if(this.expressionScope.enter(Te()),i)e.body=this.parseMaybeAssign(),this.checkParams(e,!1,t,!1)
+return t&&(this.state.maybeInArrowParameters=!0,this.setArrowFunctionParameters(e,t,i)),this.state.maybeInArrowParameters=!1,this.parseFunctionBody(e,!0),this.prodParam.exit(),this.scope.exit(),this.state.maybeInArrowParameters=s,this.finishNode(e,"ArrowFunctionExpression")}setArrowFunctionParameters(e,t,r){e.params=this.toAssignableList(t,r,!1)}parseFunctionBodyAndFinish(e,t,r=!1){this.parseFunctionBody(e,!1,r),this.finishNode(e,t)}parseFunctionBody(e,t,r=!1){const i=t&&!this.match(13)
+if(this.expressionScope.enter(ve()),i)e.body=this.parseMaybeAssign(),this.checkParams(e,!1,t,!1)
 else{const i=this.state.strict,n=this.state.labels
 this.state.labels=[],this.prodParam.enter(4|this.prodParam.currentFlags()),e.body=this.parseBlock(!0,!1,(n=>{const s=!this.isSimpleParamList(e.params)
 if(n&&s){const t="method"!==e.kind&&"constructor"!==e.kind||!e.key?e.start:e.key.end
-this.raise(t,g.IllegalLanguageModeDirective)}const a=!i&&this.state.strict
+this.raise(t,m.IllegalLanguageModeDirective)}const a=!i&&this.state.strict
 this.checkParams(e,!(this.state.strict||t||r||s),t,a),this.state.strict&&e.id&&this.checkLVal(e.id,"function name",65,void 0,void 0,a)})),this.prodParam.exit(),this.expressionScope.exit(),this.state.labels=n}}isSimpleParamList(e){for(let t=0,r=e.length;t<r;t++)if("Identifier"!==e[t].type)return!1
 return!0}checkParams(e,t,r,i=!0){const n=new Set
-for(let s=0,a=e.params;s<a.length;s++){const e=a[s]
-this.checkLVal(e,"function parameter list",5,t?null:n,void 0,i)}}parseExprList(e,t,r,i){const n=[]
+for(const s of e.params)this.checkLVal(s,"function parameter list",5,t?null:n,void 0,i)}parseExprList(e,t,r,i){const n=[]
 let s=!0
 for(;!this.eat(e);){if(s)s=!1
-else if(this.expect(o.comma),this.match(e)){i&&this.addExtra(i,"trailingComma",this.state.lastTokStart),this.next()
-break}n.push(this.parseExprListItem(t,r))}return n}parseExprListItem(e,t,r,i){let n
-if(this.match(o.comma))e||this.raise(this.state.pos,g.UnexpectedToken,","),n=null
-else if(this.match(o.ellipsis)){const e=this.state.start,i=this.state.startLoc
-n=this.parseParenItem(this.parseSpread(t,r),e,i)}else if(this.match(o.question)){this.expectPlugin("partialApplication"),i||this.raise(this.state.start,g.UnexpectedArgumentPlaceholder)
+else if(this.expect(20),this.match(e)){i&&this.addExtra(i,"trailingComma",this.state.lastTokStart),this.next()
+break}n.push(this.parseExprListItem(t,r))}return n}parseExprListItem(e,t,r){let i
+if(this.match(20))e||this.raise(this.state.pos,m.UnexpectedToken,","),i=null
+else if(this.match(29)){const e=this.state.start,r=this.state.startLoc
+i=this.parseParenItem(this.parseSpread(t),e,r)}else if(this.match(25)){this.expectPlugin("partialApplication"),r||this.raise(this.state.start,m.UnexpectedArgumentPlaceholder)
 const e=this.startNode()
-this.next(),n=this.finishNode(e,"ArgumentPlaceholder")}else n=this.parseMaybeAssignAllowIn(t,this.parseParenItem,r)
-return n}parseIdentifier(e){const t=this.startNode(),r=this.parseIdentifierName(t.start,e)
+this.next(),i=this.finishNode(e,"ArgumentPlaceholder")}else i=this.parseMaybeAssignAllowIn(t,this.parseParenItem)
+return i}parseIdentifier(e){const t=this.startNode(),r=this.parseIdentifierName(t.start,e)
 return this.createIdentifier(t,r)}createIdentifier(e,t){return e.name=t,e.loc.identifierName=t,this.finishNode(e,"Identifier")}parseIdentifierName(e,t){let r
 const{start:i,type:n}=this.state
-if(n===o.name)r=this.state.value
-else{if(!n.keyword)throw this.unexpected()
-{r=n.keyword
-const e=this.curContext()
-n!==o._class&&n!==o._function||e!==b.functionStatement&&e!==b.functionExpression||this.state.context.pop()}}return t?this.state.type=o.name:this.checkReservedWord(r,i,!!n.keyword,!1),this.next(),r}checkReservedWord(e,t,r,i){if(this.prodParam.hasYield&&"yield"===e)this.raise(t,g.YieldBindingIdentifier)
-else{if("await"===e){if(this.prodParam.hasAwait)return void this.raise(t,g.AwaitBindingIdentifier)
-this.expressionScope.recordAsyncArrowParametersError(t,g.AwaitBindingIdentifier)}!this.scope.inClass||this.scope.inNonArrowFunction||"arguments"!==e?r&&R(e)?this.raise(t,g.UnexpectedKeyword,e):(this.state.strict?i?L:I:O)(e,this.inModule)&&(this.prodParam.hasAwait||"await"!==e?this.raise(t,g.UnexpectedReservedWord,e):this.raise(t,this.hasPlugin("topLevelAwait")?g.AwaitNotInAsyncContext:g.AwaitNotInAsyncFunction)):this.raise(t,g.ArgumentsInClass)}}isAwaitAllowed(){return this.scope.inFunction?this.prodParam.hasAwait:!!this.options.allowAwaitOutsideFunction||!!this.hasPlugin("topLevelAwait")&&this.inModule&&this.prodParam.hasAwait}parseAwait(){const e=this.startNode()
-return this.next(),this.expressionScope.recordParameterInitializerError(e.start,g.AwaitExpressionFormalParameter),this.eat(o.star)&&this.raise(e.start,g.ObsoleteAwaitStar),this.scope.inFunction||this.options.allowAwaitOutsideFunction||(this.hasPrecedingLineBreak()||this.match(o.plusMin)||this.match(o.parenL)||this.match(o.bracketL)||this.match(o.backQuote)||this.match(o.regexp)||this.match(o.slash)||this.hasPlugin("v8intrinsic")&&this.match(o.modulo)?this.ambiguousScriptDifferentAst=!0:this.sawUnambiguousESM=!0),this.state.soloAwait||(e.argument=this.parseMaybeUnary()),this.finishNode(e,"AwaitExpression")}parseYield(){const e=this.startNode()
-return this.expressionScope.recordParameterInitializerError(e.start,g.YieldInParameter),this.next(),this.match(o.semi)||!this.match(o.star)&&!this.state.type.startsExpr||this.hasPrecedingLineBreak()?(e.delegate=!1,e.argument=null):(e.delegate=this.eat(o.star),e.argument=this.parseMaybeAssign()),this.finishNode(e,"YieldExpression")}checkPipelineAtInfixOperator(e,t){"smart"===this.getPluginOption("pipelineOperator","proposal")&&"SequenceExpression"===e.type&&this.raise(t,g.PipelineHeadSequenceExpression)}parseSmartPipelineBody(e,t,r){return this.checkSmartPipelineBodyEarlyErrors(e,t),this.parseSmartPipelineBodyInStyle(e,t,r)}checkSmartPipelineBodyEarlyErrors(e,t){if(this.match(o.arrow))throw this.raise(this.state.start,g.PipelineBodyNoArrow)
-"SequenceExpression"===e.type&&this.raise(t,g.PipelineBodySequenceExpression)}parseSmartPipelineBodyInStyle(e,t,r){const i=this.startNodeAt(t,r),n=this.isSimpleReference(e)
-return n?i.callee=e:(this.topicReferenceWasUsedInCurrentTopicContext()||this.raise(t,g.PipelineTopicUnused),i.expression=e),this.finishNode(i,n?"PipelineBareFunction":"PipelineTopicExpression")}isSimpleReference(e){switch(e.type){case"MemberExpression":return!e.computed&&this.isSimpleReference(e.object)
+if(5===n)r=this.state.value
+else{if(!L(n))throw this.unexpected()
+r=R(n)}return t?this.state.type=5:this.checkReservedWord(r,i,L(n),!1),this.next(),r}checkReservedWord(e,t,r,i){if(!(e.length>10)&&function(e){return re.has(e)}(e)){if("yield"===e){if(this.prodParam.hasYield)return void this.raise(t,m.YieldBindingIdentifier)}else if("await"===e){if(this.prodParam.hasAwait)return void this.raise(t,m.AwaitBindingIdentifier)
+if(this.scope.inStaticBlock)return void this.raise(t,m.AwaitBindingIdentifierInStaticBlock)
+this.expressionScope.recordAsyncArrowParametersError(t,m.AwaitBindingIdentifier)}else if("arguments"===e&&this.scope.inClassAndNotInNonArrowFunction)return void this.raise(t,m.ArgumentsInClass)
+r&&te(e)?this.raise(t,m.UnexpectedKeyword,e):(this.state.strict?i?ee:Q:Y)(e,this.inModule)&&this.raise(t,m.UnexpectedReservedWord,e)}}isAwaitAllowed(){return!!this.prodParam.hasAwait||!(!this.options.allowAwaitOutsideFunction||this.scope.inFunction)}parseAwait(e,t){const r=this.startNodeAt(e,t)
+return this.expressionScope.recordParameterInitializerError(r.start,m.AwaitExpressionFormalParameter),this.eat(54)&&this.raise(r.start,m.ObsoleteAwaitStar),this.scope.inFunction||this.options.allowAwaitOutsideFunction||(this.isAmbiguousAwait()?this.ambiguousScriptDifferentAst=!0:this.sawUnambiguousESM=!0),this.state.soloAwait||(r.argument=this.parseMaybeUnary(null,!0)),this.finishNode(r,"AwaitExpression")}isAmbiguousAwait(){return this.hasPrecedingLineBreak()||this.match(52)||this.match(18)||this.match(8)||this.match(30)||this.match(3)||this.match(55)||this.hasPlugin("v8intrinsic")&&this.match(53)}parseYield(){const e=this.startNode()
+this.expressionScope.recordParameterInitializerError(e.start,m.YieldInParameter),this.next()
+let t=!1,r=null
+if(!this.hasPrecedingLineBreak())switch(t=this.eat(54),this.state.type){case 21:case 7:case 16:case 19:case 11:case 17:case 22:case 20:if(!t)break
+default:r=this.parseMaybeAssign()}return e.delegate=t,e.argument=r,this.finishNode(e,"YieldExpression")}checkPipelineAtInfixOperator(e,t){"smart"===this.getPluginOption("pipelineOperator","proposal")&&"SequenceExpression"===e.type&&this.raise(t,m.PipelineHeadSequenceExpression)}checkHackPipeBodyEarlyErrors(e){this.topicReferenceWasUsedInCurrentContext()||this.raise(e,m.PipeTopicUnused)}parseSmartPipelineBodyInStyle(e,t,r){const i=this.startNodeAt(t,r)
+return this.isSimpleReference(e)?(i.callee=e,this.finishNode(i,"PipelineBareFunction")):(this.checkSmartPipeTopicBodyEarlyErrors(t),i.expression=e,this.finishNode(i,"PipelineTopicExpression"))}isSimpleReference(e){switch(e.type){case"MemberExpression":return!e.computed&&this.isSimpleReference(e.object)
 case"Identifier":return!0
-default:return!1}}withTopicPermittingContext(e){const t=this.state.topicContext
+default:return!1}}checkSmartPipeTopicBodyEarlyErrors(e){if(this.match(27))throw this.raise(this.state.start,m.PipelineBodyNoArrow)
+this.topicReferenceWasUsedInCurrentContext()||this.raise(e,m.PipelineTopicUnused)}withTopicBindingContext(e){const t=this.state.topicContext
 this.state.topicContext={maxNumOfResolvableTopics:1,maxTopicIndex:null}
-try{return e()}finally{this.state.topicContext=t}}withTopicForbiddingContext(e){const t=this.state.topicContext
+try{return e()}finally{this.state.topicContext=t}}withSmartMixTopicForbiddingContext(e){if("smart"!==this.getPluginOption("pipelineOperator","proposal"))return e()
+{const t=this.state.topicContext
 this.state.topicContext={maxNumOfResolvableTopics:0,maxTopicIndex:null}
-try{return e()}finally{this.state.topicContext=t}}withSoloAwaitPermittingContext(e){const t=this.state.soloAwait
+try{return e()}finally{this.state.topicContext=t}}}withSoloAwaitPermittingContext(e){const t=this.state.soloAwait
 this.state.soloAwait=!0
 try{return e()}finally{this.state.soloAwait=t}}allowInAnd(e){const t=this.prodParam.currentFlags()
 if(8&~t){this.prodParam.enter(8|t)
 try{return e()}finally{this.prodParam.exit()}}return e()}disallowInAnd(e){const t=this.prodParam.currentFlags()
 if(8&t){this.prodParam.enter(-9&t)
-try{return e()}finally{this.prodParam.exit()}}return e()}registerTopicReference(){this.state.topicContext.maxTopicIndex=0}primaryTopicReferenceIsAllowedInCurrentTopicContext(){return this.state.topicContext.maxNumOfResolvableTopics>=1}topicReferenceWasUsedInCurrentTopicContext(){return null!=this.state.topicContext.maxTopicIndex&&this.state.topicContext.maxTopicIndex>=0}parseFSharpPipelineBody(e){const t=this.state.start,r=this.state.startLoc
+try{return e()}finally{this.prodParam.exit()}}return e()}registerTopicReference(){this.state.topicContext.maxTopicIndex=0}topicReferenceIsAllowedInCurrentContext(){return this.state.topicContext.maxNumOfResolvableTopics>=1}topicReferenceWasUsedInCurrentContext(){return null!=this.state.topicContext.maxTopicIndex&&this.state.topicContext.maxTopicIndex>=0}parseFSharpPipelineBody(e){const t=this.state.start,r=this.state.startLoc
 this.state.potentialArrowAt=this.state.start
 const i=this.state.inFSharpPipelineDirectBody
 this.state.inFSharpPipelineDirectBody=!0
-const n=this.parseExprOp(this.parseMaybeUnary(),t,r,e)
-return this.state.inFSharpPipelineDirectBody=i,n}}{parseTopLevel(e,t){if(t.sourceType=this.options.sourceType,t.interpreter=this.parseInterpreterDirective(),this.parseBlockBody(t,!0,!0,o.eof),this.inModule&&!this.options.allowUndeclaredExports&&this.scope.undefinedExports.size>0)for(let r=0,i=Array.from(this.scope.undefinedExports);r<i.length;r++){const[e]=i[r],t=this.scope.undefinedExports.get(e)
-this.raise(t,g.ModuleExportUndefined,e)}return e.program=this.finishNode(t,"Program"),e.comments=this.state.comments,this.options.tokens&&(e.tokens=this.tokens),this.finishNode(e,"File")}stmtToDirective(e){const t=e.expression,r=this.startNodeAt(t.start,t.loc.start),i=this.startNodeAt(e.start,e.loc.start),n=this.input.slice(t.start,t.end),s=r.value=n.slice(1,-1)
-return this.addExtra(r,"raw",n),this.addExtra(r,"rawValue",s),i.value=this.finishNodeAt(r,"DirectiveLiteral",t.end,t.loc.end),this.finishNodeAt(i,"Directive",e.end,e.loc.end)}parseInterpreterDirective(){if(!this.match(o.interpreterDirective))return null
+const n=this.parseExprOp(this.parseMaybeUnaryOrPrivate(),t,r,e)
+return this.state.inFSharpPipelineDirectBody=i,n}parseModuleExpression(){this.expectPlugin("moduleBlocks")
 const e=this.startNode()
-return e.value=this.state.value,this.next(),this.finishNode(e,"InterpreterDirective")}isLet(e){if(!this.isContextual("let"))return!1
-const t=this.nextTokenStart(),r=this.input.charCodeAt(t)
-if(91===r)return!0
+this.next(),this.eat(13)
+const t=this.initializeScopes(!0)
+this.enterInitialScopes()
+const r=this.startNode()
+try{e.body=this.parseProgram(r,16,"module")}finally{t()}return this.eat(16),this.finishNode(e,"ModuleExpression")}}{parseTopLevel(e,t){return e.program=this.parseProgram(t),e.comments=this.state.comments,this.options.tokens&&(e.tokens=function(e){for(let t=0;t<e.length;t++){const r=e[t],{type:i}=r
+if(6!==i)"number"==typeof i&&(r.type=j(i))
+else{const{loc:i,start:n,value:s,end:a}=r,o=n+1,l=new u(i.start.line,i.start.column+1)
+e.splice(t,1,new pe({type:j(33),value:"#",start:n,end:o,startLoc:i.start,endLoc:l}),new pe({type:j(5),value:s,start:o,end:a,startLoc:l,endLoc:i.end})),t++}}return e}(this.tokens)),this.finishNode(e,"File")}parseProgram(e,t=7,r=this.options.sourceType){if(e.sourceType=r,e.interpreter=this.parseInterpreterDirective(),this.parseBlockBody(e,!0,!0,t),this.inModule&&!this.options.allowUndeclaredExports&&this.scope.undefinedExports.size>0)for(const[i]of Array.from(this.scope.undefinedExports)){const e=this.scope.undefinedExports.get(i)
+this.raise(e,m.ModuleExportUndefined,i)}return this.finishNode(e,"Program")}stmtToDirective(e){const t=e
+t.type="Directive",t.value=t.expression,delete t.expression
+const r=t.value,i=this.input.slice(r.start,r.end),n=r.value=i.slice(1,-1)
+return this.addExtra(r,"raw",i),this.addExtra(r,"rawValue",n),r.type="DirectiveLiteral",t}parseInterpreterDirective(){if(!this.match(34))return null
+const e=this.startNode()
+return e.value=this.state.value,this.next(),this.finishNode(e,"InterpreterDirective")}isLet(e){return!!this.isContextual("let")&&this.isLetKeyword(e)}isLetKeyword(e){const t=this.nextTokenStart(),r=this.codePointAtPos(t)
+if(92===r||91===r)return!0
 if(e)return!1
 if(123===r)return!0
-if(A(r)){let e=t+1
-for(;P(this.input.charCodeAt(e));)++e
-const r=this.input.slice(t,e)
-if(!F.test(r))return!0}return!1}parseStatement(e,t){return this.match(o.at)&&this.parseDecorators(!0),this.parseStatementContent(e,t)}parseStatementContent(e,t){let r=this.state.type
+if(W(r)){if(it.lastIndex=t,it.test(this.input)){const e=this.codePointAtPos(it.lastIndex)
+if(!J(e)&&92!==e)return!1}return!0}return!1}parseStatement(e,t){return this.match(32)&&this.parseDecorators(!0),this.parseStatementContent(e,t)}parseStatementContent(e,t){let r=this.state.type
 const i=this.startNode()
 let n
-switch(this.isLet(e)&&(r=o._var,n="let"),r){case o._break:case o._continue:return this.parseBreakContinueStatement(i,r.keyword)
-case o._debugger:return this.parseDebuggerStatement(i)
-case o._do:return this.parseDoStatement(i)
-case o._for:return this.parseForStatement(i)
-case o._function:if(46===this.lookaheadCharCode())break
-return e&&(this.state.strict?this.raise(this.state.start,g.StrictFunction):"if"!==e&&"label"!==e&&this.raise(this.state.start,g.SloppyFunction)),this.parseFunctionStatement(i,!1,!e)
-case o._class:return e&&this.unexpected(),this.parseClass(i,!0)
-case o._if:return this.parseIfStatement(i)
-case o._return:return this.parseReturnStatement(i)
-case o._switch:return this.parseSwitchStatement(i)
-case o._throw:return this.parseThrowStatement(i)
-case o._try:return this.parseTryStatement(i)
-case o._const:case o._var:return n=n||this.state.value,e&&"var"!==n&&this.raise(this.state.start,g.UnexpectedLexicalDeclaration),this.parseVarStatement(i,n)
-case o._while:return this.parseWhileStatement(i)
-case o._with:return this.parseWithStatement(i)
-case o.braceL:return this.parseBlock()
-case o.semi:return this.parseEmptyStatement(i)
-case o._import:{const e=this.lookaheadCharCode()
-if(40===e||46===e)break}case o._export:{let e
-return this.options.allowImportExportEverywhere||t||this.raise(this.state.start,g.UnexpectedImportExport),this.next(),r===o._import?(e=this.parseImport(i),"ImportDeclaration"!==e.type||e.importKind&&"value"!==e.importKind||(this.sawUnambiguousESM=!0)):(e=this.parseExport(i),("ExportNamedDeclaration"!==e.type||e.exportKind&&"value"!==e.exportKind)&&("ExportAllDeclaration"!==e.type||e.exportKind&&"value"!==e.exportKind)&&"ExportDefaultDeclaration"!==e.type||(this.sawUnambiguousESM=!0)),this.assertModuleNodeAllowed(i),e}default:if(this.isAsyncFunction())return e&&this.raise(this.state.start,g.AsyncFunctionInSingleStatementContext),this.next(),this.parseFunctionStatement(i,!0,!e)}const s=this.state.value,a=this.parseExpression()
-return r===o.name&&"Identifier"===a.type&&this.eat(o.colon)?this.parseLabeledStatement(i,s,a,e):this.parseExpressionStatement(i,a)}assertModuleNodeAllowed(e){this.options.allowImportExportEverywhere||this.inModule||this.raiseWithData(e.start,{code:"BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED"},g.ImportOutsideModule)}takeDecorators(e){const t=this.state.decoratorStack[this.state.decoratorStack.length-1]
-t.length&&(e.decorators=t,this.resetStartLocationFromNode(e,t[0]),this.state.decoratorStack[this.state.decoratorStack.length-1]=[])}canHaveLeadingDecorator(){return this.match(o._class)}parseDecorators(e){const t=this.state.decoratorStack[this.state.decoratorStack.length-1]
-for(;this.match(o.at);){const e=this.parseDecorator()
-t.push(e)}if(this.match(o._export))e||this.unexpected(),this.hasPlugin("decorators")&&!this.getPluginOption("decorators","decoratorsBeforeExport")&&this.raise(this.state.start,g.DecoratorExportClass)
-else if(!this.canHaveLeadingDecorator())throw this.raise(this.state.start,g.UnexpectedLeadingDecorator)}parseDecorator(){this.expectOnePlugin(["decorators-legacy","decorators"])
+switch(this.isLet(e)&&(r=73,n="let"),r){case 59:return this.parseBreakContinueStatement(i,!0)
+case 62:return this.parseBreakContinueStatement(i,!1)
+case 63:return this.parseDebuggerStatement(i)
+case 89:return this.parseDoStatement(i)
+case 90:return this.parseForStatement(i)
+case 67:if(46===this.lookaheadCharCode())break
+return e&&(this.state.strict?this.raise(this.state.start,m.StrictFunction):"if"!==e&&"label"!==e&&this.raise(this.state.start,m.SloppyFunction)),this.parseFunctionStatement(i,!1,!e)
+case 79:return e&&this.unexpected(),this.parseClass(i,!0)
+case 68:return this.parseIfStatement(i)
+case 69:return this.parseReturnStatement(i)
+case 70:return this.parseSwitchStatement(i)
+case 71:return this.parseThrowStatement(i)
+case 72:return this.parseTryStatement(i)
+case 74:case 73:return n=n||this.state.value,e&&"var"!==n&&this.raise(this.state.start,m.UnexpectedLexicalDeclaration),this.parseVarStatement(i,n)
+case 91:return this.parseWhileStatement(i)
+case 75:return this.parseWithStatement(i)
+case 13:return this.parseBlock()
+case 21:return this.parseEmptyStatement(i)
+case 82:{const e=this.lookaheadCharCode()
+if(40===e||46===e)break}case 81:{let e
+return this.options.allowImportExportEverywhere||t||this.raise(this.state.start,m.UnexpectedImportExport),this.next(),82===r?(e=this.parseImport(i),"ImportDeclaration"!==e.type||e.importKind&&"value"!==e.importKind||(this.sawUnambiguousESM=!0)):(e=this.parseExport(i),("ExportNamedDeclaration"!==e.type||e.exportKind&&"value"!==e.exportKind)&&("ExportAllDeclaration"!==e.type||e.exportKind&&"value"!==e.exportKind)&&"ExportDefaultDeclaration"!==e.type||(this.sawUnambiguousESM=!0)),this.assertModuleNodeAllowed(i),e}default:if(this.isAsyncFunction())return e&&this.raise(this.state.start,m.AsyncFunctionInSingleStatementContext),this.next(),this.parseFunctionStatement(i,!0,!e)}const s=this.state.value,a=this.parseExpression()
+return 5===r&&"Identifier"===a.type&&this.eat(22)?this.parseLabeledStatement(i,s,a,e):this.parseExpressionStatement(i,a)}assertModuleNodeAllowed(e){this.options.allowImportExportEverywhere||this.inModule||this.raise(e.start,g.ImportOutsideModule)}takeDecorators(e){const t=this.state.decoratorStack[this.state.decoratorStack.length-1]
+t.length&&(e.decorators=t,this.resetStartLocationFromNode(e,t[0]),this.state.decoratorStack[this.state.decoratorStack.length-1]=[])}canHaveLeadingDecorator(){return this.match(79)}parseDecorators(e){const t=this.state.decoratorStack[this.state.decoratorStack.length-1]
+for(;this.match(32);){const e=this.parseDecorator()
+t.push(e)}if(this.match(81))e||this.unexpected(),this.hasPlugin("decorators")&&!this.getPluginOption("decorators","decoratorsBeforeExport")&&this.raise(this.state.start,m.DecoratorExportClass)
+else if(!this.canHaveLeadingDecorator())throw this.raise(this.state.start,m.UnexpectedLeadingDecorator)}parseDecorator(){this.expectOnePlugin(["decorators-legacy","decorators"])
 const e=this.startNode()
 if(this.next(),this.hasPlugin("decorators")){this.state.decoratorStack.push([])
 const t=this.state.start,r=this.state.startLoc
 let i
-if(this.eat(o.parenL))i=this.parseExpression(),this.expect(o.parenR)
-else for(i=this.parseIdentifier(!1);this.eat(o.dot);){const e=this.startNodeAt(t,r)
+if(this.eat(18))i=this.parseExpression(),this.expect(19)
+else for(i=this.parseIdentifier(!1);this.eat(24);){const e=this.startNodeAt(t,r)
 e.object=i,e.property=this.parseIdentifier(!0),e.computed=!1,i=this.finishNode(e,"MemberExpression")}e.expression=this.parseMaybeDecoratorArguments(i),this.state.decoratorStack.pop()}else e.expression=this.parseExprSubscripts()
-return this.finishNode(e,"Decorator")}parseMaybeDecoratorArguments(e){if(this.eat(o.parenL)){const t=this.startNodeAtNode(e)
-return t.callee=e,t.arguments=this.parseCallExpressionArguments(o.parenR,!1),this.toReferencedList(t.arguments),this.finishNode(t,"CallExpression")}return e}parseBreakContinueStatement(e,t){const r="break"===t
-return this.next(),this.isLineTerminator()?e.label=null:(e.label=this.parseIdentifier(),this.semicolon()),this.verifyBreakContinue(e,t),this.finishNode(e,r?"BreakStatement":"ContinueStatement")}verifyBreakContinue(e,t){const r="break"===t
-let i
-for(i=0;i<this.state.labels.length;++i){const t=this.state.labels[i]
-if(null==e.label||t.name===e.label.name){if(null!=t.kind&&(r||"loop"===t.kind))break
-if(e.label&&r)break}}i===this.state.labels.length&&this.raise(e.start,g.IllegalBreakContinue,t)}parseDebuggerStatement(e){return this.next(),this.semicolon(),this.finishNode(e,"DebuggerStatement")}parseHeaderExpression(){this.expect(o.parenL)
+return this.finishNode(e,"Decorator")}parseMaybeDecoratorArguments(e){if(this.eat(18)){const t=this.startNodeAtNode(e)
+return t.callee=e,t.arguments=this.parseCallExpressionArguments(19,!1),this.toReferencedList(t.arguments),this.finishNode(t,"CallExpression")}return e}parseBreakContinueStatement(e,t){return this.next(),this.isLineTerminator()?e.label=null:(e.label=this.parseIdentifier(),this.semicolon()),this.verifyBreakContinue(e,t),this.finishNode(e,t?"BreakStatement":"ContinueStatement")}verifyBreakContinue(e,t){let r
+for(r=0;r<this.state.labels.length;++r){const i=this.state.labels[r]
+if(null==e.label||i.name===e.label.name){if(null!=i.kind&&(t||"loop"===i.kind))break
+if(e.label&&t)break}}r===this.state.labels.length&&this.raise(e.start,m.IllegalBreakContinue,t?"break":"continue")}parseDebuggerStatement(e){return this.next(),this.semicolon(),this.finishNode(e,"DebuggerStatement")}parseHeaderExpression(){this.expect(18)
 const e=this.parseExpression()
-return this.expect(o.parenR),e}parseDoStatement(e){return this.next(),this.state.labels.push(ke),e.body=this.withTopicForbiddingContext((()=>this.parseStatement("do"))),this.state.labels.pop(),this.expect(o._while),e.test=this.parseHeaderExpression(),this.eat(o.semi),this.finishNode(e,"DoWhileStatement")}parseForStatement(e){this.next(),this.state.labels.push(ke)
+return this.expect(19),e}parseDoStatement(e){return this.next(),this.state.labels.push(et),e.body=this.withSmartMixTopicForbiddingContext((()=>this.parseStatement("do"))),this.state.labels.pop(),this.expect(91),e.test=this.parseHeaderExpression(),this.eat(21),this.finishNode(e,"DoWhileStatement")}parseForStatement(e){this.next(),this.state.labels.push(et)
 let t=-1
-if(this.isAwaitAllowed()&&this.eatContextual("await")&&(t=this.state.lastTokStart),this.scope.enter(0),this.expect(o.parenL),this.match(o.semi))return t>-1&&this.unexpected(t),this.parseFor(e,null)
-const r=this.isLet()
-if(this.match(o._var)||this.match(o._const)||r){const i=this.startNode(),n=r?"let":this.state.value
-return this.next(),this.parseVar(i,!0,n),this.finishNode(i,"VariableDeclaration"),(this.match(o._in)||this.isContextual("of"))&&1===i.declarations.length?this.parseForIn(e,i,t):(t>-1&&this.unexpected(t),this.parseFor(e,i))}const i=new ve,n=this.parseExpression(!0,i)
-if(this.match(o._in)||this.isContextual("of")){this.toAssignable(n,!0)
-const r=this.isContextual("of")?"for-of statement":"for-in statement"
-return this.checkLVal(n,r),this.parseForIn(e,n,t)}return this.checkExpressionErrors(i,!0),t>-1&&this.unexpected(t),this.parseFor(e,n)}parseFunctionStatement(e,t,r){return this.next(),this.parseFunction(e,1|(r?0:2),t)}parseIfStatement(e){return this.next(),e.test=this.parseHeaderExpression(),e.consequent=this.parseStatement("if"),e.alternate=this.eat(o._else)?this.parseStatement("if"):null,this.finishNode(e,"IfStatement")}parseReturnStatement(e){return this.prodParam.hasReturn||this.options.allowReturnOutsideFunction||this.raise(this.state.start,g.IllegalReturn),this.next(),this.isLineTerminator()?e.argument=null:(e.argument=this.parseExpression(),this.semicolon()),this.finishNode(e,"ReturnStatement")}parseSwitchStatement(e){this.next(),e.discriminant=this.parseHeaderExpression()
+if(this.isAwaitAllowed()&&this.eatContextual("await")&&(t=this.state.lastTokStart),this.scope.enter(0),this.expect(18),this.match(21))return t>-1&&this.unexpected(t),this.parseFor(e,null)
+const r=this.isContextual("let"),i=r&&this.isLetKeyword()
+if(this.match(73)||this.match(74)||i){const r=this.startNode(),n=i?"let":this.state.value
+return this.next(),this.parseVar(r,!0,n),this.finishNode(r,"VariableDeclaration"),(this.match(57)||this.isContextual("of"))&&1===r.declarations.length?this.parseForIn(e,r,t):(t>-1&&this.unexpected(t),this.parseFor(e,r))}const n=this.match(5)&&!this.state.containsEsc,s=new Ee,a=this.parseExpression(!0,s),o=this.isContextual("of")
+if(o&&(r?this.raise(a.start,m.ForOfLet):-1===t&&n&&"Identifier"===a.type&&"async"===a.name&&this.raise(a.start,m.ForOfAsync)),o||this.match(57)){this.toAssignable(a,!0)
+const r=o?"for-of statement":"for-in statement"
+return this.checkLVal(a,r),this.parseForIn(e,a,t)}return this.checkExpressionErrors(s,!0),t>-1&&this.unexpected(t),this.parseFor(e,a)}parseFunctionStatement(e,t,r){return this.next(),this.parseFunction(e,1|(r?0:2),t)}parseIfStatement(e){return this.next(),e.test=this.parseHeaderExpression(),e.consequent=this.parseStatement("if"),e.alternate=this.eat(65)?this.parseStatement("if"):null,this.finishNode(e,"IfStatement")}parseReturnStatement(e){return this.prodParam.hasReturn||this.options.allowReturnOutsideFunction||this.raise(this.state.start,m.IllegalReturn),this.next(),this.isLineTerminator()?e.argument=null:(e.argument=this.parseExpression(),this.semicolon()),this.finishNode(e,"ReturnStatement")}parseSwitchStatement(e){this.next(),e.discriminant=this.parseHeaderExpression()
 const t=e.cases=[]
 let r,i
-for(this.expect(o.braceL),this.state.labels.push(Ce),this.scope.enter(0);!this.match(o.braceR);)if(this.match(o._case)||this.match(o._default)){const e=this.match(o._case)
-r&&this.finishNode(r,"SwitchCase"),t.push(r=this.startNode()),r.consequent=[],this.next(),e?r.test=this.parseExpression():(i&&this.raise(this.state.lastTokStart,g.MultipleDefaultsInSwitch),i=!0,r.test=null),this.expect(o.colon)}else r?r.consequent.push(this.parseStatement(null)):this.unexpected()
-return this.scope.exit(),r&&this.finishNode(r,"SwitchCase"),this.next(),this.state.labels.pop(),this.finishNode(e,"SwitchStatement")}parseThrowStatement(e){return this.next(),this.hasPrecedingLineBreak()&&this.raise(this.state.lastTokEnd,g.NewlineAfterThrow),e.argument=this.parseExpression(),this.semicolon(),this.finishNode(e,"ThrowStatement")}parseCatchClauseParam(){const e=this.parseBindingAtom(),t="Identifier"===e.type
-return this.scope.enter(t?8:0),this.checkLVal(e,"catch clause",9),e}parseTryStatement(e){if(this.next(),e.block=this.parseBlock(),e.handler=null,this.match(o._catch)){const t=this.startNode()
-this.next(),this.match(o.parenL)?(this.expect(o.parenL),t.param=this.parseCatchClauseParam(),this.expect(o.parenR)):(t.param=null,this.scope.enter(0)),t.body=this.withTopicForbiddingContext((()=>this.parseBlock(!1,!1))),this.scope.exit(),e.handler=this.finishNode(t,"CatchClause")}return e.finalizer=this.eat(o._finally)?this.parseBlock():null,e.handler||e.finalizer||this.raise(e.start,g.NoCatchOrFinally),this.finishNode(e,"TryStatement")}parseVarStatement(e,t){return this.next(),this.parseVar(e,!1,t),this.semicolon(),this.finishNode(e,"VariableDeclaration")}parseWhileStatement(e){return this.next(),e.test=this.parseHeaderExpression(),this.state.labels.push(ke),e.body=this.withTopicForbiddingContext((()=>this.parseStatement("while"))),this.state.labels.pop(),this.finishNode(e,"WhileStatement")}parseWithStatement(e){return this.state.strict&&this.raise(this.state.start,g.StrictWith),this.next(),e.object=this.parseHeaderExpression(),e.body=this.withTopicForbiddingContext((()=>this.parseStatement("with"))),this.finishNode(e,"WithStatement")}parseEmptyStatement(e){return this.next(),this.finishNode(e,"EmptyStatement")}parseLabeledStatement(e,t,r,i){for(let s=0,a=this.state.labels;s<a.length;s++)a[s].name===t&&this.raise(r.start,g.LabelRedeclaration,t)
-const n=this.state.type.isLoop?"loop":this.match(o._switch)?"switch":null
-for(let s=this.state.labels.length-1;s>=0;s--){const t=this.state.labels[s]
+for(this.expect(13),this.state.labels.push(tt),this.scope.enter(0);!this.match(16);)if(this.match(60)||this.match(64)){const e=this.match(60)
+r&&this.finishNode(r,"SwitchCase"),t.push(r=this.startNode()),r.consequent=[],this.next(),e?r.test=this.parseExpression():(i&&this.raise(this.state.lastTokStart,m.MultipleDefaultsInSwitch),i=!0,r.test=null),this.expect(22)}else r?r.consequent.push(this.parseStatement(null)):this.unexpected()
+return this.scope.exit(),r&&this.finishNode(r,"SwitchCase"),this.next(),this.state.labels.pop(),this.finishNode(e,"SwitchStatement")}parseThrowStatement(e){return this.next(),this.hasPrecedingLineBreak()&&this.raise(this.state.lastTokEnd,m.NewlineAfterThrow),e.argument=this.parseExpression(),this.semicolon(),this.finishNode(e,"ThrowStatement")}parseCatchClauseParam(){const e=this.parseBindingAtom(),t="Identifier"===e.type
+return this.scope.enter(t?8:0),this.checkLVal(e,"catch clause",9),e}parseTryStatement(e){if(this.next(),e.block=this.parseBlock(),e.handler=null,this.match(61)){const t=this.startNode()
+this.next(),this.match(18)?(this.expect(18),t.param=this.parseCatchClauseParam(),this.expect(19)):(t.param=null,this.scope.enter(0)),t.body=this.withSmartMixTopicForbiddingContext((()=>this.parseBlock(!1,!1))),this.scope.exit(),e.handler=this.finishNode(t,"CatchClause")}return e.finalizer=this.eat(66)?this.parseBlock():null,e.handler||e.finalizer||this.raise(e.start,m.NoCatchOrFinally),this.finishNode(e,"TryStatement")}parseVarStatement(e,t){return this.next(),this.parseVar(e,!1,t),this.semicolon(),this.finishNode(e,"VariableDeclaration")}parseWhileStatement(e){return this.next(),e.test=this.parseHeaderExpression(),this.state.labels.push(et),e.body=this.withSmartMixTopicForbiddingContext((()=>this.parseStatement("while"))),this.state.labels.pop(),this.finishNode(e,"WhileStatement")}parseWithStatement(e){return this.state.strict&&this.raise(this.state.start,m.StrictWith),this.next(),e.object=this.parseHeaderExpression(),e.body=this.withSmartMixTopicForbiddingContext((()=>this.parseStatement("with"))),this.finishNode(e,"WithStatement")}parseEmptyStatement(e){return this.next(),this.finishNode(e,"EmptyStatement")}parseLabeledStatement(e,t,r,i){for(const a of this.state.labels)a.name===t&&this.raise(r.start,m.LabelRedeclaration,t)
+const n=(s=this.state.type)>=89&&s<=91?"loop":this.match(70)?"switch":null
+var s
+for(let a=this.state.labels.length-1;a>=0;a--){const t=this.state.labels[a]
 if(t.statementStart!==e.start)break
 t.statementStart=this.state.start,t.kind=n}return this.state.labels.push({name:t,kind:n,statementStart:this.state.start}),e.body=this.parseStatement(i?-1===i.indexOf("label")?i+"label":i:"label"),this.state.labels.pop(),e.label=r,this.finishNode(e,"LabeledStatement")}parseExpressionStatement(e,t){return e.expression=t,this.semicolon(),this.finishNode(e,"ExpressionStatement")}parseBlock(e=!1,t=!0,r){const i=this.startNode()
-return this.expect(o.braceL),t&&this.scope.enter(0),this.parseBlockBody(i,e,!1,o.braceR,r),t&&this.scope.exit(),this.finishNode(i,"BlockStatement")}isValidDirective(e){return"ExpressionStatement"===e.type&&"StringLiteral"===e.expression.type&&!e.expression.extra.parenthesized}parseBlockBody(e,t,r,i,n){const s=e.body=[],a=e.directives=[]
-this.parseBlockOrModuleBlockBody(s,t?a:void 0,r,i,n)}parseBlockOrModuleBlockBody(e,t,r,i,n){const s=[],a=this.state.strict
-let o=!1,l=!1
-for(;!this.match(i);){!l&&this.state.octalPositions.length&&s.push(...this.state.octalPositions)
-const i=this.parseStatement(null,r)
-if(t&&!l&&this.isValidDirective(i)){const e=this.stmtToDirective(i)
-t.push(e),o||"use strict"!==e.value.value||(o=!0,this.setStrict(!0))}else l=!0,e.push(i)}if(this.state.strict&&s.length)for(let u=0;u<s.length;u++){const e=s[u]
-this.raise(e,g.StrictOctalLiteral)}n&&n.call(this,o),a||this.setStrict(!1),this.next()}parseFor(e,t){return e.init=t,this.expect(o.semi),e.test=this.match(o.semi)?null:this.parseExpression(),this.expect(o.semi),e.update=this.match(o.parenR)?null:this.parseExpression(),this.expect(o.parenR),e.body=this.withTopicForbiddingContext((()=>this.parseStatement("for"))),this.scope.exit(),this.state.labels.pop(),this.finishNode(e,"ForStatement")}parseForIn(e,t,r){const i=this.match(o._in)
-return this.next(),i?r>-1&&this.unexpected(r):e.await=r>-1,"VariableDeclaration"!==t.type||null==t.declarations[0].init||i&&!this.state.strict&&"var"===t.kind&&"Identifier"===t.declarations[0].id.type?"AssignmentPattern"===t.type&&this.raise(t.start,g.InvalidLhs,"for-loop"):this.raise(t.start,g.ForInOfLoopInitializer,i?"for-in":"for-of"),e.left=t,e.right=i?this.parseExpression():this.parseMaybeAssignAllowIn(),this.expect(o.parenR),e.body=this.withTopicForbiddingContext((()=>this.parseStatement("for"))),this.scope.exit(),this.state.labels.pop(),this.finishNode(e,i?"ForInStatement":"ForOfStatement")}parseVar(e,t,r){const i=e.declarations=[],n=this.hasPlugin("typescript")
+return e&&this.state.strictErrors.clear(),this.expect(13),t&&this.scope.enter(0),this.parseBlockBody(i,e,!1,16,r),t&&this.scope.exit(),this.finishNode(i,"BlockStatement")}isValidDirective(e){return"ExpressionStatement"===e.type&&"StringLiteral"===e.expression.type&&!e.expression.extra.parenthesized}parseBlockBody(e,t,r,i,n){const s=e.body=[],a=e.directives=[]
+this.parseBlockOrModuleBlockBody(s,t?a:void 0,r,i,n)}parseBlockOrModuleBlockBody(e,t,r,i,n){const s=this.state.strict
+let a=!1,o=!1
+for(;!this.match(i);){const i=this.parseStatement(null,r)
+if(t&&!o){if(this.isValidDirective(i)){const e=this.stmtToDirective(i)
+t.push(e),a||"use strict"!==e.value.value||(a=!0,this.setStrict(!0))
+continue}o=!0,this.state.strictErrors.clear()}e.push(i)}n&&n.call(this,a),s||this.setStrict(!1),this.next()}parseFor(e,t){return e.init=t,this.semicolon(!1),e.test=this.match(21)?null:this.parseExpression(),this.semicolon(!1),e.update=this.match(19)?null:this.parseExpression(),this.expect(19),e.body=this.withSmartMixTopicForbiddingContext((()=>this.parseStatement("for"))),this.scope.exit(),this.state.labels.pop(),this.finishNode(e,"ForStatement")}parseForIn(e,t,r){const i=this.match(57)
+return this.next(),i?r>-1&&this.unexpected(r):e.await=r>-1,"VariableDeclaration"!==t.type||null==t.declarations[0].init||i&&!this.state.strict&&"var"===t.kind&&"Identifier"===t.declarations[0].id.type?"AssignmentPattern"===t.type&&this.raise(t.start,m.InvalidLhs,"for-loop"):this.raise(t.start,m.ForInOfLoopInitializer,i?"for-in":"for-of"),e.left=t,e.right=i?this.parseExpression():this.parseMaybeAssignAllowIn(),this.expect(19),e.body=this.withSmartMixTopicForbiddingContext((()=>this.parseStatement("for"))),this.scope.exit(),this.state.labels.pop(),this.finishNode(e,i?"ForInStatement":"ForOfStatement")}parseVar(e,t,r){const i=e.declarations=[],n=this.hasPlugin("typescript")
 for(e.kind=r;;){const e=this.startNode()
-if(this.parseVarId(e,r),this.eat(o.eq)?e.init=t?this.parseMaybeAssignDisallowIn():this.parseMaybeAssignAllowIn():("const"!==r||this.match(o._in)||this.isContextual("of")?"Identifier"===e.id.type||t&&(this.match(o._in)||this.isContextual("of"))||this.raise(this.state.lastTokEnd,g.DeclarationMissingInitializer,"Complex binding patterns"):n||this.raise(this.state.lastTokEnd,g.DeclarationMissingInitializer,"Const declarations"),e.init=null),i.push(this.finishNode(e,"VariableDeclarator")),!this.eat(o.comma))break}return e}parseVarId(e,t){e.id=this.parseBindingAtom(),this.checkLVal(e.id,"variable declaration","var"===t?5:9,void 0,"var"!==t)}parseFunction(e,t=0,r=!1){const i=1&t,n=2&t,s=!(!i||4&t)
-this.initFunction(e,r),this.match(o.star)&&n&&this.raise(this.state.start,g.GeneratorInSingleStatementContext),e.generator=this.eat(o.star),i&&(e.id=this.parseFunctionId(s))
+if(this.parseVarId(e,r),this.eat(35)?e.init=t?this.parseMaybeAssignDisallowIn():this.parseMaybeAssignAllowIn():("const"!==r||this.match(57)||this.isContextual("of")?"Identifier"===e.id.type||t&&(this.match(57)||this.isContextual("of"))||this.raise(this.state.lastTokEnd,m.DeclarationMissingInitializer,"Complex binding patterns"):n||this.raise(this.state.lastTokEnd,m.DeclarationMissingInitializer,"Const declarations"),e.init=null),i.push(this.finishNode(e,"VariableDeclarator")),!this.eat(20))break}return e}parseVarId(e,t){e.id=this.parseBindingAtom(),this.checkLVal(e.id,"variable declaration","var"===t?5:9,void 0,"var"!==t)}parseFunction(e,t=0,r=!1){const i=1&t,n=2&t,s=!(!i||4&t)
+this.initFunction(e,r),this.match(54)&&n&&this.raise(this.state.start,m.GeneratorInSingleStatementContext),e.generator=this.eat(54),i&&(e.id=this.parseFunctionId(s))
 const a=this.state.maybeInArrowParameters
-return this.state.maybeInArrowParameters=!1,this.scope.enter(2),this.prodParam.enter(te(r,e.generator)),i||(e.id=this.parseFunctionId()),this.parseFunctionParams(e,!1),this.withTopicForbiddingContext((()=>{this.parseFunctionBodyAndFinish(e,i?"FunctionDeclaration":"FunctionExpression")})),this.prodParam.exit(),this.scope.exit(),i&&!n&&this.registerFunctionStatementId(e),this.state.maybeInArrowParameters=a,e}parseFunctionId(e){return e||this.match(o.name)?this.parseIdentifier():null}parseFunctionParams(e,t){this.expect(o.parenL),this.expressionScope.enter(new Ee(3)),e.params=this.parseBindingList(o.parenR,41,!1,t),this.expressionScope.exit()}registerFunctionStatementId(e){e.id&&this.scope.declareName(e.id.name,this.state.strict||e.generator||e.async?this.scope.treatFunctionsAsVar?5:9:17,e.id.start)}parseClass(e,t,r){this.next(),this.takeDecorators(e)
+return this.state.maybeInArrowParameters=!1,this.scope.enter(2),this.prodParam.enter(xe(r,e.generator)),i||(e.id=this.parseFunctionId()),this.parseFunctionParams(e,!1),this.withSmartMixTopicForbiddingContext((()=>{this.parseFunctionBodyAndFinish(e,i?"FunctionDeclaration":"FunctionExpression")})),this.prodParam.exit(),this.scope.exit(),i&&!n&&this.registerFunctionStatementId(e),this.state.maybeInArrowParameters=a,e}parseFunctionId(e){return e||this.match(5)?this.parseIdentifier():null}parseFunctionParams(e,t){this.expect(18),this.expressionScope.enter(new me(3)),e.params=this.parseBindingList(19,41,!1,t),this.expressionScope.exit()}registerFunctionStatementId(e){e.id&&this.scope.declareName(e.id.name,this.state.strict||e.generator||e.async?this.scope.treatFunctionsAsVar?5:9:17,e.id.start)}parseClass(e,t,r){this.next(),this.takeDecorators(e)
 const i=this.state.strict
-return this.state.strict=!0,this.parseClassId(e,t,r),this.parseClassSuper(e),e.body=this.parseClassBody(!!e.superClass,i),this.finishNode(e,t?"ClassDeclaration":"ClassExpression")}isClassProperty(){return this.match(o.eq)||this.match(o.semi)||this.match(o.braceR)}isClassMethod(){return this.match(o.parenL)}isNonstaticConstructor(e){return!(e.computed||e.static||"constructor"!==e.key.name&&"constructor"!==e.key.value)}parseClassBody(e,t){this.classScope.enter()
-const r={constructorAllowsSuper:e,hadConstructor:!1,hadStaticBlock:!1}
+return this.state.strict=!0,this.parseClassId(e,t,r),this.parseClassSuper(e),e.body=this.parseClassBody(!!e.superClass,i),this.finishNode(e,t?"ClassDeclaration":"ClassExpression")}isClassProperty(){return this.match(35)||this.match(21)||this.match(16)}isClassMethod(){return this.match(18)}isNonstaticConstructor(e){return!(e.computed||e.static||"constructor"!==e.key.name&&"constructor"!==e.key.value)}parseClassBody(e,t){this.classScope.enter()
+const r={hadConstructor:!1,hadSuperClass:e}
 let i=[]
 const n=this.startNode()
-if(n.body=[],this.expect(o.braceL),this.withTopicForbiddingContext((()=>{for(;!this.match(o.braceR);){if(this.eat(o.semi)){if(i.length>0)throw this.raise(this.state.lastTokEnd,g.DecoratorSemicolon)
-continue}if(this.match(o.at)){i.push(this.parseDecorator())
+if(n.body=[],this.expect(13),this.withSmartMixTopicForbiddingContext((()=>{for(;!this.match(16);){if(this.eat(21)){if(i.length>0)throw this.raise(this.state.lastTokEnd,m.DecoratorSemicolon)
+continue}if(this.match(32)){i.push(this.parseDecorator())
 continue}const e=this.startNode()
-i.length&&(e.decorators=i,this.resetStartLocationFromNode(e,i[0]),i=[]),this.parseClassMember(n,e,r),"constructor"===e.kind&&e.decorators&&e.decorators.length>0&&this.raise(e.start,g.DecoratorConstructor)}})),this.state.strict=t,this.next(),i.length)throw this.raise(this.state.start,g.TrailingDecorator)
+i.length&&(e.decorators=i,this.resetStartLocationFromNode(e,i[0]),i=[]),this.parseClassMember(n,e,r),"constructor"===e.kind&&e.decorators&&e.decorators.length>0&&this.raise(e.start,m.DecoratorConstructor)}})),this.state.strict=t,this.next(),i.length)throw this.raise(this.state.start,m.TrailingDecorator)
 return this.classScope.exit(),this.finishNode(n,"ClassBody")}parseClassMemberFromModifier(e,t){const r=this.parseIdentifier(!0)
 if(this.isClassMethod()){const i=t
 return i.kind="method",i.computed=!1,i.key=r,i.static=!1,this.pushClassMethod(e,i,!1,!1,!1,!1),!0}if(this.isClassProperty()){const i=t
-return i.computed=!1,i.key=r,i.static=!1,e.body.push(this.parseClassProperty(i)),!0}return!1}parseClassMember(e,t,r){const i=this.isContextual("static")
+return i.computed=!1,i.key=r,i.static=!1,e.body.push(this.parseClassProperty(i)),!0}return this.resetPreviousNodeTrailingComments(r),!1}parseClassMember(e,t,r){const i=this.isContextual("static")
 if(i){if(this.parseClassMemberFromModifier(e,t))return
-if(this.eat(o.braceL))return void this.parseClassStaticBlock(e,t,r)}this.parseClassMemberWithIsStatic(e,t,r,i)}parseClassMemberWithIsStatic(e,t,r,i){const n=t,s=t,a=t,l=t,u=n,c=n
-if(t.static=i,this.eat(o.star))return u.kind="method",this.parseClassElementName(u),"PrivateName"===u.key.type?void this.pushClassPrivateMethod(e,s,!0,!1):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,g.ConstructorIsGenerator),void this.pushClassMethod(e,n,!0,!1,!1,!1))
-const h=this.state.containsEsc,p=this.parseClassElementName(t),d="PrivateName"===p.type,f="Identifier"===p.type,m=this.state.start
-if(this.parsePostMemberNameModifiers(c),this.isClassMethod()){if(u.kind="method",d)return void this.pushClassPrivateMethod(e,s,!1,!1)
-const t=this.isNonstaticConstructor(n)
-let i=!1
-t&&(n.kind="constructor",r.hadConstructor&&!this.hasPlugin("typescript")&&this.raise(p.start,g.DuplicateConstructor),r.hadConstructor=!0,i=r.constructorAllowsSuper),this.pushClassMethod(e,n,!1,!1,t,i)}else if(this.isClassProperty())d?this.pushClassPrivateProperty(e,l):this.pushClassProperty(e,a)
-else if(!f||"async"!==p.name||h||this.isLineTerminator())!f||"get"!==p.name&&"set"!==p.name||h||this.match(o.star)&&this.isLineTerminator()?this.isLineTerminator()?d?this.pushClassPrivateProperty(e,l):this.pushClassProperty(e,a):this.unexpected():(u.kind=p.name,this.parseClassElementName(n),"PrivateName"===u.key.type?this.pushClassPrivateMethod(e,s,!1,!1):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,g.ConstructorIsAccessor),this.pushClassMethod(e,n,!1,!1,!1,!1)),this.checkGetterSetterParams(n))
-else{const t=this.eat(o.star)
-c.optional&&this.unexpected(m),u.kind="method",this.parseClassElementName(u),this.parsePostMemberNameModifiers(c),"PrivateName"===u.key.type?this.pushClassPrivateMethod(e,s,t,!0):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,g.ConstructorIsAsync),this.pushClassMethod(e,n,t,!0,!1,!1))}}parseClassElementName(e){const t=this.parsePropertyName(e,!0)
-return e.computed||!e.static||"prototype"!==t.name&&"prototype"!==t.value||this.raise(t.start,g.StaticPrototype),"PrivateName"===t.type&&"constructor"===t.id.name&&this.raise(t.start,g.ConstructorClassPrivateField),t}parseClassStaticBlock(e,t,r){var i
-this.expectPlugin("classStaticBlock",t.start),this.scope.enter(80),this.expressionScope.enter(Te())
-const n=this.state.labels
+if(this.eat(13))return void this.parseClassStaticBlock(e,t)}this.parseClassMemberWithIsStatic(e,t,r,i)}parseClassMemberWithIsStatic(e,t,r,i){const n=t,s=t,a=t,o=t,l=n,u=n
+if(t.static=i,this.eat(54)){l.kind="method"
+const t=this.match(6)
+return this.parseClassElementName(l),t?void this.pushClassPrivateMethod(e,s,!0,!1):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,m.ConstructorIsGenerator),void this.pushClassMethod(e,n,!0,!1,!1,!1))}const c=this.match(5)&&!this.state.containsEsc,h=this.match(6),p=this.parseClassElementName(t),d=this.state.start
+if(this.parsePostMemberNameModifiers(u),this.isClassMethod()){if(l.kind="method",h)return void this.pushClassPrivateMethod(e,s,!1,!1)
+const i=this.isNonstaticConstructor(n)
+let a=!1
+i&&(n.kind="constructor",r.hadConstructor&&!this.hasPlugin("typescript")&&this.raise(p.start,m.DuplicateConstructor),i&&this.hasPlugin("typescript")&&t.override&&this.raise(p.start,m.OverrideOnConstructor),r.hadConstructor=!0,a=r.hadSuperClass),this.pushClassMethod(e,n,!1,!1,i,a)}else if(this.isClassProperty())h?this.pushClassPrivateProperty(e,o):this.pushClassProperty(e,a)
+else if(c&&"async"===p.name&&!this.isLineTerminator()){this.resetPreviousNodeTrailingComments(p)
+const t=this.eat(54)
+u.optional&&this.unexpected(d),l.kind="method"
+const r=this.match(6)
+this.parseClassElementName(l),this.parsePostMemberNameModifiers(u),r?this.pushClassPrivateMethod(e,s,t,!0):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,m.ConstructorIsAsync),this.pushClassMethod(e,n,t,!0,!1,!1))}else if(!c||"get"!==p.name&&"set"!==p.name||this.match(54)&&this.isLineTerminator())this.isLineTerminator()?h?this.pushClassPrivateProperty(e,o):this.pushClassProperty(e,a):this.unexpected()
+else{this.resetPreviousNodeTrailingComments(p),l.kind=p.name
+const t=this.match(6)
+this.parseClassElementName(n),t?this.pushClassPrivateMethod(e,s,!1,!1):(this.isNonstaticConstructor(n)&&this.raise(n.key.start,m.ConstructorIsAccessor),this.pushClassMethod(e,n,!1,!1,!1,!1)),this.checkGetterSetterParams(n)}}parseClassElementName(e){const{type:t,value:r,start:i}=this.state
+return 5!==t&&4!==t||!e.static||"prototype"!==r||this.raise(i,m.StaticPrototype),6===t&&"constructor"===r&&this.raise(i,m.ConstructorClassPrivateField),this.parsePropertyName(e,!0)}parseClassStaticBlock(e,t){var r
+this.expectPlugin("classStaticBlock",t.start),this.scope.enter(208)
+const i=this.state.labels
 this.state.labels=[],this.prodParam.enter(0)
-const s=t.body=[]
-this.parseBlockOrModuleBlockBody(s,void 0,!1,o.braceR),this.prodParam.exit(),this.expressionScope.exit(),this.scope.exit(),this.state.labels=n,e.body.push(this.finishNode(t,"StaticBlock")),r.hadStaticBlock&&this.raise(t.start,g.DuplicateStaticBlock),(null==(i=t.decorators)?void 0:i.length)&&this.raise(t.start,g.DecoratorStaticBlock),r.hadStaticBlock=!0}pushClassProperty(e,t){t.computed||"constructor"!==t.key.name&&"constructor"!==t.key.value||this.raise(t.key.start,g.ConstructorClassField),e.body.push(this.parseClassProperty(t))}pushClassPrivateProperty(e,t){this.expectPlugin("classPrivateProperties",t.key.start)
-const r=this.parseClassPrivateProperty(t)
-e.body.push(r),this.classScope.declarePrivateName(r.key.id.name,0,r.key.start)}pushClassMethod(e,t,r,i,n,s){e.body.push(this.parseMethod(t,r,i,n,s,"ClassMethod",!0))}pushClassPrivateMethod(e,t,r,i){this.expectPlugin("classPrivateMethods",t.key.start)
-const n=this.parseMethod(t,r,i,!1,!1,"ClassPrivateMethod",!0)
+const n=t.body=[]
+this.parseBlockOrModuleBlockBody(n,void 0,!1,16),this.prodParam.exit(),this.scope.exit(),this.state.labels=i,e.body.push(this.finishNode(t,"StaticBlock")),null!=(r=t.decorators)&&r.length&&this.raise(t.start,m.DecoratorStaticBlock)}pushClassProperty(e,t){t.computed||"constructor"!==t.key.name&&"constructor"!==t.key.value||this.raise(t.key.start,m.ConstructorClassField),e.body.push(this.parseClassProperty(t))}pushClassPrivateProperty(e,t){const r=this.parseClassPrivateProperty(t)
+e.body.push(r),this.classScope.declarePrivateName(this.getPrivateNameSV(r.key),0,r.key.start)}pushClassMethod(e,t,r,i,n,s){e.body.push(this.parseMethod(t,r,i,n,s,"ClassMethod",!0))}pushClassPrivateMethod(e,t,r,i){const n=this.parseMethod(t,r,i,!1,!1,"ClassPrivateMethod",!0)
 e.body.push(n)
 const s="get"===n.kind?n.static?6:2:"set"===n.kind?n.static?5:1:0
-this.classScope.declarePrivateName(n.key.id.name,s,n.key.start)}parsePostMemberNameModifiers(e){}parseClassPrivateProperty(e){return this.parseInitializer(e),this.semicolon(),this.finishNode(e,"ClassPrivateProperty")}parseClassProperty(e){return e.typeAnnotation&&!this.match(o.eq)||this.expectPlugin("classProperties"),this.parseInitializer(e),this.semicolon(),this.finishNode(e,"ClassProperty")}parseInitializer(e){this.scope.enter(80),this.expressionScope.enter(Te()),this.prodParam.enter(0),e.value=this.eat(o.eq)?this.parseMaybeAssignAllowIn():null,this.expressionScope.exit(),this.prodParam.exit(),this.scope.exit()}parseClassId(e,t,r,i=139){this.match(o.name)?(e.id=this.parseIdentifier(),t&&this.checkLVal(e.id,"class name",i)):r||!t?e.id=null:this.unexpected(null,g.MissingClassName)}parseClassSuper(e){e.superClass=this.eat(o._extends)?this.parseExprSubscripts():null}parseExport(e){const t=this.maybeParseExportDefaultSpecifier(e),r=!t||this.eat(o.comma),i=r&&this.eatExportStar(e),n=i&&this.maybeParseExportNamespaceSpecifier(e),s=r&&(!n||this.eat(o.comma)),a=t||i
+this.classScope.declarePrivateName(this.getPrivateNameSV(n.key),s,n.key.start)}parsePostMemberNameModifiers(e){}parseClassPrivateProperty(e){return this.parseInitializer(e),this.semicolon(),this.finishNode(e,"ClassPrivateProperty")}parseClassProperty(e){return this.parseInitializer(e),this.semicolon(),this.finishNode(e,"ClassProperty")}parseInitializer(e){this.scope.enter(80),this.expressionScope.enter(ve()),this.prodParam.enter(0),e.value=this.eat(35)?this.parseMaybeAssignAllowIn():null,this.expressionScope.exit(),this.prodParam.exit(),this.scope.exit()}parseClassId(e,t,r,i=139){this.match(5)?(e.id=this.parseIdentifier(),t&&this.checkLVal(e.id,"class name",i)):r||!t?e.id=null:this.unexpected(null,m.MissingClassName)}parseClassSuper(e){e.superClass=this.eat(80)?this.parseExprSubscripts():null}parseExport(e){const t=this.maybeParseExportDefaultSpecifier(e),r=!t||this.eat(20),i=r&&this.eatExportStar(e),n=i&&this.maybeParseExportNamespaceSpecifier(e),s=r&&(!n||this.eat(20)),a=t||i
 if(i&&!n)return t&&this.unexpected(),this.parseExportFrom(e,!0),this.finishNode(e,"ExportAllDeclaration")
-const l=this.maybeParseExportNamedSpecifiers(e)
-if(t&&r&&!i&&!l||n&&s&&!l)throw this.unexpected(null,o.braceL)
-let u
-if(a||l?(u=!1,this.parseExportFrom(e,a)):u=this.maybeParseExportDeclaration(e),a||l||u)return this.checkExport(e,!0,!1,!!e.source),this.finishNode(e,"ExportNamedDeclaration")
-if(this.eat(o._default))return e.declaration=this.parseExportDefaultExpression(),this.checkExport(e,!0,!0),this.finishNode(e,"ExportDefaultDeclaration")
-throw this.unexpected(null,o.braceL)}eatExportStar(e){return this.eat(o.star)}maybeParseExportDefaultSpecifier(e){if(this.isExportDefaultSpecifier()){this.expectPlugin("exportDefaultFrom")
+const o=this.maybeParseExportNamedSpecifiers(e)
+if(t&&r&&!i&&!o||n&&s&&!o)throw this.unexpected(null,13)
+let l
+if(a||o?(l=!1,this.parseExportFrom(e,a)):l=this.maybeParseExportDeclaration(e),a||o||l)return this.checkExport(e,!0,!1,!!e.source),this.finishNode(e,"ExportNamedDeclaration")
+if(this.eat(64))return e.declaration=this.parseExportDefaultExpression(),this.checkExport(e,!0,!0),this.finishNode(e,"ExportDefaultDeclaration")
+throw this.unexpected(null,13)}eatExportStar(e){return this.eat(54)}maybeParseExportDefaultSpecifier(e){if(this.isExportDefaultSpecifier()){this.expectPlugin("exportDefaultFrom")
 const t=this.startNode()
 return t.exported=this.parseIdentifier(!0),e.specifiers=[this.finishNode(t,"ExportDefaultSpecifier")],!0}return!1}maybeParseExportNamespaceSpecifier(e){if(this.isContextual("as")){e.specifiers||(e.specifiers=[])
 const t=this.startNodeAt(this.state.lastTokStart,this.state.lastTokStartLoc)
-return this.next(),t.exported=this.parseModuleExportName(),e.specifiers.push(this.finishNode(t,"ExportNamespaceSpecifier")),!0}return!1}maybeParseExportNamedSpecifiers(e){return!!this.match(o.braceL)&&(e.specifiers||(e.specifiers=[]),e.specifiers.push(...this.parseExportSpecifiers()),e.source=null,e.declaration=null,!0)}maybeParseExportDeclaration(e){return!!this.shouldParseExportDeclaration()&&(e.specifiers=[],e.source=null,e.declaration=this.parseExportDeclaration(e),!0)}isAsyncFunction(){if(!this.isContextual("async"))return!1
+return this.next(),t.exported=this.parseModuleExportName(),e.specifiers.push(this.finishNode(t,"ExportNamespaceSpecifier")),!0}return!1}maybeParseExportNamedSpecifiers(e){return!!this.match(13)&&(e.specifiers||(e.specifiers=[]),e.specifiers.push(...this.parseExportSpecifiers()),e.source=null,e.declaration=null,!0)}maybeParseExportDeclaration(e){return!!this.shouldParseExportDeclaration()&&(e.specifiers=[],e.source=null,e.declaration=this.parseExportDeclaration(e),!0)}isAsyncFunction(){if(!this.isContextual("async"))return!1
 const e=this.nextTokenStart()
-return!l.test(this.input.slice(this.state.pos,e))&&this.isUnparsedContextual(e,"function")}parseExportDefaultExpression(){const e=this.startNode(),t=this.isAsyncFunction()
-if(this.match(o._function)||t)return this.next(),t&&this.next(),this.parseFunction(e,5,t)
-if(this.match(o._class))return this.parseClass(e,!0,!0)
-if(this.match(o.at))return this.hasPlugin("decorators")&&this.getPluginOption("decorators","decoratorsBeforeExport")&&this.raise(this.state.start,g.DecoratorBeforeExport),this.parseDecorators(!1),this.parseClass(e,!0,!0)
-if(this.match(o._const)||this.match(o._var)||this.isLet())throw this.raise(this.state.start,g.UnsupportedDefaultExport)
+return!i.test(this.input.slice(this.state.pos,e))&&this.isUnparsedContextual(e,"function")}parseExportDefaultExpression(){const e=this.startNode(),t=this.isAsyncFunction()
+if(this.match(67)||t)return this.next(),t&&this.next(),this.parseFunction(e,5,t)
+if(this.match(79))return this.parseClass(e,!0,!0)
+if(this.match(32))return this.hasPlugin("decorators")&&this.getPluginOption("decorators","decoratorsBeforeExport")&&this.raise(this.state.start,m.DecoratorBeforeExport),this.parseDecorators(!1),this.parseClass(e,!0,!0)
+if(this.match(74)||this.match(73)||this.isLet())throw this.raise(this.state.start,m.UnsupportedDefaultExport)
 {const e=this.parseMaybeAssignAllowIn()
-return this.semicolon(),e}}parseExportDeclaration(e){return this.parseStatement(null)}isExportDefaultSpecifier(){if(this.match(o.name)){const e=this.state.value
+return this.semicolon(),e}}parseExportDeclaration(e){return this.parseStatement(null)}isExportDefaultSpecifier(){if(this.match(5)){const e=this.state.value
 if("async"===e&&!this.state.containsEsc||"let"===e)return!1
 if(("type"===e||"interface"===e)&&!this.state.containsEsc){const e=this.lookahead()
-if(e.type===o.name&&"from"!==e.value||e.type===o.braceL)return this.expectOnePlugin(["flow","typescript"]),!1}}else if(!this.match(o._default))return!1
+if(5===e.type&&"from"!==e.value||13===e.type)return this.expectOnePlugin(["flow","typescript"]),!1}}else if(!this.match(64))return!1
 const e=this.nextTokenStart(),t=this.isUnparsedContextual(e,"from")
-if(44===this.input.charCodeAt(e)||this.match(o.name)&&t)return!0
-if(this.match(o._default)&&t){const t=this.input.charCodeAt(this.nextTokenStartSince(e+4))
+if(44===this.input.charCodeAt(e)||this.match(5)&&t)return!0
+if(this.match(64)&&t){const t=this.input.charCodeAt(this.nextTokenStartSince(e+4))
 return 34===t||39===t}return!1}parseExportFrom(e,t){if(this.eatContextual("from")){e.source=this.parseImportSource(),this.checkExport(e)
 const t=this.maybeParseImportAssertions()
 t&&(e.assertions=t)}else t?this.unexpected():e.source=null
-this.semicolon()}shouldParseExportDeclaration(){if(this.match(o.at)&&(this.expectOnePlugin(["decorators","decorators-legacy"]),this.hasPlugin("decorators"))){if(!this.getPluginOption("decorators","decoratorsBeforeExport"))return!0
-this.unexpected(this.state.start,g.DecoratorBeforeExport)}return"var"===this.state.type.keyword||"const"===this.state.type.keyword||"function"===this.state.type.keyword||"class"===this.state.type.keyword||this.isLet()||this.isAsyncFunction()}checkExport(e,t,r,i){if(t)if(r){if(this.checkDuplicateExports(e,"default"),this.hasPlugin("exportDefaultFrom")){var n
+this.semicolon()}shouldParseExportDeclaration(){const{type:e}=this.state
+if(32===e&&(this.expectOnePlugin(["decorators","decorators-legacy"]),this.hasPlugin("decorators"))){if(!this.getPluginOption("decorators","decoratorsBeforeExport"))return!0
+this.unexpected(this.state.start,m.DecoratorBeforeExport)}return 73===e||74===e||67===e||79===e||this.isLet()||this.isAsyncFunction()}checkExport(e,t,r,i){if(t)if(r){if(this.checkDuplicateExports(e,"default"),this.hasPlugin("exportDefaultFrom")){var n
 const t=e.declaration
-"Identifier"!==t.type||"from"!==t.name||t.end-t.start!=4||(null==(n=t.extra)?void 0:n.parenthesized)||this.raise(t.start,g.ExportDefaultFromAsIdentifier)}}else if(e.specifiers&&e.specifiers.length)for(let s=0,a=e.specifiers;s<a.length;s++){const e=a[s],{exported:t}=e,r="Identifier"===t.type?t.name:t.value
-if(this.checkDuplicateExports(e,r),!i&&e.local){const{local:t}=e
-"StringLiteral"===t.type?this.raise(e.start,g.ExportBindingIsString,t.extra.raw,r):(this.checkReservedWord(t.name,t.start,!0,!1),this.scope.checkLocalExport(t))}}else if(e.declaration)if("FunctionDeclaration"===e.declaration.type||"ClassDeclaration"===e.declaration.type){const t=e.declaration.id
+"Identifier"!==t.type||"from"!==t.name||t.end-t.start!=4||null!=(n=t.extra)&&n.parenthesized||this.raise(t.start,m.ExportDefaultFromAsIdentifier)}}else if(e.specifiers&&e.specifiers.length)for(const s of e.specifiers){const{exported:e}=s,t="Identifier"===e.type?e.name:e.value
+if(this.checkDuplicateExports(s,t),!i&&s.local){const{local:e}=s
+"Identifier"!==e.type?this.raise(s.start,m.ExportBindingIsString,e.value,t):(this.checkReservedWord(e.name,e.start,!0,!1),this.scope.checkLocalExport(e))}}else if(e.declaration)if("FunctionDeclaration"===e.declaration.type||"ClassDeclaration"===e.declaration.type){const t=e.declaration.id
 if(!t)throw new Error("Assertion failure")
-this.checkDuplicateExports(e,t.name)}else if("VariableDeclaration"===e.declaration.type)for(let s=0,a=e.declaration.declarations;s<a.length;s++){const e=a[s]
-this.checkDeclaration(e.id)}if(this.state.decoratorStack[this.state.decoratorStack.length-1].length)throw this.raise(e.start,g.UnsupportedDecoratorExport)}checkDeclaration(e){if("Identifier"===e.type)this.checkDuplicateExports(e,e.name)
-else if("ObjectPattern"===e.type)for(let t=0,r=e.properties;t<r.length;t++){const e=r[t]
-this.checkDeclaration(e)}else if("ArrayPattern"===e.type)for(let t=0,r=e.elements;t<r.length;t++){const e=r[t]
-e&&this.checkDeclaration(e)}else"ObjectProperty"===e.type?this.checkDeclaration(e.value):"RestElement"===e.type?this.checkDeclaration(e.argument):"AssignmentPattern"===e.type&&this.checkDeclaration(e.left)}checkDuplicateExports(e,t){this.state.exportedIdentifiers.indexOf(t)>-1&&this.raise(e.start,"default"===t?g.DuplicateDefaultExport:g.DuplicateExport,t),this.state.exportedIdentifiers.push(t)}parseExportSpecifiers(){const e=[]
+this.checkDuplicateExports(e,t.name)}else if("VariableDeclaration"===e.declaration.type)for(const s of e.declaration.declarations)this.checkDeclaration(s.id)
+if(this.state.decoratorStack[this.state.decoratorStack.length-1].length)throw this.raise(e.start,m.UnsupportedDecoratorExport)}checkDeclaration(e){if("Identifier"===e.type)this.checkDuplicateExports(e,e.name)
+else if("ObjectPattern"===e.type)for(const t of e.properties)this.checkDeclaration(t)
+else if("ArrayPattern"===e.type)for(const t of e.elements)t&&this.checkDeclaration(t)
+else"ObjectProperty"===e.type?this.checkDeclaration(e.value):"RestElement"===e.type?this.checkDeclaration(e.argument):"AssignmentPattern"===e.type&&this.checkDeclaration(e.left)}checkDuplicateExports(e,t){this.exportedIdentifiers.has(t)&&this.raise(e.start,"default"===t?m.DuplicateDefaultExport:m.DuplicateExport,t),this.exportedIdentifiers.add(t)}parseExportSpecifiers(){const e=[]
 let t=!0
-for(this.expect(o.braceL);!this.eat(o.braceR);){if(t)t=!1
-else if(this.expect(o.comma),this.eat(o.braceR))break
-const r=this.startNode()
-r.local=this.parseModuleExportName(),r.exported=this.eatContextual("as")?this.parseModuleExportName():r.local.__clone(),e.push(this.finishNode(r,"ExportSpecifier"))}return e}parseModuleExportName(){if(this.match(o.string)){this.expectPlugin("moduleStringNames")
-const e=this.parseLiteral(this.state.value,"StringLiteral"),t=e.value.match(Ae)
-return t&&this.raise(e.start,g.ModuleExportNameHasLoneSurrogate,t[0].charCodeAt(0).toString(16)),e}return this.parseIdentifier(!0)}parseImport(e){if(e.specifiers=[],!this.match(o.string)){const t=!this.maybeParseDefaultImportSpecifier(e)||this.eat(o.comma),r=t&&this.maybeParseStarImportSpecifier(e)
+for(this.expect(13);!this.eat(16);){if(t)t=!1
+else if(this.expect(20),this.eat(16))break
+const r=this.startNode(),i=this.match(4),n=this.parseModuleExportName()
+r.local=n,this.eatContextual("as")?r.exported=this.parseModuleExportName():r.exported=i?ke(n):Te(n),e.push(this.finishNode(r,"ExportSpecifier"))}return e}parseModuleExportName(){if(this.match(4)){const e=this.parseStringLiteral(this.state.value),t=e.value.match(rt)
+return t&&this.raise(e.start,m.ModuleExportNameHasLoneSurrogate,t[0].charCodeAt(0).toString(16)),e}return this.parseIdentifier(!0)}parseImport(e){if(e.specifiers=[],!this.match(4)){const t=!this.maybeParseDefaultImportSpecifier(e)||this.eat(20),r=t&&this.maybeParseStarImportSpecifier(e)
 t&&!r&&this.parseNamedImportSpecifiers(e),this.expectContextual("from")}e.source=this.parseImportSource()
 const t=this.maybeParseImportAssertions()
 if(t)e.assertions=t
 else{const t=this.maybeParseModuleAttributes()
-t&&(e.attributes=t)}return this.semicolon(),this.finishNode(e,"ImportDeclaration")}parseImportSource(){return this.match(o.string)||this.unexpected(),this.parseExprAtom()}shouldParseDefaultImport(e){return this.match(o.name)}parseImportSpecifierLocal(e,t,r,i){t.local=this.parseIdentifier(),this.checkLVal(t.local,i,9),e.specifiers.push(this.finishNode(t,r))}parseAssertEntries(){const e=[],t=new Set
-do{if(this.match(o.braceR))break
+t&&(e.attributes=t)}return this.semicolon(),this.finishNode(e,"ImportDeclaration")}parseImportSource(){return this.match(4)||this.unexpected(),this.parseExprAtom()}shouldParseDefaultImport(e){return this.match(5)}parseImportSpecifierLocal(e,t,r,i){t.local=this.parseIdentifier(),this.checkLVal(t.local,i,9),e.specifiers.push(this.finishNode(t,r))}parseAssertEntries(){const e=[],t=new Set
+do{if(this.match(16))break
 const r=this.startNode(),i=this.state.value
-if(this.match(o.string)?r.key=this.parseLiteral(i,"StringLiteral"):r.key=this.parseIdentifier(!0),this.expect(o.colon),"type"!==i&&this.raise(r.key.start,g.ModuleAttributeDifferentFromType,i),t.has(i)&&this.raise(r.key.start,g.ModuleAttributesWithDuplicateKeys,i),t.add(i),!this.match(o.string))throw this.unexpected(this.state.start,g.ModuleAttributeInvalidValue)
-r.value=this.parseLiteral(this.state.value,"StringLiteral"),this.finishNode(r,"ImportAttribute"),e.push(r)}while(this.eat(o.comma))
-return e}maybeParseModuleAttributes(){if(!this.match(o._with)||this.hasPrecedingLineBreak())return this.hasPlugin("moduleAttributes")?[]:null
+if(t.has(i)&&this.raise(this.state.start,m.ModuleAttributesWithDuplicateKeys,i),t.add(i),this.match(4)?r.key=this.parseStringLiteral(i):r.key=this.parseIdentifier(!0),this.expect(22),!this.match(4))throw this.unexpected(this.state.start,m.ModuleAttributeInvalidValue)
+r.value=this.parseStringLiteral(this.state.value),this.finishNode(r,"ImportAttribute"),e.push(r)}while(this.eat(20))
+return e}maybeParseModuleAttributes(){if(!this.match(75)||this.hasPrecedingLineBreak())return this.hasPlugin("moduleAttributes")?[]:null
 this.expectPlugin("moduleAttributes"),this.next()
 const e=[],t=new Set
 do{const r=this.startNode()
-if(r.key=this.parseIdentifier(!0),"type"!==r.key.name&&this.raise(r.key.start,g.ModuleAttributeDifferentFromType,r.key.name),t.has(r.key.name)&&this.raise(r.key.start,g.ModuleAttributesWithDuplicateKeys,r.key.name),t.add(r.key.name),this.expect(o.colon),!this.match(o.string))throw this.unexpected(this.state.start,g.ModuleAttributeInvalidValue)
-r.value=this.parseLiteral(this.state.value,"StringLiteral"),this.finishNode(r,"ImportAttribute"),e.push(r)}while(this.eat(o.comma))
+if(r.key=this.parseIdentifier(!0),"type"!==r.key.name&&this.raise(r.key.start,m.ModuleAttributeDifferentFromType,r.key.name),t.has(r.key.name)&&this.raise(r.key.start,m.ModuleAttributesWithDuplicateKeys,r.key.name),t.add(r.key.name),this.expect(22),!this.match(4))throw this.unexpected(this.state.start,m.ModuleAttributeInvalidValue)
+r.value=this.parseStringLiteral(this.state.value),this.finishNode(r,"ImportAttribute"),e.push(r)}while(this.eat(20))
 return e}maybeParseImportAssertions(){if(!this.isContextual("assert")||this.hasPrecedingLineBreak())return this.hasPlugin("importAssertions")?[]:null
-this.expectPlugin("importAssertions"),this.next(),this.eat(o.braceL)
+this.expectPlugin("importAssertions"),this.next(),this.eat(13)
 const e=this.parseAssertEntries()
-return this.eat(o.braceR),e}maybeParseDefaultImportSpecifier(e){return!!this.shouldParseDefaultImport(e)&&(this.parseImportSpecifierLocal(e,this.startNode(),"ImportDefaultSpecifier","default import specifier"),!0)}maybeParseStarImportSpecifier(e){if(this.match(o.star)){const t=this.startNode()
+return this.eat(16),e}maybeParseDefaultImportSpecifier(e){return!!this.shouldParseDefaultImport(e)&&(this.parseImportSpecifierLocal(e,this.startNode(),"ImportDefaultSpecifier","default import specifier"),!0)}maybeParseStarImportSpecifier(e){if(this.match(54)){const t=this.startNode()
 return this.next(),this.expectContextual("as"),this.parseImportSpecifierLocal(e,t,"ImportNamespaceSpecifier","import namespace specifier"),!0}return!1}parseNamedImportSpecifiers(e){let t=!0
-for(this.expect(o.braceL);!this.eat(o.braceR);){if(t)t=!1
-else{if(this.eat(o.colon))throw this.raise(this.state.start,g.DestructureNamedImport)
-if(this.expect(o.comma),this.eat(o.braceR))break}this.parseImportSpecifier(e)}}parseImportSpecifier(e){const t=this.startNode()
+for(this.expect(13);!this.eat(16);){if(t)t=!1
+else{if(this.eat(22))throw this.raise(this.state.start,m.DestructureNamedImport)
+if(this.expect(20),this.eat(16))break}this.parseImportSpecifier(e)}}parseImportSpecifier(e){const t=this.startNode(),r=this.match(4)
 if(t.imported=this.parseModuleExportName(),this.eatContextual("as"))t.local=this.parseIdentifier()
 else{const{imported:e}=t
-if("StringLiteral"===e.type)throw this.raise(t.start,g.ImportBindingIsString,e.value)
-this.checkReservedWord(e.name,t.start,!0,!0),t.local=e.__clone()}this.checkLVal(t.local,"import specifier",9),e.specifiers.push(this.finishNode(t,"ImportSpecifier"))}}{constructor(e,t){super(e=function(e){const t={}
-for(let r=0,i=Object.keys(he);r<i.length;r++){const n=i[r]
-t[n]=e&&null!=e[n]?e[n]:he[n]}return t}(e),t)
-const r=this.getScopeHandler()
-this.options=e,this.inModule="module"===this.options.sourceType,this.scope=new r(this.raise.bind(this),this.inModule),this.prodParam=new ee,this.classScope=new _e(this.raise.bind(this)),this.expressionScope=new Se(this.raise.bind(this)),this.plugins=function(e){const t=new Map
-for(let r=0;r<e.length;r++){const i=e[r],[n,s]=Array.isArray(i)?i:[i,{}]
-t.has(n)||t.set(n,s||{})}return t}(this.options.plugins),this.filename=e.sourceFilename}getScopeHandler(){return Y}parse(){let e=0
-this.hasPlugin("topLevelAwait")&&this.inModule&&(e|=2),this.scope.enter(1),this.prodParam.enter(e)
-const t=this.startNode(),r=this.startNode()
-return this.nextToken(),t.errors=null,this.parseTopLevel(t,r),t.errors=this.state.errors,t}}function Ne(e,t){let r=De
-return(null==e?void 0:e.plugins)&&(function(e){if(se(e,"decorators")){if(se(e,"decorators-legacy"))throw new Error("Cannot use the decorators and decorators-legacy plugin together")
-const t=ae(e,"decorators","decoratorsBeforeExport")
+if(r)throw this.raise(t.start,m.ImportBindingIsString,e.value)
+this.checkReservedWord(e.name,t.start,!0,!0),t.local=Te(e)}this.checkLVal(t.local,"import specifier",9),e.specifiers.push(this.finishNode(t,"ImportSpecifier"))}isThisParam(e){return"Identifier"===e.type&&"this"===e.name}}{constructor(e,t){super(e=function(e){const t={}
+for(const r of Object.keys(Ye))t[r]=e&&null!=e[r]?e[r]:Ye[r]
+return t}(e),t),this.options=e,this.initializeScopes(),this.plugins=function(e){const t=new Map
+for(const r of e){const[e,i]=Array.isArray(r)?r:[r,{}]
+t.has(e)||t.set(e,i||{})}return t}(this.options.plugins),this.filename=e.sourceFilename}getScopeHandler(){return ne}parse(){this.enterInitialScopes()
+const e=this.startNode(),t=this.startNode()
+return this.nextToken(),e.errors=null,this.parseTopLevel(e,t),e.errors=this.state.errors,e}}const st=function(e){const t={}
+for(const r of Object.keys(e))t[r]=j(e[r])
+return t}(I)
+function at(e,t){let r=nt
+return null!=e&&e.plugins&&(function(e){if(Ve(e,"decorators")){if(Ve(e,"decorators-legacy"))throw new Error("Cannot use the decorators and decorators-legacy plugin together")
+const t=He(e,"decorators","decoratorsBeforeExport")
 if(null==t)throw new Error("The 'decorators' plugin requires a 'decoratorsBeforeExport' option, whose value must be a boolean. If you are migrating from Babylon/Babel 6 or want to use the old decorators proposal, you should use the 'decorators-legacy' plugin instead of 'decorators'.")
-if("boolean"!=typeof t)throw new Error("'decoratorsBeforeExport' must be a boolean.")}if(se(e,"flow")&&se(e,"typescript"))throw new Error("Cannot combine flow and typescript plugins.")
-if(se(e,"placeholders")&&se(e,"v8intrinsic"))throw new Error("Cannot combine placeholders and v8intrinsic plugins.")
-if(se(e,"pipelineOperator")&&!oe.includes(ae(e,"pipelineOperator","proposal")))throw new Error("'pipelineOperator' requires 'proposal' option whose value should be one of: "+oe.map((e=>`'${e}'`)).join(", "))
-if(se(e,"moduleAttributes")){if(se(e,"importAssertions"))throw new Error("Cannot combine importAssertions and moduleAttributes plugins.")
-if("may-2020"!==ae(e,"moduleAttributes","version"))throw new Error("The 'moduleAttributes' plugin requires a 'version' option, representing the last proposal update. Currently, the only supported value is 'may-2020'.")}if(se(e,"recordAndTuple")&&!le.includes(ae(e,"recordAndTuple","syntaxType")))throw new Error("'recordAndTuple' requires 'syntaxType' option whose value should be one of: "+le.map((e=>`'${e}'`)).join(", "))}(e.plugins),r=function(e){const t=ce.filter((t=>se(e,t))),r=t.join("/")
-let i=Oe[r]
-if(!i){i=De
-for(let e=0;e<t.length;e++){const r=t[e]
-i=ue[r](i)}Oe[r]=i}return i}(e.plugins)),new r(e,t)}const Oe={}
+if("boolean"!=typeof t)throw new Error("'decoratorsBeforeExport' must be a boolean.")}if(Ve(e,"flow")&&Ve(e,"typescript"))throw new Error("Cannot combine flow and typescript plugins.")
+if(Ve(e,"placeholders")&&Ve(e,"v8intrinsic"))throw new Error("Cannot combine placeholders and v8intrinsic plugins.")
+if(Ve(e,"pipelineOperator")){const t=He(e,"pipelineOperator","proposal")
+if(!We.includes(t)){const e=We.map((e=>`"${e}"`)).join(", ")
+throw new Error(`"pipelineOperator" requires "proposal" option whose value must be one of: ${e}.`)}const r=Ve(e,"recordAndTuple")&&"hash"===He(e,"recordAndTuple","syntaxType")
+if("hack"===t){if(Ve(e,"placeholders"))throw new Error("Cannot combine placeholders plugin and Hack-style pipes.")
+if(Ve(e,"v8intrinsic"))throw new Error("Cannot combine v8intrinsic plugin and Hack-style pipes.")
+const t=He(e,"pipelineOperator","topicToken")
+if(!Je.includes(t)){const e=Je.map((e=>`"${e}"`)).join(", ")
+throw new Error(`"pipelineOperator" in "proposal": "hack" mode also requires a "topicToken" option whose value must be one of: ${e}.`)}if("#"===t&&r)throw new Error('Plugin conflict between `["pipelineOperator", { proposal: "hack", topicToken: "#" }]` and `["recordAndtuple", { syntaxType: "hash"}]`.')}else if("smart"===t&&r)throw new Error('Plugin conflict between `["pipelineOperator", { proposal: "smart" }]` and `["recordAndtuple", { syntaxType: "hash"}]`.')}if(Ve(e,"moduleAttributes")){if(Ve(e,"importAssertions"))throw new Error("Cannot combine importAssertions and moduleAttributes plugins.")
+if("may-2020"!==He(e,"moduleAttributes","version"))throw new Error("The 'moduleAttributes' plugin requires a 'version' option, representing the last proposal update. Currently, the only supported value is 'may-2020'.")}if(Ve(e,"recordAndTuple")&&!Ge.includes(He(e,"recordAndTuple","syntaxType")))throw new Error("'recordAndTuple' requires 'syntaxType' option whose value should be one of: "+Ge.map((e=>`'${e}'`)).join(", "))
+if(Ve(e,"asyncDoExpressions")&&!Ve(e,"doExpressions")){const e=new Error("'asyncDoExpressions' requires 'doExpressions', please add 'doExpressions' to parser plugins.")
+throw e.missingPlugins="doExpressions",e}}(e.plugins),r=function(e){const t=Ke.filter((t=>Ve(e,t))),r=t.join("/")
+let i=ot[r]
+if(!i){i=nt
+for(const e of t)i=Xe[e](i)
+ot[r]=i}return i}(e.plugins)),new r(e,t)}const ot={}
 t.parse=function(e,t){var r
-if("unambiguous"!==(null==(r=t)?void 0:r.sourceType))return Ne(t,e).parse()
+if("unambiguous"!==(null==(r=t)?void 0:r.sourceType))return at(t,e).parse()
 t=Object.assign({},t)
 try{t.sourceType="module"
-const r=Ne(t,e),i=r.parse()
+const r=at(t,e),i=r.parse()
 if(r.sawUnambiguousESM)return i
-if(r.ambiguousScriptDifferentAst)try{return t.sourceType="script",Ne(t,e).parse()}catch(e){}else i.program.sourceType="script"
-return i}catch(r){try{return t.sourceType="script",Ne(t,e).parse()}catch(e){}throw r}},t.parseExpression=function(e,t){const r=Ne(t,e)
-return r.options.strictMode&&(r.state.strict=!0),r.getExpression()},t.tokTypes=o},function(e,t,r){"use strict"
+if(r.ambiguousScriptDifferentAst)try{return t.sourceType="script",at(t,e).parse()}catch(e){}else i.program.sourceType="script"
+return i}catch(r){try{return t.sourceType="script",at(t,e).parse()}catch(e){}throw r}},t.parseExpression=function(e,t){const r=at(t,e)
+return r.options.strictMode&&(r.state.strict=!0),r.getExpression()},t.tokTypes=st},function(e,t,r){"use strict"
 function i(e){return e=e.split(" "),function(t){return e.indexOf(t)>=0}}Object.defineProperty(t,"__esModule",{value:!0})
 var n={6:i("enum await"),strict:i("implements interface let package private protected public static yield"),strictBind:i("eval arguments")},s=i("break case catch continue debugger default do else finally for function if return switch throw try var while with null true false instanceof typeof void delete new in this let const class extends export import yield super"),a="ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛮ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕ℘-ℝℤΩℨK-ℹℼ-ℿⅅ-ⅉⅎⅠ-ↈⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞ々-〇〡-〩〱-〵〸-〼ぁ-ゖ゛-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛯꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ",o="‌‍·̀-ͯ·҃-֑҇-ׇֽֿׁׂׅׄؐ-ًؚ-٩ٰۖ-ۜ۟-۪ۤۧۨ-ۭ۰-۹ܑܰ-݊ަ-ް߀-߉߫-߳ࠖ-࠙ࠛ-ࠣࠥ-ࠧࠩ-࡙࠭-࡛ࣔ-ࣣ࣡-ःऺ-़ा-ॏ॑-ॗॢॣ०-९ঁ-ঃ়া-ৄেৈো-্ৗৢৣ০-৯ਁ-ਃ਼ਾ-ੂੇੈੋ-੍ੑ੦-ੱੵઁ-ઃ઼ા-ૅે-ૉો-્ૢૣ૦-૯ଁ-ଃ଼ା-ୄେୈୋ-୍ୖୗୢୣ୦-୯ஂா-ூெ-ைொ-்ௗ௦-௯ఀ-ఃా-ౄె-ైొ-్ౕౖౢౣ౦-౯ಁ-ಃ಼ಾ-ೄೆ-ೈೊ-್ೕೖೢೣ೦-೯ഁ-ഃാ-ൄെ-ൈൊ-്ൗൢൣ൦-൯ංඃ්ා-ුූෘ-ෟ෦-෯ෲෳัิ-ฺ็-๎๐-๙ັິ-ູົຼ່-ໍ໐-໙༘༙༠-༩༹༵༷༾༿ཱ-྄྆྇ྍ-ྗྙ-ྼ࿆ါ-ှ၀-၉ၖ-ၙၞ-ၠၢ-ၤၧ-ၭၱ-ၴႂ-ႍႏ-ႝ፝-፟፩-፱ᜒ-᜔ᜲ-᜴ᝒᝓᝲᝳ឴-៓៝០-៩᠋-᠍᠐-᠙ᢩᤠ-ᤫᤰ-᤻᥆-᥏᧐-᧚ᨗ-ᨛᩕ-ᩞ᩠-᩿᩼-᪉᪐-᪙᪰-᪽ᬀ-ᬄ᬴-᭄᭐-᭙᭫-᭳ᮀ-ᮂᮡ-ᮭ᮰-᮹᯦-᯳ᰤ-᰷᱀-᱉᱐-᱙᳐-᳔᳒-᳨᳭ᳲ-᳴᳸᳹᷀-᷵᷻-᷿‿⁀⁔⃐-⃥⃜⃡-⃰⳯-⵿⳱ⷠ-〪ⷿ-゙゚〯꘠-꘩꙯ꙴ-꙽ꚞꚟ꛰꛱ꠂ꠆ꠋꠣ-ꠧꢀꢁꢴ-ꣅ꣐-꣙꣠-꣱꤀-꤉ꤦ-꤭ꥇ-꥓ꦀ-ꦃ꦳-꧀꧐-꧙ꧥ꧰-꧹ꨩ-ꨶꩃꩌꩍ꩐-꩙ꩻ-ꩽꪰꪲ-ꪴꪷꪸꪾ꪿꫁ꫫ-ꫯꫵ꫶ꯣ-ꯪ꯬꯭꯰-꯹ﬞ︀-️︠-︯︳︴﹍-﹏０-９＿",l=new RegExp("["+a+"]"),u=new RegExp("["+a+o+"]")
 a=o=null
